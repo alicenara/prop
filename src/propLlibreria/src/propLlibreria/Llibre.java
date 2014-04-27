@@ -17,7 +17,7 @@ public class Llibre {
 	private int edicio;
 	private TGruix gruix;
 	private int estanteriaPos;
-	private Tematica[] temSecundaries;
+	private ArrayList<Tematica> temSecundaries = new ArrayList<Tematica>();
 	
 	//Default constructor
 	
@@ -26,7 +26,7 @@ public class Llibre {
 	
 	//All attributes constructor
 	
-	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, TGruix gruix, int estanteriaPos, Tematica[] temSecundaries){
+	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, TGruix gruix, int estanteriaPos, ArrayList<Tematica> temSecundaries){
 		//TODO increment ID automatic
 		this.codiLlibre=codiLlibre;
 		this.isbn = isbn;
@@ -123,23 +123,21 @@ public class Llibre {
 	public void setEstanteriaPos(int estanteriaPos) {
 		this.estanteriaPos = estanteriaPos;
 	}
-	public Tematica[] getTemSecundaries() {
+	public ArrayList<Tematica> getTemSecundaries() {
 		return temSecundaries;
 	}
-	public void setTemSecundaries(Tematica[] temSecundaries) {
+	public void setTemSecundaries(ArrayList<Tematica> temSecundaries) {
 		this.temSecundaries = temSecundaries;
 	}
 	
 	//Methods to add and delete "temSecundaries"
 	
 	public void afegirTemSecundaries(Tematica temSecundaria) {
-		this.temSecundaries[temSecundaries.length - 1] = temSecundaria;
+		this.temSecundaries.add(temSecundaria);
 	}
 	
 	public void eliminarTemSecundaries(Tematica temSecundaria) {
-		List<Tematica> list = new ArrayList<Tematica>(Arrays.asList(temSecundaries));
-		list.removeAll(Arrays.asList(temSecundaria));
-		temSecundaries = list.toArray(temSecundaries);
+		temSecundaries.remove(temSecundaria);
 	}
 	
 	
