@@ -1,3 +1,5 @@
+package propLlibreria;
+import java.util.*;
 public class Biblioteca {
 	
 	private string nom_biblioteca;

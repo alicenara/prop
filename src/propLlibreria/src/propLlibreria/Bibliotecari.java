@@ -1,21 +1,38 @@
+package propLlibreria;
+import java.util.*;
+
 public class Bibliotecari {
+    
+    // All "Bibliotecari"'s attributes
+	
+    private String contrasenya;
 
-	private string contrasenya;
-
-	public Bibliotecari(string contra) {
-		setContrasenya(contra);
+    //Default constructor
+    
+    public Bibliotecari() {
+    }
+    
+    //All atributtes constructor
+	
+    public Bibliotecari(String contrasenya) {
+		setContrasenya(contrasenya);
+	}
+    
+    //Methods
+    
+	public void setContrasenya(String contrasenya) {
+		this.contrasenya = contrasenya;
 	}
 
-	public void setContrasenya(string contra) {
-		contrasenya = contra;
+	public void restablirContrasenya(String contrasenyaAnterior, String contrasenyaNova) {
+        if (this.contrasenya == contrasenyaAnterior)
+		setContrasenya(contrasenyaNova);
 	}
-
-	public string getContrasenya() {
-		return contrasenya;
-	}
-
-	public void restablirContrasenya(string contra) {
-		setContrasenya(contra);
-	}
+    
+    public Biblioteca gestionaBiblioteca(String nomBiblioteca, String contrasenya) {
+        Biblioteca Biblio;
+        if (contrasenya == this.contrasenya) Biblio = new Biblioteca(nomBiblioteca);
+        return Biblio;
+    }
 
 }
