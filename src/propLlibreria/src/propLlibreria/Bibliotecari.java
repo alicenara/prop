@@ -30,8 +30,8 @@ public class Bibliotecari {
 	}
     
     public Biblioteca gestionaBiblioteca(String nomBiblioteca, String contrasenya) {
-        Biblioteca Biblio;
-        if (contrasenya == this.contrasenya) Biblio = new Biblioteca(nomBiblioteca);
+        if (contrasenya == this.contrasenya) Biblioteca Biblio = new Biblioteca(nomBiblioteca);
+        else Biblioteca Biblio = new Biblioteca();
         return Biblio;
     }
 

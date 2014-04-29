@@ -1,41 +1,56 @@
 package propLlibreria;
 import java.util.*;
+
 public class Biblioteca {
 	
-	private string nom_biblioteca;
-	private Estanteria[] estanteries;
-
+    //All "Biblioteca"'s attributes
+    
+	private String nomBiblioteca;
+    private ArrayList<Estanteria> estanteries = new ArrayList<Estanteria>();
+    
+    //Default constructor
+    
 	public Biblioteca() {
-
 	}
+    
+    //constructor with "Biblioteca"'s name
+    
+    public Biblioteca(String nomBiblioteca) {
+        setNomBiblioteca(nomBiblioteca);
+    }
 
+    //Methods
+    
+    public void setNomBiblioteca(String nomBiblioteca) {
+        this.nomBiblioteca = nomBiblioteca;
+    }
+    
+    public void setEstanteries(ArrayList<Estanteria> estanteries) {
+        this.estanteries = estanteries;
+    }
+    
+    public ArrayList<Estanteries> getEstanteries() {
+        return estanteries;
+    }
+    
 	public double calcularAfinitatLlibres(Llibre a, Llibre b) {
-
-	}
+    //Classe calcularAfinitat NO aqui
+    }
+    
 
 	public void ordenarLlibres() {
+	//Utilitzar classe Solució
+    }
 
+	public matriu consultarOrdreActual() {
+    //Descobrir com declarar matriu
+    }
+
+	public void afegirEstanteria(Estanteria novaEstanteria) {
+        estanteries.add(novaEstanteria);
 	}
 
-	public int[] consultarOrdreActual() {
-
-	}
-
-	public void afegirEstanteria(int files, int llargada) {
-		Estanteria nova = new Estanteria(files, llargada);
-		int pos = estanteries.length;
-		estanteries[pos] = nova;
-	}
-
-	public void esborrarEstanteria(int id) {
-		int noutamany = estanteries.length - 1;
-		Estanteria[] nouestanteries = new Estanteria[noutamany];
-		for (int i = 0; i < id; ++i) {
-			nouestanteries[i] = estanteries[i];
-		}
-		for (int i = id; i < noutamany; ++i) {
-			nouestanteries[i] = estanteries[i+1];
-		}
-		estanteries = nouestanteries;
+	public void esborrarEstanteria(Estanteria badEstanteria) {
+		estanteries.remove(badEstanteria);
 	}
 }
