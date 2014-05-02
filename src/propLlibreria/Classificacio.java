@@ -2,8 +2,8 @@ package propLlibreria;
 import java.util.ArrayList;
 
 public class Classificacio {
-	private Tematica temPrincipal;
-	private ArrayList<Tematica> temSecundaries;
+	private String temPrincipal;
+	private ArrayList<String> temSecundaries;
 	
 	//pre:
 	//post: el resultat es una classificacio del llibre l amb tematica principal temPrincipal
@@ -12,8 +12,8 @@ public class Classificacio {
 		temSecundaries = new ArrayList<Tematica>();
 	}
 	
-	//pre:	el paràmetre implícit no conté novaTematica
-	//post: el paràmetre implícit afegeix una tematica secundaria
+	//pre:	el parï¿½metre implï¿½cit no contï¿½ novaTematica
+	//post: el parï¿½metre implï¿½cit afegeix una tematica secundaria
 	public void afegirTematica(Tematica novaTematica) {
 		temSecundaries.add(novaTematica);
 	}
@@ -22,18 +22,18 @@ public class Classificacio {
 		this.temPrincipal = temPrincipal;
 	}
 	//pre:
-	//post: retorna la tematica principal del paràmetre implícit
+	//post: retorna la tematica principal del parï¿½metre implï¿½cit
 	public Tematica getTemPrincipal() {
 		return temPrincipal;
 	}
 	//pre:
-	//post: retorna numero de tematiques secundàries del paràmetre implícit
+	//post: retorna numero de tematiques secundï¿½ries del parï¿½metre implï¿½cit
 	public int getNumTemSecundaries() {
 		return temSecundaries.size();
 	}
 	
 	//pre: 0 <= index <= num tematiques secundaries
-	//post: retorna tematica secundària a la posició index
+	//post: retorna tematica secundï¿½ria a la posiciï¿½ index
 	public Tematica getTematicaIesima(int index) {
 		return temSecundaries.get(index);
 	}

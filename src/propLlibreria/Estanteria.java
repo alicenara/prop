@@ -3,32 +3,24 @@ import java.util.*;
 
 public class Estanteria {
 
-	private int idEstanteria;
+	private final int ID;
 	private int numFiles;
 	private int llargada;
 	private int posX;
 	private int posY;
 	
-	//Basic constructor
-	public Estanteria(){}
-	
 	//All attributes constructor
-	public Estanteria(int idEstanteria, int numFiles, int llargada, int posX, int posY) 
-	{
-		this.idEstanteria = idEstanteria;
+	public Estanteria(int numFiles, int llargada, int posX, int posY)  {
 		this.numFiles = numFiles;
 		this.llargada = llargada;
 		this.posX = posX;
 		this.posY = posY;
+		this.ID = BD.novaEstanteria(this);
 	}
 
 	//Getters and Setters
-	public int getIdEstanteria() {
-		return idEstanteria;
-	}
-
-	public void setIdEstanteria(int idEstanteria) {
-		this.idEstanteria = idEstanteria;
+	public int getID() {
+		return ID;
 	}
 
 	public int getNumFiles() {

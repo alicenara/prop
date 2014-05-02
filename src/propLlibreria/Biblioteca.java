@@ -6,7 +6,6 @@ public class Biblioteca {
     //All "Biblioteca"'s attributes
     
 	private String nomBiblioteca;
-    private ArrayList<Estanteria> estanteries = new ArrayList<Estanteria>();
     
     //Default constructor
     
@@ -26,7 +25,7 @@ public class Biblioteca {
     }
     
     public void setEstanteries(ArrayList<Estanteria> estanteries) {
-        this.estanteries = estanteries;
+        BD.setEstanteries(estanteries);
     }
     
     public ArrayList<Estanteries> getEstanteries() {
