@@ -24,7 +24,19 @@ public class Llibre {
 		this.any=any;
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal.getID();
-		this.ID = BD.nouLlibre(this);
+		this.ID = CtrlBD.obtenirUltimaIDLlibre();
+	}
+	
+	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
+		//TODO increment ID automatic
+		this.isbn = isbn;
+		this.titol=titol;
+		this.autor=autor;
+		this.editorial=editorial;
+		this.any=any;
+		this.edicio=edicio;
+		this.temPrincipal = tPrincipal.getID();
+		this.ID = ID;
 	}
 
 	//All getters and setters
@@ -68,8 +80,8 @@ public class Llibre {
 		this.edicio = edicio;
 	}
 
-	//pre:	el par�metre impl�cit no cont� novaTematica
-	//post: el par�metre impl�cit afegeix una tematica secundaria
+	//pre:	el parametre implicit no conte novaTematica
+	//post: el parametre implicit afegeix una tematica secundaria
 	public void afegirTematicaSecundaria(Tematica novaTematica) {
 		temSecundaries.add(novaTematica.getID());
 	}
@@ -78,19 +90,19 @@ public class Llibre {
 		this.temPrincipal = temPrincipal.getID();
 	}
 	//pre:
-	//post: retorna la tematica principal del par�metre impl�cit
+	//post: retorna la tematica principal del parametre implicit
 	public Tematica getTematicaPrincipal() {
-		return BD.getTematica(temPrincipal);
+		return CtrlBD.obtenirTematica(temPrincipal);
 	}
 	//pre:
-	//post: retorna numero de tematiques secund�ries del par�metre impl�cit
+	//post: retorna numero de tematiques secund�ries del parametre implicit
 	public int getNumTemSecundaries() {
 		return temSecundaries.size();
 	}
 
 	//pre: 0 <= index <= num tematiques secundaries
-	//post: retorna tematica secund�ria a la posici� index
+	//post: retorna tematica secundaria a la posicio index
 	public Tematica getTematicaIesima(int index) {
-		return BD.getTematica(temSecundaries.get(index));
+		return CtrlBD.obtenirTematica(temSecundaries.get(index));
 	}
 }

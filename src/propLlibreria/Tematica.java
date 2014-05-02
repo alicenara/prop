@@ -1,5 +1,4 @@
 package propLlibreria;
-import java.util.*;
 
 public class Tematica {
 	private final int ID;
@@ -9,7 +8,14 @@ public class Tematica {
 	//post: crea nova tematica amb nom de tematica igual a "nomTematica"
 	public Tematica (String nomTematica) {
 		this.nomTematica = nomTematica;
-		ID = BD.novaTematica(this);
+		this.ID = CtrlBD.obtenirUltimaIDTematica();
+	}
+	
+	//pre:
+	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
+	public Tematica (int ID, String nomTematica) {
+		this.nomTematica = nomTematica;
+		this.ID = ID;
 	}
 	
 	//pre:

@@ -6,7 +6,8 @@ import java.io.IOException;
 
 
 public class GestioDades {
-	private static final String FITXERLLIBRE = "./resources/Llibres.txt";
+	private static final String FITXERLLIBRE = "./resources/Llibre.txt";
+	private static final String FITXERTEMATICA = "./resources/Tematica.txt";
 	String fitxer;
 	BufferedReader br = null;
 	String linia = "";
@@ -48,9 +49,17 @@ public class GestioDades {
 	
 	//funció que llegeix l'ultima ID de l'arxiu amb tots els llibres
 	
-	public int llegirUltimaIdLlibre(){
-		fitxer=FITXERLLIBRE;
+	public int llegirUltimaId(int file){
 		String codi="";
+		
+		switch (file){
+			case 0: fitxer=FITXERLLIBRE;
+				break;
+			case 1: fitxer=FITXERTEMATICA;
+				break;
+			default:
+		}	
+		
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
 			
@@ -79,37 +88,27 @@ public class GestioDades {
 	
 	//funció que retorna totes les dades d'un llibre
 	
-	public Llibre llegirLlibre(int id){
-		fitxer=FITXERLLIBRE;
-		Llibre result;
+	public String[] llegirObjecte(int id, int file){
+		String[] objecte=null;
 		String identificador=Integer.toString(id);
+		boolean noTrobat=true;
 		
-		//variables per facilitar la lectura
-		
-		int codi=-1;
-		String isbn="";
-		String titol="";
-		String autor="";
-		String editorial="";
-		int any=-1;
-		int edicio=-1;
-		int gruix=-1;
+		switch (file){
+			case 0: fitxer=FITXERLLIBRE;
+				break;
+			case 1: fitxer=FITXERTEMATICA;
+				break;
+			default:
+		}	
 		
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
 			
-			while ((linia = br.readLine()) != null) {
-				String[] llibre = linia.split(splitBy);
-				if (llibre[0]==identificador){
+			while (noTrobat || (linia = br.readLine()) != null) {
+				objecte = linia.split(splitBy);
+				if (objecte[0]==identificador){
 					//només carrega les dades si coincideixen amb la id
-					codi=Integer.parseInt(llibre[0]);
-					isbn=llibre[1];
-					titol=llibre[2];
-					autor=llibre[3];
-					editorial=llibre[4];
-					any=Integer.parseInt(llibre[5]);
-					edicio=Integer.parseInt(llibre[6]);
-					gruix=Integer.parseInt(llibre[7]);					
+					noTrobat=false;
 				}
 			}
 		} catch (FileNotFoundException e) {
@@ -126,11 +125,7 @@ public class GestioDades {
 			}			
 		}
 		linia="";
-		if (codi==-1) return null;
-		else{
-			result = new Llibre(codi,isbn,titol,autor,editorial,any,edicio,gruix);
-			return result;			
-		}
+		return objecte;			
 	}
 
 }
