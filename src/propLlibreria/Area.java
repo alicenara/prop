@@ -16,7 +16,7 @@ public class Area {
 		return this.nomArea;
 	}
 	
-	public void afegirSeccio(String nom_seccio) {
-		BD.
+	public void afegirSeccio(Seccio novaSeccio) {
+		BD.afegirSeccioAArea(novaSeccio.getID());
 	}
 }

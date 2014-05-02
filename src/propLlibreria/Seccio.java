@@ -9,7 +9,7 @@ public class Seccio {
 	//post: crea una seccio amb nom "nomSeccio"
 	public Seccio (String nomSeccio) {
 		this.nomSeccio = nomSeccio;
-		ID = BD.novaSecio(this);
+		ID = BD.novaSeccio(this);
 	}
 	
 	//pre:
@@ -25,8 +25,8 @@ public class Seccio {
 	
 	//pre:	el parametre implicit no conte una tematica amb nom "nomTematica"
 	//post: afegeix una tematica al parametre implicit
-	public void afegirTematica(String nomTematica) {
-		BD.getTematicaPerSeccio(nomTematica);
+	public void afegirTematica(Tematica novaTematica) {
+		BD.afegirTematicaASeccio(novaTematica.getID());
 	}
 	
 }
