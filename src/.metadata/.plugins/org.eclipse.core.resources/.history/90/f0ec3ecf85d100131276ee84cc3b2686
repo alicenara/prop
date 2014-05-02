@@ -1,0 +1,61 @@
+package propLlibreria;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import propLlibreria.Llibre.TGruix;
+
+public class GestioDades {
+	String fitxer;
+	BufferedReader br = null;
+	String linia = "";
+	String splitBy = ";";
+	
+	public GestioDades(){}
+	
+	public GestioDades(String txt){
+		fitxer=txt;
+	}
+	
+	public Llibre llegirLlibre(int id){
+		Llibre result;
+		String identificador=Integer.toString(id);
+		
+		try{			
+			br = new BufferedReader(new FileReader(fitxer));
+			
+			while ((linia = br.readLine()) != null) {
+				String[] llibre = linia.split(splitBy);
+				if (llibre[0]==identificador){
+					int codi=Integer.parseInt(llibre[0]);
+					String isbn=llibre[1];
+					String titol=llibre[2];
+					String autor=llibre[3];
+					String editorial=llibre[4];
+					int any=Integer.parseInt(llibre[5]);
+					int edicio=Integer.parseInt(llibre[6]);
+					int gruix=Integer.parseInt(llibre[7]);
+					
+					result = new Llibre(codi,isbn,titol,autor,editorial,any,edicio,gruix);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}
+		return result;	
+	}
+
+}

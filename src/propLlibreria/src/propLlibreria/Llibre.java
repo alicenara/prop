@@ -26,7 +26,7 @@ public class Llibre {
 	
 	//All attributes constructor
 	
-	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, TGruix gruix, int estanteriaPos, ArrayList<Tematica> temSecundaries){
+	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, int gruix, int estanteriaPos, ArrayList<Tematica> temSecundaries){
 		//TODO increment ID automatic
 		this.codiLlibre=codiLlibre;
 		this.isbn = isbn;
@@ -35,14 +35,14 @@ public class Llibre {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
-		this.gruix=gruix;
+		this.gruix=assignarGruix(gruix);
 		this.estanteriaPos=estanteriaPos;
 		this.temSecundaries=temSecundaries;
 	}
 	
 	//Constructor without "temSecundaries" attribute
 	
-	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, TGruix gruix, int estanteriaPos){
+	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, int gruix, int estanteriaPos){
 		//TODO increment ID automatic
 		this.codiLlibre=codiLlibre;
 		this.isbn = isbn;
@@ -51,13 +51,13 @@ public class Llibre {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
-		this.gruix=gruix;
+		this.gruix=assignarGruix(gruix);
 		this.estanteriaPos=estanteriaPos;
 	}
 	
 	//Constructor without "estanteriaPos" and "temSecundaries" attributes ("estanteriaPos" set to -1)
 	
-	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, TGruix gruix){
+	public Llibre (int codiLlibre, String isbn, String titol, String autor, String editorial, int any, int edicio, int gruix){
 		//TODO increment ID automatic
 		this.codiLlibre=codiLlibre;
 		this.isbn = isbn;
@@ -66,7 +66,7 @@ public class Llibre {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
-		this.gruix=gruix;
+		this.gruix=assignarGruix(gruix);
 		this.estanteriaPos=-1;
 	}
 	
@@ -140,7 +140,14 @@ public class Llibre {
 		temSecundaries.remove(temSecundaria);
 	}
 	
-	
-	
-	
+	private TGruix assignarGruix(int gruix){
+		switch(gruix){
+		case 1:
+			return TGruix.PRIM;
+		case 2:
+			return TGruix.NORMAL;
+		default:
+			return TGruix.GRUIXUT;
+		}
+	}
 }
