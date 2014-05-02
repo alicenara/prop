@@ -26,9 +26,9 @@ public class Bibliotecari {
 		setContrasenya(contrasenyaNova);
 	}
     
-    public Biblioteca gestionaBiblioteca(String nomBiblioteca, String contrasenya) {
+    public Biblioteca gestionaBiblioteca(String contrasenya) {
         if (contrasenya != this.contrasenya) return null;
-        if (biblioteca == null) biblioteca = new Biblioteca(nomBiblioteca);
+        if (biblioteca == null) biblioteca = new Biblioteca();
         return biblioteca;
     }
 
