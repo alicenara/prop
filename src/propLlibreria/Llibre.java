@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Llibre {
 	//All "Llibre"'s attributes
-	
+
 	private final int ID;
 	private String isbn;
 	private String titol;
@@ -11,10 +11,11 @@ public class Llibre {
 	private String editorial;
 	private int any;
 	private int edicio;
-	private Classificacio classificacio;
-	
+	private int temPrincipal;
+	private ArrayList<Integer> temSecundaries;
+
 	//All attributes constructor
-	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, int gruix, int estanteriaPos, ArrayList<Tematica> temSecundaries){
+	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
 		//TODO increment ID automatic
 		this.isbn = isbn;
 		this.titol=titol;
@@ -22,9 +23,10 @@ public class Llibre {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
+		this.temPrincipal = tPrincipal.getID();
 		this.ID = BD.nouLlibre(this);
 	}
-	
+
 	//All getters and setters
 	public int getID() {
 		return ID;
@@ -65,7 +67,30 @@ public class Llibre {
 	public void setEdicio(int edicio) {
 		this.edicio = edicio;
 	}
-	public Classificacio getClassificacio() {
-		return this.classificacio;
+
+	//pre:	el par�metre impl�cit no cont� novaTematica
+	//post: el par�metre impl�cit afegeix una tematica secundaria
+	public void afegirTematicaSecundaria(Tematica novaTematica) {
+		temSecundaries.add(novaTematica.getID());
+	}
+
+	public void setTematicaPrincipal(Tematica temPrincipal) {
+		this.temPrincipal = temPrincipal.getID();
+	}
+	//pre:
+	//post: retorna la tematica principal del par�metre impl�cit
+	public Tematica getTematicaPrincipal() {
+		return BD.getTematica(temPrincipal);
+	}
+	//pre:
+	//post: retorna numero de tematiques secund�ries del par�metre impl�cit
+	public int getNumTemSecundaries() {
+		return temSecundaries.size();
+	}
+
+	//pre: 0 <= index <= num tematiques secundaries
+	//post: retorna tematica secund�ria a la posici� index
+	public Tematica getTematicaIesima(int index) {
+		return BD.getTematica(temSecundaries.get(index));
 	}
 }
