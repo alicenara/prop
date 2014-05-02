@@ -7,11 +7,6 @@ public class Biblioteca {
     
 	private String nomBiblioteca;
     
-    //Default constructor
-    
-	public Biblioteca() {
-	}
-    
     //constructor with "Biblioteca"'s name
     
     public Biblioteca(String nomBiblioteca) {
@@ -19,7 +14,6 @@ public class Biblioteca {
     }
 
     //Methods
-    
     public void setNomBiblioteca(String nomBiblioteca) {
         this.nomBiblioteca = nomBiblioteca;
     }
@@ -31,11 +25,6 @@ public class Biblioteca {
     public ArrayList<Estanteries> getEstanteries() {
         return estanteries;
     }
-    
-	public double calcularAfinitatLlibres(Llibre a, Llibre b) {
-    //Classe calcularAfinitat NO aqui
-    }
-    
 
 	public void ordenarLlibres() {
 	//Utilitzar classe Solució
