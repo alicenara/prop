@@ -23,7 +23,15 @@ public class Area {
 		this.nomArea = nomArea;
 	}
 	
+	public int getID() {
+		return ID;
+	}
+	
 	public void afegirSeccio(Seccio novaSeccio) {
-		BD.afegirSeccioAArea(novaSeccio.getID());
+		BD.afegirSeccioArea(ID, novaSeccio.getID());
+	}
+	
+	public void esborrarSeccio(Seccio badSeccio) {
+		BD.esborrarSeccioArea(ID, badSeccio.getID());
 	}
 }

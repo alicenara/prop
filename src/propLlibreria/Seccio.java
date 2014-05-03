@@ -13,12 +13,12 @@ public class Seccio {
 	}
 	
 	//pre:
-	//post: parametre implicit passa a tenir com a nom de secció "nomSeccio"
+	//post: parametre implicit passa a tenir com a nom de seccio "nomSeccio"
 	public void setNomSeccio(String nomSeccio) {
 		this.nomSeccio = nomSeccio;
 	}
 	//pre:
-	//post: retorna el nom de secció del parametre implicit
+	//post: retorna el nom de seccio del parametre implicit
 	public String getNomSeccio() {
 		return this.nomSeccio;
 	}
@@ -26,7 +26,11 @@ public class Seccio {
 	//pre:	el parametre implicit no conte una tematica amb nom "nomTematica"
 	//post: afegeix una tematica al parametre implicit
 	public void afegirTematica(Tematica novaTematica) {
-		BD.afegirTematicaASeccio(novaTematica.getID());
+		BD.afegirTematicaSeccio(ID, novaTematica.getID());
+	}
+	
+	public void esborrarTematica(Tematica badTematica) {
+		BD.esborrarTematicaSeccio(ID, badTematica.getID());
 	}
 	
 }

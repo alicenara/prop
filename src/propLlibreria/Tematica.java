@@ -13,9 +13,9 @@ public class Tematica {
 	
 	//pre:
 	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
-	public Tematica (int ID, String nomTematica) {
+	public Tematica (String nomTematica) {
 		this.nomTematica = nomTematica;
-		this.ID = ID;
+		ID = BD.novaTematica(this);
 	}
 	
 	//pre:
@@ -32,5 +32,15 @@ public class Tematica {
 	
 	public int getID() {
 		return ID;
-	}	
+	}
+	
+	public void afegirLlibre(Llibre nouLlibre) {
+		BD.afegirLlibreTematica(ID, nouLlibre.getID());
+	}
+	
+	public void esborrarLlibre(Llibre badLlibre) {
+		BD.esborrarLlibreTematica(ID, badLlibre.getID());
+	}
+	
+	
 }
