@@ -2,22 +2,17 @@ package propLlibreria;
 import java.util.*;
 
 public class Biblioteca {
-    //constructor with "Biblioteca"'s name
     
+	//Constructora
     public Biblioteca() {
     	BD.init();
     }
     
-    //Methods
+    //Metodes
     //pre:
     //post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
 	public void reordenacioBiblioteca() {
         //Utilitzar classe Solucio
-    }
-    //pre:
-    //post: retorna l'ordre de classificacio dels llibres de la Biblioteca
---->public matriu consultarOrdreActual() {
-        //Descobrir com declarar matriu
     }
 	
 	//pre: No existeix una Area, tal que el seu nom sigui nomArea
@@ -109,12 +104,105 @@ public class Biblioteca {
 	public void eliminarTematica(int ID) {
 		
 	}
+	
+	//pre: Existeix una Tematica tal que Tematica = tPrincipal i no existeix un Llibre, tal que isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
+    //post: S'ha creat una nou Llibre amb isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
+	public void afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i no esta continguda en les Tematiques Secundaries del Llibre
+	//post: El Llibre amb identificador IDL conte en les seves Tematiques Secundaries la Tematica amb identificador IDT
+	public void afergirTSecundaries(int IDL, int IDT) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador ID te isbn = isbnmod
+	public void modificarIsbnLlibre(int ID, String isbnmod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador ID te titol = titolmod
+	public void modificarTitolLlibre(int ID, String titolmod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador ID te autor = autormod
+	public void modificarAutorLlibre(int ID, String autormod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador ID te editorial = editorialmod
+	public void modificarEditorialLlibre(int ID, String editorialmod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador ID te any = anymod
+	public void modificarAnyLlibre(int ID, int anymod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador ID te edicio = ediciomod
+	public void modificarEdicioLlibre(int ID, int ediciomod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID i existeix una Tematica tal que Tematica = tPrincipalmod
+    //post: El Llibre amb identificador ID te temPrincipal = codi identificador de tPrincipalmod
+	public void modificarTPrincipalLlibre(int ID, Tematica tPrincipalmod) {
+		
+	}
+	
+	//pre: Existeix un Llibre tal que el seu Identificador = ID
+    //post: El Llibre amb identificador = ID ha estat eliminat
+	public void eliminarLlibre(int ID) {
+		
+	}
     
-    public void afegirEstanteria() {
-        
-    }
+	//pre: No existeix una Estanteria, tal que la seva posicio sigui posX = posX i posY = PosY
+    //post: S'ha creat una nova Estanteria amb nunmFiles = numFiles, llargada = llargda, posX = posX i posY = posY
+	public void afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
+		
+	}
+	
+	//pre: Existeix una Estanteria tal que el seu Identificador = ID
+    //post: La Estanteria amb identificador ID te numFiles = numFilesmod
+	public void modificarNumFiles(int ID, int numFilesmod) {
+		
+	}
+	
+	//pre: Existeix una Estanteria tal que el seu Identificador = ID
+    //post: La Estanteria amb identificador ID te llargada = llargadamod
+	public void modificarLlargada(int ID, int llargadamod) {
+		
+	}
+	
+	//pre: Existeix una Estanteria tal que el seu Identificador = IDE i un Llibre tal que el seu identificador es IDL i no esta contingut en la Estanteria
+    //post: La Estanteria amb identificador IDE conte el Llibre amb identificador IDL 
+	public void afegirLlibreEstanteria(int IDE, int IDL) {
+		
+	}
+	
+	//pre: Existeix una Estanteria tal que el seu Identificador = IDE i un Llibre tal que el seu identificador es IDL i esta contingut en la Estanteria
+    //post: La Estanteria amb identificador IDE no conte el Llibre amb identificador IDL 
+	public void esborrarLlibreEstanteria(int IDE, int IDL) {
+		
+	}
+	
+	//pre: Existeix una Estanteria tal que el seu Identificador = ID
+    //post: La Estanteria amb identificador = ID ha estat eliminada
+	public void eliminarEstanteria(int ID) {
+		
+	}
     
-    public void esborrarEstanteria() {
-        
+    //Consultores
+--->public matriu consultarOrdreActual() {
+        //Descobrir com declarar matriu
     }
 }
