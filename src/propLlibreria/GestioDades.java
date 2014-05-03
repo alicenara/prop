@@ -19,9 +19,17 @@ public class GestioDades {
 	
 	//funció que llegeix la primera ID de l'arxiu amb tots els llibres 
 	
-	public int llegirPrimeraIdLlibre(){
-		fitxer=FITXERLLIBRE;
+	public int llegirPrimeraId(int file){
 		String codi="";
+
+		switch (file){
+			case 0: fitxer=FITXERLLIBRE;
+				break;
+			case 1: fitxer=FITXERTEMATICA;
+				break;
+			default:
+		}	
+		
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
 			
