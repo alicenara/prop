@@ -173,13 +173,13 @@ public class Biblioteca {
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
     //post: La Estanteria amb identificador ID te numFiles = numFilesmod
-	public void modificarNumFiles(int ID, int numFilesmod) {
+	public void modificarNumFilesEstanteria(int ID, int numFilesmod) {
 		
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
     //post: La Estanteria amb identificador ID te llargada = llargadamod
-	public void modificarLlargada(int ID, int llargadamod) {
+	public void modificarLlargadaEstanteria(int ID, int llargadamod) {
 		
 	}
 	
@@ -202,7 +202,45 @@ public class Biblioteca {
 	}
     
     //Consultores
---->public matriu consultarOrdreActual() {
-        //Descobrir com declarar matriu
+	
+	public ArrayList<Llibre> consultarLlibresArea(int IDA) {
+		
+	}
+	
+	public Area consultarAtributsArea(int IDA) {
+		
+	}
+	
+	public ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
+		
+	}
+	
+	public Seccio consultarAtributsSeccio(int IDS) {
+		
+	}
+	
+	public ArrayList<Llibre> consultarLlibresTematica(int IDT) {
+		
+	}
+	
+	public Tematica consultarAtributsTematica(int IDT) {
+		
+	}
+	
+	public ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
+		
+	}
+	
+	public Estanteria consultarAtributsEstanteria(int IDE) {
+		
+	}
+	
+	public Llibre consultarAtributsLlibre(int IDL) {
+		
+	}
+	
+	public ArrayList<Llibre> consultarOrdreActual() {
+	
     }
+	
 }
