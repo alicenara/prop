@@ -8,6 +8,7 @@ public class Estanteria {
 	private int llargada;
 	private int posX;
 	private int posY;
+	private ArrayList<Llibre> LlibresEstanteria;
 	
 	//All attributes constructor
 	public Estanteria(int numFiles, int llargada, int posX, int posY)  {

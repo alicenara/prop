@@ -37,14 +37,6 @@ public class Biblioteca {
 		modArea.afegirSeccio(afSeccio);
 	}
 	
-	//pre: Existeix una Area tal que el seu Identificador = IDA i una Seccio tal que el seu identificador es IDS i esta continguda en l'Area
-    //post: L'Area amb identificador IDA no conte la Seccio amb identificador IDS 
-	public void esborrarSeccioArea(int IDA, int IDS) {
-		Area modArea = BD.getArea(IDA);
-		Seccio esbSeccio = BD.getSeccio(IDS);
-		modArea.esborrarSeccio(esbSeccio);
-	}
-	
 	//pre: Existeix una Area tal que el seu Identificador = ID
     //post: L'Area amb identificador = ID ha estat eliminada
 	public void eliminarArea(int ID) {
@@ -71,14 +63,6 @@ public class Biblioteca {
 		Seccio modSeccio = BD.getSeccio(IDS);
 		Tematica afTematica = BD.getTematica(IDT);
 		modSeccio.afegirTematica(afTematica);
-	}
-	
-	//pre: Existeix una Seccio tal que el seu Identificador = IDS i una Tematica tal que el seu identificador es IDT i esta continguda en la Seccio
-    //post: La Seccio amb identificador IDS no conte la Tematica amb identificador IDT
-	public void esborrarTematicaSeccio(int IDS, int IDT) {
-		Seccio modSeccio = BD.getSeccio(IDS);
-		Tematica esbTematica = BD.getTematica(IDT);
-		modSeccio.esborrarTematica(esbTematica);
 	}
 	
 	//pre: Existeix una Seccio tal que el seu Identificador = ID
@@ -109,14 +93,6 @@ public class Biblioteca {
 		modTematica.afegirLlibre(afLlibre);
 	}
 	
-	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i esta contingut en la Tematica
-    //post: La Tematica amb identificador IDT no conte el Llibre amb identificador IDL 
-	public void esborrarLlibreTematica(int IDT, int IDL) {
-		Tematica modTematica = BD.getTematica(IDT);
-		Llibre esbLlibre = BD.getLlibre(IDL);
-		modTematica.esborrarLlibre(esbLlibre);
-	}
-	
 	//pre: Existeix una Tematica tal que el seu Identificador = ID
     //post: La Tematica amb identificador = ID ha estat eliminada
 	public void eliminarTematica(int ID) {
@@ -131,7 +107,7 @@ public class Biblioteca {
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i no esta continguda en les Tematiques Secundaries del Llibre
 	//post: El Llibre amb identificador IDL conte en les seves Tematiques Secundaries la Tematica amb identificador IDT
-	public void afergirTSecundaries(int IDL, int IDT) {
+	public void afegirTSecundaries(int IDL, int IDT) {
 		
 	}
 	

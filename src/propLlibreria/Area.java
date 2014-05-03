@@ -28,10 +28,7 @@ public class Area {
 	}
 	
 	public void afegirSeccio(Seccio novaSeccio) {
-		BD.afegirSeccioArea(ID, novaSeccio.getID());
+		novaSeccio.setNomAreaSeccio(nomArea);
 	}
 	
-	public void esborrarSeccio(Seccio badSeccio) {
-		BD.esborrarSeccioArea(ID, badSeccio.getID());
-	}
 }

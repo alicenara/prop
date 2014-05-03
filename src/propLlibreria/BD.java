@@ -1,5 +1,4 @@
 package propLlibreria;
-import java.awt.geom.Area;
 import java.util.*;
 
 public class BD {

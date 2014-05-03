@@ -1,20 +1,24 @@
 package propLlibreria;
+import java.util.*;
 
 public class Tematica {
 	private final int ID;
 	private String nomTematica;
+	private String nomSeccio;
 	
 	//pre:
 	//post: crea nova tematica amb nom de tematica igual a "nomTematica"
-	public Tematica (String nomTematica) {
+	public Tematica (String nomTematica, String nomSeccio) {
 		this.nomTematica = nomTematica;
+		this.nomSeccio = nomSeccio;
 		this.ID = CtrlBD.obtenirUltimaIDTematica();
 	}
 	
 	//pre:
 	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
-	public Tematica (String nomTematica) {
+	public Tematica (String nomTematica, String nomSeccio) {
 		this.nomTematica = nomTematica;
+		this.nomSeccio = nomSeccio;
 		ID = BD.novaTematica(this);
 	}
 	
@@ -24,10 +28,18 @@ public class Tematica {
 			return this.nomTematica;
 	}
 	
+	public String getNomSeccioTematica() {
+		return this.nomSeccio;
+}
+	
 	//pre:
 	//post:
-	public void setNomTematica (String nouNomTematica) {
+	public void setNomTematica(String nouNomTematica) {
 		this.nomTematica = nouNomTematica;
+	}
+	
+	public void setNomSeccioTematica(String nouNomSeccio) {
+		this.nomSeccio = nouNomSeccio;
 	}
 	
 	public int getID() {
@@ -35,12 +47,7 @@ public class Tematica {
 	}
 	
 	public void afegirLlibre(Llibre nouLlibre) {
-		BD.afegirLlibreTematica(ID, nouLlibre.getID());
+		nouLlibre.setTematicaPrincipal(this);
 	}
-	
-	public void esborrarLlibre(Llibre badLlibre) {
-		BD.esborrarLlibreTematica(ID, badLlibre.getID());
-	}
-	
-	
+		
 }
