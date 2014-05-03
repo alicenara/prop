@@ -85,6 +85,10 @@ public class Llibre {
 	public void afegirTematicaSecundaria(Tematica novaTematica) {
 		temSecundaries.add(novaTematica.getID());
 	}
+	
+	public void eliminarTematicaSecundaria(Tematica tem) {
+		temSecundaries.remove((Object)new Integer(tem.getID()));
+	}
 
 	public void setTematicaPrincipal(Tematica temPrincipal) {
 		this.temPrincipal = temPrincipal.getID();

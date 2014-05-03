@@ -11,7 +11,7 @@ public class CtrlBD {
 	
 	public static int obtenirUltimaIDLlibre(){
 		GestioDades g = new GestioDades();
-		return g.llegirUltimaId(0);
+		return g.llegirUltimaId(0)+1;
 	}
 	
 	public static Tematica obtenirTemPrinLlibre(int id){
@@ -30,7 +30,7 @@ public class CtrlBD {
 	
 	public static int obtenirUltimaIDTematica(){
 		GestioDades g = new GestioDades();
-		return g.llegirUltimaId(1);
+		return g.llegirUltimaId(1)+1;
 	}
 	
 	public static Tematica obtenirTematica(int id){
