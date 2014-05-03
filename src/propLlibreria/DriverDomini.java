@@ -55,99 +55,121 @@ public class DriverDomini {
 	
 	
 	public void gestioArea(String accio) {
-		switch(seccio) {
-			case "1":		//Insertar
-				
-				break;
-			case "2":		//Modificar
-				
-				break;
-			case "3":		//Eliminar
-				
-				break;
-			case "4":		//do nothing
-				
-				break;
-			case default: 
-				entradaIncorrecta();
-				break;
+		boolean accioFeta = false;
+		while(!not accioFeta) {
+			switch(accio) {
+				case "1":		//Insertar
+					afegirArea(String nomArea) {
+					break;
+				case "2":		//Modificar
+					public void modificarNomArea(int ID, String nomA);
+					public void afegirSeccioArea(int IDA, int IDS);
+					public void esborrarSeccioArea(int IDA, int IDS) {
+						
+					}
+					break;
+				case "3":		//Eliminar
+					public void eliminarArea(int ID);
+					break;
+				case "4":		//Sortir
+					accioFeta = true;
+					break;
+				case default: 
+					entradaIncorrecta();
+					break;
+			}
 		}
-		
 	}
 	public void gestioSeccio(String accio) {
-		switch(seccio) {
-			case "1":		//Insertar
-				
-				break;
-			case "2":		//Modificar
-				
-				break;
-			case "3":		//Eliminar
-				
-				break;
-			case "4":		//do nothing
-				
-				break;
-			case default: 
-				entradaIncorrecta();
-				break;
-		}
+		boolean accioFeta = false;
+		while(!not accioFeta) {
+			switch(accio) {
+				case "1":		//Insertar
+					public void afegirSeccio(String nomSeccio);
+					break;
+				case "2":		//Modificar
+					public void modificarNomSeccio(int ID, String nomS);
+					public void afegirTematicaSeccio(int IDS, int IDT);
+					break;
+				case "3":		//Eliminar
+					public void eliminarSeccio(int ID);
+					break;
+				case "4":		//Sortir
+					accioFeta = true;
+					break;
+				case default: 
+					entradaIncorrecta();
+					break;
+			}
+		}	
 	}
+	
 	public void gestioTematica(String accio) {
-		
-		switch(seccio) {
-			case "1":		//Insertar
-				afegirTematica(String nomTematica);
-				break;
-			case "2":		//Modificar
-				modificarNomTematica(int ID, String nomT);
-				break;
-			case "3":		//Eliminar
-				eliminarTematica(int ID);	
-				break;
-			case "4":		//do nothing
-				break;
-			case default: 
-				entradaIncorrecta();
-				break;
+		boolean accioFeta = false;
+		while(!not accioFeta) {
+			switch(accio) {
+				case "1":		//Insertar
+					afegirTematica(String nomTematica);
+					break;
+				case "2":		//Modificar
+					modificarNomTematica(int ID, String nomT);
+					public void afegirLlibreTematica(int IDT, int IDL);
+					public void esborrarLlibreTematica(int IDT, int IDL);
+					break;
+				case "3":		//Eliminar
+					eliminarTematica(int ID);
+					break;
+				case "4":		//Sortir
+					accioFeta = true;
+					break;
+				case default: 
+					entradaIncorrecta();
+					break;
+			}
 		}
 	}
 	public void gestioLlibre(String accio) {
-		switch(seccio) {
-			case "1":		//Insertar
-
-				break;
-			case "2":		//Modificar
-				
-				break;
-			case "3":		//Eliminar
-				
-				break;
-			case "4":		//do nothing
-				
-				break;
-			case default: 
-				entradaIncorrecta();
-				break;
+		boolean accioFeta = false;
+		while(!not accioFeta) {
+			switch(accio) {
+				case "1":		//Insertar
+	
+					break;
+				case "2":		//Modificar
+					
+					break;
+				case "3":		//Eliminar
+					
+					break;
+				case "4":		//Sortir
+					accioFeta = true;
+					break;
+				case default: 
+					entradaIncorrecta();
+					break;
+			}
 		}
 	}
 	public void gestioEstanteria(String accio) {
-		switch(seccio) {
-			case "1":		//Insertar
-				biblio.afegirEstanteria();
-				break;
-			case "2":		//Modificar
-				
-				break;
-			case "3":		//Eliminar
-			    public void esborrarEstanteria();
-				break;
-			case "4":		//do nothing
-				
-				break;
-			case default: 
-				entradaIncorrecta();
-				break;
+		boolean accioFeta = false;
+		while(!not accioFeta) {
+			switch(accio) {
+				case "1":		//Insertar
+					biblio.afegirEstanteria();
+					break;
+				case "2":		//Modificar
+					
+					break;
+				case "3":		//Eliminar
+				    public void esborrarEstanteria();
+					break;
+				case "4":		//Sortir
+					accioFeta = true;
+					break;
+				case default: 
+					entradaIncorrecta();
+					break;
+			}
 		}
 	}
 	
