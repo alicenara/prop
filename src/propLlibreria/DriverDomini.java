@@ -15,39 +15,39 @@ public class DriverDomini {
 	
 	public static void menuNavegacio() {
 		System.out.printIn("Escull tasca a realitzar:");
-		System.out.printIn("1 Gestiona Biblioteca");
-		System.out.printIn("2 Consultar Biblioteca");
-		System.out.printIn("3 Canviar contrasenya")
-		System.out.printIn("4 Sortir");
+		System.out.printIn("\t 1 Gestiona Biblioteca");
+		System.out.printIn("\t 2 Consultar Biblioteca");
+		System.out.printIn("\t 3 Canviar contrasenya")
+		System.out.printIn("\t 4 Sortir");
 	}
 	System.out.
 	public static void menuGestio() {
 		System.out.printIn("Gestionar...");
-		System.out.printIn("1 Area");
-		System.out.printIn("2 Seccio");
-		System.out.printIn("3 Tematica");
-		System.out.printIn("4 Llibre");
-		System.out.printIn("5 Estanteria");
-		System.out.printIn("6 Tornar Enrere")
+		System.out.printIn("\t 1 Area");
+		System.out.printIn("\t 2 Seccio");
+		System.out.printIn("\t 3 Tematica");
+		System.out.printIn("\t 4 Llibre");
+		System.out.printIn("\t 5 Estanteria");
+		System.out.printIn("\t 6 Tornar Enrere")
 	}
 	
 		
 	public static void menuGestio2() {
 		System.out.("Selecciona acció:");
-		System.out.("1 Insertar");
-		System.out.("2 Modificar");
-		System.out.("3 Eliminar");
-		System.out.("4 Tornar Enrere")
+		System.out.("\t 1 Insertar");
+		System.out.("\t 2 Modificar");
+		System.out.("\t 3 Eliminar");
+		System.out.("\t 4 Tornar Enrere")
 	}
 	
 	public static void menuConsulta() {
 		System.out.printIn("Consultar...");
-		System.out.printIn("1 Area");
-		System.out.printIn("2 Seccio");
-		System.out.printIn("3 Tematica");
-		System.out.printIn("4 Llibre");
-		System.out.printIn("5 Estanteria");
-		System.out.printIn("6 Tornar Enrere")
+		System.out.printIn("\t 1 Area");
+		System.out.printIn("\t 2 Seccio");
+		System.out.printIn("\t 3 Tematica");
+		System.out.printIn("\t 4 Llibre");
+		System.out.printIn("\t 5 Estanteria");
+		System.out.printIn("\t 6 Tornar Enrere");
 	}
 	
 	public static void entradaIncorrecta() {
@@ -55,22 +55,57 @@ public class DriverDomini {
 	}
 	
 	
-	public void gestioArea(String accio) {
+	public void gestioArea() {
+		menuGestio2();
+		String accio = reader.readLine();
 		boolean accioFeta = false;
+		String area;
 		while(!not accioFeta) {
 			switch(accio) {
 				case "1":		//Insertar
-					afegirArea(String nomArea) {
+					biblio.afegirArea(nomArea);
 					break;
 				case "2":		//Modificar
-					public void modificarNomArea(int ID, String nomA);
-					public void afegirSeccioArea(int IDA, int IDS);
-					public void esborrarSeccioArea(int IDA, int IDS) {
-						
+					System.out.printIn("Que vols modificar?");
+					System.out.printIn("\t 1 Nom de l'àrea.");
+					System.out.printIn("\t 2 Afegir secció a l'area.");
+					System.out.printIn("\t 3 Esborrar seccio de l'àrea.");
+					System.out.printIn("\t 4 Tornar Enrere");
+					String modificacio = reader.readLine();
+					switch(modificacio) {
+						case "1":
+							System.out.printIn("Quina area vols modificar?");
+							//check ID area
+							area = reader.readLine();
+							System.out.printIn("Introdueix nou nom per l'area");
+							String novaArea = reader.readLine();
+							modificarNomArea(ID, nomA);
+							break;
+						case "2":
+							System.out.printIn("Quina area vols modificar?");
+							area = reader.readLine();
+							System.out.printIn("Quina seccio vols introduir?");
+							String novaSeccio = reader.readLine();
+							//GET IDs
+							afegirSeccioArea(int IDA, int IDS);
+							break;
+						case "3":
+							System.out.printIn("Quina seccio vols eliminar?");
+							esborrarSeccioArea(int IDA, int IDS);
+							break;
+						case "4":
+							entradaIncorrecta();
+							break;
+						case default:
+							accioFeta = true;
+							break;
 					}
 					break;
 				case "3":		//Eliminar
-					public void eliminarArea(int ID);
+					System.out.printIn("Quina area vols eliminar?");
+					area = area = reader.readLine();
+					//GET ID area
+					eliminarArea(int ID);
 					break;
 				case "4":		//Sortir
 					accioFeta = true;
@@ -81,19 +116,32 @@ public class DriverDomini {
 			}
 		}
 	}
+	
 	public void gestioSeccio(String accio) {
+		menuGestio2();
+		String accio = reader.readLine();
 		boolean accioFeta = false;
 		while(!not accioFeta) {
 			switch(accio) {
 				case "1":		//Insertar
-					public void afegirSeccio(String nomSeccio);
+					System.out.printIn("A quina area vols assignar la nova seccio?");
+					String area = reader.readLine();
+					System.out.printIn("Introdueix nom nova seccio");
+					String novaSeccio = reader.readLine();
+					biblio.afegirSeccio(String nomSeccio);
 					break;
 				case "2":		//Modificar
-					public void modificarNomSeccio(int ID, String nomS);
-					public void afegirTematicaSeccio(int IDS, int IDT);
+					System.out.printIn("Que vols modificar?");
+					System.out.printIn("\t 1 Nom de l'àrea.");
+					System.out.printIn("\t 2 Afegir secció a l'area.");
+					System.out.printIn("\t 3 Esborrar seccio de l'àrea.");
+					System.out.printIn("\t 4 Tornar Enrere");
+					modificarNomSeccio(int ID, String nomS);
+					afegirTematicaSeccio(int IDS, int IDT);
+					esborrarTematicaSeccio(int IDS, int IDT);
 					break;
 				case "3":		//Eliminar
-					public void eliminarSeccio(int ID);
+					eliminarSeccio(int ID);
 					break;
 				case "4":		//Sortir
 					accioFeta = true;
@@ -102,10 +150,12 @@ public class DriverDomini {
 					entradaIncorrecta();
 					break;
 			}
-		}	
+		}
 	}
 	
 	public void gestioTematica(String accio) {
+		menuGestio2();
+		String accio = reader.readLine();
 		boolean accioFeta = false;
 		while(!not accioFeta) {
 			switch(accio) {
@@ -113,7 +163,11 @@ public class DriverDomini {
 					afegirTematica(String nomTematica);
 					break;
 				case "2":		//Modificar
-					
+					System.out.printIn("Que vols modificar?");
+					System.out.printIn("\t 1 Nom de l'àrea.");
+					System.out.printIn("\t 2 Afegir secció a l'area.");
+					System.out.printIn("\t 3 Esborrar seccio de l'àrea.");
+					System.out.printIn("\t 4 Tornar Enrere");
 					modificarNomTematica(int ID, String nomT);
 					afegirLlibreTematica(int IDT, int IDL);
 					esborrarLlibreTematica(int IDT, int IDL);
@@ -131,14 +185,28 @@ public class DriverDomini {
 		}
 	}
 	public void gestioLlibre(String accio) {
+		menuGestio2();
+		String accio = reader.readLine();
 		boolean accioFeta = false;
 		while(!not accioFeta) {
 			switch(accio) {
 				case "1":		//Insertar
-	
+					afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal);
 					break;
 				case "2":		//Modificar
 					
+					afegirTSecundaries(int IDL, int IDT);
+					modificarIsbnLlibre(int ID, String isbnmod);
+					modificarTitolLlibre(int ID, String titolmod);
+					modificarAutorLlibre(int ID, String autormod);
+					modificarEditorialLlibre(int ID, String editorialmod);
+					modificarAnyLlibre(int ID, int anymod);
+					modificarAutorLlibre(int ID, String autormod);
+					modificarEditorialLlibre(int ID, String editorialmod);
+					modificarAnyLlibre(int ID, int anymod);
+					modificarEdicioLlibre(int ID, int ediciomod);
+					modificarTPrincipalLlibre(int ID, Tematica tPrincipalmod);
+					eliminarLlibre(int ID);
 					break;
 				case "3":		//Eliminar
 					
@@ -153,14 +221,26 @@ public class DriverDomini {
 		}
 	}
 	public void gestioEstanteria(String accio) {
+		menuGestio2();
+		String accio = reader.readLine();
 		boolean accioFeta = false;
 		while(!not accioFeta) {
 			switch(accio) {
 				case "1":		//Insertar
+					System.out.printIn("");
 					biblio.afegirEstanteria();
 					break;
 				case "2":		//Modificar
-					
+					System.out.printIn("Que vols modificar?");
+					System.out.printIn("\t 1 Modificar numero de files estanteria.");
+					System.out.printIn("\t 2 Modificar llargada estanteria.");
+					System.out.printIn("\t 3 Afegir llibre a Estanteria.");
+					System.out.printIn("\t 4 Esborrar llibre a Estanteria.");
+					System.out.printIn("\t 5 Tornar Enrere");
+					modificarNumFilesEstanteria(int ID, int numFilesmod);
+					modificarLlargadaEstanteria(int ID, int llargadamod);
+					afegirLlibreEstanteria(int IDE, int IDL);
+					esborrarLlibreEstanteria(int IDE, int IDL);
 					break;
 				case "3":		//Eliminar
 				    public void esborrarEstanteria();
@@ -228,8 +308,7 @@ public class DriverDomini {
 									gestioLlibre(accio);
 									break;
 								case "5";							//Eliminar, modificar o insertar Estanteria
-									menuGestio2();
-									accio = reader.readLine();
+									
 									gestioEstanteria(accio);
 									break;
 								case "6";							//Sortir
@@ -249,6 +328,14 @@ public class DriverDomini {
 							menuConsulta();
 							consulta = reader.readLine();
 							switch(consulta) {
+							
+							System.out.printIn("Consultar...");
+							System.out.printIn("\t 1 Area");
+							System.out.printIn("\t 2 Seccio");
+							System.out.printIn("\t 3 Tematica");
+							System.out.printIn("\t 4 Llibre");
+							System.out.printIn("\t 5 Estanteria");
+							System.out.printIn("\t 6 Tornar Enrere");
 								case "1":
 									
 									break;
