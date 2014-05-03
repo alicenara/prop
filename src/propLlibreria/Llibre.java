@@ -1,7 +1,8 @@
 package propLlibreria;
+package compartit;
 import java.util.*;
 
-public class Llibre {
+public class Llibre extends Object {
 	//All "Llibre"'s attributes
 
 	private final int ID;
@@ -99,7 +100,7 @@ public class Llibre {
 		return CtrlBD.obtenirTematica(temPrincipal);
 	}
 	//pre:
-	//post: retorna numero de tematiques secund�ries del parametre implicit
+	//post: retorna numero de tematiques secundaries del parametre implicit
 	public int getNumTemSecundaries() {
 		return temSecundaries.size();
 	}
