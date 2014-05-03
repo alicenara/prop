@@ -8,6 +8,10 @@ import java.util.*;
 public class GestioDades {
 	private static final String FITXERLLIBRE = "./resources/Llibre.txt";
 	private static final String FITXERTEMATICA = "./resources/Tematica.txt";
+	private static final String FITXERAREA = "./resources/Area.txt";
+	private static final String FITXERBIBLIOTECARI = "./resources/Bibliotecari.txt";
+	private static final String FITXERESTANTERIA = "./resources/Estanteria.txt";
+	private static final String FITXERSECCIO = "./resources/Seccio.txt";
 	String fitxer;
 	BufferedReader br = null;
 	String linia = "";
@@ -27,7 +31,13 @@ public class GestioDades {
 				break;
 			case 1: fitxer=FITXERTEMATICA;
 				break;
-			default:
+			case 2: fitxer=FITXERAREA;
+				break;
+			case 3: fitxer=FITXERBIBLIOTECARI;
+				break;
+			case 4: fitxer=FITXERESTANTERIA;
+				break;
+			case 5: fitxer=FITXERSECCIO;
 		}	
 		
 		try{			
@@ -55,7 +65,7 @@ public class GestioDades {
 		else return Integer.parseInt(codi);		
 	}
 	
-	//funció que llegeix l'ultima ID de l'arxiu amb tots els llibres
+	//funció que llegeix l'ultima ID de l'arxiu 
 	
 	public int llegirUltimaId(int file){
 		String codi="";
@@ -65,8 +75,14 @@ public class GestioDades {
 				break;
 			case 1: fitxer=FITXERTEMATICA;
 				break;
-			default:
-		}	
+			case 2: fitxer=FITXERAREA;
+				break;
+			case 3: fitxer=FITXERBIBLIOTECARI;
+				break;
+			case 4: fitxer=FITXERESTANTERIA;
+				break;
+			case 5: fitxer=FITXERSECCIO;
+		}		
 		
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
@@ -106,9 +122,15 @@ public class GestioDades {
 				break;
 			case 1: fitxer=FITXERTEMATICA;
 				break;
-			default:
-		}	
-		
+			case 2: fitxer=FITXERAREA;
+				break;
+			case 3: fitxer=FITXERBIBLIOTECARI;
+				break;
+			case 4: fitxer=FITXERESTANTERIA;
+				break;
+			case 5: fitxer=FITXERSECCIO;
+		}		
+			
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
 			
@@ -145,9 +167,15 @@ public class GestioDades {
 				break;
 			case 1: fitxer=FITXERTEMATICA;
 				break;
-			default:
+			case 2: fitxer=FITXERAREA;
+				break;
+			case 3: fitxer=FITXERBIBLIOTECARI;
+				break;
+			case 4: fitxer=FITXERESTANTERIA;
+				break;
+			case 5: fitxer=FITXERSECCIO;
 		}	
-		
+			
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
 			int i=0;

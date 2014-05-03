@@ -2,18 +2,12 @@ package propLlibreria;
 import java.util.*;
 
 public class CtrlBD {
-	
-	//Codi dels arxius
-	// 0 - Codi de la classe Llibre
-	// 1 - Codi de la classe Tematica
-	
 	private static final int LLIBRE = 0;
 	private static final int TEMATICA = 1;
 	private static final int AREA = 2;
-	private static final int BIBLIOTECA = 3;
-	private static final int BIBLIOTECARI = 4;
-	private static final int ESTANTERIA = 5;
-	private static final int SECCIO = 6;
+	private static final int BIBLIOTECARI = 3;
+	private static final int ESTANTERIA = 4;
+	private static final int SECCIO = 5;
 	
 	
 	//CLASSE LLIBRE 
@@ -49,29 +43,7 @@ public class CtrlBD {
 		if(t != null) tem= new Tematica(Integer.parseInt(t[0]),t[1]);
 		return tem;
 	}
-	
-	
-	/*public static Llibre obtenirLlibre(int id){
-	 * 	//variables per facilitar la lectura
-		int codi=-1;
-		String isbn="";
-		String titol="";
-		String autor="";
-		String editorial="";
-		int any=-1;
-		int edicio=-1;
-		int gruix=-1;
-		
-		
-		isbn=llibre[1];
-		titol=llibre[2];
-		autor=llibre[3];
-		editorial=llibre[4];
-		any=Integer.parseInt(llibre[5]);
-		edicio=Integer.parseInt(llibre[6]);
-		gruix=Integer.parseInt(llibre[7]);
-	}*/
-	
+
 	//CLASSE BD
 	
 	public static ArrayList<Area> obtenirTotesArees(){
