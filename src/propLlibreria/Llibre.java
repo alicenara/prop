@@ -28,7 +28,7 @@ public class Llibre extends Object {
 		this.ID = CtrlBD.obtenirUltimaIDLlibre();
 	}
 	
-	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
+	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal){
 		//TODO increment ID automatic
 		this.isbn = isbn;
 		this.titol=titol;
@@ -36,7 +36,7 @@ public class Llibre extends Object {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
-		this.temPrincipal = tPrincipal.getID();
+		this.temPrincipal = tPrincipal;
 		this.ID = ID;
 	}
 

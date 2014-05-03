@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.util.*;
 
 public class GestioDades {
 	private static final String FITXERLLIBRE = "./resources/Llibre.txt";
@@ -134,6 +134,42 @@ public class GestioDades {
 		}
 		linia="";
 		return objecte;			
+	}
+	
+	public ArrayList<String[]> llegirTotsObjectes(int file){
+		String[] objecte;
+		ArrayList<String[]> resultat = new ArrayList<String[]>();;	
+		
+		switch (file){
+			case 0: fitxer=FITXERLLIBRE;
+				break;
+			case 1: fitxer=FITXERTEMATICA;
+				break;
+			default:
+		}	
+		
+		try{			
+			br = new BufferedReader(new FileReader(fitxer));
+			int i=0;
+			while ((linia = br.readLine()) != null) {
+				objecte = linia.split(splitBy);
+				resultat.add(objecte);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}			
+		}
+		linia="";
+		return resultat;			
 	}
 
 }
