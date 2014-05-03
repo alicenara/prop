@@ -35,7 +35,7 @@ public class Area {
 	}
 	
 	public void afegirSeccio(Seccio novaSeccio) {
-		novaSeccio.setNomAreaSeccio(nomArea);
+		novaSeccio.setIDAreaSeccio(ID);
 	}
 	
 }
