@@ -8,6 +8,14 @@ public class DriverDomini {
 		System.out.printIn("Per favor, introdueix la contrasenya per fer servir sistema;")
 	}
 	
+	public static void menuNavegacio() {
+		System.out.printIn("Escull tasca a realitzar:");
+		System.out.printIn("1 Gestiona Biblioteca");
+		System.out.printIn("2 Consultar Biblioteca");
+		System.out.printIn("3 Canviar contrasenya")
+		System.out.printIn("4 Sortir");
+	}
+	
 	public static void menuGestio() {
 		System.out.printIn("Gestionar...");
 		System.out.printIn("1 Area");
@@ -15,6 +23,7 @@ public class DriverDomini {
 		System.out.printIn("3 Tematica");
 		System.out.printIn("4 Llibre");
 		System.out.printIn("5 Estanteria");
+		System.out.printIn("6 Tornar Enrere")
 	}
 	
 		
@@ -24,13 +33,6 @@ public class DriverDomini {
 		System.out.("2 Modificar");
 		System.out.("3 Eliminar");
 		System.out.("4 Tornar Enrere")
-	}
-	
-	public static void menuNavegacio() {
-		System.out.printIn("Escull tasca a realitzar:");
-		System.out.printIn("1 Gestiona Biblioteca");
-		System.out.printIn("2 Consultar Biblioteca");
-		System.out.printIn("3 Sortir");
 	}
 	
 	public static void menuConsulta() {
@@ -44,11 +46,11 @@ public class DriverDomini {
 	}
 	
 	public static void entradaIncorrecta() {
-		System.out.printIn("No existeix aquesta opcio.Si us plau, torna a intentar-ho.");
+		System.out.printIn("No existeix aquesta opció.Si us plau, torna a intentar-ho.");
 	}
 	
 	public static void main() {
-		Bibliotecari bbtecari;
+		Bibliotecari bbtecari("javarules");
 		Biblioteca biblio;
 		BufferedReader reader = new BufferedReader(new InputStreamer(System.in));
 		String contrasenya;
@@ -70,30 +72,48 @@ public class DriverDomini {
 				input = reader.readLine;
 				menuNavegacio();
 				switch(input) {
+				
 					case "1":			//Gestio Biblioteca
 						boleean gestioFeta = false;
 						String gestio;
 						while(!gestioFeta) {
 							menuGestio();
 							gestio = reader.readLine();
+							String accio;
 							switch(gestio) {
 								case "1";
 									menuGestio2();
+									accio = reader.readLine();		//Eliminar, modificar o insertar Area
+									
 									break;
-								case "2":
+								case "2":							//Eliminar, modificar o insertar Seccio
 									menuGestio2();
+									accio = reader.readLine();
 									break;
-								case "3":
+								case "3":							//Eliminar, modificar o insertar Tematica
 									menuGestio2();
+									accio = reader.readLine();
 									break;
-								case "4":
+								case "4":							//Eliminar, modificar o insertar Llibre
+									menuGestio2();
+									accio = reader.readLine();
+									
+									break;
+								case "5";							//Eliminar, modificar o insertar Estanteria
+									menuGestio2();
+									accio = reader.readLine();
+									
+									break;
+								case "6";							//Sortir
 									gestioFeta = true;
+									break;
 								case default: 
 									entradaIncorrecta();
 									break;
 							}
 						}
 						break;
+						
 					case "2":			//Consulta Biblioteca
 						boolean consultaFeta = false;
 						String consulta;
@@ -102,7 +122,7 @@ public class DriverDomini {
 							consulta = reader.readLine();
 							switch(consulta) {
 								case "1":
-								
+									
 									break;
 								case "2":
 									
@@ -125,8 +145,15 @@ public class DriverDomini {
 							
 							}
 						}
-						break;
-					case "3":			//Sortir
+					break;
+						
+					case "3":			//Canviar contrasenya
+						System.out.printIn("Si us plau, introdudeix la contrasenya actual.");
+						String contrasenyaAnterior = reader.readLine();
+						System.out.printIn("I ara la nova contrasenya.");
+						String contrasenyaNova = reader.readLine();
+						bbtecari.restablirContrasenya(contrasenyaAnterior, contrasenyaNova);
+					case "4":			//Sortir
 						end = true;
 						break;
 					default:
@@ -134,8 +161,14 @@ public class DriverDomini {
 						break;
 				}
 			}
+			catch(RuntimeException re) {
+				System.out.println("Excepcion tipo Runtime. Mensaje : " + e.getMessage());
+			}
+			catch (IOException io) {
+				System.out.println("Excepcion tipo IO. Mensaje: "e.getMessage());
+			}
 			catch (Exception e) {
-				
+				System.out.println("Execpción general. Mensaje: " + e.getMessage());
 			}
 		}
 	}
