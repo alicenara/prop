@@ -5,8 +5,9 @@ import java.io.InputStreamReader;
 
 public class DriverDomini {
 	
-	static Bibliotecari bbtecari("javarules");
+	static Bibliotecari bbtecari;
 	static Biblioteca biblio;
+	static BufferedReader reader;
 	
 	public static final void menuInical() {
 		System.out.printIn("Per favor, introdueix la contrasenya per fer servir sistema;")
@@ -19,7 +20,7 @@ public class DriverDomini {
 		System.out.printIn("3 Canviar contrasenya")
 		System.out.printIn("4 Sortir");
 	}
-	
+	System.out.
 	public static void menuGestio() {
 		System.out.printIn("Gestionar...");
 		System.out.printIn("1 Area");
@@ -112,9 +113,10 @@ public class DriverDomini {
 					afegirTematica(String nomTematica);
 					break;
 				case "2":		//Modificar
+					
 					modificarNomTematica(int ID, String nomT);
-					public void afegirLlibreTematica(int IDT, int IDL);
-					public void esborrarLlibreTematica(int IDT, int IDL);
+					afegirLlibreTematica(int IDT, int IDL);
+					esborrarLlibreTematica(int IDT, int IDL);
 					break;
 				case "3":		//Eliminar
 					eliminarTematica(int ID);
@@ -175,8 +177,8 @@ public class DriverDomini {
 	
 	
 	public static void main() {
-		
-		BufferedReader reader = new BufferedReader(new InputStreamer(System.in));
+		bbtecari = new Biblioteca("javarules");
+		reader = new BufferedReader(new InputStreamer(System.in));
 		String contrasenya;
 		boolean permisAcces = false;
 		boolean end = false;
