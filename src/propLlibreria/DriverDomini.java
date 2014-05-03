@@ -4,6 +4,10 @@ import java.io.InputStreamReader;
 
 
 public class DriverDomini {
+	
+	static Bibliotecari bbtecari("javarules");
+	static Biblioteca biblio;
+	
 	public static final void menuInical() {
 		System.out.printIn("Per favor, introdueix la contrasenya per fer servir sistema;")
 	}
@@ -49,9 +53,107 @@ public class DriverDomini {
 		System.out.printIn("No existeix aquesta opció.Si us plau, torna a intentar-ho.");
 	}
 	
+	
+	public void gestioArea(String accio) {
+		switch(seccio) {
+			case "1":		//Insertar
+				
+				break;
+			case "2":		//Modificar
+				
+				break;
+			case "3":		//Eliminar
+				
+				break;
+			case "4":		//do nothing
+				
+				break;
+			case default: 
+				entradaIncorrecta();
+				break;
+		}
+		
+	}
+	public void gestioSeccio(String accio) {
+		switch(seccio) {
+			case "1":		//Insertar
+				
+				break;
+			case "2":		//Modificar
+				
+				break;
+			case "3":		//Eliminar
+				
+				break;
+			case "4":		//do nothing
+				
+				break;
+			case default: 
+				entradaIncorrecta();
+				break;
+		}
+	}
+	public void gestioTematica(String accio) {
+		
+		switch(seccio) {
+			case "1":		//Insertar
+				afegirTematica(String nomTematica);
+				break;
+			case "2":		//Modificar
+				modificarNomTematica(int ID, String nomT);
+				break;
+			case "3":		//Eliminar
+				eliminarTematica(int ID);	
+				break;
+			case "4":		//do nothing
+				break;
+			case default: 
+				entradaIncorrecta();
+				break;
+		}
+	}
+	public void gestioLlibre(String accio) {
+		switch(seccio) {
+			case "1":		//Insertar
+
+				break;
+			case "2":		//Modificar
+				
+				break;
+			case "3":		//Eliminar
+				
+				break;
+			case "4":		//do nothing
+				
+				break;
+			case default: 
+				entradaIncorrecta();
+				break;
+		}
+	}
+	public void gestioEstanteria(String accio) {
+		switch(seccio) {
+			case "1":		//Insertar
+				biblio.afegirEstanteria();
+				break;
+			case "2":		//Modificar
+				
+				break;
+			case "3":		//Eliminar
+			    public void esborrarEstanteria();
+				break;
+			case "4":		//do nothing
+				
+				break;
+			case default: 
+				entradaIncorrecta();
+				break;
+		}
+	}
+	
+	
 	public static void main() {
-		Bibliotecari bbtecari("javarules");
-		Biblioteca biblio;
+		
 		BufferedReader reader = new BufferedReader(new InputStreamer(System.in));
 		String contrasenya;
 		boolean permisAcces = false;
@@ -84,25 +186,27 @@ public class DriverDomini {
 								case "1";
 									menuGestio2();
 									accio = reader.readLine();		//Eliminar, modificar o insertar Area
-									
+									gestioArea(accio);
 									break;
 								case "2":							//Eliminar, modificar o insertar Seccio
 									menuGestio2();
 									accio = reader.readLine();
+									gestioSeccio(accio);
 									break;
 								case "3":							//Eliminar, modificar o insertar Tematica
 									menuGestio2();
 									accio = reader.readLine();
+									gestioTematica(accio);			
 									break;
 								case "4":							//Eliminar, modificar o insertar Llibre
 									menuGestio2();
 									accio = reader.readLine();
-									
+									gestioLlibre(accio);
 									break;
 								case "5";							//Eliminar, modificar o insertar Estanteria
 									menuGestio2();
 									accio = reader.readLine();
-									
+									gestioEstanteria(accio);
 									break;
 								case "6";							//Sortir
 									gestioFeta = true;
