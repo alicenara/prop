@@ -225,15 +225,7 @@ public class Biblioteca {
 		
 	}
 	
-	public Area consultarAtributsArea(int IDA) {
-		
-	}
-	
 	public ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
-		
-	}
-	
-	public Seccio consultarAtributsSeccio(int IDS) {
 		
 	}
 	
@@ -241,19 +233,7 @@ public class Biblioteca {
 		
 	}
 	
-	public Tematica consultarAtributsTematica(int IDT) {
-		
-	}
-	
 	public ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
-		
-	}
-	
-	public Estanteria consultarAtributsEstanteria(int IDE) {
-		
-	}
-	
-	public Llibre consultarAtributsLlibre(int IDL) {
 		
 	}
 	

@@ -1,4 +1,5 @@
 package propLlibreria;
+import java.awt.geom.Area;
 import java.util.*;
 
 public class BD {
@@ -43,35 +44,94 @@ public class BD {
 	//Get Entitats per ID
 	
 	public static Area getArea(int ID){
-		int i=0;
-		while (i<area.size() && area.get(i).getID()!=ID) i++;
+		int a = 0;
+		int b = area.size();
+		int i = b/2;
+		while (i<area.size() && area.get(i).getID()!=ID) {
+			if (area.get(i).getID() < ID) a = i;
+			else b = i;
+			i = (b-a)/2 + a;
+		}
 		if(i==area.size()) return null;
 		else return area.get(i);
 	}
 	public static Estanteria getEstanteria(int ID){
-		int i=0;
-		while (i<est.size() && est.get(i).getID()!=ID) i++;
+		int a = 0;
+		int b = est.size();
+		int i = b/2;
+		while (i<est.size() && est.get(i).getID()!=ID) {
+			if (est.get(i).getID() < ID) a = i;
+			else b = i;
+			i = (b-a)/2 + a;
+		}
 		if(i==est.size()) return null;
 		else return est.get(i);
 	}
 	public static Llibre getLlibre(int ID){
-		int i=0;
-		while (i<llibre.size() && llibre.get(i).getID()!=ID) i++;
+		int a = 0;
+		int b = llibre.size();
+		int i = b/2;
+		while (i<llibre.size() && llibre.get(i).getID()!=ID) {
+			if (llibre.get(i).getID() < ID) a = i;
+			else b = i;
+			i = (b-a)/2 + a;
+		}
 		if(i==llibre.size()) return null;
 		else return llibre.get(i);
 	}
 	public static Seccio getSeccio(int ID){
-		int i=0;
-		while (i<sec.size() && sec.get(i).getID()!=ID) i++;
+		int a = 0;
+		int b = sec.size();
+		int i = b/2;
+		while (i<sec.size() && sec.get(i).getID()!=ID) {
+			if (sec.get(i).getID() < ID) a = i;
+			else b = i;
+			i = (b-a)/2 + a;
+		}
 		if(i==sec.size()) return null;
 		else return sec.get(i);
 	}
 	public static Tematica getTematica(int ID){
-		int i=0;
-		while (i<tem.size() && tem.get(i).getID()!=ID) i++;
+		int a = 0;
+		int b = sec.size();
+		int i = b/2;
+		while (i<tem.size() && tem.get(i).getID()!=ID) {
+			if (tem.get(i).getID() < ID) a = i;
+			else b = i;
+			i = (b-a)/2 + a;
+		}
 		if(i==tem.size()) return null;
 		else return tem.get(i);
 	}
+	
+	//Get Entitats per nom
+	
+		public static Area getAreaN(String nomA){
+			int i=0;
+			while (i<area.size() && area.get(i).getNomArea()!=nomA) i++;
+			if(i==area.size()) return null;
+			else return area.get(i);
+		}
+		
+		public static Seccio getSeccioN(String nomS){
+			int i=0;
+			while (i<sec.size() && sec.get(i).getNomSeccio()!=nomS) i++;
+			if(i==sec.size()) return null;
+			else return sec.get(i);
+		}
+		public static Tematica getTematicaN(String nomT){
+			int i=0;
+			while (i<tem.size() && tem.get(i).getNomTematica()!=nomT) i++;
+			if(i==tem.size()) return null;
+			else return tem.get(i);
+		}
+		
+		public static Llibre getLlibreTA(String titol, int any){
+			int i=0;
+			while (i<llibre.size() && llibre.get(i).getTitol()!= titol && llibre.get(i).getAny()!= any) i++;
+			if(i==llibre.size()) return null;
+			else return llibre.get(i);
+		}
 	
 	//Afegir i eliminar classes
 	
@@ -83,7 +143,7 @@ public class BD {
 		area.remove(a);
 	}
 	
-	public static void afegirBilbiotecari(Bibliotecari b){
+	public static void afegirBibliotecari(Bibliotecari b){
 		bcari.add(b);
 	}
 	
