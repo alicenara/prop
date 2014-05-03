@@ -16,7 +16,15 @@ public class Estanteria {
 		this.llargada = llargada;
 		this.posX = posX;
 		this.posY = posY;
-		this.ID = BD.novaEstanteria(this);
+		this.ID = BD.ultimaIDEstanteria();
+	}
+	
+	public Estanteria(int ID, int numFiles, int llargada, int posX, int posY)  {
+		this.numFiles = numFiles;
+		this.llargada = llargada;
+		this.posX = posX;
+		this.posY = posY;
+		this.ID = ID;
 	}
 
 	//Getters and Setters
@@ -54,9 +62,6 @@ public class Estanteria {
 
 	public void setPosY(int posY) {
 		this.posY = posY;
-	}
-	
-	
-	
+	}	
 	
 }

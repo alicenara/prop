@@ -4,14 +4,28 @@ import java.util.*;
 public class Seccio {
 	private String nomSeccio;
 	private final int ID;
-	private String nomArea;
+	private int IDArea;
 	
 	//pre:
 	//post: crea una seccio amb nom "nomSeccio"
-	public Seccio (String nomSeccio, String nomArea) {
+	public Seccio (String nomSeccio, int IDArea) {
 		this.nomSeccio = nomSeccio;
-		this.nomArea = nomArea;
-		ID = BD.novaSeccio(this);
+		this.IDArea = IDArea;
+		this.ID = BD.ultimaIDSeccio();
+	}
+	
+	//pre:
+	//post: crea una seccio amb nom "nomSeccio"
+	public Seccio (int ID, String nomSeccio, int IDArea) {
+		this.nomSeccio = nomSeccio;
+		this.IDArea = IDArea;
+		this.ID = ID;
+	}
+	
+	//pre:
+	//post: retorna el id de seccio del parametre implicit
+	public int getID(){
+		return this.ID;
 	}
 	
 	//pre:
@@ -25,18 +39,18 @@ public class Seccio {
 		return this.nomSeccio;
 	}
 	
-	public void setNomAreaSeccio(String nomArea) {
-		this.nomArea = nomArea;
+	public void setIDAreaSeccio(int IDArea) {
+		this.IDArea = IDArea;
 	}
 	
-	public String getNomAreaSeccio() {
-		return this.nomSeccio;
+	public int getIDAreaSeccio() {
+		return this.IDArea;
 	}
 	
 	//pre:	el parametre implicit no conte una tematica amb nom "nomTematica"
 	//post: afegeix una tematica al parametre implicit
 	public void afegirTematica(Tematica novaTematica) {
-		novaTematica.setNomSeccioTematica(nomSeccio);
+		novaTematica.setIDSeccioTematica(ID);
 	}
 	
 }

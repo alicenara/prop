@@ -4,22 +4,22 @@ import java.util.*;
 public class Tematica {
 	private final int ID;
 	private String nomTematica;
-	private String nomSeccio;
+	private int IDSeccio;
 	
 	//pre:
-	//post: crea nova tematica amb nom de tematica igual a "nomTematica"
-	public Tematica (String nomTematica, String nomSeccio) {
+	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
+	public Tematica (String nomTematica, int IDSeccio) {
 		this.nomTematica = nomTematica;
-		this.nomSeccio = nomSeccio;
-		this.ID = CtrlBD.obtenirUltimaIDTematica();
+		this.IDSeccio = IDSeccio;
+		this.ID = BD.ultimaIDTematica();
 	}
 	
 	//pre:
 	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
-	public Tematica (String nomTematica, String nomSeccio) {
+	public Tematica (int ID, String nomTematica, int IDSeccio) {
 		this.nomTematica = nomTematica;
-		this.nomSeccio = nomSeccio;
-		ID = BD.novaTematica(this);
+		this.IDSeccio = IDSeccio;
+		this.ID = ID;
 	}
 	
 	//pre:
@@ -28,8 +28,8 @@ public class Tematica {
 			return this.nomTematica;
 	}
 	
-	public String getNomSeccioTematica() {
-		return this.nomSeccio;
+	public int getNomSeccioTematica() {
+		return this.IDSeccio;
 }
 	
 	//pre:
@@ -38,8 +38,8 @@ public class Tematica {
 		this.nomTematica = nouNomTematica;
 	}
 	
-	public void setNomSeccioTematica(String nouNomSeccio) {
-		this.nomSeccio = nouNomSeccio;
+	public void setIDSeccioTematica(int nouIDSeccio) {
+		this.IDSeccio = nouIDSeccio;
 	}
 	
 	public int getID() {

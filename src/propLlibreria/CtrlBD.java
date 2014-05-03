@@ -23,7 +23,7 @@ public class CtrlBD {
 		Tematica tem=null;
 		if(l != null){
 			String[] t = g.llegirObjecte(Integer.parseInt(l[0]),TEMATICA);
-			if (t != null)	tem= new Tematica(Integer.parseInt(t[0]),t[1]);
+			if (t != null)	tem= new Tematica(Integer.parseInt(t[0]),t[1],Integer.parseInt(t[2]));
 		}
 		return tem;
 	}
@@ -40,7 +40,7 @@ public class CtrlBD {
 		GestioDades g = new GestioDades();
 		String[] t = g.llegirObjecte(id,TEMATICA);
 		Tematica tem=null;
-		if(t != null) tem= new Tematica(Integer.parseInt(t[0]),t[1]);
+		if(t != null) tem= new Tematica(Integer.parseInt(t[0]),t[1],Integer.parseInt(t[2]));
 		return tem;
 	}
 
@@ -102,7 +102,7 @@ public class CtrlBD {
 		for (int i=0; i<sec.size();i++){
 			Seccio aux;
 			String[] prop=sec.get(i);
-			aux = new Seccio(Integer.parseInt(prop[0]),prop[1]);
+			aux = new Seccio(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
 			s.add(aux);
 		}
 		return s;
@@ -115,7 +115,7 @@ public class CtrlBD {
 		for (int i=0; i<tem.size();i++){
 			Tematica aux;
 			String[] prop=tem.get(i);
-			aux = new Tematica(Integer.parseInt(prop[0]),prop[1]);
+			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
 			t.add(aux);
 		}
 		return t;

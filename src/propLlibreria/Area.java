@@ -9,7 +9,14 @@ public class Area {
 	//post: es crea una Area amb nom "nomArea"
 	public Area (String nomArea){
 		this.nomArea = nomArea;
-		ID = BD.novaArea(this);
+		ID = BD.ultimaIDArea();
+	}
+	
+	//pre:
+	//post: es crea una Area amb nom "nomArea"
+	public Area (int ID, String nomArea){
+		this.nomArea = nomArea;
+		this.ID = ID;
 	}
 	//pre:
 	//post: retorna nom de l'area
@@ -19,7 +26,7 @@ public class Area {
 	
 	//pre:
 	//post: el nom de l'area ara es nomArea
-	public String setNomArea(nomArea) {
+	public void setNomArea(String nomArea) {
 		this.nomArea = nomArea;
 	}
 	
