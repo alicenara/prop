@@ -236,6 +236,8 @@ public class Biblioteca {
     
     //Consultores
 	
+	//pre: Existeix una area tal que el seu Identificador = IDA
+	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA
 	public ArrayList<Llibre> consultarLlibresArea(int IDA) {
 		ArrayList<Llibre> llibresArea;
 		ArrayList<Llibre> aux;
@@ -249,11 +251,15 @@ public class Biblioteca {
 		return llibresArea;
 	}
 	
+	//pre: Existeix una area tal que el seu Identificador = IDA
+	//post: Retorna les seccions contingudes dins de l'area amb Identitificador IDA
 	public ArrayList<Llibre> consultarSeccionsArea(int IDA) {
 		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
 		return sA;
 	}
 	
+	//pre: Existeix una area tal que el seu Identificador = IDA
+	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA
 	public ArrayList<Llibre> consultarTematiquesArea(int IDA) {
 		ArrayList<Tematica> tA;
 		ArrayList<Tematica> aux;
@@ -267,6 +273,8 @@ public class Biblioteca {
 		return tA;
 	}
 	
+	//pre: Existeix una seccio tal que el seu Identificador = IDS
+	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
 	public ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
 		ArrayList<Llibre> llibresSeccio;
 		ArrayList<Llibre> aux;
@@ -280,16 +288,22 @@ public class Biblioteca {
 		return llibresSeccio;
 	}
 	
-	public ArrayList<Llibre> consultarTematiquesSeccio(int IDS) {
+	//pre: Existeix una seccio tal que el seu Identificador = IDS
+	//post: Retorna les tematiques contingudes dins de la seccio amb Identitificador IDS
+	public ArrayList<Tematica> consultarTematiquesSeccio(int IDS) {
 		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
 		return tS;
 	}
 	
+	//pre: Existeix una tematica tal que el seu Identificador = IDT
+	//post: Retorna els llibres continguts dins de la tematica amb Identitificador IDT
 	public ArrayList<Llibre> consultarLlibresTematica(int IDT) {
 		Tematica consTematica = BD.getTematica(IDT);
 		return BD.llibresTematica(consTematica);
 	}
 	
+	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
+	//post: Retorna els llibres continguts dins de la estanteria amb Identitificador IDE
 	public ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = BD.getEstanteria(IDE);
 		return consEstanteria.getLlibres();

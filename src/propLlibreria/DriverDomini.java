@@ -33,7 +33,7 @@ public class DriverDomini {
 	
 		
 	public static void menuGestio2() {
-		System.out.("Selecciona acció:");
+		System.out.("Selecciona accio:");
 		System.out.("\t 1 Insertar");
 		System.out.("\t 2 Modificar");
 		System.out.("\t 3 Eliminar");
@@ -51,7 +51,7 @@ public class DriverDomini {
 	}
 	
 	public static void entradaIncorrecta() {
-		System.out.printIn("No existeix aquesta opció.Si us plau, torna a intentar-ho.");
+		System.out.printIn("No existeix aquesta opcio.Si us plau, torna a intentar-ho.");
 	}
 	
 	
@@ -71,8 +71,8 @@ public class DriverDomini {
 				case "2":		//Modificar
 					System.out.printIn("Que vols modificar?");
 					System.out.printIn("\t 1 Nom de area existent.");
-					System.out.printIn("\t 2 Afegir secció a l'area.");
-					System.out.printIn("\t 3 Esborrar seccio de l'àrea.");
+					System.out.printIn("\t 2 Afegir seccio a l'area.");
+					System.out.printIn("\t 3 Esborrar seccio de l'area.");
 					System.out.printIn("\t 4 Tornar Enrere");
 					String modificacio = reader.readLine();
 					switch(modificacio) {
@@ -190,10 +190,10 @@ public class DriverDomini {
 					}
 					break;
 				case "3":		//Eliminar
-					System.out.printIn("Introdueix àrea de la secció a eliminar.");
+					System.out.printIn("Introdueix area de la seccio a eliminar.");
 					area = reader.readLine();
 					IDA = getAreaN(area).getID();
-					System.out.printIn("Ara introdueix secció a eliminar.");
+					System.out.printIn("Ara introdueix seccio a eliminar.");
 					seccio = reader.readLine();
 					IDS = getSeccioN(seccio).getID();
 					esborrarSeccioArea(IDA,IDS);
@@ -530,7 +530,7 @@ public class DriverDomini {
 									break;
 								case "4":
 									System.out.printIn("Busqueda per: ");
-									System.out.printIn("\t 1 Títol");
+									System.out.printIn("\t 1 Titol");
 									System.out.printIn("\t 2 Autor");
 									System.out.printIn("\t 3 Any");
 									System.out.printIn("\t 4 Editorial");
@@ -538,7 +538,7 @@ public class DriverDomini {
 									String tipusBusqueda = reader.readLine();
 									switch (tipusBusqueda) {
 										case "1":
-											System.out.printIn("Introdueix títol:");
+											System.out.printIn("Introdueix titol:");
 											break;
 										case "2":
 											System.out.printIn("Introdueix autor:");
@@ -597,7 +597,7 @@ public class DriverDomini {
 				System.out.println("Excepcion tipo IO. Mensaje: "e.getMessage());
 			}
 			catch (Exception e) {
-				System.out.println("Execpción general. Mensaje: " + e.getMessage());
+				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
 		}
 	}
