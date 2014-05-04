@@ -13,7 +13,7 @@ public class Llibre extends Object {
 	private int any;
 	private int edicio;
 	private int temPrincipal;
-	private ArrayList<int> temSecundaries;
+	private ArrayList<Integer> temSecundaries;
 
 	//All attributes constructor
 	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
@@ -25,7 +25,7 @@ public class Llibre extends Object {
 		this.any=any;
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal.getID();
-		this.ID = CtrlBD.obtenirUltimaIDLlibre();
+		this.ID = BD.ultimaIDLlibre();
 	}
 	
 	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal){
@@ -88,10 +88,10 @@ public class Llibre extends Object {
 	}
 	
 	public void eliminarTematicaSecundaria(Tematica tem) {
-		temSecundaries.remove(tem.getID());
+		temSecundaries.remove((Object)new Integer(tem.getID()));;
 	}
 	
-	public ArrayList<int> getTematiquesSecundaries() {
+	public ArrayList<Integer> getTematiquesSecundaries() {
 		return temSecundaries;
 	}
 
