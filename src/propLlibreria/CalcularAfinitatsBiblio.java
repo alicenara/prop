@@ -8,26 +8,29 @@ public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 		super.CalcularAfinitats();
 	}
 	
-	public double afinitat (Llibre a, Llibre b) {
+	@Override
+	protected double afinitat (Objecte a, Objecte b) {
+		Llibre aa = (Llibre) a;
+		Llibre bb = (Llibre) b;
 		double afins = 0;
-		Tematica tPriA = a.getTematicaPrincipal();
-		Tematica tPriB = b.getTematicaPrincipal();
+		Tematica tPriA = aa.getTematicaPrincipal();
+		Tematica tPriB = bb.getTematicaPrincipal();
 		if (tPriA == tPriB) {
 			afins += 35;
-			if (a.getTematiquesSecundaries() == b.getTematiquesSecundaries()) afins = 100;
-			else afins += comparaTSec(a,b);
+			if (aa.getTematiquesSecundaries() == bb.getTematiquesSecundaries()) afins = 100;
+			else afins += comparaTSec(aa,bb);
 		}
 		else {
 			Seccio sA = BD.getSeccio(tPriA.getIDSeccioTematica());
 			Seccio sB = BD.getSeccio(tPriB.getIDSeccioTematica());
 			if (sA == sB) {
-				afins += (25 + comparaTSec(a,b));
+				afins += (25 + comparaTSec(aa,bb));
 			}
 			else {
 				Area aA = BD.getArea(sA.getIDAreaSeccio());
 				Area aB = BD.getArea(sB.getIDAreaSeccio());
 				if (aA == aB) {
-					afins += (15 + comparaTSec(a,b));
+					afins += (15 + comparaTSec(aa,bb));
 				}
 			}
 		}
