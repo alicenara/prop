@@ -91,8 +91,12 @@ public class Llibre extends Object {
 		temSecundaries.remove((Object)new Integer(tem.getID()));
 	}
 	
-	public ArrayList<Integer> getTematiquesSecundaries() {
-		return temSecundaries;
+	public ArrayList<Tematica> getTematiquesSecundaries() {
+		ArrayList<Tematica> tSec;
+		for (int i = 0; i < temSecundaries.size(); ++i) {
+			tSec.add(BD.getTematica(temSecundaries.get(i)));
+		}
+		return tSec;
 	}
 
 	public void setTematicaPrincipal(Tematica temPrincipal) {
@@ -107,11 +111,5 @@ public class Llibre extends Object {
 	//post: retorna numero de tematiques secundaries del parametre implicit
 	public int getNumTemSecundaries() {
 		return temSecundaries.size();
-	}
-
-	//pre: 0 <= index <= num tematiques secundaries
-	//post: retorna tematica secundaria a la posicio index
-	public Tematica getTematicaIesima(int index) {
-		return BD.getTematica(temSecundaries.get(index));
 	}
 }
