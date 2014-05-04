@@ -80,7 +80,16 @@ public class Llibre extends Object {
 	public void setEdicio(int edicio) {
 		this.edicio = edicio;
 	}
-
+	
+	public void setTemPrincipal(int temPrincipal) {
+		this.temPrincipal = temPrincipal;
+	}
+	//pre:
+	//post: retorna la tematica principal del parametre implicit
+	public Tematica getTemPrincipal() {
+		return BD.getTematica(temPrincipal);
+	}
+	
 	//pre:	el parametre implicit no conte novaTematica
 	//post: el parametre implicit afegeix una tematica secundaria
 	public void afegirTematicaSecundaria(Tematica novaTematica) {
@@ -91,25 +100,17 @@ public class Llibre extends Object {
 		temSecundaries.remove((Object)new Integer(tem.getID()));
 	}
 	
+	//pre:
+	//post: retorna numero de tematiques secundaries del parametre implicit
+	public int getNumTemSecundaries() {
+		return temSecundaries.size();
+	}
+	
 	public ArrayList<Tematica> getTematiquesSecundaries() {
 		ArrayList<Tematica> tSec;
 		for (int i = 0; i < temSecundaries.size(); ++i) {
 			tSec.add(BD.getTematica(temSecundaries.get(i)));
 		}
 		return tSec;
-	}
-
-	public void setTematicaPrincipal(Tematica temPrincipal) {
-		this.temPrincipal = temPrincipal.getID();
-	}
-	//pre:
-	//post: retorna la tematica principal del parametre implicit
-	public Tematica getTematicaPrincipal() {
-		return BD.getTematica(temPrincipal);
-	}
-	//pre:
-	//post: retorna numero de tematiques secundaries del parametre implicit
-	public int getNumTemSecundaries() {
-		return temSecundaries.size();
-	}
+	}	
 }

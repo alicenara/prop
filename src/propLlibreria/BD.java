@@ -105,32 +105,32 @@ public class BD {
 	
 	//Get Entitats per nom
 	
-		public static Area getAreaN(String nomA){
-			int i=0;
-			while (i<area.size() && area.get(i).getNomArea()!=nomA) i++;
-			if(i==area.size()) return null;
-			else return area.get(i);
-		}
-		
-		public static Seccio getSeccioN(String nomS){
-			int i=0;
-			while (i<sec.size() && sec.get(i).getNomSeccio()!=nomS) i++;
-			if(i==sec.size()) return null;
-			else return sec.get(i);
-		}
-		public static Tematica getTematicaN(String nomT){
-			int i=0;
-			while (i<tem.size() && tem.get(i).getNomTematica()!=nomT) i++;
-			if(i==tem.size()) return null;
-			else return tem.get(i);
-		}
-		
-		public static Llibre getLlibreT(String titol){
-			int i=0;
-			while (i<llibre.size() && llibre.get(i).getTitol()!= titol) i++;
-			if(i==llibre.size()) return null;
-			else return llibre.get(i);
-		}
+	public static Area getAreaN(String nomA){
+		int i=0;
+		while (i<area.size() && area.get(i).getNomArea()!=nomA) i++;
+		if(i==area.size()) return null;
+		else return area.get(i);
+	}
+	
+	public static Seccio getSeccioN(String nomS){
+		int i=0;
+		while (i<sec.size() && sec.get(i).getNomSeccio()!=nomS) i++;
+		if(i==sec.size()) return null;
+		else return sec.get(i);
+	}
+	public static Tematica getTematicaN(String nomT){
+		int i=0;
+		while (i<tem.size() && tem.get(i).getNomTematica()!=nomT) i++;
+		if(i==tem.size()) return null;
+		else return tem.get(i);
+	}
+	
+	public static Llibre getLlibreT(String titol){
+		int i=0;
+		while (i<llibre.size() && llibre.get(i).getTitol()!= titol) i++;
+		if(i==llibre.size()) return null;
+		else return llibre.get(i);
+	}
 	
 	//Afegir i eliminar classes
 	
@@ -186,13 +186,13 @@ public class BD {
 	
 	public static ArrayList<Llibre> llibresTematica(Tematica t) {
 		ArrayList<Llibre> llibresT = t.getLlibres();
-		return llibresT
+		return llibresT;
 	}
 	
 	public static ArrayList<Tematica> tematiquesSeccio(int IDS) {
 		ArrayList<Tematica> tematiquesS;
 		for (int i = 0; i < tem.size(); ++i) {
-			if (tem.get(i).getIDSeccioTematica() == IDS) tematiquesS.add(tem.get(i));
+			if (tem.get(i).getIDSeccio() == IDS) tematiquesS.add(tem.get(i));
 		}
 		return tematiquesS;
 	}

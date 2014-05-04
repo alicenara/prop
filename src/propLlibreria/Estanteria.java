@@ -8,7 +8,7 @@ public class Estanteria {
 	private int llargada;
 	private int posX;
 	private int posY;
-	private ArrayList<int> llibresEstanteria;
+	private ArrayList<Integer> llibresEstanteria;
 	
 	//All attributes constructor
 	public Estanteria(int numFiles, int llargada, int posX, int posY)  {
@@ -67,7 +67,7 @@ public class Estanteria {
 	public ArrayList<Llibre> getLlibres() {
 		ArrayList<Llibre> Llibres; 
 		for (int i = 0; i < llibresEstanteria.size(); ++i) {
-			Llibres.add(BD.getLlibre(llibresEstanteria.get(i));
+			Llibres.add(BD.getLlibre(llibresEstanteria.get(i)));
 		}
 		return Llibres;
 	}

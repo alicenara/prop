@@ -6,13 +6,11 @@ public class Bibliotecari {
     // All "Bibliotecari"'s attributes
 	
     private String contrasenya;
-    private Biblioteca biblioteca;
  
     //All atributtes constructor
 	
     public Bibliotecari(String contrasenya) {
 		setContrasenya(contrasenya);
-		this.biblioteca = null;
 	}
     
     //Methods
@@ -26,13 +24,13 @@ public class Bibliotecari {
 		setContrasenya(contrasenyaNova);
 	}
     
-    public Biblioteca gestionaBiblioteca(String contrasenya) {
+   /* public Biblioteca gestionaBiblioteca(String contrasenya) {
         if (contrasenya != this.contrasenya) return null;
         if (biblioteca == null) {
         	biblioteca = new Biblioteca();
         	BD.afegirBibliotecari(this);
         }
         return biblioteca;
-    }
+    }*/
 
 }

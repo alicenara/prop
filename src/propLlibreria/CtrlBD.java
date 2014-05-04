@@ -9,7 +9,7 @@ public class CtrlBD {
 	private static final int ESTANTERIA = 4;
 	private static final int SECCIO = 5;
 	
-	
+	/*
 	//CLASSE LLIBRE 
 	
 	public static int obtenirUltimaIDLlibre(){
@@ -43,7 +43,7 @@ public class CtrlBD {
 		if(t != null) tem= new Tematica(Integer.parseInt(t[0]),t[1],Integer.parseInt(t[2]));
 		return tem;
 	}
-
+*/
 	//CLASSE BD
 	
 	public static ArrayList<Area> obtenirTotesArees(){

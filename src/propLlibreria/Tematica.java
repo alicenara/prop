@@ -23,6 +23,10 @@ public class Tematica {
 		this.ID = ID;
 	}
 	
+		public int getID() {
+		return ID;
+	}	
+	
 	//pre:
 	//post:retorna nom de la tematica
 	public String getNomTematica() {
@@ -35,27 +39,24 @@ public class Tematica {
 		this.nomTematica = nouNomTematica;
 	}
 	
-	public void setIDSeccioTematica(int nouIDSeccio) {
+	public void setIDSeccio(int nouIDSeccio) {
 		this.IDSeccio = nouIDSeccio;
 	}
 	
-	public void getIDSeccioTematica() {
+	public int getIDSeccio() {
 		return IDSeccio;
 	}
 	
-	public int getID() {
-		return ID;
-	}
-	
+
 	public void afegirLlibre(Llibre nouLlibre) {
-		nouLlibre.setTematicaPrincipal(this);
+		nouLlibre.setTemPrincipal(ID);
 		llibresTematica.add(nouLlibre.getID());
 	}
 	
 	public ArrayList<Llibre> getLlibres() {
 		ArrayList<Llibre> Llibres; 
 		for (int i = 0; i < llibresTematica.size(); ++i) {
-			Llibres.add(BD.getLlibre(llibresTematica.get(i));
+			Llibres.add(BD.getLlibre(llibresTematica.get(i)));
 		}
 		return Llibres;
 	}

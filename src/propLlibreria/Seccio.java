@@ -50,7 +50,7 @@ public class Seccio {
 	//pre:	el parametre implicit no conte una tematica amb nom "nomTematica"
 	//post: afegeix una tematica al parametre implicit
 	public void afegirTematica(Tematica novaTematica) {
-		novaTematica.setIDSeccioTematica(ID);
+		novaTematica.setIDSeccio(ID);
 	}
 	
 }
