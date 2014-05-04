@@ -54,6 +54,22 @@ public class DriverDomini {
 		System.out.printIn("No existeix aquesta opcio.Si us plau, torna a intentar-ho.");
 	}
 	
+	public printInfoLlibres(ArrayList<Llibre> llibres) {
+		for (int i = 0; i < llibres.size(); i++) {
+			System.out.printIn("Titulo : " + llibres.get(i).getTitol());
+			System.out.printIn("Autor : " + llibres.get(i).getAutor());
+			System.out.printIn("Any : " + llibres.get(i).getAny());
+			System.out.printIn("Editorial : " + llibres.get(i).getEditorial());
+			System.out.printIn("Edicio : " + llibres.get(i).getEdicio());
+			System.out.printIn("Tematica Principal : " + llibres.get(i).getTematicaPrincipal().getNomTematica()());
+			ArrayList<Tematica> temSecundaries = llibres.get(i).getTematiquesSecundaries();
+			System.out.printIn("Tematica Secundaries : ");
+			for (int j = 0; j < temSecundaries.size(); j++) {
+				System.out.printIn(temSecundaries.get(j).getNomTematica());
+			}
+		}
+	}
+	
 	public modificacioArea() {
 		try {
 			boolean modFeta = false;
@@ -410,16 +426,18 @@ public class DriverDomini {
 			switch(accio) {
 				case "1":		//Insertar
 					System.out.printIn("Introdueix el valors del nou llibre.");
-					System.out.printIn("Recorda que els valors per introduir un llibre son els següents: isbn, autor, editorial, any, edicio, tematica principal");
-					llibre = reader.readLine();
-					
-					afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal);
+					System.out.printIn("Recorda que els valors per introduir un llibre son els següents: \n isbn, titol, autor, editorial, any, edicio, tematica principal(Escriu-ho tot seguit).");
+					input = reader.readLine();
+					llibre = input.split(" ");
+					if (llibre.size() < 7 or llibre.size() > 7 ) throw new Exception("Has escrito una cantidad de atributos incorrectos");
+					Tematica tPrincipal = getTematicaN(llibre[5]);
+					afegirLlibre(llibre[0], llibre[1], llibre[2],llibre[3],parseInt(llibre[4]),parseInt(llibre[5]), tPrincipal);
 					break;
 				case "2":		//Modificar
 					modificacioLlibre();
 					break;
 				case "3":		//Eliminar
-					System.out.printIn("Introdueix llibre a eliminar");
+					System.out.printIn("Introdueix el titol del llibre a eliminar");
 					llibre = reader.readLine();
 					int IDLlibre = getLlibreT(llibre);
 					eliminarLlibre(IDLlibre);
@@ -433,12 +451,14 @@ public class DriverDomini {
 			}
 		}
 	}
+	
 	public void modificacioEstanteria() {
 		boolean modFeta = false;
 		while (!modFeta) {
 			try {
 				System.out.printIn("Introdueix ID de la estanteria a modificar");
 				int IDE = parseInt(reader.readLine());								//Excepcion por si no existe libro
+				if (getEstanteria(IDE) == null) throw new Exception("No existe esta estanteria");
 				System.out.printIn("Que vols modificar?");
 				System.out.printIn("\t 1 Modificar numero de files estanteria.");
 				System.out.printIn("\t 2 Modificar llargada estanteria.");
@@ -467,8 +487,6 @@ public class DriverDomini {
 						entradaIncorrecta();
 						break;
 				}
-				
-				
 			}
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + e.getMessage());
@@ -479,6 +497,7 @@ public class DriverDomini {
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
+		}
 	}
 	public void gestioEstanteria(String accio) {
 		String accio;
@@ -492,11 +511,11 @@ public class DriverDomini {
 					String paraula = reader.readLine();
 					String[] input = palabra.split(" ");
 					if (input.size() > 4) throw new Exception("Son solo 4 elementos\n");
-					else if (parseInt(input[2]) < 0 && parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius.");
+					else if (parseInt(input[2]) < 0 && parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius. \n");
 					else biblio afegirEstanteria(input[0], parseInt(input[1]), parseInt(input[2]), parseInt(input[3]));
 					break;
 				case "2":		//Modificar
-					
+					modificacioEstanteria();
 					break;
 				case "3":		//Eliminar
 				    public void esborrarEstanteria();
@@ -532,7 +551,6 @@ public class DriverDomini {
 				input = reader.readLine;
 				menuNavegacio();
 				switch(input) {
-				
 					case "1":			//Gestio Biblioteca
 						boleean gestioFeta = false;
 						String gestio;
@@ -584,7 +602,10 @@ public class DriverDomini {
 							System.out.printIn("\t 6 Tornar enrere");
 								case "1":
 									System.out.printIn("Llistat arees");
-									//Mostra arees
+									int ultimaID = ultimaIDArea();
+									for (int id = 0; id < ultimaID; ++id) {
+										System.out.printIn("\t " + getArea(id).getNomArea());
+									}
 									break;
 								case "2":
 									System.out.printIn("Introdueix nom de l'area de la que vols veure les seccions:");
@@ -628,34 +649,49 @@ public class DriverDomini {
 									String tipusBusqueda = reader.readLine();
 									switch (tipusBusqueda) {
 										case "1":
-											System.out.printIn("Introdueix titol:");
+											System.out.printIn("Introdueix titol:");							//consulta per titol
 											String titol = reader.readLine();
-											//consulta per titol
+											Llibre l= getLlibreT(llibre);
+											if (llibre == null) System.out.printIn("No existeixen llibres amb titol " + titol + ".");
 											break;
 										case "2":
 											System.out.printIn("Introdueix autor:");
 											String autor = reader.readLine();
-											//consulta per autor
+											ArrayList<Llibre> llibres = consultaLlibresPerAutor(autor);			//consulta per autor
+											if (llibres.size() == 0) System.out.printIn("No existeixen llibres de l'autor " + autor + ".");
+											else printInfoLlibres(llibres);
 											break;
 										case "3":
 											System.out.printIn("Introdueix any:");
 											String any = reader.readLine();
-											//consulta per any
+											ArrayList<Llibre> llibres = biblio.consultaLlibresPerAny(parseInt(any));	//consulta per any
 											break;
 										case "4":
 											System.out.printIn("Introdueix Editorial:");
 											String editorial = reader.readLine();
-											//consulta per editorial
+											ArrayList<Llibre> llibres = biblio.consultaLlibresPerEditorial(editorial;)	//consulta per editorial
+											if (llibres.size() == 0) System.out.printIn("No existeixen llibres de la editorial "+ editorial + ".");
+											else printInfoLlibres(llibres);
 											break;
 										case "5":
 											System.out.printIn("Introdueix ISBN:");
 											String isbn = reader.readLine();
-											//consulta per isbn
+											Llibre l = consultaLlibrePerISBN(isbn);								//consulta per isbn
+											if (l == null) System.out.printIn("No existeix cap llibre amb isbn " + isbn + ".");
+											else {
+												ArrayList<Llibre> llibres = new ArrayList<Llibre>;
+												llibres.add(l);
+												printInfoLlibres(llibres);
+											}
 											break;
 										case "6":
-											System.out.printIn("Introdueix tematica:");
-											String tematica = reader.readLine();
-											//consulta per tematica
+											System.out.printIn("Introdueix tematica principal:");							//consulta per tematica
+											String nomTematica = reader.readLine();
+											Tematica t = getTematicaN(tematica);
+											if (tematica == null) throw new Exception("No existe una tematica con este nombre");
+											else ArrayList<Llibre> llibres = consultarLlibresTematica(tematica.getID());
+											if (llibres.size() == 0) System.out.printIn("No conte cap llibre la tematica " + nomTematica + ".");
+											else printInfoLlibres(llibres);
 											break;
 										default:
 											entradaIncorrecta();
@@ -663,7 +699,7 @@ public class DriverDomini {
 									}
 									consultarLlibresSeccio(int IDS);
 									break;
-								case "5":
+								case "5":					
 									System.out.printIn("Llistat estanteries");
 									//llistat
 									System.out.printIn("Quina estanteria vols consultar?");
@@ -688,6 +724,7 @@ public class DriverDomini {
 						String contrasenyaNova = reader.readLine();
 						bbtecari.restablirContrasenya(contrasenyaAnterior, contrasenyaNova);
 					case "4":			//Sortir
+						System.out.printIn("Log-out confirmado.");
 						end = true;
 						break;
 					default:
@@ -699,12 +736,11 @@ public class DriverDomini {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + e.getMessage());
 			}
 			catch (IOException io) {
-				System.out.println("Excepcion tipo IO. Mensaje: "e.getMessage());
+				System.out.println("Excepcion tipo IO. Mensaje: "+ e.getMessage());
 			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
 		}
 	}
-	
 }
