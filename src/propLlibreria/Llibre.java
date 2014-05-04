@@ -13,7 +13,7 @@ public class Llibre extends Object {
 	private int any;
 	private int edicio;
 	private int temPrincipal;
-	private ArrayList<Integer> temSecundaries;
+	private ArrayList<int> temSecundaries;
 
 	//All attributes constructor
 	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
@@ -88,7 +88,11 @@ public class Llibre extends Object {
 	}
 	
 	public void eliminarTematicaSecundaria(Tematica tem) {
-		temSecundaries.remove((Object)new Integer(tem.getID()));
+		temSecundaries.remove(tem.getID());
+	}
+	
+	public ArrayList<int> getTematiquesSecundaries() {
+		return temSecundaries;
 	}
 
 	public void setTematicaPrincipal(Tematica temPrincipal) {
@@ -97,7 +101,7 @@ public class Llibre extends Object {
 	//pre:
 	//post: retorna la tematica principal del parametre implicit
 	public Tematica getTematicaPrincipal() {
-		return CtrlBD.obtenirTematica(temPrincipal);
+		return BD.getTematica(temPrincipal);
 	}
 	//pre:
 	//post: retorna numero de tematiques secundaries del parametre implicit
@@ -108,6 +112,6 @@ public class Llibre extends Object {
 	//pre: 0 <= index <= num tematiques secundaries
 	//post: retorna tematica secundaria a la posicio index
 	public Tematica getTematicaIesima(int index) {
-		return CtrlBD.obtenirTematica(temSecundaries.get(index));
+		return BD.getTematica(temSecundaries.get(index));
 	}
 }
