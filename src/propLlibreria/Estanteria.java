@@ -8,7 +8,7 @@ public class Estanteria {
 	private int llargada;
 	private int posX;
 	private int posY;
-	private ArrayList<int> LlibresEstanteria;
+	private ArrayList<int> llibresEstanteria;
 	
 	//All attributes constructor
 	public Estanteria(int numFiles, int llargada, int posX, int posY)  {
@@ -66,17 +66,17 @@ public class Estanteria {
 	
 	public ArrayList<Llibre> getLlibres() {
 		ArrayList<Llibre> Llibres; 
-		for (int i = 0; i < LlibresEstanteria.size(); ++i) {
-			Llibres.add(BD.getLlibre(LlibresEstanteria.get(i));
+		for (int i = 0; i < llibresEstanteria.size(); ++i) {
+			Llibres.add(BD.getLlibre(llibresEstanteria.get(i));
 		}
 		return Llibres;
 	}
 	
 	public void afegirLlibre(int IDL) {
-		LlibresEstanteria.add(IDL);
+		llibresEstanteria.add(IDL);
 	}
 	
-	public void esborrarLlibre(IDL) {
-		LlibresEstanteria.remove(IDL);
+	public void esborrarLlibre(int IDL) {
+		llibresEstanteria.remove((Object)new Integer(IDL));
 	}
 }

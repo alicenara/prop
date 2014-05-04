@@ -5,15 +5,19 @@ public class Biblioteca {
     
 	//Constructora
     public Biblioteca() {
-    	BD.init();
+    	BD.omplirBD();
     }
     
     //Metodes
     //pre:
     //post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
 	public void reordenacioBiblioteca() {
-        //Utilitzar classe Solucio
+        //Utilitzar classe Solucio, pendent de la compartida!
     }
+	
+	public void guardarSolucio() {
+		BD.desarBD();
+	}
 	
 	//pre: No existeix una Area, tal que el seu nom sigui nomArea
     //post: S'ha creat una nova Area amb nom = nomArea
@@ -90,10 +94,17 @@ public class Biblioteca {
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i no esta contingut en la Tematica
     //post: La Tematica amb identificador IDT conte el Llibre amb identificador IDL 
-	public void modificarLlibreTematica(int IDT, int IDL) {
+	public void afegirLlibreTematica(int IDT, int IDL) {
 		Tematica modTematica = BD.getTematica(IDT);
 		Llibre afLlibre = BD.getLlibre(IDL);
 		modTematica.afegirLlibre(afLlibre);
+	}
+	
+	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i esta contingut en la Tematica
+    //post: La Tematica amb identificador IDT no conte el Llibre amb identificador IDL 
+	public void afegirLlibreTematica(int IDT, int IDL) {
+		Tematica modTematica = BD.getTematica(IDT);
+		modTematica.esborrarLlibre(IDL);
 	}
 	
 	//pre: Existeix una Tematica = esbTematica
@@ -238,6 +249,24 @@ public class Biblioteca {
 		return llibresArea;
 	}
 	
+	public ArrayList<Llibre> consultarSeccionsArea(int IDA) {
+		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
+		return sA;
+	}
+	
+	public ArrayList<Llibre> consultarTematiquesArea(int IDA) {
+		ArrayList<Tematica> tA;
+		ArrayList<Tematica> aux;
+		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
+		for (int i = 0; i < sA.size(); ++i) {
+			aux = BD.tematiquesSeccio(sA.get(i).getID());
+			for (int j = 0; j < aux.size(); ++j) {
+				tA.add(aux.get(j));
+			}
+		}
+		return tA;
+	}
+	
 	public ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
 		ArrayList<Llibre> llibresSeccio;
 		ArrayList<Llibre> aux;
@@ -249,6 +278,11 @@ public class Biblioteca {
 			}
 		}
 		return llibresSeccio;
+	}
+	
+	public ArrayList<Llibre> consultarTematiquesSeccio(int IDS) {
+		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
+		return tS;
 	}
 	
 	public ArrayList<Llibre> consultarLlibresTematica(int IDT) {

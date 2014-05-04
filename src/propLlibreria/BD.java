@@ -185,10 +185,7 @@ public class BD {
 	//Consultores
 	
 	public static ArrayList<Llibre> llibresTematica(Tematica t) {
-		ArrayList<Llibre> llibresT;
-		for (int i = 0; i < llibre.size(); ++i) {
-			if (llibre.get(i).getTematicaPrincipal() == t) llibresT.add(llibre.get(i));
-		}
+		ArrayList<Llibre> llibresT = t.getLlibres();
 		return llibresT
 	}
 	

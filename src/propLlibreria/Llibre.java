@@ -88,7 +88,7 @@ public class Llibre extends Object {
 	}
 	
 	public void eliminarTematicaSecundaria(Tematica tem) {
-		temSecundaries.remove((Object)new Integer(tem.getID()));;
+		temSecundaries.remove((Object)new Integer(tem.getID()));
 	}
 	
 	public ArrayList<Integer> getTematiquesSecundaries() {
