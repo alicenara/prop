@@ -19,6 +19,7 @@ public class Biblioteca {
     //post: S'ha creat una nova Area amb nom = nomArea
 	public int afegirArea(String nomArea) {
 		Area novaArea = new Area(nomArea);
+		BD.afegirArea(novaArea);
 		return novaArea.getID();
 	}
 	
@@ -47,6 +48,7 @@ public class Biblioteca {
     //post: S'ha creat una nova Seccio amb nom = nomSeccio
 	public int afegirSeccio(String nomSeccio) {
 		Seccio novaSeccio = new Seccio(nomSeccio);
+		bD.afegirSeccio(novaSeccio);
 		return novaSeccio.getID();
 	}
 	
@@ -75,6 +77,7 @@ public class Biblioteca {
     //post: S'ha creat una nova Tematica amb nom = nomTematica
 	public int afegirTematica(String nomTematica) {
 		Tematica novaTematica = new Tematica(nomTematica);
+		BD.afegirTematica(novaTematica);
 		return novaTematica.getID();
 	}
 	
@@ -103,6 +106,7 @@ public class Biblioteca {
     //post: S'ha creat una nou Llibre amb isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
 	public int afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
 		Llibre nouLlibre = new Llibre(isbn, titol, autor, editorial, any, edicio, tPrincipal);
+		BD.afegirLlibre(nouLlibre);
 		return nouLlibre.getID();
 	}
 	
@@ -181,6 +185,7 @@ public class Biblioteca {
     //post: S'ha creat una nova Estanteria amb nunmFiles = numFiles, llargada = llargda, posX = posX i posY = posY
 	public int afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
 		Estanteria novaEstanteria = new Estanteria(numFiles, llargada, posX, posY);
+		BD.afegirEstanteria(novaEstanteria),
 		return novaEstanteria.getID();
 	}
 	
@@ -229,7 +234,8 @@ public class Biblioteca {
 	}
 	
 	public ArrayList<Llibre> consultarLlibresTematica(int IDT) {
-		
+		Tematica consTematica = BD.getTematica(IDT);
+		return BD.llibresTematica(consTematica);
 	}
 	
 	public ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {

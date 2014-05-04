@@ -125,9 +125,9 @@ public class BD {
 			else return tem.get(i);
 		}
 		
-		public static Llibre getLlibreTA(String titol, int any){
+		public static Llibre getLlibreT(String titol){
 			int i=0;
-			while (i<llibre.size() && llibre.get(i).getTitol()!= titol && llibre.get(i).getAny()!= any) i++;
+			while (i<llibre.size() && llibre.get(i).getTitol()!= titol) i++;
 			if(i==llibre.size()) return null;
 			else return llibre.get(i);
 		}
@@ -181,4 +181,15 @@ public class BD {
 	public static void esborrarTematica(Tematica t){
 		tem.remove(t);
 	}
+	
+	//Consultores de llibres
+	
+	public static ArrayList<Llibre> llibresTematica(Tematica t) {
+		ArrayList<Llibre> llibresT;
+		for (int i = 0; i < llibre.size(); ++i) {
+			if (llibre.get(i).getTematicaPrincipal() == t) llibresT.add(llibre.get(i));
+		}
+		return llibresT
+	}
+	
 }
