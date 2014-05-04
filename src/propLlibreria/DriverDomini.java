@@ -54,7 +54,64 @@ public class DriverDomini {
 		System.out.printIn("No existeix aquesta opcio.Si us plau, torna a intentar-ho.");
 	}
 	
-	
+	public modificacioArea() {
+		try {
+			boolean modFeta = false;
+			while (!modFeta) {
+				System.out.printIn("Que vols modificar?");
+				System.out.printIn("\t 1 Nom de area existent.");
+				System.out.printIn("\t 2 Afegir seccio a l'area.");
+				System.out.printIn("\t 3 Esborrar seccio de l'area.");
+				System.out.printIn("\t 4 Tornar Enrere");
+				String modificacio = reader.readLine();
+				switch(modificacio) {
+					case "1":
+						System.out.printIn("Quina area vols modificar?");
+						area = reader.readLine();
+						IDA = getAreaN(area).getID();
+						System.out.printIn("Introdueix nou nom per l'area");
+						String novaArea = reader.readLine();
+						modificarNomArea(ID, nomA);
+						break;
+					case "2":
+						System.out.printIn("Quina area vols modificar?");
+						area = reader.readLine();
+						IDA = getAreaN(area).getID();
+						System.out.printIn("Quina seccio vols introduir?");
+						String novaSeccio = reader.readLine();
+						IDS = afegirSeccio(novaSeccio);
+						biblio.afegirSeccioArea(IDA, IDS);
+						break;
+					case "3":
+						System.out.printIn("De quina area es la seccio que vols eliminar?");
+						area = reader.readLine();
+						IDA = getAreaN(area).getID();
+						System.out.printIn("Quina seccio vols eliminar?");
+						seccio = reader.readLine();
+						IDS = getSeccioN(seccio).getID();
+						esborrarSeccioArea(IDA,IDS);
+						break;
+					case "4":
+							modFeta = true;
+						break;
+					default:
+						entradaIncorrecta();
+						break;
+				}
+			}
+		}
+		catch(RuntimeException re) {
+			System.out.println("Excepcion tipo Runtime. Mensaje : " + e.getMessage());
+		}
+		catch (IOException io) {
+			System.out.println("Excepcion tipo IO. Mensaje: "e.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+		}
+	}
+
+
 	public void gestioArea() {
 		String area;
 		String accio;
@@ -69,57 +126,19 @@ public class DriverDomini {
 					biblio.afegirArea(nomArea);
 					break;
 				case "2":		//Modificar
-					System.out.printIn("Que vols modificar?");
-					System.out.printIn("\t 1 Nom de area existent.");
-					System.out.printIn("\t 2 Afegir seccio a l'area.");
-					System.out.printIn("\t 3 Esborrar seccio de l'area.");
-					System.out.printIn("\t 4 Tornar Enrere");
-					String modificacio = reader.readLine();
-					switch(modificacio) {
-						case "1":
-							System.out.printIn("Quina area vols modificar?");
-							area = reader.readLine();
-							IDA = getAreaN(area).getID();
-							System.out.printIn("Introdueix nou nom per l'area");
-							String novaArea = reader.readLine();
-							modificarNomArea(ID, nomA);
-							break;
-						case "2":
-							System.out.printIn("Quina area vols modificar?");
-							area = reader.readLine();
-							IDA = getAreaN(area).getID();
-							System.out.printIn("Quina seccio vols introduir?");
-							String novaSeccio = reader.readLine();
-							IDS = afegirSeccio(novaSeccio);
-							biblio.afegirSeccioArea(IDA, IDS);
-							break;
-						case "3":
-							System.out.printIn("De quina area es la seccio que vols eliminar?");
-							area = reader.readLine();
-							IDA = getAreaN(area).getID();
-							System.out.printIn("Quina seccio vols eliminar?");
-							seccio = reader.readLine();
-							IDS = getSeccioN(seccio).getID();
-							esborrarSeccioArea(IDA,IDS);
-							break;
-						case "4":
-								//do nothing
-							break;
-						case default:
-							entradaIncorrecta();
-							break;
-					}
+					modificacioArea();
 					break;
 				case "3":		//Eliminar
 					System.out.printIn("Quina area vols eliminar?");
 					area = area = reader.readLine();
+					Area areaN = getAreaN(area);
 					IDA = getAreaN(area).getID();
 					eliminarArea(IDA);
 					break;
 				case "4":		//Sortir
 					accioFeta = true;
 					break;
-				case default: 
+				default: 
 					entradaIncorrecta();
 					break;
 			}
@@ -145,7 +164,7 @@ public class DriverDomini {
 					System.out.printIn("Introdueix nom nova seccio");
 					String novaSeccio = reader.readLine();
 					IDS = biblio.afegirSeccio(novaSeccio);
-					afegirSeccioArea(IDA,IDS)
+					afegirSeccioArea(IDA,IDS);
 					break;
 				case "2":		//Modificar
 					System.out.printIn("Que vols modificar?");
@@ -184,7 +203,7 @@ public class DriverDomini {
 						case "4":
 							entradaIncorrecta();
 							break;
-						case default:
+						default:
 							accioFeta = true;
 							break;
 					}
@@ -201,7 +220,7 @@ public class DriverDomini {
 				case "4":		//Sortir
 					accioFeta = true;
 					break;
-				case default: 
+				default:
 					entradaIncorrecta();
 					break;
 			}
@@ -252,7 +271,7 @@ public class DriverDomini {
 				case "4":
 					entradaIncorrecta();
 					break;
-				case default:
+				default:
 					modFeta = true;
 					break;
 			}
@@ -265,7 +284,7 @@ public class DriverDomini {
 		String accio;
 		int IDT;							//ID Tematica
 		boolean accioFeta = false;
-		while(!not accioFeta) {
+		while(!accioFeta) {
 			menuGestio2();
 			accio = reader.readLine();
 			switch(accio) {
@@ -290,7 +309,7 @@ public class DriverDomini {
 				case "4":		//Sortir
 					accioFeta = true;
 					break;
-				case default: 
+				default: 
 					entradaIncorrecta();
 					break;
 			}
@@ -374,7 +393,8 @@ public class DriverDomini {
 				case "10":
 					modFeta = true;
 					break;
-				case default: //do nothing
+				default:
+					entradaIncorrecta();
 					break;
 			}
 		}
@@ -407,11 +427,58 @@ public class DriverDomini {
 				case "4":		//Sortir
 					accioFeta = true;
 					break;
-				case default: 
+				default: 
 					entradaIncorrecta();
 					break;
 			}
 		}
+	}
+	public void modificacioEstanteria() {
+		boolean modFeta = false;
+		while (!modFeta) {
+			try {
+				System.out.printIn("Introdueix ID de la estanteria a modificar");
+				int IDE = parseInt(reader.readLine());								//Excepcion por si no existe libro
+				System.out.printIn("Que vols modificar?");
+				System.out.printIn("\t 1 Modificar numero de files estanteria.");
+				System.out.printIn("\t 2 Modificar llargada estanteria.");
+				System.out.printIn("\t 3 Afegir llibre a Estanteria.");
+				System.out.printIn("\t 4 Esborrar llibre a Estanteria.");
+				System.out.printIn("\t 5 Tornar enrere");
+				String modificacio = reader.readLine();
+				switch (modificacio) {
+					case "1":
+						System.out.printIn("Introdueix nou numero de files de la estanteria");
+						modificarNumFilesEstanteria(int ID, int numFilesmod);
+						break;
+					case "2":
+						modificarLlargadaEstanteria(int ID, int llargadamod);
+						break;
+					case "3":
+						afegirLlibreEstanteria(int IDE, int IDL);
+						break;
+					case "4":
+						esborrarLlibreEstanteria(int IDE, int IDL);
+						break;
+					case "5":
+						modFeta = true;
+						break;
+					default:	
+						entradaIncorrecta();
+						break;
+				}
+				
+				
+			}
+			catch(RuntimeException re) {
+				System.out.println("Excepcion tipo Runtime. Mensaje : " + e.getMessage());
+			}
+			catch (IOException io) {
+				System.out.println("Excepcion tipo IO. Mensaje: "e.getMessage());
+			}
+			catch (Exception e) {
+				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+			}
 	}
 	public void gestioEstanteria(String accio) {
 		String accio;
@@ -421,20 +488,15 @@ public class DriverDomini {
 			accio = reader.readLine();
 			switch(accio) {
 				case "1":		//Insertar
-					System.out.printIn("");
-					biblio.afegirEstanteria();
+					System.out.printIn("Inserta numero de files de la nova estanteria, la seva llarga i la seva colocació en el eix x i y en aquest ordre.");
+					String paraula = reader.readLine();
+					String[] input = palabra.split(" ");
+					if (input.size() > 4) throw new Exception("Son solo 4 elementos\n");
+					else if (parseInt(input[2]) < 0 && parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius.");
+					else biblio afegirEstanteria(input[0], parseInt(input[1]), parseInt(input[2]), parseInt(input[3]));
 					break;
 				case "2":		//Modificar
-					System.out.printIn("Que vols modificar?");
-					System.out.printIn("\t 1 Modificar numero de files estanteria.");
-					System.out.printIn("\t 2 Modificar llargada estanteria.");
-					System.out.printIn("\t 3 Afegir llibre a Estanteria.");
-					System.out.printIn("\t 4 Esborrar llibre a Estanteria.");
-					System.out.printIn("\t 5 Tornar enrere");
-					modificarNumFilesEstanteria(int ID, int numFilesmod);
-					modificarLlargadaEstanteria(int ID, int llargadamod);
-					afegirLlibreEstanteria(int IDE, int IDL);
-					esborrarLlibreEstanteria(int IDE, int IDL);
+					
 					break;
 				case "3":		//Eliminar
 				    public void esborrarEstanteria();
@@ -442,7 +504,7 @@ public class DriverDomini {
 				case "4":		//Sortir
 					accioFeta = true;
 					break;
-				case default: 
+				default: 
 					entradaIncorrecta();
 					break;
 			}
@@ -450,7 +512,7 @@ public class DriverDomini {
 	}
 	
 	public static void main() {
-		bbtecari = new Biblioteca("javarules");
+		bbtecari = new Bibliotecari("javarules");
 		reader = new BufferedReader(new InputStreamer(System.in));
 		String contrasenya;
 		boolean permisAcces = false;
@@ -464,7 +526,6 @@ public class DriverDomini {
 			if (biblio == null) System.out.printIn("Ups! Contrasenya incorrecta...");
 			else permisAcces = true;
 		}
-		
 		String input;
 		while (!end) {
 			try {
@@ -497,13 +558,17 @@ public class DriverDomini {
 								case "6";							//Sortir
 									gestioFeta = true;
 									break;
-								case default: 
+								default: 
 									entradaIncorrecta();
 									break;
 							}
 						}
 						break;
 					case "2":			//Consulta Biblioteca
+						String area;
+						String tematica;
+						String seccio;
+						String llibre;
 						boolean consultaFeta = false;
 						String consulta;
 						while (!consultaFeta) {
@@ -522,11 +587,35 @@ public class DriverDomini {
 									//Mostra arees
 									break;
 								case "2":
-									System.out.printIn("Llistat seccions");
+									System.out.printIn("Introdueix nom de l'area de la que vols veure les seccions:");
+									area = reader.readLine();
+									int IDA = getAreaN(area).getID();
+									ArrayList<Seccio> seccions = consultarSeccionsArea(IDA);
+									System.out.printIn("Llistat seccions de " + area + ":");
+									for (int i = 0; i < seccions.size(); i++) {
+										System.out.printIn("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
+									}
+									System.out.printIn("Si vols consultar les tematiques de una seccio tecleja l'index de la llista de la seccio escollida. Si no, tecleja 0.");
+									int seccioEscollida = reader.readLine();
+									seccioEscollida = seccioEscollida - 1;				//index de seccions
+									if (seccioEscollida  > -1 and seccioEscollida < seccions.size()) {
+										int IDS = seccions.get(seccioEscollida).getID();					//GET ID seccioEscollida
+										ArrayList<Tematica> tematiques = consultarTematiquesSeccio(IDS);
+										System.out.printIn("Llistat tematiqies de " + seccions.get(seccioEscollida) + ":");
+										for (int i = 0; i < seccions.size(); i++) {
+											System.out.printIn("\t " + (i+1) + " " + seccions.get(i).);
+										}
+									}
 									break;
 								case "3":
-									System.out.printIn("Llistat tematiques");
-									consultarLlibresTematica(int IDT);
+									System.out.printIn("Introduiex nom tematica a consultar:");
+									tematica = reader.readLine();
+									int IDT = getTematicaN(tematica).getID();
+									ArrayList<Llibre> llibres = consultarLlibresTematica(IDT);
+									System.out.printIn("Llistat llibres de " + tematica+ ":");
+									for (int i = 0; i < llibres.size(); i++) {
+										System.out.printIn("\t " + (i+1) + " " + seccions.get(i).getTitol() + " " + seccions.get(i).getAutor());
+									}
 									break;
 								case "4":
 									System.out.printIn("Busqueda per: ");
@@ -535,25 +624,41 @@ public class DriverDomini {
 									System.out.printIn("\t 3 Any");
 									System.out.printIn("\t 4 Editorial");
 									System.out.printIn("\t 5 ISBN");
+									System.out.printIn("\t 6 Tematica");
 									String tipusBusqueda = reader.readLine();
 									switch (tipusBusqueda) {
 										case "1":
 											System.out.printIn("Introdueix titol:");
+											String titol = reader.readLine();
+											//consulta per titol
 											break;
 										case "2":
 											System.out.printIn("Introdueix autor:");
+											String autor = reader.readLine();
+											//consulta per autor
 											break;
 										case "3":
 											System.out.printIn("Introdueix any:");
+											String any = reader.readLine();
+											//consulta per any
 											break;
 										case "4":
 											System.out.printIn("Introdueix Editorial:");
+											String editorial = reader.readLine();
+											//consulta per editorial
 											break;
 										case "5":
 											System.out.printIn("Introdueix ISBN:");
-											
+											String isbn = reader.readLine();
+											//consulta per isbn
 											break;
-										case default: //do nothing
+										case "6":
+											System.out.printIn("Introdueix tematica:");
+											String tematica = reader.readLine();
+											//consulta per tematica
+											break;
+										default:
+											entradaIncorrecta();
 											break;
 									}
 									consultarLlibresSeccio(int IDS);
@@ -570,7 +675,7 @@ public class DriverDomini {
 								case "6":
 									consultaFeta = true;
 									break;
-								case default:
+								default:
 									entradaIncorrecta();
 									break;
 							}
