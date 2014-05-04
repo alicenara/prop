@@ -226,11 +226,29 @@ public class Biblioteca {
     //Consultores
 	
 	public ArrayList<Llibre> consultarLlibresArea(int IDA) {
-		
+		ArrayList<Llibre> llibresArea;
+		ArrayList<Llibre> aux;
+		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
+		for (int i = 0; i < sA.size(); ++i) {
+			aux = consultarLlibresSeccio(sA.get(i).getID());
+			for (int j = 0; j < aux.size(); ++j) {
+				llibresArea.add(aux.get(j));
+			}
+		}
+		return llibresArea;
 	}
 	
 	public ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
-		
+		ArrayList<Llibre> llibresSeccio;
+		ArrayList<Llibre> aux;
+		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
+		for (int i = 0; i < tS.size(); ++i) {
+			aux = BD.llibresTematica(tS.get(i));
+			for (int j = 0; j < aux.size(); ++j) {
+				llibresSeccio.add(aux.get(j));
+			}
+		}
+		return llibresSeccio;
 	}
 	
 	public ArrayList<Llibre> consultarLlibresTematica(int IDT) {
@@ -242,9 +260,5 @@ public class Biblioteca {
 		Estanteria consEstanteria = BD.getEstanteria(IDE);
 		return consEstanteria.getLlibres();
 	}
-	
-	public ArrayList<Llibre> consultarOrdreActual() {
-	
-    }
 	
 }

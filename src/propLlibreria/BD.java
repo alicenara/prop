@@ -182,7 +182,7 @@ public class BD {
 		tem.remove(t);
 	}
 	
-	//Consultores de llibres
+	//Consultores
 	
 	public static ArrayList<Llibre> llibresTematica(Tematica t) {
 		ArrayList<Llibre> llibresT;
@@ -190,6 +190,22 @@ public class BD {
 			if (llibre.get(i).getTematicaPrincipal() == t) llibresT.add(llibre.get(i));
 		}
 		return llibresT
+	}
+	
+	public static ArrayList<Tematica> tematiquesSeccio(int IDS) {
+		ArrayList<Tematica> tematiquesS;
+		for (int i = 0; i < tem.size(); ++i) {
+			if (tem.get(i).getIDSeccioTematica() == IDS) tematiquesS.add(tem.get(i));
+		}
+		return tematiquesS;
+	}
+	
+	public static ArrayList<Seccio> seccionsArea(int IDA) {
+		ArrayList<Seccio> seccionsA;
+		for (int i = 0; i < sec.size(); ++i) {
+			if (sec.get(i).getIDAreaSeccio() == IDA) seccionsA.add(sec.get(i));
+		}
+		return seccionsA;
 	}
 	
 }

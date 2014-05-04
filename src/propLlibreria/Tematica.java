@@ -28,10 +28,6 @@ public class Tematica {
 			return this.nomTematica;
 	}
 	
-	public int getNomSeccioTematica() {
-		return this.IDSeccio;
-}
-	
 	//pre:
 	//post:
 	public void setNomTematica(String nouNomTematica) {
@@ -40,6 +36,10 @@ public class Tematica {
 	
 	public void setIDSeccioTematica(int nouIDSeccio) {
 		this.IDSeccio = nouIDSeccio;
+	}
+	
+	public void getIDSeccioTematica() {
+		return IDSeccio;
 	}
 	
 	public int getID() {
