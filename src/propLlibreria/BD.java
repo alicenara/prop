@@ -25,18 +25,23 @@ public class BD {
 	//Ultima ID Entitats
 	
 	public static int ultimaIDArea(){
+		if (area.size() == 0) return 0;
 		return area.get(area.size()-1).getID()+1;
 	}
 	public static int ultimaIDEstanteria(){
+		if (est.size() == 0) return 0;
 		return est.get(est.size()-1).getID()+1;
 	}
 	public static int ultimaIDLlibre(){
+		if (llibre.size() == 0) return 0;
 		return llibre.get(llibre.size()-1).getID()+1;
 	}
 	public static int ultimaIDSeccio(){
+		if (sec.size() == 0) return 0;
 		return sec.get(sec.size()-1).getID()+1;
 	}
 	public static int ultimaIDTematica(){
+		if (tem.size() == 0) return 0;
 		return tem.get(tem.size()-1).getID()+1;
 	}
 	
