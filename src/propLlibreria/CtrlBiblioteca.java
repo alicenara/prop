@@ -36,14 +36,14 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Area tal que el seu Identificador = ID
 	//post: L'Area amb identificador ID te nom nomA
-	public void modificarNomArea(int ID, String nomA) {
+	public static void modificarNomArea(int ID, String nomA) {
 		Area modArea = BD.getArea(ID);
 		modArea.setNomArea(nomA);
 	}
 	
 	//pre: Existeix una Area tal que el seu Identificador = IDA i una Seccio tal que el seu identificador es IDS i no esta continguda en l'Area
 	//post: L'Area amb identificador IDA conte la Seccio amb identificador IDS 
-	public void modificarSeccioArea(int IDA, int IDS) {
+	public static void modificarSeccioArea(int IDA, int IDS) {
 		Area modArea = BD.getArea(IDA);
 		Seccio afSeccio = BD.getSeccio(IDS);
 		modArea.afegirSeccio(afSeccio);
@@ -51,7 +51,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Area = esbArea
 	//post: L'Area = esbArea ha estat eliminada
-	public void eliminarArea(Area esbArea) {
+	public static void eliminarArea(Area esbArea) {
 		BD.esborrarArea(esbArea);
 	}
 	
@@ -59,7 +59,7 @@ public class CtrlBiblioteca {
 	
 	//pre: No existeix una Seccio, tal que el seu nom sigui nomSeccio
 	//post: S'ha creat una nova Seccio amb nom = nomSeccio
-	public int afegirSeccio(String nomSeccio, int IDArea) {
+	public static int afegirSeccio(String nomSeccio, int IDArea) {
 		Seccio novaSeccio = new Seccio(nomSeccio, IDArea);
 		BD.afegirSeccio(novaSeccio);
 		return novaSeccio.getID();
@@ -67,14 +67,14 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Seccio tal que el seu Identificador = ID
 	//post: La Seccio amb identificador ID te nom nomS
-	public void modificarNomSeccio(int ID, String nomS) {
+	public static void modificarNomSeccio(int ID, String nomS) {
 		Seccio modSeccio = BD.getSeccio(ID);
 		modSeccio.setNomSeccio(nomS);
 	}
 	
 	//pre: Existeix una Seccio tal que el seu Identificador = IDS i una Tematica tal que el seu identificador es IDT i no esta continguda en la Seccio
 	//post: La Seccio amb identificador IDS conte la Tematica amb identificador IDT 
-	public void modificarTematicaSeccio(int IDS, int IDT) {
+	public static void modificarTematicaSeccio(int IDS, int IDT) {
 		Seccio modSeccio = BD.getSeccio(IDS);
 		Tematica afTematica = BD.getTematica(IDT);
 		modSeccio.afegirTematica(afTematica);
@@ -82,7 +82,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Seccio = esbSeccio
 	//post: La Seccio = esbSeccio ha estat eliminada
-	public void eliminarSeccio(Seccio esbSeccio) {
+	public static void eliminarSeccio(Seccio esbSeccio) {
 		BD.esborrarSeccio(esbSeccio);
 	}
 	
@@ -90,7 +90,7 @@ public class CtrlBiblioteca {
 	
 	//pre: No existeix una Tematica, tal que el seu nom sigui nomTematica
 	//post: S'ha creat una nova Tematica amb nom = nomTematica
-	public int afegirTematica(String nomTematica, int IDSeccio) {
+	public static int afegirTematica(String nomTematica, int IDSeccio) {
 		Tematica novaTematica = new Tematica(nomTematica, IDSeccio);
 		BD.afegirTematica(novaTematica);
 		return novaTematica.getID();
@@ -98,14 +98,14 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = ID
 	//post: La Tematica amb identificador ID te nom nomT
-	public void modificarNomTematica(int ID, String nomT) {
+	public static void modificarNomTematica(int ID, String nomT) {
 		Tematica modTematica = BD.getTematica(ID);
 		modTematica.setNomTematica(nomT);
 	}
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i no esta contingut en la Tematica
 	//post: La Tematica amb identificador IDT conte el Llibre amb identificador IDL 
-	public void afegirLlibreTematica(int IDT, int IDL) {
+	public static void afegirLlibreTematica(int IDT, int IDL) {
 		Tematica modTematica = BD.getTematica(IDT);
 		Llibre afLlibre = BD.getLlibre(IDL);
 		modTematica.afegirLlibre(afLlibre);
@@ -113,14 +113,14 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i esta contingut en la Tematica
 	//post: La Tematica amb identificador IDT no conte el Llibre amb identificador IDL 
-	public void eliminarLlibreTematica(int IDT, int IDL) {
+	public static void eliminarLlibreTematica(int IDT, int IDL) {
 		Tematica modTematica = BD.getTematica(IDT);
 		modTematica.esborrarLlibre(IDL);
 	}
 	
 	//pre: Existeix una Tematica = esbTematica
 	//post: La Tematica = esbTematica ha estat eliminada
-	public void eliminarTematica(Tematica esbTematica) {
+	public static void eliminarTematica(Tematica esbTematica) {
 		BD.esborrarTematica(esbTematica);
 	}
 	
@@ -128,7 +128,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Tematica tal que Tematica = tPrincipal i no existeix un Llibre, tal que isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
 	//post: S'ha creat una nou Llibre amb isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
-	public int afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
+	public static int afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
 		Llibre nouLlibre = new Llibre(isbn, titol, autor, editorial, any, edicio, tPrincipal);
 		BD.afegirLlibre(nouLlibre);
 		return nouLlibre.getID();
@@ -136,7 +136,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i no esta continguda en les Tematiques Secundaries del Llibre
 	//post: El Llibre amb identificador IDL conte en les seves Tematiques Secundaries la Tematica amb identificador IDT
-	public void afegirTSecundaria(int IDL, int IDT) {
+	public static void afegirTSecundaria(int IDL, int IDT) {
 		Llibre modLlibre = BD.getLlibre(IDL);
 		Tematica afTematica = BD.getTematica(IDT);
 		modLlibre.afegirTematicaSecundaria(afTematica);
@@ -144,7 +144,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i esta continguda en les Tematiques Secundaries del Llibre
 	//post: El Llibre amb identificador IDL no conte en les seves Tematiques Secundaries la Tematica amb identificador IDT
-	public void esborrarTSecundaria(int IDL, int IDT) {
+	public static void esborrarTSecundaria(int IDL, int IDT) {
 		Llibre modLlibre = BD.getLlibre(IDL);
 		Tematica esbTematica = BD.getTematica(IDT);
 		modLlibre.eliminarTematicaSecundaria(esbTematica);
@@ -152,56 +152,56 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te isbn = modIsbn
-	public void modificarIsbnLlibre(int ID, String modIsbn) {
+	public static void modificarIsbnLlibre(int ID, String modIsbn) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setIsbn(modIsbn);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te titol = modTitol
-	public void modificarTitolLlibre(int ID, String modTitol) {
+	public static void modificarTitolLlibre(int ID, String modTitol) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setTitol(modTitol);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te autor = modAutor
-	public void modificarAutorLlibre(int ID, String modAutor) {
+	public static void modificarAutorLlibre(int ID, String modAutor) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setAutor(modAutor);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te editorial = modEditorial
-	public void modificarEditorialLlibre(int ID, String modEditorial) {
+	public static void modificarEditorialLlibre(int ID, String modEditorial) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setEditorial(modEditorial);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te any = modAny
-	public void modificarAnyLlibre(int ID, int modAny) {
+	public static void modificarAnyLlibre(int ID, int modAny) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setAny(modAny);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te edicio = modEdicio
-	public void modificarEdicioLlibre(int ID, int modEdicio) {
+	public static void modificarEdicioLlibre(int ID, int modEdicio) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setEdicio(modEdicio);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID i existeix una Tematica tal que Tematica = tPrincipalmod
 	//post: El Llibre amb identificador ID te temPrincipal = codi identificador de modTPrincipal
-	public void modificarTPrincipalLlibre(int ID, int modTPrincipal) {
+	public static void modificarTPrincipalLlibre(int ID, int modTPrincipal) {
 		Llibre modLlibre = BD.getLlibre(ID);
 		modLlibre.setTemPrincipal(modTPrincipal);
 	}
 	
 	//pre: Existeix un Llibre = esbLlibre
 	//post: El Llibre = esbLlibre ha estat eliminat
-	public void eliminarLlibre(Llibre esbLlibre) {
+	public static void eliminarLlibre(Llibre esbLlibre) {
 		BD.esborrarLlibre(esbLlibre);
 	}
 	
@@ -209,7 +209,7 @@ public class CtrlBiblioteca {
 	
 	//pre: No existeix una Estanteria, tal que la seva posicio sigui posX = posX i posY = PosY
 	//post: S'ha creat una nova Estanteria amb nunmFiles = numFiles, llargada = llargda, posX = posX i posY = posY
-	public int afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
+	public static int afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
 		Estanteria novaEstanteria = new Estanteria(numFiles, llargada, posX, posY);
 		BD.afegirEstanteria(novaEstanteria);
 		return novaEstanteria.getID();
@@ -217,35 +217,35 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
 	//post: La Estanteria amb identificador ID te numFiles = modNumFiles
-	public void modificarNumFilesEstanteria(int ID, int modNumFiles) {
+	public static void modificarNumFilesEstanteria(int ID, int modNumFiles) {
 		Estanteria modEstanteria = BD.getEstanteria(ID);
 		modEstanteria.setNumFiles(modNumFiles);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
 	//post: La Estanteria amb identificador ID te llargada = modLlargada
-	public void modificarLlargadaEstanteria(int ID, int modLlargada) {
+	public static void modificarLlargadaEstanteria(int ID, int modLlargada) {
 		Estanteria modEstanteria = BD.getEstanteria(ID);
 		modEstanteria.setLlargada(modLlargada);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE i un Llibre tal que el seu identificador es IDL i no esta contingut en la Estanteria
 	//post: La Estanteria amb identificador IDE conte el Llibre amb identificador IDL 
-	public void afegirLlibreEstanteria(int IDE, int IDL) {
+	public static void afegirLlibreEstanteria(int IDE, int IDL) {
 		Estanteria modEstanteria = BD.getEstanteria(IDE);
 		modEstanteria.afegirLlibre(IDL);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE i un Llibre tal que el seu identificador es IDL i esta contingut en la Estanteria
 	//post: La Estanteria amb identificador IDE no conte el Llibre amb identificador IDL 
-	public void esborrarLlibreEstanteria(int IDE, int IDL) {
+	public static void esborrarLlibreEstanteria(int IDE, int IDL) {
 		Estanteria modEstanteria = BD.getEstanteria(IDE);
 		modEstanteria.esborrarLlibre(IDL);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
 	//post: La Estanteria amb identificador = ID ha estat eliminada
-	public void eliminarEstanteria(Estanteria esbEstanteria) {
+	public static void eliminarEstanteria(Estanteria esbEstanteria) {
 		BD.esborrarEstanteria(esbEstanteria);
 	}
 	
@@ -253,7 +253,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		
-	public ArrayList<Llibre> consultarLlibresArea(int IDA) {
+	public static ArrayList<Llibre> consultarLlibresArea(int IDA) {
 		ArrayList<Llibre> llibresArea;
 		ArrayList<Llibre> aux;
 		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
@@ -268,14 +268,14 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna les seccions contingudes dins de l'area amb Identitificador IDA
-	public ArrayList<Seccio> consultarSeccionsArea(int IDA) {
+	public static ArrayList<Seccio> consultarSeccionsArea(int IDA) {
 		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
 		return sA;
 	}
 	
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA	
-	public ArrayList<Tematica> consultarTematiquesArea(int IDA) {
+	public static ArrayList<Tematica> consultarTematiquesArea(int IDA) {
 		ArrayList<Tematica> tA;
 		ArrayList<Tematica> aux;
 		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
@@ -290,7 +290,7 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una seccio tal que el seu Identificador = IDS
 	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
-	public ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
+	public static ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
 		ArrayList<Llibre> llibresSeccio;
 		ArrayList<Llibre> aux;
 		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
@@ -305,21 +305,21 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix una seccio tal que el seu Identificador = IDS
 	//post: Retorna les tematiques contingudes dins de la seccio amb Identitificador IDS
-	public ArrayList<Tematica> consultarTematiquesSeccio(int IDS) {
+	public static ArrayList<Tematica> consultarTematiquesSeccio(int IDS) {
 		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
 		return tS;
 	}
 	
 	//pre: Existeix una tematica tal que el seu Identificador = IDT
 	//post: Retorna els llibres continguts dins de la tematica amb Identitificador IDT
-	public ArrayList<Llibre> consultarLlibresTematica(int IDT) {
+	public static ArrayList<Llibre> consultarLlibresTematica(int IDT) {
 		Tematica consTematica = BD.getTematica(IDT);
 		return BD.llibresTematica(consTematica);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: Retorna els llibres continguts dins de la estanteria amb Identitificador IDE
-	public ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
+	public static ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = BD.getEstanteria(IDE);
 		return consEstanteria.getLlibres();
 	}
