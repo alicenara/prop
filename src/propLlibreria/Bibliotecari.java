@@ -27,6 +27,10 @@ public class Bibliotecari {
 		return ID;
 	}	
     
+	public String getContrasenya() {
+		return this.contrasenya;
+	}
+	
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
 	}
