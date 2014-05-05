@@ -2,12 +2,11 @@ package propLlibreria;
 
 import java.util.*;
 import java.io.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 
 public class DriverDomini {
 	
 	public static BufferedReader reader;
+	public static int IDB;					//per saber usuari actual
 	
 	//Menus
 	
@@ -17,7 +16,9 @@ public class DriverDomini {
 		System.out.println("\t 2 Consultar Biblioteca");
 		System.out.println("\t 3 Guardar canvis realitzats");
 		System.out.println("\t 4 Canviar contrasenya");
-		System.out.println("\t 5 Sortir");
+		System.out.println("\t 5 Afegir usuari");
+		System.out.println("\t 6 Eliminar usuari");
+		System.out.println("\t 7 Sortir");
 	}
 	public static void menuGestio() {
 		System.out.println("Gestionar...");
@@ -575,7 +576,7 @@ public class DriverDomini {
 						int x = Integer.parseInt(reader.readLine());
 						int y = Integer.parseInt(reader.readLine());
 						if (x < 0 || y < 0) throw new Exception("Els eixos x i y sempre son positius.");
-						// TODO afegir modificadora
+						CtrlBiblioteca.modificarCoordenadesEstanteria(IDE, x, y);
 						break;
 					case "4":
 						modFeta = true;
@@ -670,18 +671,19 @@ public class DriverDomini {
 							for (int i = 0; i < seccions.size(); i++) {
 								System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
 							}
-							System.out.println("Si vols consultar les tematiques de una seccio tecleja l'index de la llista de la seccio escollida. Si no, tecleja 0.");
-							int seccioEscollida = Integer.parseInt(reader.readLine());
-							seccioEscollida = seccioEscollida - 1;				//index de seccions
-							if (seccioEscollida  > -1 && seccioEscollida < seccions.size()) {
-								int IDS = seccions.get(seccioEscollida).getID();					//GET ID seccioEscollida
+							System.out.println("Si vols consultar les tematiques de una seccio tecleja el nom la seccio escollida. Si no, tecleja 0.");
+							String nomSeccio = reader.readLine();
+							
+							if (Integer.parseInt(nomSeccio) != 0) {
+								Seccio seccio = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
+								if (seccio == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
+								int IDS = seccio.getID();
 								ArrayList<Tematica> tematiques = CtrlBiblioteca.consultarTematiquesSeccio(IDS);
-								System.out.println("Llistat tematiques de " + seccions.get(seccioEscollida) + ":");
+								System.out.println("Llistat tematiques de " + nomSeccio + ":");
 								for (int i = 0; i < seccions.size(); i++) {
 									System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
 								}
 							}
-							else 
 							break;
 						case "3":
 							System.out.println("Introduiex nom tematica a consultar:");
@@ -771,9 +773,7 @@ public class DriverDomini {
 							if (estanteria == null) throw new Exception("No existe una estanteria con ID " + IDE + ".");
 							llibres = CtrlBiblioteca.consultarLlibresEstanteria(IDE);
 							if (llibres.size() == 0) System.out.println("No conte cap llibre la estanteria " + IDE + ".");
-							else printlnfoLlibres(llibres);
-							printlnfoLlibres(llibres);
-							//llistat llibres estanteria
+							else printlnfoLlibres(llibres);      //llistat llibres estanteria
 							break;
 						case "6":
 							consultaFeta = true;
@@ -796,93 +796,115 @@ public class DriverDomini {
 	}
 	
 	public static void main() {
-		Bibliotecari bbtecari = new Bibliotecari("javarules");
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		String contrasenya;
 		boolean permisAcces = false;
 		System.out.println("Benvolgut/da a la Biblioteca");
-		try {
+		try {														//try per fer catch per si error de I/O 
 			while (!permisAcces) {
-				System.out.println("Per favor, introdueix la contrasenya per fer servir sistema:");
-				contrasenya = reader.readLine();
-				if (!bbtecari.logIn(contrasenya)) System.out.println("Ups! Contrasenya incorrecta...");
-				else permisAcces = true;
+				System.out.println("Per favor, introdueix ID:");
+				IDB = Integer.parseInt(reader.readLine());
+				if (CtrlBiblioteca.consultaBibliotecari(IDB) == null) System.out.println("No existeix cap usuari amb aquesta ID");
+				else {
+					System.out.println("Per favor, ara Introdueix contrasenya:");
+					contrasenya = reader.readLine();
+					if (CtrlBiblioteca.iniciaSessioBibliotecari(IDB,contrasenya)) {
+						permisAcces = true;
+						System.out.println("Log-in correcte.");
+					}
+					else System.out.println("Ups! Contrasenya incorrecta...");
+				}
+			}
+			boolean end = false;
+			String input;
+			while (!end) {
+				try {									
+					menuNavegacio();
+					input = reader.readLine();
+					switch(input) {
+						case "1":			//Gestio Biblioteca
+							boolean gestioFeta = false;
+							String gestio;
+							while(!gestioFeta) {
+								menuGestio();
+								gestio = reader.readLine();
+								switch(gestio) {
+									case "1":							//Eliminar, modificar o insertar Area
+										gestioArea();
+										break;
+									case "2":							//Eliminar, modificar o insertar Seccio
+										gestioSeccio();
+										break;
+									case "3":							//Eliminar, modificar o insertar Tematica
+										gestioTematica();			
+										break;
+									case "4":							//Eliminar, modificar o insertar Llibre
+										gestioLlibre();
+										break;
+									case "5":							//Eliminar, modificar o insertar Estanteria
+										gestioEstanteria();
+										break;
+									case "6":							//Sortir
+										gestioFeta = true;
+										break;
+									default: 
+										entradaIncorrecta();
+										break;
+								}
+							}
+							break;
+						case "2":			//Consulta Biblioteca
+	
+						case "3":			//Guardar Canvis
+							CtrlBiblioteca.guardarSolucio();
+							System.out.println("Canvis guardats.");
+							break;
+						case "4":			//Canviar contrasenya
+							System.out.println("Si us plau, introdudeix la contrasenya actual.");
+							String contrasenyaAnterior = reader.readLine();
+							if (!CtrlBiblioteca.iniciaSessioBibliotecari(IDB, contrasenyaAnterior))System.out.println("Contrasenya actual introduida es incorrecta.");
+							else {
+									System.out.println("I ara la nova contrasenya.");
+									String contrasenyaNova = reader.readLine();
+									CtrlBiblioteca.restablirContrasenyaBibliotecari(IDB,contrasenyaAnterior,contrasenyaNova);
+							}
+						case "5":			//Afegir Usuari
+							end = true;
+							System.out.println("Introdueix contrasenya nou ususari");
+							String novaContrasenya = reader.readLine();
+							int nouID = CtrlBiblioteca.afegirBibliotecari(novaContrasenya);
+							System.out.println("Nou ID d'usuari és " + nouID + " amb contrasenya " + novaContrasenya + ".");
+							break;
+						case "6":			//Sortir
+							System.out.println("Introdueix ID usuari a eliminar");
+							int IDEliminar = Integer.parseInt(reader.readLine());
+							Bibliotecari bbtecariAEliminar = CtrlBiblioteca.consultaBibliotecari(IDEliminar);
+							if (bbtecariAEliminar == null) throw new Exception("No existeix cap usuari " + IDEliminar + " per eliminar.");
+							if (IDEliminar == IDB) throw new Exception("Estas intentant eliminar l'usuari de la sessio actual");
+							CtrlBiblioteca.eliminarBibliotecari(bbtecariAEliminar);
+							break;
+						case "7":			//Sortir
+							end = true;
+							System.out.println("Log-out confirmat.");
+							break;
+						default:
+							entradaIncorrecta();
+							break;
+					}
+				}
+				catch(RuntimeException re) {
+					System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+				}
+				catch (IOException io) {
+					System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+				}
+				catch (Exception e) {
+					System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+				}
 			}
 		}
 		catch (IOException io) {
 			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-		}
-		boolean end = false;
-		String input;
-		while (!end) {
-			try {
-				menuNavegacio();
-				input = reader.readLine();
-				switch(input) {
-					case "1":			//Gestio Biblioteca
-						boolean gestioFeta = false;
-						String gestio;
-						while(!gestioFeta) {
-							menuGestio();
-							gestio = reader.readLine();
-							switch(gestio) {
-								case "1":							//Eliminar, modificar o insertar Area
-									gestioArea();
-									break;
-								case "2":							//Eliminar, modificar o insertar Seccio
-									gestioSeccio();
-									break;
-								case "3":							//Eliminar, modificar o insertar Tematica
-									gestioTematica();			
-									break;
-								case "4":							//Eliminar, modificar o insertar Llibre
-									gestioLlibre();
-									break;
-								case "5":							//Eliminar, modificar o insertar Estanteria
-									gestioEstanteria();
-									break;
-								case "6":							//Sortir
-									gestioFeta = true;
-									break;
-								default: 
-									entradaIncorrecta();
-									break;
-							}
-						}
-						break;
-					case "2":			//Consulta Biblioteca
-
-					case "3":			//Guardar Canvis
-						CtrlBiblioteca.guardarSolucio();
-						System.out.println("Canvis guardats.");
-						break;
-					case "4":			//Canviar contrasenya
-						System.out.println("Si us plau, introdudeix la contrasenya actual.");
-						String contrasenyaAnterior = reader.readLine();
-						if (bbtecari.logIn(contrasenyaAnterior)) {
-							System.out.println("I ara la nova contrasenya.");
-							String contrasenyaNova = reader.readLine();
-							bbtecari.restablirContrasenya(contrasenyaAnterior, contrasenyaNova);
-						}
-						else System.out.println("Contrasenya actual introduida es incorrecta.");
-					case "5":			//Sortir
-						end = true;
-						System.out.println("Log-out confirmat.");
-						break;
-					default:
-						entradaIncorrecta();
-						break;
-				}
-			}
-			catch(RuntimeException re) {
-				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
-			}
-			catch (IOException io) {
-				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-			}
-			catch (Exception e) {
-				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
-			}
 		}
 	}
 }
