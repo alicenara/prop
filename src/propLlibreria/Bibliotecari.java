@@ -18,6 +18,12 @@ public class Bibliotecari {
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
 	}
+	
+	//Consultores
+	public boolean logIn(String contrasenya) {
+		if (contrasenya == this.contrasenya) return true;
+		else return false;
+	}
 
 	public void restablirContrasenya(String contrasenyaAnterior, String contrasenyaNova) {
         if (this.contrasenya == contrasenyaAnterior)
