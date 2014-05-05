@@ -54,11 +54,11 @@ public class Tematica {
 	}
 	
 	public ArrayList<Llibre> getLlibres() {
-		ArrayList<Llibre> Llibres; 
+		ArrayList<Llibre> llibres = new ArrayList<Llibre>(); 
 		for (int i = 0; i < llibresTematica.size(); ++i) {
-			Llibres.add(BD.getLlibre(llibresTematica.get(i)));
+			llibres.add(BD.getLlibre(llibresTematica.get(i)));
 		}
-		return Llibres;
+		return llibres;
 	}
 	
 	public void esborrarLlibre(int IDL) {

@@ -246,7 +246,7 @@ public class CtrlBiblioteca {
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: La Estanteria amb identificador = ID ha estat eliminada
 	public static void eliminarEstanteria(int IDE) {
-		BD.esborrarEstanteria(esbEstanteria);
+		BD.esborrarEstanteriaID(IDE);
 	}
 	
 	//Consultores
@@ -254,7 +254,7 @@ public class CtrlBiblioteca {
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		
 	public static ArrayList<Llibre> consultarLlibresArea(int IDA) {
-		ArrayList<Llibre> llibresArea;
+		ArrayList<Llibre> llibresArea = new ArrayList<Llibre>();
 		ArrayList<Llibre> aux;
 		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
 		for (int i = 0; i < sA.size(); ++i) {
@@ -276,7 +276,7 @@ public class CtrlBiblioteca {
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA	
 	public static ArrayList<Tematica> consultarTematiquesArea(int IDA) {
-		ArrayList<Tematica> tA;
+		ArrayList<Tematica> tA = new ArrayList<Tematica>();
 		ArrayList<Tematica> aux;
 		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
 		for (int i = 0; i < sA.size(); ++i) {
@@ -291,7 +291,7 @@ public class CtrlBiblioteca {
 	//pre: Existeix una seccio tal que el seu Identificador = IDS
 	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
 	public static ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
-		ArrayList<Llibre> llibresSeccio;
+		ArrayList<Llibre> llibresSeccio = new ArrayList<Llibre>();
 		ArrayList<Llibre> aux;
 		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
 		for (int i = 0; i < tS.size(); ++i) {

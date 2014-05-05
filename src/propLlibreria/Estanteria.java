@@ -65,11 +65,11 @@ public class Estanteria {
 	}	
 	
 	public ArrayList<Llibre> getLlibres() {
-		ArrayList<Llibre> Llibres; 
+		ArrayList<Llibre> llibres = new ArrayList<Llibre>(); 
 		for (int i = 0; i < llibresEstanteria.size(); ++i) {
-			Llibres.add(BD.getLlibre(llibresEstanteria.get(i)));
+			llibres.add(BD.getLlibre(llibresEstanteria.get(i)));
 		}
-		return Llibres;
+		return llibres;
 	}
 	
 	public void afegirLlibre(int IDL) {

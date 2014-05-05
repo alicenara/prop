@@ -145,7 +145,7 @@ public class BD {
 	}
 	
 	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
-		ArrayList<Llibre> llibresAutor;
+		ArrayList<Llibre> llibresAutor = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
 		if (llibre.get(i).getAutor() == autor) llibresAutor.add(llibre.get(i));
 		}
@@ -153,7 +153,7 @@ public class BD {
 	}
 	
 	public static ArrayList<Llibre> consultaLlibresAny(int any) {
-		ArrayList<Llibre> llibresAny;
+		ArrayList<Llibre> llibresAny = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
 		if (llibre.get(i).getAny() == any) llibresAny.add(llibre.get(i));
 		}
@@ -161,7 +161,7 @@ public class BD {
 	}
 	
 	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
-		ArrayList<Llibre> llibresEditorial;
+		ArrayList<Llibre> llibresEditorial = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
 		if (llibre.get(i).getEditorial() == editorial) llibresEditorial.add(llibre.get(i));
 		}
@@ -218,6 +218,31 @@ public class BD {
 		tem.remove(t);
 	}
 	
+	//Esborrar per ID
+	
+	public static void esborrarAreaID(int ID){
+		area.remove(getArea(ID));
+	}
+	
+	public static void esborrarEstanteriaID(int ID){
+		est.remove(getEstanteria(ID));
+	}
+	
+	
+	public static void esborrarLlibreID(int ID){
+		llibre.remove(getLlibre(ID));
+	}
+	
+	
+	public static void esborrarSeccioID(int ID){
+		sec.remove(getSeccio(ID));
+	}
+
+	public static void esborrarTematicaID(int ID){
+		tem.remove(getTematica(ID));
+	}
+
+	
 	//Consultores
 	
 	public static ArrayList<Llibre> llibresTematica(Tematica t) {
@@ -226,7 +251,7 @@ public class BD {
 	}
 	
 	public static ArrayList<Tematica> tematiquesSeccio(int IDS) {
-		ArrayList<Tematica> tematiquesS;
+		ArrayList<Tematica> tematiquesS = new ArrayList<Tematica>();
 		for (int i = 0; i < tem.size(); ++i) {
 			if (tem.get(i).getIDSeccio() == IDS) tematiquesS.add(tem.get(i));
 		}
@@ -234,11 +259,10 @@ public class BD {
 	}
 	
 	public static ArrayList<Seccio> seccionsArea(int IDA) {
-		ArrayList<Seccio> seccionsA;
+		ArrayList<Seccio> seccionsA = new ArrayList<Seccio>();
 		for (int i = 0; i < sec.size(); ++i) {
 			if (sec.get(i).getIDAreaSeccio() == IDA) seccionsA.add(sec.get(i));
 		}
 		return seccionsA;
-	}
-	
+	}	
 }
