@@ -4,4 +4,9 @@
 */.metadata
 .metadata/*
 */.settings
+.project
+.classpath
+bin/
+./metadata
+
 /bin
