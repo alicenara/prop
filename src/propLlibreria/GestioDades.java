@@ -1,5 +1,5 @@
 package propLlibreria;
-import java.io.*
+import java.io.*;
 import java.util.*;
 
 public class GestioDades {
@@ -175,7 +175,6 @@ public class GestioDades {
 			
 		try{			
 			br = new BufferedReader(new FileReader(fitxer));
-			int i=0;
 			while ((linia = br.readLine()) != null) {
 				objecte = linia.split(splitBy);
 				resultat.add(objecte);
@@ -221,37 +220,24 @@ public class GestioDades {
 		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fitxer), "utf-8"));
 		   
 		    for(int i=0;i<obj.size();i++){
-		    	for(int j=0;j<obj.get(i).length;i++)
-		    	 writer.newLine();
-		    }	   
-		    
+		    	objecte=obj.get(i);
+		    	String result="";
+		    	for(int j=0;j<objecte.length;i++){
+		    		result+=objecte[j];
+		    		if(j < objecte.length-1) result+=";";
+		    	}
+		    	writer.write(result);
+		    	writer.newLine();
+		    }		    
 		} catch (IOException ex) {
-		  // report
+			return false;
 		} finally {
-		   try {writer.close();} catch (Exception ex) {}
+			try {
+			   writer.close();
+		   } catch (Exception ex) {
+			   return false;
+		   }
 		}
-	
-		try{			
-			br = new BufferedReader(new FileReader(fitxer));
-			int i=0;
-			while ((linia = br.readLine()) != null) {
-				objecte = linia.split(splitBy);
-				resultat.add(objecte);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}			
-		}
-		linia="";
-		return resultat;			
+		return true;
 	}
 }
