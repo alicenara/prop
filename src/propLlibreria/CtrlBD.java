@@ -211,7 +211,7 @@ public class CtrlBD {
 		return g.escriureTotsObjectes(s,SECCIO);	
 	}
 	
-	public static boolean desarTotesTematicas(ArrayList<Tematica> tem){
+	public static boolean desarTotesTematiques(ArrayList<Tematica> tem){
 		ArrayList<String[]> t = new ArrayList<String[]>();
 		for(int i=0; i<tem.size();i++){			
 			ArrayList<String> aux = new ArrayList<String>();

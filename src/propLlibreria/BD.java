@@ -19,7 +19,12 @@ public class BD {
 	}
 	
 	public static void desarBD(){
-		//TODO
+		CtrlBD.desarTotesArees(area);
+		CtrlBD.desarTotsBibliotecaris(bcari);
+		CtrlBD.desarTotesEstanteries(est);
+		CtrlBD.desarTotsLlibres(llibre);
+		CtrlBD.desarTotesSeccions(sec);
+		CtrlBD.desarTotesTematiques(tem);
 	}
 	
 	//Ultima ID Entitats
