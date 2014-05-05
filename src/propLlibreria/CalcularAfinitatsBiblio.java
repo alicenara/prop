@@ -1,11 +1,11 @@
 package propLlibreria;
-package compartit;
+import compartit.*;
 import java.util.*;
 
 public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 	
 	public CalcularAfinitatsBiblio() {
-		super.CalcularAfinitats();
+		super();
 	}
 	
 	@Override

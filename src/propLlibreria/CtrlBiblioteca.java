@@ -1,5 +1,6 @@
 package propLlibreria;
 import java.util.*;
+import compartit.*;
 
 public class CtrlBiblioteca {
 
@@ -20,8 +21,25 @@ public class CtrlBiblioteca {
 	//Utilitzaci� de les classes compartides	
 	//pre:
 	//post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
-	public static void reordenacioBiblioteca() {
-	    //Utilitzar classe Solucio, pendent de la compartida!
+	public static void reordenacioBiblioteca() throws Exception {
+		ArrayList<Llibre> a = BD.getAllLlibres();
+		ArrayList<Estanteria> e = BD.getAllEstanteries();
+		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
+		for(int i = 0; i < e.size(); ++i) 
+			for(int j = 0; j < e.get(i).getLlargada(); ++j) 
+				for(int k = 0; k < e.get(i).getNumFiles(); ++k) 
+					b.add(new Lloc(e.get(i).getPosX()+j,e.get(i).getPosY(),k*10));
+		Objecte[] llibres = new Objecte[a.size()];
+		Lloc[] llocs = new Lloc[b.size()];
+		llibres = a.toArray(llibres);
+		llocs = b.toArray(llocs);
+		
+		CalcularAfinitatsBiblio calcAfin = new CalcularAfinitatsBiblio();
+		CalcularDistancies calcDist = new CalcularDistancies();
+		TS solver = new TS(calcAfin, calcDist);
+		Solucio solucio = new Solucio(solver, llibres, llocs);
+		//LA SOLUCIO ESTA A solucio.assignacions
+		//el element solucio.assignacions[i] esta assignat al lloc i
 	}	
 	
 	//GESTIO AREA
