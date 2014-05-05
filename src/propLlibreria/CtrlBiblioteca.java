@@ -55,6 +55,10 @@ public class CtrlBiblioteca {
 		BD.esborrarArea(esbArea);
 	}
 	
+	public static Area seleccionaAreaN(String nomA) {
+		return BD.getAreaN(nomA);
+	}
+	
 	// GESTIO SECCIO
 	
 	//pre: No existeix una Seccio, tal que el seu nom sigui nomSeccio
@@ -84,6 +88,10 @@ public class CtrlBiblioteca {
 	//post: La Seccio = esbSeccio ha estat eliminada
 	public static void eliminarSeccio(Seccio esbSeccio) {
 		BD.esborrarSeccio(esbSeccio);
+	}
+	
+	public static Seccio seleccionaSeccioN(String nomS) {
+		return BD.getSeccioN(nomS);
 	}
 	
 	//GESTIO TEMATICA
@@ -122,6 +130,10 @@ public class CtrlBiblioteca {
 	//post: La Tematica = esbTematica ha estat eliminada
 	public static void eliminarTematica(Tematica esbTematica) {
 		BD.esborrarTematica(esbTematica);
+	}
+	
+	public static Tematica seleccionaTematicaN(String nomT) {
+		return BD.getTematicaN(nomT);
 	}
 	
 	// GESTIO LLIBRE
@@ -205,6 +217,26 @@ public class CtrlBiblioteca {
 		BD.esborrarLlibre(esbLlibre);
 	}
 	
+	public static Llibre seleccionaLlibreT(String titol) {
+		return BD.getLlibreT(titol);
+	}
+	
+	public static Llibre consultaLlibrePerISBN(String isbn){
+		return BD.getLlibrePerISBN(isbn);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
+		return BD.getLlibresAutor(autor);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresAny(int any) {
+		return BD.getLlibresAny(any);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
+		return BD.getLlibresEditorial(editorial);
+	}
+	
 	// GESTIO ESTANTERIA
 	
 	//pre: No existeix una Estanteria, tal que la seva posicio sigui posX = posX i posY = PosY
@@ -247,6 +279,10 @@ public class CtrlBiblioteca {
 	//post: La Estanteria amb identificador = ID ha estat eliminada
 	public static void eliminarEstanteria(int IDE) {
 		BD.esborrarEstanteriaID(IDE);
+	}
+	
+	public static Estanteria consultaEstanteria(int ID) {
+		return BD.getEstanteria(ID);
 	}
 	
 	//Consultores
@@ -322,21 +358,5 @@ public class CtrlBiblioteca {
 	public static ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = BD.getEstanteria(IDE);
 		return consEstanteria.getLlibres();
-	}
-	
-	public static Llibre consultaLlibrePerISBN(String isbn){
-		return BD.getLlibrePerISBN(isbn);
-	}
-	
-	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
-		return BD.getLlibresAutor(autor);
-	}
-	
-	public static ArrayList<Llibre> consultaLlibresAny(int any) {
-		return BD.getLlibresAny(any);
-	}
-	
-	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
-		return BD.getLlibresEditorial(editorial);
 	}
 }

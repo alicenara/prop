@@ -26,6 +26,7 @@ public class Llibre extends Object {
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal.getID();
 		this.ID = BD.ultimaIDLlibre();
+		BD.afegirLlibre(this);
 	}
 	
 	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal){

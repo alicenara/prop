@@ -17,6 +17,7 @@ public class Estanteria {
 		this.posX = posX;
 		this.posY = posY;
 		this.ID = BD.ultimaIDEstanteria();
+		BD.afegirEstanteria(this);
 	}
 	
 	public Estanteria(int ID, int numFiles, int llargada, int posX, int posY)  {

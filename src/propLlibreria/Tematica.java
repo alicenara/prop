@@ -13,6 +13,7 @@ public class Tematica {
 		this.nomTematica = nomTematica;
 		this.IDSeccio = IDSeccio;
 		this.ID = BD.ultimaIDTematica();
+		BD.afegirTematica(this);
 	}
 	
 	//pre:

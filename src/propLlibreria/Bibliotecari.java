@@ -11,6 +11,7 @@ public class Bibliotecari {
 	
     public Bibliotecari(String contrasenya) {
 		setContrasenya(contrasenya);
+		BD.afegirBibliotecari(this);
 	}
     
     //Methods

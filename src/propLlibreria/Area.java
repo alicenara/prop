@@ -10,6 +10,7 @@ public class Area {
 	public Area (String nomArea){
 		this.nomArea = nomArea;
 		ID = BD.ultimaIDArea();
+		BD.afegirArea(this);
 	}
 	
 	//pre:
