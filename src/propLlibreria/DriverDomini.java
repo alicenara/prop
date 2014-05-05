@@ -20,7 +20,6 @@ public class DriverDomini {
 		System.out.printIn("\t 4 Canviar contrasenya");
 		System.out.printIn("\t 5 Sortir");
 	}
-	System.out.
 	public static void menuGestio() {
 		System.out.printIn("Gestionar...");
 		System.out.printIn("\t 1 Area");
@@ -113,10 +112,10 @@ public class DriverDomini {
 						if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
 						else {
 							int IDA = area.getID();
-							System.out.printIn("Quina seccio vols introduir?");
+							System.out.printIn("Quina seccio vols introduir?");				//cal comprovar si area te aquesta seccio?
 							String novaSeccio = reader.readLine();
-							int IDS = afegirSeccio(novaSeccio);
-							biblio.afegirSeccioArea(IDA, IDS);
+							int IDS = CtrlBiblioteca.afegirSeccio(novaSeccio);
+							CtrlBiblioteca.afegirSeccioArea(IDA, IDS);
 						}
 						break;
 					case "3":
@@ -167,7 +166,7 @@ public class DriverDomini {
 					nomArea = reader.readLine();
 					Area area = getAreaN(nomArea);
 					if (area == null) throw new Exception("Ya existe una area amb el nom " + nomArea + ".");
-					else biblio.afegirArea(nomArea);
+					else CtrlBiblioteca.afegirArea(nomArea);
 					break;
 				case "2":		//Modificar
 					modificacioArea();
@@ -212,8 +211,8 @@ public class DriverDomini {
 							IDA = area.getID();
 							System.out.printIn("Introdueix nom nova seccio");
 							String novaSeccio = reader.readLine();
-							IDS = biblio.afegirSeccio(novaSeccio);
-							afegirSeccioArea(IDA,IDS);
+							IDS = CtrlBiblioteca.afegirSeccio(novaSeccio);
+							CtrlBiblioteca.afegirSeccioArea(IDA,IDS);
 						}
 						break;
 					case "2":		//Modificar
@@ -245,7 +244,7 @@ public class DriverDomini {
 									IDS = seccio.getID();
 									System.out.printIn("Introdueix nom nova tematica a afegir a la seccio");
 									String nomNovaTematica = reader.readLine();
-									afegirTematica(nomNovaTematica,IDS)
+									CtrlBiblioteca.afegirTematica(nomNovaTematica,IDS)
 								}
 								break;
 							case "3":
@@ -393,7 +392,7 @@ public class DriverDomini {
 						//comprova area
 						String novaTematica = reader.readLine();
 						IDT = CtrlBiblioteca.afegirTematica(novaTematica);
-						biblio.afegirTematicaSeccio(IDS,IDT);
+						CtrlBiblioteca.afegirTematicaSeccio(IDS,IDT);
 						break;
 					case "2":		//Modificar
 						modificacioTematica();
@@ -642,7 +641,7 @@ public class DriverDomini {
 						String[] input = palabra.split(" ");
 						if (input.size() > 4) throw new Exception("Son solo 4 elementos\n");
 						if (parseInt(input[2]) < 0 && parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius. \n");
-						biblio afegirEstanteria(input[0], parseInt(input[1]), parseInt(input[2]), parseInt(input[3]));
+						CtrlBiblioteca.afegirEstanteria(input[0], parseInt(input[1]), parseInt(input[2]), parseInt(input[3]));
 						break;
 					case "2":		//Modificar
 						modificacioEstanteria();
@@ -800,12 +799,12 @@ public class DriverDomini {
 											case "3":
 												System.out.printIn("Introdueix any:");
 												String any = reader.readLine();
-												ArrayList<Llibre> llibres = biblio.consultaLlibresPerAny(parseInt(any));	//consulta per any
+												ArrayList<Llibre> llibres = BD.consultaLlibresPerAny(parseInt(any));	//consulta per any
 												break;
 											case "4":
 												System.out.printIn("Introdueix Editorial:");
 												String editorial = reader.readLine();
-												ArrayList<Llibre> llibres = biblio.consultaLlibresPerEditorial(editorial;)	//consulta per editorial
+												ArrayList<Llibre> llibres = BD.consultaLlibresPerEditorial(editorial;)	//consulta per editorial
 												if (llibres.size() == 0) System.out.printIn("No existeixen llibres de la editorial "+ editorial + ".");
 												else printInfoLlibres(llibres);
 												break;
@@ -861,7 +860,7 @@ public class DriverDomini {
 						}
 						break;
 					case "3":			//Guardar Canvis
-						desarBD();
+						CtrlBiblioteca.guardarSolucio();
 						System.out.printIn("Canvis guardats.");
 						break;
 					case "4":			//Canviar contrasenya
