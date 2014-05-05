@@ -26,10 +26,13 @@ public class CtrlBiblioteca {
 		ArrayList<Llibre> a = BD.getAllLlibres();
 		ArrayList<Estanteria> e = BD.getAllEstanteries();
 		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
+		ArrayList<Integer> estanteries = new ArrayList<Integer>();
 		for(int i = 0; i < e.size(); ++i) 
 			for(int j = 0; j < e.get(i).getLlargada(); ++j) 
-				for(int k = 0; k < e.get(i).getNumFiles(); ++k) 
+				for(int k = 0; k < e.get(i).getNumFiles(); ++k) {
 					b.add(new Lloc(e.get(i).getPosX()+j,e.get(i).getPosY(),k*10));
+					estanteries.add(e.get(i).getID());
+				}
 		Llibre[] llibres = new Llibre[a.size()];
 		Lloc[] llocs = new Lloc[b.size()];
 		llibres = a.toArray(llibres);
@@ -41,6 +44,9 @@ public class CtrlBiblioteca {
 		Solucio solucio = new Solucio(solver, llibres, llocs);
 		//LA SOLUCIO ESTA A solucio.assignacions
 		//el element solucio.assignacions[i] esta assignat al lloc i
+		//solucio.assignacions es tant gran com llocs hi han
+		//estanteries: per saber a quina estanteria pertany un lloc,
+		//estanteries(i) és la ID de la estanteria a la que pertany el lloc "i"
 	}	
 	
 	//GESTIO AREA
