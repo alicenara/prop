@@ -243,9 +243,9 @@ public class CtrlBiblioteca {
 		modEstanteria.esborrarLlibre(IDL);
 	}
 	
-	//pre: Existeix una Estanteria tal que el seu Identificador = ID
+	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: La Estanteria amb identificador = ID ha estat eliminada
-	public static void eliminarEstanteria(Estanteria esbEstanteria) {
+	public static void eliminarEstanteria(int IDE) {
 		BD.esborrarEstanteria(esbEstanteria);
 	}
 	
