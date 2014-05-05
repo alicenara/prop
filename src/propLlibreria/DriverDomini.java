@@ -26,7 +26,7 @@ public class DriverDomini {
 		System.out.println("\t 3 Tematica");
 		System.out.println("\t 4 Llibre");
 		System.out.println("\t 5 Estanteria");
-		System.out.println("\t 6 Tornar Enrere")
+		System.out.println("\t 6 Tornar Enrere");
 	}
 	
 		
@@ -190,7 +190,7 @@ public class DriverDomini {
 		}
 	}
 	
-	public void gestioSeccio() {
+	public static void gestioSeccio() {
 		int IDA;							//ID Area
 		int IDS;							//ID Seccio
 		//int IDT;							//ID Tematica
@@ -366,9 +366,9 @@ public class DriverDomini {
 		}
 	}
 	
-	public void gestioTematica() {
+	public static void gestioTematica() {
 		String llibre;
-		String tematica;
+		String nomTematica;
 		String accio;
 		int IDT;							//ID Tematica
 		boolean accioFeta = false;
@@ -384,8 +384,7 @@ public class DriverDomini {
 						System.out.println("Inserta nom nova tematica.");
 						//comprova area
 						String novaTematica = reader.readLine();
-						IDT = CtrlBiblioteca.afegirTematica(novaTematica);
-						CtrlBiblioteca.afegirTematicaSeccio(IDS,IDT);
+						CtrlBiblioteca.afegirTematica(novaTematica,IDS);
 						break;
 					case "2":		//Modificar
 						modificacioTematica();
@@ -395,8 +394,8 @@ public class DriverDomini {
 						nomTematica = reader.readLine();
 						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
 						if (tematica == null) throw new Exception("No existe una tematica con este nombre");
-						IDT = tematica.getID();										//IDTematica
-						eliminarTematica(IDT);
+						IDT = tematica.getID();								//IDTematica
+						CtrlBiblioteca.eliminarTematica(tematica);
 						break;
 					case "4":		//Sortir
 						accioFeta = true;
@@ -418,10 +417,12 @@ public class DriverDomini {
 
 	
 	
-	public void ModificacioLlibre() {
+	public void modificacioLlibre() {
 		try {
 			System.out.println("Introdueix titol del llibre a modificar:");
 			String titolLlibre = reader.readLine();
+			String nomTemSecMod;
+			Tematica tPrincipalMod;
 			Llibre llibre = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
 			if (llibre == null) throw new Exception ("No existeixen llibres amb titol " + titolLlibre + ".");
 			int IDL = llibre.getID();
@@ -434,25 +435,25 @@ public class DriverDomini {
 					case "1":
 						System.out.println("Introdueix nova tematica principal per el llibre.");
 						String nomTematica = reader.readLine();
-						Tematica tPrincipalMod = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
+						tPrincipalMod = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
 						if (tPrincipalMod == null) throw new Exception("No existe una tematica con este nombre");
 						CtrlBiblioteca.modificarTPrincipalLlibre(IDL,tPrincipalMod);
 						break;
 					case "2":
 						System.out.println("Introdueix nova tematica secundaria per el llibre.");
-						String nomTemSecMod = reader.readLine();
-						Tematica tPrincipalMod = CtrlBiblioteca.seleccionaTematicaN(temSecMod);
+						nomTemSecMod = reader.readLine();
+						tPrincipalMod = CtrlBiblioteca.seleccionaTematicaN(nomTemSecMod);
 						if (tPrincipalMod == null) throw new Exception("No existe una tematica con este nombre");
 						IDT = tPrincipalMod.getID();
-						CtrlBiblioteca.afegirTSecundaries(IDL, IDT);
+						CtrlBiblioteca.afegirTSecundaria(IDL, IDT);
 						break;
 					case "3":
 						System.out.println("Introdueix la tematica secundaria a eliminar del llibre.");
-						String nomTemSecMod = reader.readLine();
+						nomTemSecMod = reader.readLine();
 						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTemSecMod);
 						if (tematica == null) throw new Exception("No existe una tematica con este nombre");
 						IDT = tematica.getID();
-						CtrlBiblioteca.esborrarTSecundaries(IDL, IDT);
+						CtrlBiblioteca.esborrarTSecundaria(IDL, IDT);
 						break;
 					case "4":
 						System.out.println("Introdueix nou isbn per el llibre");
@@ -500,7 +501,7 @@ public class DriverDomini {
 		}
 	}
 	
-	public void gestioLlibre() {
+	public static void gestioLlibre() {
 		String llibre;
 		String accio;
 		boolean accioFeta = false;
@@ -519,17 +520,17 @@ public class DriverDomini {
 						titolLlibre = infoLlibre[1];
 						Llibre l = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
 						if (l != null) throw new Exception ("Ja existeix un llibre amb titol " + titolLlibre + ".");
-						String nomTematica = CtrlBiblioteca.seleccionaTematicaN(infoLlibre[5]);
+						String nomTematica = infoLlibre[7];
 						Tematica tPrincipal = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
 						if (tPrincipal == null) throw new Exception("No existe una tematica con este nombre");
-						afegirLlibre(infoLlibre[0], titolLibre, infoLlibre[2],infoLlibre[3],Integer.Integer.Integer.parseInt(infoLlibre[4]),Integer.parseInt(infoLlibre[5]), tPrincipal);
+						CtrlBiblioteca.afegirLlibre(infoLlibre[0], titolLlibre, infoLlibre[2],infoLlibre[3],Integer.parseInt(infoLlibre[4]),Integer.parseInt(infoLlibre[5]), tPrincipal);
 						break;
 					case "2":		//Modificar
 						modificacioLlibre();
 						break;
 					case "3":		//Eliminar
 						System.out.println("Introdueix el titol del llibre a eliminar");
-						titolLibre = reader.readerLine();
+						titolLlibre = reader.readLine();
 						Llibre llibre = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
 						if (llibre == null) throw new Exception ("No existeix cap llibre amb titol " + titolLlibre + ".");
 						int IDL = llibre.getID();
@@ -553,46 +554,39 @@ public class DriverDomini {
 	}
 	
 	public void modificacioEstanteria() {
+		String titolLlibre;
+		Llibre llibre;
 		boolean modFeta = false;
 		while (!modFeta) {
 			try {
 				System.out.println("Introdueix ID de la estanteria a modificar");
-				int IDE = Integer.Integer.Integer.parseInt(reader.readLine());								//Excepcio por si no existeix la estanteria
-				if (CtrlBiblioteca.seleccionaEstanteriaN(IDE) == null) throw new Exception("No existe esta estanteria");
+				int IDE = Integer.parseInt(reader.readLine());								//Excepcio por si no existeix la estanteria
+				if (CtrlBiblioteca.consultaEstanteria(IDE) == null) throw new Exception("No existe esta estanteria");
 				System.out.println("Que vols modificar?");
 				System.out.println("\t 1 Modificar numero de files estanteria.");
 				System.out.println("\t 2 Modificar llargada estanteria.");
-				System.out.println("\t 3 Afegir llibre a Estanteria.");
-				System.out.println("\t 4 Esborrar llibre a Estanteria.");
-				System.out.println("\t 5 Tornar enrere");
+				System.out.println("\t 3 Modificar coordenades estanteria.");
+				System.out.println("\t 4 Tornar enrere");
 				String modificacio = reader.readLine();
 				switch (modificacio) {
 					case "1":
 						System.out.println("Introdueix nou numero de files de la estanteria");
 						String numFilesMod = reader.readLine();
-						modificarNumFilesEstanteria(IDE, Integer.Integer.Integer.parseInt(numFilesmod));
+						CtrlBiblioteca.modificarNumFilesEstanteria(IDE,Integer.parseInt(numFilesMod));
 						break;
 					case "2":
 						System.out.println("Introdueix nova llargada de la estanteria");
 						String llargadaMod = reader.readLine();
-						modificarLlargadaEstanteria(IDE, Integer.Integer.parseInt(llargadamod));
+						CtrlBiblioteca.modificarLlargadaEstanteria(IDE, Integer.parseInt(llargadaMod));
 						break;
 					case "3":														//Te sentit afegir//eliminar llibres de una estanteria si 
-						System.out.println("Introdueix títol a afegir a la estanteria");
-						String titolLibre = reader.readerLine();
-						Llibre llibre = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
-						if (llibre == null) throw new Exception("No existeixen llibres amb titol " + titolLlibre + ".");
-						afegirLlibreEstanteria(IDE,  IDL);
+						System.out.println("Introdueix noves coordenades:");
+						int x = Integer.parseInt(reader.readLine());
+						int y = Integer.parseInt(reader.readLine());
+						if (x < 0 || y < 0) throw new Exception("Els eixos x i y sempre son positius.");
+						// TODO afegir modificadora
 						break;
 					case "4":
-						System.out.println("Introdueix títol del llibre a eliminar a la estanteria");
-						String titolLibre = reader.readerLine();
-						Llibre llibre = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
-						if (llibre == null) throw new Exception("No existeixen llibres amb titol " + titolLlibre + ".");
-						int IDL = llibre.getID();
-						esborrarLlibreEstanteria(IDE,IDL);
-						break;
-					case "5":
 						modFeta = true;
 						break;
 					default:	
@@ -603,15 +597,12 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
-			catch (IOException io) {
-				System.out.println("Excepcion tipo IO. Mensaje: " + io.getMessage());
-			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
 		}
 	}
-	public void gestioEstanteria(String accio) {
+	public static void gestioEstanteria() {
 		String accio;
 		boolean accioFeta = false;
 		try {
@@ -622,20 +613,20 @@ public class DriverDomini {
 					case "1":		//Insertar
 						System.out.println("Inserta numero de files de la nova estanteria, la seva llarga i la seva colocació en el eix x i y en aquest ordre.");
 						String paraula = reader.readLine();
-						String[] input = palabra.split(" ");
-						if (input.size() > 4) throw new Exception("Son solo 4 elementos\n");
-						if (Integer.Integer.parseInt(input[2]) < 0 && Integer.Integer.parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius. \n");
-						CtrlBiblioteca.afegirEstanteria(input[0], Integer.Integer.parseInt(input[1]), Integer.Integer.parseInt(input[2]), Integer.Integer.parseInt(input[3]));
+						String[] input = paraula.split(" ");
+						if (input.length > 4) throw new Exception("Son solo 4 elementos\n");
+						if (Integer.parseInt(input[2]) < 0 && Integer.parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius. \n");
+						CtrlBiblioteca.afegirEstanteria(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2]),Integer.parseInt(input[3]));
 						break;
 					case "2":		//Modificar
 						modificacioEstanteria();
 						break;
 					case "3":		//Eliminar
 						System.out.println("Inserta ID de la estanteria a eliminar:");
-						int IDE = Integer.Integer.parseInt(reader.readLine());
+						int IDE = Integer.parseInt(reader.readLine());
 						Estanteria estanteria= CtrlBiblioteca.seleccionaEstanteriaN(IDE);
 					    if (estanteria == null) throw new Exception("No existeix una tematica amb ID = " + IDE + ".");
-					    esborrarEstanteria(IDE);
+					    CtrlBiblioteca.eliminarEstanteria(IDE);
 						break;
 					case "4":		//Sortir
 						accioFeta = true;
