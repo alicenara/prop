@@ -29,7 +29,7 @@ public class CtrlBiblioteca {
 			for(int j = 0; j < e.get(i).getLlargada(); ++j) 
 				for(int k = 0; k < e.get(i).getNumFiles(); ++k) 
 					b.add(new Lloc(e.get(i).getPosX()+j,e.get(i).getPosY(),k*10));
-		Objecte[] llibres = new Objecte[a.size()];
+		Llibre[] llibres = new Llibre[a.size()];
 		Lloc[] llocs = new Lloc[b.size()];
 		llibres = a.toArray(llibres);
 		llocs = b.toArray(llocs);
