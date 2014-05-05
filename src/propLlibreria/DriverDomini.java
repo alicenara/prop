@@ -1,6 +1,7 @@
 package propLlibreria;
 
 import java.util.*;
+import java.io.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -66,7 +67,7 @@ public class DriverDomini {
 	public static void entradaIncorrecta() {
 		System.out.println("No existeix aquesta opcio.Si us plau, torna a intentar-ho.");
 	}
-	public void printlnfoLlibres(ArrayList<Llibre> llibres) {
+	public static void printlnfoLlibres(ArrayList<Llibre> llibres) {
 		for (int i = 0; i < llibres.size(); i++) {
 			System.out.println("Titulo : " + llibres.get(i).getTitol());
 			System.out.println("Autor : " + llibres.get(i).getAutor());
@@ -84,7 +85,7 @@ public class DriverDomini {
 	
 	//Gestions
 	
-	public void modificacioArea() {
+	public static void modificacioArea() {
 		Area area;
 		String nomArea;
 		int IDA;
@@ -129,13 +130,16 @@ public class DriverDomini {
 		catch(RuntimeException re) {
 			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 		}
+		catch (IOException io) {
+			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+		}
 		catch (Exception e) {
 			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 		}
 	}
 
 
-	public void gestioArea() {
+	public static void gestioArea() {
 		String nomArea;
 		String accio;
 		Area area;
@@ -173,6 +177,9 @@ public class DriverDomini {
 		}
 		catch(RuntimeException re) {
 			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+		}
+		catch (IOException io) {
+			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
 		}
 		catch (Exception e) {
 			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
@@ -270,6 +277,9 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
+			catch (IOException io) {
+				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
@@ -336,6 +346,9 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
+			catch (IOException io) {
+				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
@@ -343,10 +356,8 @@ public class DriverDomini {
 	}
 	
 	public static void gestioTematica() {
-		String llibre;
 		String nomTematica;
 		String accio;
-		int IDT;							//ID Tematica
 		boolean accioFeta = false;
 		while(!accioFeta) {
 			try {
@@ -370,7 +381,6 @@ public class DriverDomini {
 						nomTematica = reader.readLine();
 						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
 						if (tematica == null) throw new Exception("No existe una tematica con este nombre");
-						IDT = tematica.getID();								//IDTematica
 						CtrlBiblioteca.eliminarTematica(tematica);
 						break;
 					case "4":		//Sortir
@@ -384,6 +394,9 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
+			catch (IOException io) {
+				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
@@ -393,7 +406,7 @@ public class DriverDomini {
 
 	
 	
-	public void modificacioLlibre() {
+	public static void modificacioLlibre() {
 		try {
 			System.out.println("Introdueix titol del llibre a modificar:");
 			String titolLlibre = reader.readLine();
@@ -472,13 +485,15 @@ public class DriverDomini {
 		catch(RuntimeException re) {
 			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 		}
+		catch (IOException io) {
+			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+		}
 		catch (Exception e) {
 			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 		}
 	}
 	
 	public static void gestioLlibre() {
-		String llibre;
 		String accio;
 		boolean accioFeta = false;
 		String titolLlibre;
@@ -509,8 +524,7 @@ public class DriverDomini {
 						titolLlibre = reader.readLine();
 						Llibre llibre = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
 						if (llibre == null) throw new Exception ("No existeix cap llibre amb titol " + titolLlibre + ".");
-						int IDL = llibre.getID();
-						CtrlBiblioteca.eliminarLlibre(IDL);
+						CtrlBiblioteca.eliminarLlibre(llibre);
 						break;
 					case "4":		//Sortir
 						accioFeta = true;
@@ -523,15 +537,16 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
+			catch (IOException io) {
+				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
 		}
 	}
 	
-	public void modificacioEstanteria() {
-		String titolLlibre;
-		Llibre llibre;
+	public static void modificacioEstanteria() {
 		boolean modFeta = false;
 		while (!modFeta) {
 			try {
@@ -573,6 +588,9 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
+			catch (IOException io) {
+				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
@@ -600,7 +618,7 @@ public class DriverDomini {
 					case "3":		//Eliminar
 						System.out.println("Inserta ID de la estanteria a eliminar:");
 						int IDE = Integer.parseInt(reader.readLine());
-						Estanteria estanteria= CtrlBiblioteca.seleccionaEstanteriaN(IDE);
+						Estanteria estanteria= CtrlBiblioteca.consultaEstanteria(IDE);
 					    if (estanteria == null) throw new Exception("No existeix una tematica amb ID = " + IDE + ".");
 					    CtrlBiblioteca.eliminarEstanteria(IDE);
 						break;
@@ -616,6 +634,162 @@ public class DriverDomini {
 		catch(RuntimeException re) {
 			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 		}
+		catch (IOException io) {
+			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+		}
+	}
+	
+	
+	public static void ConsultaBiblioteca () {
+		try {
+			String area;
+			String nomTematica;
+			ArrayList<Llibre> llibres;
+			boolean consultaFeta = false;
+			String consulta;
+			while (!consultaFeta) {
+				menuConsulta();
+				consulta = reader.readLine();
+				switch(consulta) {
+						case "1":
+							System.out.println("Llistat arees");
+							ArrayList<Area> arees = CtrlBiblioteca.seleccionaAllArees();
+							for (int i = 0; i < arees.size(); ++i) {
+								System.out.println("\t " + arees.get(i).getNomArea());
+							}
+							break;
+						case "2":
+							System.out.println("Introdueix nom de l'area de la que vols veure les seccions:");
+							area = reader.readLine();
+							int IDA = CtrlBiblioteca.seleccionaAreaN(area).getID();
+							ArrayList<Seccio> seccions = CtrlBiblioteca.consultarSeccionsArea(IDA);
+							System.out.println("Llistat seccions de " + area + ":");
+							for (int i = 0; i < seccions.size(); i++) {
+								System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
+							}
+							System.out.println("Si vols consultar les tematiques de una seccio tecleja l'index de la llista de la seccio escollida. Si no, tecleja 0.");
+							int seccioEscollida = Integer.parseInt(reader.readLine());
+							seccioEscollida = seccioEscollida - 1;				//index de seccions
+							if (seccioEscollida  > -1 && seccioEscollida < seccions.size()) {
+								int IDS = seccions.get(seccioEscollida).getID();					//GET ID seccioEscollida
+								ArrayList<Tematica> tematiques = CtrlBiblioteca.consultarTematiquesSeccio(IDS);
+								System.out.println("Llistat tematiques de " + seccions.get(seccioEscollida) + ":");
+								for (int i = 0; i < seccions.size(); i++) {
+									System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
+								}
+							}
+							else 
+							break;
+						case "3":
+							System.out.println("Introduiex nom tematica a consultar:");
+							nomTematica = reader.readLine();
+							int IDT = CtrlBiblioteca.seleccionaAreaN(nomTematica).getID();
+							llibres = CtrlBiblioteca.consultarLlibresTematica(IDT);
+							System.out.println("Llistat llibres de " + nomTematica+ ":");
+							for (int i = 0; i < llibres.size(); i++) {
+								System.out.println("\t " + (i+1) + " " + llibres.get(i).getTitol() + " " + llibres.get(i).getAutor());
+							}
+							break;
+						case "4":
+							System.out.println("Busqueda per: ");
+							System.out.println("\t 1 Titol");
+							System.out.println("\t 2 Autor");
+							System.out.println("\t 3 Any");
+							System.out.println("\t 4 Editorial");
+							System.out.println("\t 5 ISBN");
+							System.out.println("\t 6 Tematica");
+							String tipusBusqueda = reader.readLine();
+							switch (tipusBusqueda) {
+								case "1":
+									System.out.println("Introdueix titol:");							//consulta per titol
+									String titolLlibre = reader.readLine();
+									Llibre l= CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
+									if (l == null) System.out.println("No existeixen llibres amb titol " + titolLlibre + ".");
+									else {
+										ArrayList<Llibre> unLlibre = new ArrayList<Llibre>();
+										unLlibre.add(l);
+										printlnfoLlibres(unLlibre);
+									}
+									break;
+								case "2":
+									System.out.println("Introdueix autor:");
+									String autor = reader.readLine();
+									llibres = CtrlBiblioteca.consultaLlibresAutor(autor);			//consulta per autor
+									if (llibres.size() == 0) System.out.println("No existeixen llibres de l'autor " + autor + ".");
+									else printlnfoLlibres(llibres);
+									break;
+								case "3":
+									System.out.println("Introdueix any:");
+									String any = reader.readLine();
+									llibres = CtrlBiblioteca.consultaLlibresAny(Integer.parseInt(any));	//consulta per any
+									break;
+								case "4":
+									System.out.println("Introdueix Editorial:");
+									String editorial = reader.readLine();
+									llibres = CtrlBiblioteca.consultaLlibresEditorial(editorial);	//consulta per editorial
+									if (llibres.size() == 0) System.out.println("No existeixen llibres de la editorial "+ editorial + ".");
+									else printlnfoLlibres(llibres);
+									break;
+								case "5":
+									System.out.println("Introdueix ISBN:");
+									String isbn = reader.readLine();
+									Llibre llibreISN = CtrlBiblioteca.consultaLlibrePerISBN(isbn);								//consulta per isbn
+									if (llibreISN == null) System.out.println("No existeix cap llibre amb isbn " + isbn + ".");
+									else {
+										ArrayList<Llibre> unLlibre = new ArrayList<Llibre>();
+										unLlibre.add(llibreISN);
+										printlnfoLlibres(unLlibre);
+									}
+									break;
+								case "6":
+									System.out.println("Introdueix tematica principal:");							//consulta per tematica
+									nomTematica = reader.readLine();
+									Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
+									if (tematica == null) throw new Exception("No existe una tematica con este nombre");
+									llibres = CtrlBiblioteca.consultarLlibresTematica(tematica.getID());
+									if (llibres.size() == 0) System.out.println("No conte cap llibre la tematica " + nomTematica + ".");
+									else printlnfoLlibres(llibres);
+									break;
+								default:
+									entradaIncorrecta();
+									break;
+							}
+							break;
+						case "5":					
+							System.out.println("Llistat estanteries");
+							//llistat
+							ArrayList<Estanteria> estanteries = CtrlBiblioteca.seleccionaAllEstanteries();
+							for (int i = 0; i < estanteries.size(); i++) {			//Check this, redundante
+								System.out.println(estanteries.get(i).getID());			//
+							}															//
+							System.out.println("Quina estanteria vols consultar?");
+							String estanteria = reader.readLine();
+							int IDE = Integer.parseInt(estanteria);
+							if (estanteria == null) throw new Exception("No existe una estanteria con ID " + IDE + ".");
+							llibres = CtrlBiblioteca.consultarLlibresEstanteria(IDE);
+							if (llibres.size() == 0) System.out.println("No conte cap llibre la estanteria " + IDE + ".");
+							else printlnfoLlibres(llibres);
+							printlnfoLlibres(llibres);
+							//llistat llibres estanteria
+							break;
+						case "6":
+							consultaFeta = true;
+							break;
+						default:
+							entradaIncorrecta();
+							break;
+					}
+			}
+		}
+		catch(RuntimeException re) {
+			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+		}
+		catch (IOException io) {
+			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+		}
 		catch (Exception e) {
 			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 		}
@@ -627,11 +801,16 @@ public class DriverDomini {
 		String contrasenya;
 		boolean permisAcces = false;
 		System.out.println("Benvolgut/da a la Biblioteca");
-		while (!permisAcces) {
-			System.out.println("Per favor, introdueix la contrasenya per fer servir sistema:");
-			contrasenya = reader.readLine();
-			if (!bbtecari.logIn(contrasenya)) System.out.println("Ups! Contrasenya incorrecta...");
-			else permisAcces = true;
+		try {
+			while (!permisAcces) {
+				System.out.println("Per favor, introdueix la contrasenya per fer servir sistema:");
+				contrasenya = reader.readLine();
+				if (!bbtecari.logIn(contrasenya)) System.out.println("Ups! Contrasenya incorrecta...");
+				else permisAcces = true;
+			}
+		}
+		catch (IOException io) {
+			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
 		}
 		boolean end = false;
 		String input;
@@ -662,7 +841,7 @@ public class DriverDomini {
 								case "5":							//Eliminar, modificar o insertar Estanteria
 									gestioEstanteria();
 									break;
-								case "6";							//Sortir
+								case "6":							//Sortir
 									gestioFeta = true;
 									break;
 								default: 
@@ -672,141 +851,7 @@ public class DriverDomini {
 						}
 						break;
 					case "2":			//Consulta Biblioteca
-						String area;
-						String nomTematica;
-						String seccio;
-						String llibre;
-						boolean consultaFeta = false;
-						String consulta;
-						while (!consultaFeta) {
-							menuConsulta();
-							consulta = reader.readLine();
-							switch(consulta) {
-									case "1":
-										System.out.println("Llistat arees");
-										int ultimaID = ultimaIDArea();
-										for (int id = 0; id < ultimaID; ++id) {
-											System.out.println("\t " + BD.getArea(id).getNomArea());
-										}
-										break;
-									case "2":
-										System.out.println("Introdueix nom de l'area de la que vols veure les seccions:");
-										area = reader.readLine();
-										int IDA = CtrlBiblioteca.seleccionaAreaN(area).getID();
-										ArrayList<Seccio> seccions = CtrlBiblioteca.consultarSeccionsArea(IDA);
-										System.out.println("Llistat seccions de " + area + ":");
-										for (int i = 0; i < seccions.size(); i++) {
-											System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
-										}
-										System.out.println("Si vols consultar les tematiques de una seccio tecleja l'index de la llista de la seccio escollida. Si no, tecleja 0.");
-										int seccioEscollida = Integer.Integer.parseInt(reader.readLine());
-										seccioEscollida = seccioEscollida - 1;				//index de seccions
-										if (seccioEscollida  > -1 and seccioEscollida < seccions.size()) {
-											int IDS = seccions.get(seccioEscollida).getID();					//GET ID seccioEscollida
-											ArrayList<Tematica> tematiques = CtrlBiblioteca.consultarTematiquesSeccio(IDS);
-											System.out.println("Llistat tematiques de " + seccions.get(seccioEscollida) + ":");
-											for (int i = 0; i < seccions.size(); i++) {
-												System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
-											}
-										}
-										else 
-										break;
-									case "3":
-										System.out.println("Introduiex nom tematica a consultar:");
-										tematica = reader.readLine();
-										int IDT = CtrlBiblioteca.seleccioArea(tematica).getID();
-										ArrayList<Llibre> llibres = consultarLlibresTematica(IDT);
-										System.out.println("Llistat llibres de " + tematica+ ":");
-										for (int i = 0; i < llibres.size(); i++) {
-											System.out.println("\t " + (i+1) + " " + seccions.get(i).getTitol() + " " + seccions.get(i).getAutor());
-										}
-										break;
-									case "4":
-										System.out.println("Busqueda per: ");
-										System.out.println("\t 1 Titol");
-										System.out.println("\t 2 Autor");
-										System.out.println("\t 3 Any");
-										System.out.println("\t 4 Editorial");
-										System.out.println("\t 5 ISBN");
-										System.out.println("\t 6 Tematica");
-										String tipusBusqueda = reader.readLine();
-										switch (tipusBusqueda) {
-											case "1":
-												System.out.println("Introdueix titol:");							//consulta per titol
-												String titol = reader.readLine();
-												Llibre l= CtrlBiblioteca.seleccionaLlibreT(llibre);
-												if (llibre == null) System.out.println("No existeixen llibres amb titol " + titol + ".");
-												break;
-											case "2":
-												System.out.println("Introdueix autor:");
-												String autor = reader.readLine();
-												ArrayList<Llibre> llibres = consultaLlibresPerAutor(autor);			//consulta per autor
-												if (llibres.size() == 0) System.out.println("No existeixen llibres de l'autor " + autor + ".");
-												else printlnfoLlibres(llibres);
-												break;
-											case "3":
-												System.out.println("Introdueix any:");
-												String any = reader.readLine();
-												ArrayList<Llibre> llibres = BD.consultaLlibresPerAny(Integer.Integer.parseInt(any));	//consulta per any
-												break;
-											case "4":
-												System.out.println("Introdueix Editorial:");
-												String editorial = reader.readLine();
-												ArrayList<Llibre> llibres = consultaLlibresPerEditorial(editorial);	//consulta per editorial
-												if (llibres.size() == 0) System.out.println("No existeixen llibres de la editorial "+ editorial + ".");
-												else printlnfoLlibres(llibres);
-												break;
-											case "5":
-												System.out.println("Introdueix ISBN:");
-												String isbn = reader.readLine();
-												Llibre l = consultaLlibrePerISBN(isbn);								//consulta per isbn
-												if (l == null) System.out.println("No existeix cap llibre amb isbn " + isbn + ".");
-												else {
-													ArrayList<Llibre> llibres = new ArrayList<Llibre>;
-													llibres.add(l);
-													printlnfoLlibres(llibres);
-												}
-												break;
-											case "6":
-												System.out.println("Introdueix tematica principal:");							//consulta per tematica
-												String nomTematica = reader.readLine();
-												Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
-												if (tematica == null) throw new Exception("No existe una tematica con este nombre");
-												ArrayList<Llibre> llibres = consultarLlibresTematica(tematica.getID());
-												if (llibres.size() == 0) System.out.println("No conte cap llibre la tematica " + nomTematica + ".");
-												else printlnfoLlibres(llibres);
-												break;
-											default:
-												entradaIncorrecta();
-												break;
-										}
-										break;
-									case "5":					
-										System.out.println("Llistat estanteries");
-										//llistat
-										int ultimaIDEstanteria = ultimaIDEstanteria();
-										for (int id = 0; id < ultimaIDEstanteria; id++) {			//Check this, redundante
-											System.out.println(CtrlBiblioteca.seleccionaEstanteriaN(id).getID());			//
-										}															//
-										System.out.println("Quina estanteria vols consultar?");
-										String estanteria = reader.readLine();
-										int IDE = Integer.Integer.parseInt(estanteria);
-										if (estanteria == null) throw new Exception("No existe una estanteria con ID " + IDE + ".");
-										ArrayList<Llibre> llibre = CtrlBiblioteca.consultarLlibresEstanteria(IDE);
-										if (llibres.size() == 0) System.out.println("No conte cap llibre la estanteria " + IDE + ".");
-										else printlnfoLlibres(llibres);
-										printlnfoLlibres(llibres);
-										//llistat llibres estanteria
-										break;
-									case "6":
-										consultaFeta = true;
-										break;
-									default:
-										entradaIncorrecta();
-										break;
-								}
-						}
-						break;
+
 					case "3":			//Guardar Canvis
 						CtrlBiblioteca.guardarSolucio();
 						System.out.println("Canvis guardats.");
@@ -832,9 +877,12 @@ public class DriverDomini {
 			catch(RuntimeException re) {
 				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 			}
+			catch (IOException io) {
+				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+			}
 			catch (Exception e) {
 				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 			}
-		}*/
+		}
 	}
 }
