@@ -179,6 +179,7 @@ public class CtrlBiblioteca {
 	public static int afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
 		Llibre nouLlibre = new Llibre(isbn, titol, autor, editorial, any, edicio, tPrincipal);
 		BD.afegirLlibre(nouLlibre);
+		afegirLlibreTematica(tPrincipal.getID(),nouLlibre.getID());
 		return nouLlibre.getID();
 	}
 	
