@@ -45,7 +45,7 @@ public class BD {
 		return tem.get(tem.size()-1).getID()+1;
 	}
 	
-	//Get Entitats per ID
+	//Get Entitats per Atribut
 	
 	public static Area getArea(int ID){
 		int a = 0;
@@ -107,8 +107,6 @@ public class BD {
 		if(i==tem.size()) return null;
 		else return tem.get(i);
 	}
-	
-	//Get Entitats per nom
 	
 	public static Area getAreaN(String nomA){
 		int i=0;
