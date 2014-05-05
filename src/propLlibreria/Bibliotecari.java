@@ -6,15 +6,26 @@ public class Bibliotecari {
     // All "Bibliotecari"'s attributes
 	
     private String contrasenya;
+    private int ID;
  
     //All atributtes constructor
 	
     public Bibliotecari(String contrasenya) {
 		setContrasenya(contrasenya);
+		this.ID = BD.ultimaIDBibliotecari();
 		BD.afegirBibliotecari(this);
 	}
     
+    public Bibliotecari(int ID, String contrasenya) {
+  		setContrasenya(contrasenya);
+  		this.ID = ID;
+  	}
+    
     //Methods
+    
+	public int getID() {
+		return ID;
+	}	
     
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
