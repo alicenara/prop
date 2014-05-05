@@ -26,13 +26,22 @@ public class CtrlBiblioteca {
 		ArrayList<Llibre> a = BD.getAllLlibres();
 		ArrayList<Estanteria> e = BD.getAllEstanteries();
 		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
-		ArrayList<Integer> estanteries = new ArrayList<Integer>();
+		ArrayList<Integer> llocsEstanteries = new ArrayList<Integer>();
 		for(int i = 0; i < e.size(); ++i) 
 			for(int j = 0; j < e.get(i).getLlargada(); ++j) 
 				for(int k = 0; k < e.get(i).getNumFiles(); ++k) {
 					b.add(new Lloc(e.get(i).getPosX()+j,e.get(i).getPosY(),k*10));
-					estanteries.add(e.get(i).getID());
+					llocsEstanteries.add(e.get(i).getID());
 				}
+		if(a.size() != b.size()) {
+			if(a.size()  > b.size() ) {
+				System.out.println("Masses llibres per tants pocs llocs!");
+				return;
+			}
+			while(a.size() != b.size()) {
+				b.remove(b.size()-1);
+			}
+		}
 		Llibre[] llibres = new Llibre[a.size()];
 		Lloc[] llocs = new Lloc[b.size()];
 		llibres = a.toArray(llibres);
@@ -42,11 +51,13 @@ public class CtrlBiblioteca {
 		CalcularDistancies calcDist = new CalcularDistancies();
 		TS solver = new TS(calcAfin, calcDist);
 		Solucio solucio = new Solucio(solver, llibres, llocs);
-		//LA SOLUCIO ESTA A solucio.assignacions
-		//el element solucio.assignacions[i] esta assignat al lloc i
-		//solucio.assignacions es tant gran com llocs hi han
-		//estanteries: per saber a quina estanteria pertany un lloc,
-		//estanteries(i) és la ID de la estanteria a la que pertany el lloc "i"
+		ArrayList<Estanteria> all = BD.getAllEstanteries();
+		for(int i = 0; i < all.size(); ++i)
+			all.get(i).buidarLlibres();
+		for(int i = 0; i < llocsEstanteries.size(); ++i) {
+			Estanteria est = BD.getEstanteria(llocsEstanteries.get(i));
+			est.afegirLlibre(solucio.assignacions[i]);
+		}
 	}	
 	
 	//GESTIO AREA
@@ -284,20 +295,6 @@ public class CtrlBiblioteca {
 	public static void modificarLlargadaEstanteria(int ID, int modLlargada) {
 		Estanteria modEstanteria = BD.getEstanteria(ID);
 		modEstanteria.setLlargada(modLlargada);
-	}
-	
-	//pre: Existeix una Estanteria tal que el seu Identificador = IDE i un Llibre tal que el seu identificador es IDL i no esta contingut en la Estanteria
-	//post: La Estanteria amb identificador IDE conte el Llibre amb identificador IDL 
-	public static void afegirLlibreEstanteria(int IDE, int IDL) {
-		Estanteria modEstanteria = BD.getEstanteria(IDE);
-		modEstanteria.afegirLlibre(IDL);
-	}
-	
-	//pre: Existeix una Estanteria tal que el seu Identificador = IDE i un Llibre tal que el seu identificador es IDL i esta contingut en la Estanteria
-	//post: La Estanteria amb identificador IDE no conte el Llibre amb identificador IDL 
-	public static void esborrarLlibreEstanteria(int IDE, int IDL) {
-		Estanteria modEstanteria = BD.getEstanteria(IDE);
-		modEstanteria.esborrarLlibre(IDL);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE

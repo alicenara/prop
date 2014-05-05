@@ -80,4 +80,8 @@ public class Estanteria {
 	public void esborrarLlibre(int IDL) {
 		llibresEstanteria.remove((Object)new Integer(IDL));
 	}
+	
+	public void buidarLlibres() {
+		llibresEstanteria.clear();
+	}
 }
