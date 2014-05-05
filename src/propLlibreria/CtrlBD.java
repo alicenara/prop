@@ -77,7 +77,11 @@ public class CtrlBD {
 		for (int i=0; i<est.size();i++){
 			Estanteria aux;
 			String[] prop=est.get(i);
-			aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]));
+			ArrayList<Integer> llibres = new ArrayList<Integer>();
+			for (int j=5; j<prop.length; j++){
+				llibres.add(Integer.parseInt(prop[i]));
+			}
+			aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]),llibres);
 			e.add(aux);
 		}
 		return e;
@@ -89,7 +93,11 @@ public class CtrlBD {
 		for (int i=0; i<llibres.size();i++){
 			Llibre aux;
 			String[] prop=llibres.get(i);
-			aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]));
+			ArrayList<Integer> temSecun = new ArrayList<Integer>();
+			for (int j=8; j<prop.length; j++){
+				temSecun.add(Integer.parseInt(prop[i]));
+			}
+			aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]),temSecun);
 			l.add(aux);
 		}
 		return l;
@@ -115,9 +123,111 @@ public class CtrlBD {
 		for (int i=0; i<tem.size();i++){
 			Tematica aux;
 			String[] prop=tem.get(i);
-			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
+			ArrayList<Integer> llibres = new ArrayList<Integer>();
+			for (int j=3; j<prop.length; j++){
+				llibres.add(Integer.parseInt(prop[i]));
+			}
+			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llibres);
 			t.add(aux);
 		}
 		return t;
+	}
+	
+	public static boolean desarTotesArees(ArrayList<Area> arees){
+		ArrayList<String[]> a = new ArrayList<String[]>();
+		for(int i=0; i<arees.size();i++){
+			String[] aux = {Integer.toString(arees.get(i).getID()),arees.get(i).getNomArea()};
+			a.add(aux);
+		}
+		GestioDades g = new GestioDades();
+		return g.escriureTotsObjectes(a,AREA);	
+	}
+	
+	public static boolean desarTotsBibliotecaris(ArrayList<Bibliotecari> bcaris){
+		ArrayList<String[]> b = new ArrayList<String[]>();
+		for(int i=0; i<bcaris.size();i++){
+			String[] aux = {Integer.toString(bcaris.get(i).getID()),bcaris.get(i).getContrasenya()};
+			b.add(aux);
+		}
+		GestioDades g = new GestioDades();
+		return g.escriureTotsObjectes(b,BIBLIOTECARI);	
+	}
+	
+	public static boolean desarTotesEstanteries(ArrayList<Estanteria> est){
+		ArrayList<String[]> e = new ArrayList<String[]>();
+		for(int i=0; i<est.size();i++){
+			ArrayList<String> aux = new ArrayList<String>();
+			aux.add(Integer.toString(est.get(i).getID()));
+			aux.add(Integer.toString(est.get(i).getNumFiles()));
+			aux.add(Integer.toString(est.get(i).getLlargada()));
+			aux.add(Integer.toString(est.get(i).getPosX()));
+			aux.add(Integer.toString(est.get(i).getPosY()));
+			
+			ArrayList<Llibre> llibreAux = est.get(i).getLlibres();
+			for(int j=0; j<llibreAux.size();j++){
+				aux.add(Integer.toString(llibreAux.get(j).getID()));
+			}
+			String[] result=null;
+			aux.toArray(result);
+			e.add(result);
+		}
+		GestioDades g = new GestioDades();
+		return g.escriureTotsObjectes(e,ESTANTERIA);	
+	}
+	
+	public static boolean desarTotsLlibres(ArrayList<Llibre> llibres){
+		ArrayList<String[]> l = new ArrayList<String[]>();
+		for(int i=0; i<llibres.size();i++){			
+			ArrayList<String> aux = new ArrayList<String>();
+			aux.add(Integer.toString(llibres.get(i).getID()));
+			aux.add(llibres.get(i).getIsbn());
+			aux.add(llibres.get(i).getTitol());
+			aux.add(llibres.get(i).getAutor());
+			aux.add(llibres.get(i).getEditorial());
+			aux.add(Integer.toString(llibres.get(i).getAny()));
+			aux.add(Integer.toString(llibres.get(i).getEdicio()));
+			aux.add(Integer.toString(llibres.get(i).getTemPrincipal().getID()));
+			
+			ArrayList<Tematica> temAux = llibres.get(i).getTematiquesSecundaries();
+			for(int j=0; j<temAux.size();j++){
+				aux.add(Integer.toString(temAux.get(j).getID()));
+			}
+			
+			String[] result=null;
+			aux.toArray(result);			
+			l.add(result);
+		}
+		GestioDades g = new GestioDades();
+		return g.escriureTotsObjectes(l,LLIBRE);	
+	}
+	
+	public static boolean desarTotesSeccions(ArrayList<Seccio> sec){
+		ArrayList<String[]> s = new ArrayList<String[]>();
+		for(int i=0; i<sec.size();i++){
+			String[] aux = {Integer.toString(sec.get(i).getID()),sec.get(i).getNomSeccio(),Integer.toString(sec.get(i).getIDAreaSeccio())};
+			s.add(aux);
+		}
+		GestioDades g = new GestioDades();
+		return g.escriureTotsObjectes(s,SECCIO);	
+	}
+	
+	public static boolean desarTotesTematicas(ArrayList<Tematica> tem){
+		ArrayList<String[]> t = new ArrayList<String[]>();
+		for(int i=0; i<tem.size();i++){			
+			ArrayList<String> aux = new ArrayList<String>();
+			aux.add(Integer.toString(tem.get(i).getID()));
+			aux.add(tem.get(i).getNomTematica());
+			aux.add(Integer.toString(tem.get(i).getIDSeccio()));
+			
+			ArrayList<Llibre> temAux = tem.get(i).getLlibres();
+			for(int j=0; j<temAux.size();j++){
+				aux.add(Integer.toString(temAux.get(j).getID()));
+			}			
+			String[] result=null;
+			aux.toArray(result);			
+			t.add(result);
+		}
+		GestioDades g = new GestioDades();
+		return g.escriureTotsObjectes(t,TEMATICA);	
 	}
 }
