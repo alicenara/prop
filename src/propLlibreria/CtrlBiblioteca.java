@@ -298,6 +298,12 @@ public class CtrlBiblioteca {
 		modEstanteria.setLlargada(modLlargada);
 	}
 	
+	public static void modificarCoordenadesEstanteria(int ID, int modX, int modY) {
+		Estanteria modEstanteria = BD.getEstanteria(ID);
+		modEstanteria.setPosX(modX);
+		modEstanteria.setPosX(modY);
+	}
+	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: La Estanteria amb identificador = ID ha estat eliminada
 	public static void eliminarEstanteria(int IDE) {
@@ -307,6 +313,33 @@ public class CtrlBiblioteca {
 	public static Estanteria consultaEstanteria(int ID) {
 		return BD.getEstanteria(ID);
 	}
+	
+	//GESTIO BIBLIOTECARI
+	
+		public static int afegirBibliotecari(String contrasenya) {
+			Bibliotecari nouBibliotecari = new Bibliotecari(contrasenya);
+			BD.afegirBibliotecari(nouBibliotecari);
+			return nouBibliotecari.getID();
+		}
+		
+		public static boolean restablirContrasenyaBibliotecari(int IDB, String oldContrasenya, String newContrasenya) {
+			Bibliotecari modBibliotecari = BD.getBibliotecari(IDB);
+			return modBibliotecari.restablirContrasenya(oldContrasenya, newContrasenya);
+		}
+		
+		public static boolean iniciaSessioBibliotecari(int ID, String contrasenya) {
+			Bibliotecari modBibliotecari = BD.getBibliotecari(ID);
+			if (contrasenya == modBibliotecari.getContrasenya()) return true;
+			else return false;
+		}
+		
+		public static void eliminarBibliotecari(Bibliotecari esbBibliotecari) {
+			BD.esborrarBibliotecari(esbBibliotecari);
+		}
+		
+		public static Bibliotecari consultaBibliotecari(int ID) {
+			return BD.getBibliotecari(ID);
+		}
 	
 	//Consultores
 	
