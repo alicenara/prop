@@ -1,5 +1,6 @@
 package propLlibreria;
 import java.util.*;
+
 import compartit.*;
 
 public class CtrlBiblioteca {
@@ -304,6 +305,30 @@ public class CtrlBiblioteca {
 	}
 	
 	//Consultores
+	
+	public static ArrayList<Llibre> seleccionaAllLlibres() {
+		return BD.getAllLlibres();
+	}
+	
+	public static ArrayList<Estanteria> seleccionaAllEstanteries() {
+		return BD.getAllEstanteries();
+	}
+	
+	public static ArrayList<Tematica> seleccionaAllTematiques() {
+		return BD.getAllTematiques();
+	}
+	
+	public static ArrayList<Seccio> seleccionaAllSeccions() {
+		return BD.getAllSeccions();
+	}
+	
+	public static ArrayList<Area> seleccionaAllArees() {
+		return BD.getAllArees();
+	}
+	
+	public static ArrayList<Bibliotecari> seleccionaAllBibliotecaris() {
+		return BD.getAllBibliotecaris();
+	}
 	
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		

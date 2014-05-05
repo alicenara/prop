@@ -298,7 +298,7 @@ public class BD {
 		return bcari;
 	}
 	
-	public static ArrayList<Seccio> getAllSeccio() {
+	public static ArrayList<Seccio> getAllSeccions() {
 		return sec;
 	}
 	
