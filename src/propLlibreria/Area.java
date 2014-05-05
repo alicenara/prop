@@ -18,6 +18,7 @@ public class Area {
 		this.nomArea = nomArea;
 		this.ID = ID;
 	}
+	
 	//pre:
 	//post: retorna nom de l'area
 	public String getNomArea() {

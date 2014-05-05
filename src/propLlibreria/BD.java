@@ -135,14 +135,14 @@ public class BD {
 		else return llibre.get(i);
 	}
 	
-	public static Llibre consultaLlibrePerISBN(String isbn){
+	public static Llibre getLlibrePerISBN(String isbn){
 		int i=0;
 		while (i<llibre.size() && llibre.get(i).getIsbn()!= isbn) i++;
 		if(i==llibre.size()) return null;
 		else return llibre.get(i);
 	}
 	
-	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
+	public static ArrayList<Llibre> getLlibresAutor(String autor) {
 		ArrayList<Llibre> llibresAutor = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
 		if (llibre.get(i).getAutor() == autor) llibresAutor.add(llibre.get(i));
@@ -150,7 +150,7 @@ public class BD {
 		return llibresAutor;
 	}
 	
-	public static ArrayList<Llibre> consultaLlibresAny(int any) {
+	public static ArrayList<Llibre> getLlibresAny(int any) {
 		ArrayList<Llibre> llibresAny = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
 		if (llibre.get(i).getAny() == any) llibresAny.add(llibre.get(i));
@@ -158,7 +158,7 @@ public class BD {
 		return llibresAny;
 	}
 	
-	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
+	public static ArrayList<Llibre> getLlibresEditorial(String editorial) {
 		ArrayList<Llibre> llibresEditorial = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
 		if (llibre.get(i).getEditorial() == editorial) llibresEditorial.add(llibre.get(i));

@@ -3,7 +3,7 @@ import java.util.*;
 
 public class CtrlBiblioteca {
 
-	//Inicialització del programa
+	//Inicialitzaciï¿½ del programa
 	//pre:
 	//post: s'inicialitza la classe amb tots els vectors
 	public static void iniBD() {
@@ -17,7 +17,7 @@ public class CtrlBiblioteca {
 		BD.desarBD();
 	}
 	
-	//Utilització de les classes compartides	
+	//Utilitzaciï¿½ de les classes compartides	
 	//pre:
 	//post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
 	public static void reordenacioBiblioteca() {
@@ -322,5 +322,21 @@ public class CtrlBiblioteca {
 	public static ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = BD.getEstanteria(IDE);
 		return consEstanteria.getLlibres();
+	}
+	
+	public static Llibre consultaLlibrePerISBN(String isbn){
+		return BD.getLlibrePerISBN(isbn);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
+		return BD.getLlibresAutor(autor);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresAny(int any) {
+		return BD.getLlibresAny(any);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
+		return BD.getLlibresEditorial(editorial);
 	}
 }
