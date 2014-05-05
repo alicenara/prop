@@ -1,8 +1,5 @@
 package propLlibreria;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*
 import java.util.*;
 
 public class GestioDades {
@@ -160,7 +157,7 @@ public class GestioDades {
 	
 	public ArrayList<String[]> llegirTotsObjectes(int file){
 		String[] objecte;
-		ArrayList<String[]> resultat = new ArrayList<String[]>();;	
+		ArrayList<String[]> resultat = new ArrayList<String[]>();	
 		
 		switch (file){
 			case 0: fitxer=FITXERLLIBRE;
@@ -200,4 +197,61 @@ public class GestioDades {
 		return resultat;			
 	}
 
+	
+	public boolean escriureTotsObjectes(ArrayList<String[]> obj,int file){
+		String[] objecte;
+		BufferedWriter writer = null;
+		
+		switch (file){
+			case 0: fitxer=FITXERLLIBRE;
+				break;
+			case 1: fitxer=FITXERTEMATICA;
+				break;
+			case 2: fitxer=FITXERAREA;
+				break;
+			case 3: fitxer=FITXERBIBLIOTECARI;
+				break;
+			case 4: fitxer=FITXERESTANTERIA;
+				break;
+			case 5: fitxer=FITXERSECCIO;
+		}	
+		
+
+		try {
+		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fitxer), "utf-8"));
+		   
+		    for(int i=0;i<obj.size();i++){
+		    	for(int j=0;j<obj.get(i).length;i++)
+		    	 writer.newLine();
+		    }	   
+		    
+		} catch (IOException ex) {
+		  // report
+		} finally {
+		   try {writer.close();} catch (Exception ex) {}
+		}
+	
+		try{			
+			br = new BufferedReader(new FileReader(fitxer));
+			int i=0;
+			while ((linia = br.readLine()) != null) {
+				objecte = linia.split(splitBy);
+				resultat.add(objecte);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}			
+		}
+		linia="";
+		return resultat;			
+	}
 }
