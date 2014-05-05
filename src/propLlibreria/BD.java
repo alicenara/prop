@@ -262,5 +262,14 @@ public class BD {
 			if (sec.get(i).getIDAreaSeccio() == IDA) seccionsA.add(sec.get(i));
 		}
 		return seccionsA;
-	}	
+	}
+	
+	public static ArrayList<Llibre> getAllLlibres() {
+		return llibre;
+	}
+	
+	public static ArrayList <Estanteria> getAllEstanteries() {
+		return est;
+	}
+	
 }

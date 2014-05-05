@@ -206,9 +206,9 @@ public class CtrlBiblioteca {
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID i existeix una Tematica tal que Tematica = tPrincipalmod
 	//post: El Llibre amb identificador ID te temPrincipal = codi identificador de modTPrincipal
-	public static void modificarTPrincipalLlibre(int ID, int modTPrincipal) {
+	public static void modificarTPrincipalLlibre(int ID, Tematica modTPrincipal) {
 		Llibre modLlibre = BD.getLlibre(ID);
-		modLlibre.setTemPrincipal(modTPrincipal);
+		modLlibre.setTemPrincipal(modTPrincipal.getID());
 	}
 	
 	//pre: Existeix un Llibre = esbLlibre
