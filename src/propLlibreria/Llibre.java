@@ -1,11 +1,9 @@
 package propLlibreria;
-package compartit;
+import compartit.*;
 import java.util.*;
 
-public class Llibre extends Object {
+public class Llibre extends Objecte {
 	//All "Llibre"'s attributes
-
-	private final int ID;
 	private String isbn;
 	private String titol;
 	private String autor;
@@ -14,9 +12,10 @@ public class Llibre extends Object {
 	private int edicio;
 	private int temPrincipal;
 	private ArrayList<Integer> temSecundaries;
-
+	
 	//All attributes constructor
 	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
+		super(BD.ultimaIDLlibre());
 		//TODO increment ID automatic
 		this.isbn = isbn;
 		this.titol=titol;
@@ -25,12 +24,11 @@ public class Llibre extends Object {
 		this.any=any;
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal.getID();
-		this.ID = BD.ultimaIDLlibre();
 		BD.afegirLlibre(this);
 	}
 	
 	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal){
-		//TODO increment ID automatic
+		super(ID);
 		this.isbn = isbn;
 		this.titol=titol;
 		this.autor=autor;
@@ -38,12 +36,11 @@ public class Llibre extends Object {
 		this.any=any;
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal;
-		this.ID = ID;
 	}
 
 	//All getters and setters
 	public int getID() {
-		return ID;
+		return super.getID();
 	}	
 	public String getIsbn() {
 		return isbn;
@@ -108,7 +105,7 @@ public class Llibre extends Object {
 	}
 	
 	public ArrayList<Tematica> getTematiquesSecundaries() {
-		ArrayList<Tematica> tSec;
+		ArrayList<Tematica> tSec = new ArrayList<Tematica>();
 		for (int i = 0; i < temSecundaries.size(); ++i) {
 			tSec.add(BD.getTematica(temSecundaries.get(i)));
 		}
