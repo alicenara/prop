@@ -1,6 +1,5 @@
 package propLlibreria;
 
-import java.lang.*;
 import java.util.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -74,7 +73,7 @@ public class DriverDomini {
 			System.out.println("Any : " + llibres.get(i).getAny());
 			System.out.println("Editorial : " + llibres.get(i).getEditorial());
 			System.out.println("Edicio : " + llibres.get(i).getEdicio());
-			System.out.println("Tematica Principal : " + llibres.get(i).getTematicaPrincipal().getNomTematica());
+			System.out.println("Tematica Principal : " + llibres.get(i).getTemPrincipal().getNomTematica());
 			ArrayList<Tematica> temSecundaries = llibres.get(i).getTematiquesSecundaries();
 			System.out.println("Tematica Secundaries : ");
 			for (int j = 0; j < temSecundaries.size(); j++) {
@@ -86,51 +85,39 @@ public class DriverDomini {
 	//Gestions
 	
 	public void modificacioArea() {
+		Area area;
+		String nomArea;
+		int IDA;
 		try {
 			boolean modFeta = false;
 			while (!modFeta) {
 				System.out.println("Que vols modificar?");
 				System.out.println("\t 1 Nom de area existent.");
 				System.out.println("\t 2 Afegir seccio a l'area.");
-				System.out.println("\t 3 Esborrar seccio de l'area.");
-				System.out.println("\t 4 Tornar Enrere");
+				System.out.println("\t 3 Tornar Enrere");
 				String modificacio = reader.readLine();
 				switch(modificacio) {
 					case "1":
 						System.out.println("Quina area vols modificar?");
-						String nomArea = reader.readLine();
+						nomArea = reader.readLine();
 						IDA = CtrlBiblioteca.seleccionaAreaN(nomArea).getID();
 						System.out.println("Introdueix nou nom per l'area");
 						String novaArea = reader.readLine();
-						modificarNomArea(ID, nomA);
+						CtrlBiblioteca.modificarNomArea(IDA, novaArea);
 						break;
 					case "2":
 						System.out.println("Quina area vols modificar?");
-						String nomArea = reader.readLine();
-						Area area = CtrlBiblioteca.seleccionaAreaN(nomArea);
-						if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
-						else {
-							int IDA = area.getID();
-							System.out.println("Quina seccio vols introduir?");				//cal comprovar si area te aquesta seccio?
-							String novaSeccio = reader.readLine();
-							int IDS = CtrlBiblioteca.afegirSeccio(novaSeccio);
-							CtrlBiblioteca.afegirSeccioArea(IDA, IDS);
-						}
-						break;
-					case "3":
-						System.out.println("De quina area es la seccio que vols eliminar?");
 						nomArea = reader.readLine();
-						Area area = CtrlBiblioteca.seleccionaAreaN(nomArea);
+						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
 						if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
 						else {
 							IDA = area.getID();
-							System.out.println("Quina seccio vols eliminar?");
-							seccio = reader.readLine();
-							IDS = CtrlBiblioteca.seleccionaSeccioN(seccio).getID();
-							esborrarSeccioArea(IDA,IDS);
+							System.out.println("Quina seccio vols introduir?");				//cal comprovar si area te aquesta seccio?
+							String novaSeccio = reader.readLine();
+							CtrlBiblioteca.afegirSeccio(novaSeccio,IDA);
 						}
 						break;
-					case "4":
+					case "3":
 							modFeta = true;
 						break;
 					default:
@@ -142,9 +129,6 @@ public class DriverDomini {
 		catch(RuntimeException re) {
 			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
 		}
-		catch (IOException io) {
-			System.out.println("Excepcion tipo IO. Mensaje: " + io.getMessage());
-		}
 		catch (Exception e) {
 			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 		}
@@ -154,40 +138,46 @@ public class DriverDomini {
 	public void gestioArea() {
 		String nomArea;
 		String accio;
-		int IDA;							//ID Area
 		Area area;
 		boolean accioFeta = false;
-		while(!accioFeta) {
-			menuGestio2();
-			accio = reader.readLine();
-			switch(accio) {
-				case "1":		//Insertar
-					System.out.println("Introdueix nom de la nova area.");
-					nomArea = reader.readLine();
-					area = CtrlBiblioteca.seleccionaAreaN(nomArea);
-					if (area == null) throw new Exception("Ya existe una area amb el nom " + nomArea + ".");
-					else CtrlBiblioteca.afegirArea(nomArea);
-					break;
-				case "2":		//Modificar
-					modificacioArea();
-					break;
-				case "3":		//Eliminar
-					System.out.println("Quina area vols eliminar?");
-					nomArea = reader.readLine();
-					area = CtrlBiblioteca.seleccionaAreaN(nomArea);
-					if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
-					else 
-					CtrlBiblioteca.eliminarArea(area);
-					}
-					break;
-				case "4":		//Sortir
-					accioFeta = true;
-					break;
-				default: 
-					entradaIncorrecta();
-					break;
+		try {
+			while(!accioFeta) {
+				menuGestio2();
+				accio = reader.readLine();
+				switch(accio) {
+					case "1":		//Insertar
+						System.out.println("Introdueix nom de la nova area.");
+						nomArea = reader.readLine();
+						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
+						if (area == null) throw new Exception("Ya existe una area amb el nom " + nomArea + ".");
+						else CtrlBiblioteca.afegirArea(nomArea);
+						break;
+					case "2":		//Modificar
+						modificacioArea();
+						break;
+					case "3":		//Eliminar
+						System.out.println("Quina area vols eliminar?");
+						nomArea = reader.readLine();
+						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
+						if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
+						else CtrlBiblioteca.eliminarArea(area);
+						break;
+					case "4":		//Sortir
+						accioFeta = true;
+						break;
+					default: 
+						entradaIncorrecta();
+						break;
+				}
 			}
 		}
+		catch(RuntimeException re) {
+			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+		}
+		catch (Exception e) {
+			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+		}
+		
 	}
 	
 	public static void gestioSeccio() {
@@ -195,7 +185,7 @@ public class DriverDomini {
 		int IDS;							//ID Seccio
 		//int IDT;							//ID Tematica
 		String accio;
-		String nomTematica;
+		String nomSeccio;
 		Area area;
 		Seccio seccio;
 		boolean accioFeta = false;
@@ -220,20 +210,19 @@ public class DriverDomini {
 						System.out.println("Que vols modificar?");
 						System.out.println("\t 1 Canviar nom de seccio existent.");
 						System.out.println("\t 2 Afegir tematica a seccio.");
-						System.out.println("\t 3 Esborrar tematica de seccio");
-						System.out.println("\t 4 Tornar Enrere");
+						System.out.println("\t 3 Tornar Enrere");
 						String modificacio = reader.readLine();
 						switch(modificacio) {
 							case "1":
 								System.out.println("Introdueix la seccio a modificar el nom.");
-								String nomSeccio = reader.readLine();
-								Seccio seccio = CtrlBiblioteca.selecionaSeccioN(nomSeccio);
+								nomSeccio = reader.readLine();
+								seccio = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
 								if (seccio == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
 								else {
 									System.out.println("Introdueix nou nom per la seccio");
 									String nouNomSeccio = reader.readLine();
 									IDS = seccio.getID();
-									CtrlBiblioteca.modificarNomSeccio(IDS, nomSeccio);
+									CtrlBiblioteca.modificarNomSeccio(IDS, nouNomSeccio);
 								}
 								break;
 							case "2":
@@ -249,19 +238,6 @@ public class DriverDomini {
 								}
 								break;
 							case "3":
-								System.out.println("Introdueix seccio a eliminar tematica");
-								nomSeccio = reader.readLine();
-								seccio = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
-								if (seccio == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
-								else {
-									IDS = seccio.getID();
-									System.out.println("Introdueix tematica a eliminar de la seccio");
-									nomTematica = reader.readLine();			//check existence of tematica
-									IDT = CtrlBiblioteca.seleccionaTematicaN(nomTematica).getID();
-									CtrlBiblioteca.eliminarSeccio(seccio);
-								}
-								break;
-							case "4":
 								entradaIncorrecta();
 								break;
 							default:
@@ -277,7 +253,7 @@ public class DriverDomini {
 						else {
 							IDA = area.getID();
 							System.out.println("Ara introdueix seccio a eliminar.");
-							String nomSeccio = reader.readLine();
+							nomSeccio = reader.readLine();
 							seccio = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
 							if (seccio == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
 							else CtrlBiblioteca.eliminarSeccio(seccio);
@@ -300,7 +276,7 @@ public class DriverDomini {
 		}
 	}
 
-	public void modificacioTematica() {
+	public static void modificacioTematica() {
 		String nomTematica;
 		String llibre;
 		int IDL;
@@ -325,7 +301,7 @@ public class DriverDomini {
 						IDT = tematica.getID();										//IDTematica
 						System.out.println("Introdueix nou nom per la tematica");
 						String nomModTematica = reader.readLine();
-						biblio.modificarNomTematica(IDT,nomModTematica);
+						CtrlBiblioteca.modificarNomTematica(IDT,nomModTematica);
 						break;
 					case "2":
 						System.out.println("Introdueix tematica del llibre a afegir");
@@ -336,7 +312,7 @@ public class DriverDomini {
 						System.out.println("Introdueix llibre a afegir de la tematica");
 						llibre = reader.readLine();	
 						IDL = CtrlBiblioteca.seleccionaLlibreT(llibre).getID();								//IDLlibre
-						biblio.afegirLlibreTematica(IDT, IDL);
+						CtrlBiblioteca.afegirLlibreTematica(IDT, IDL);
 						break;
 					case "3":
 						System.out.println("Introdueix tematica del  llibre a eliminar");
