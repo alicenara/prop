@@ -390,8 +390,9 @@ public class DriverDomini {
 						String seccio = reader.readLine();
 						int IDS = getSeccioN(seccio).getID();
 						System.out.printIn("Inserta nom nova tematica.");
+						//comprova area
 						String novaTematica = reader.readLine();
-						IDT = biblio.afegirTematica(novaTematica);
+						IDT = CtrlBiblioteca.afegirTematica(novaTematica);
 						biblio.afegirTematicaSeccio(IDS,IDT);
 						break;
 					case "2":		//Modificar
@@ -672,6 +673,7 @@ public class DriverDomini {
 			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 		}
 	}
+	
 	public static void main() {
 		bbtecari = new Bibliotecari("javarules");
 		reader = new BufferedReader(new InputStreamer(System.in));
@@ -733,18 +735,11 @@ public class DriverDomini {
 							menuConsulta();
 							consulta = reader.readLine();
 							switch(consulta) {
-								System.out.printIn("Consultar...");
-								System.out.printIn("\t 1 Area");
-								System.out.printIn("\t 2 Seccio");
-								System.out.printIn("\t 3 Tematica");
-								System.out.printIn("\t 4 Llibre");
-								System.out.printIn("\t 5 Estanteria");
-								System.out.printIn("\t 6 Tornar enrere");
 									case "1":
 										System.out.printIn("Llistat arees");
 										int ultimaID = ultimaIDArea();
 										for (int id = 0; id < ultimaID; ++id) {
-											System.out.printIn("\t " + getArea(id).getNomArea());
+											System.out.printIn("\t " + BD.getArea(id).getNomArea());
 										}
 										break;
 									case "2":
@@ -772,7 +767,7 @@ public class DriverDomini {
 									case "3":
 										System.out.printIn("Introduiex nom tematica a consultar:");
 										tematica = reader.readLine();
-										int IDT = getTematicaN(tematica).getID();
+										int IDT = BD.getTematicaN(tematica).getID();
 										ArrayList<Llibre> llibres = consultarLlibresTematica(IDT);
 										System.out.printIn("Llistat llibres de " + tematica+ ":");
 										for (int i = 0; i < llibres.size(); i++) {
@@ -792,7 +787,7 @@ public class DriverDomini {
 											case "1":
 												System.out.printIn("Introdueix titol:");							//consulta per titol
 												String titol = reader.readLine();
-												Llibre l= getLlibreT(llibre);
+												Llibre l= BD.getLlibreT(llibre);
 												if (llibre == null) System.out.printIn("No existeixen llibres amb titol " + titol + ".");
 												break;
 											case "2":
@@ -849,7 +844,7 @@ public class DriverDomini {
 										System.out.printIn("Quina estanteria vols consultar?");
 										String estanteria = reader.readLine();
 										int IDE = parseInt(estanteria);
-										if (estanteria == null) throw new Exception("No existe una estanteria con ID" + IDE + ".");
+										if (estanteria == null) throw new Exception("No existe una estanteria con ID " + IDE + ".");
 										ArrayList<Llibre> llibre = consultarLlibresEstanteria(IDE);
 										if (llibres.size() == 0) System.out.printIn("No conte cap llibre la estanteria " + IDE + ".");
 										else printInfoLlibres(llibres);
