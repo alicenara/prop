@@ -137,6 +137,37 @@ public class BD {
 		else return llibre.get(i);
 	}
 	
+	public static Llibre consultaLlibrePerISBN(String isbn){
+		int i=0;
+		while (i<llibre.size() && llibre.get(i).getIsbn()!= isbn) i++;
+		if(i==llibre.size()) return null;
+		else return llibre.get(i);
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
+		ArrayList<Llibre> llibresAutor;
+		for (int i = 0; i < llibre.size(); i++) {
+		if (llibre.get(i).getAutor() == autor) llibresAutor.add(llibre.get(i));
+		}
+		return llibresAutor;
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresAny(int any) {
+		ArrayList<Llibre> llibresAny;
+		for (int i = 0; i < llibre.size(); i++) {
+		if (llibre.get(i).getAny() == any) llibresAny.add(llibre.get(i));
+		}
+		return llibresAny;
+	}
+	
+	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
+		ArrayList<Llibre> llibresEditorial;
+		for (int i = 0; i < llibre.size(); i++) {
+		if (llibre.get(i).getEditorial() == editorial) llibresEditorial.add(llibre.get(i));
+		}
+		return llibresEditorial;
+	}
+	
 	//Afegir i eliminar classes
 	
 	public static void afegirArea(Area a){
