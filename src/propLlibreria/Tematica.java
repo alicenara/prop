@@ -24,7 +24,7 @@ public class Tematica {
 		this.ID = ID;
 	}
 	
-		public int getID() {
+	public int getID() {
 		return ID;
 	}	
 	

@@ -45,6 +45,11 @@ public class BD {
 		return tem.get(tem.size()-1).getID()+1;
 	}
 	
+	public static int ultimaIDBibliotecari(){
+		if (bcari.size() == 0) return 0;
+		return bcari.get(bcari.size()-1).getID()+1;
+	}
+	
 	//Get Entitats per Atribut
 	
 	public static Area getArea(int ID){
@@ -106,6 +111,19 @@ public class BD {
 		}
 		if(i==tem.size()) return null;
 		else return tem.get(i);
+	}
+	
+	public static Bibliotecari getBibliotecari(int ID){
+		int a = 0;
+		int b = bcari.size();
+		int i = b/2;
+		while (i<bcari.size() && bcari.get(i).getID()!=ID) {
+			if (bcari.get(i).getID() < ID) a = i;
+			else b = i;
+			i = (b-a)/2 + a;
+		}
+		if(i==bcari.size()) return null;
+		else return bcari.get(i);
 	}
 	
 	public static Area getAreaN(String nomA){
@@ -270,6 +288,22 @@ public class BD {
 	
 	public static ArrayList <Estanteria> getAllEstanteries() {
 		return est;
+	}
+	
+	public static ArrayList<Area> getAllArees() {
+		return area;
+	}
+	
+	public static ArrayList<Bibliotecari> getAllBibliotecaris() {
+		return bcari;
+	}
+	
+	public static ArrayList<Seccio> getAllSeccions() {
+		return sec;
+	}
+	
+	public static ArrayList<Tematica> getAllTematiques() {
+		return tem;
 	}
 	
 }
