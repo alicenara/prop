@@ -20,11 +20,12 @@ public class Estanteria {
 		BD.afegirEstanteria(this);
 	}
 	
-	public Estanteria(int ID, int numFiles, int llargada, int posX, int posY)  {
+	public Estanteria(int ID, int numFiles, int llargada, int posX, int posY, ArrayList<Integer> llE)  {
 		this.numFiles = numFiles;
 		this.llargada = llargada;
 		this.posX = posX;
 		this.posY = posY;
+		llibresEstanteria = llE;
 		this.ID = ID;
 	}
 

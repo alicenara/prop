@@ -27,7 +27,7 @@ public class Llibre extends Objecte {
 		BD.afegirLlibre(this);
 	}
 	
-	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal){
+	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal, ArrayList<Integer> tS){
 		super(ID);
 		this.isbn = isbn;
 		this.titol=titol;
@@ -36,6 +36,7 @@ public class Llibre extends Objecte {
 		this.any=any;
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal;
+		temSecundaries = tS;
 	}
 
 	//All getters and setters

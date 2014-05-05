@@ -18,9 +18,10 @@ public class Tematica {
 	
 	//pre:
 	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
-	public Tematica (int ID, String nomTematica, int IDSeccio) {
+	public Tematica (int ID, String nomTematica, int IDSeccio, ArrayList<Integer> llT) {
 		this.nomTematica = nomTematica;
 		this.IDSeccio = IDSeccio;
+		llibresTematica = llT;
 		this.ID = ID;
 	}
 	
