@@ -329,7 +329,7 @@ public class CtrlBiblioteca {
 		
 		public static boolean iniciaSessioBibliotecari(int ID, String contrasenya) {
 			Bibliotecari modBibliotecari = BD.getBibliotecari(ID);
-			if (contrasenya == modBibliotecari.getContrasenya()) return true;
+			if (contrasenya.equals(modBibliotecari.getContrasenya())) return true;
 			else return false;
 		}
 		
