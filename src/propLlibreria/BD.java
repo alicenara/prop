@@ -2,29 +2,52 @@ package propLlibreria;
 import java.util.*;
 
 public class BD {
-	private static ArrayList<Area> area;
-	private static ArrayList<Bibliotecari> bcari;
-	private static ArrayList<Estanteria> est;
-	private static ArrayList<Llibre> llibre;
-	private static ArrayList<Seccio> sec;
-	private static ArrayList<Tematica> tem;
+	private static ArrayList<Area> area= new ArrayList<Area>();
+	private static ArrayList<Bibliotecari> bcari= new ArrayList<Bibliotecari>();
+	private static ArrayList<Estanteria> est = new ArrayList<Estanteria>();
+	private static ArrayList<Llibre> llibre = new ArrayList<Llibre>();
+	private static ArrayList<Seccio> sec = new ArrayList<Seccio>();
+	private static ArrayList<Tematica> tem = new ArrayList<Tematica>();
 	
 	public static void omplirBD(){
-		area=CtrlBD.obtenirTotesArees();
+		/*area=CtrlBD.obtenirTotesArees();
 		bcari=CtrlBD.obtenirTotsBcaris();
 		est=CtrlBD.obtenirTotesEstanteries();
 		llibre=CtrlBD.obtenirTotsLlibres();
 		sec=CtrlBD.obtenirTotesSec();
-		tem=CtrlBD.obtenirTotesTem();
+		tem=CtrlBD.obtenirTotesTem();*/
+		
+		//STUB ja que el PATH dels arxius no funciona
+		
+		Area a = new Area(0,"Obres Generals");
+		area.add(a);
+		
+		Bibliotecari b = new Bibliotecari(0,"pass");
+		bcari.add(b);
+		
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		al.add(0);
+		Estanteria e = new Estanteria(0,2,3,4,5,al);
+		est.add(e);
+		
+		Llibre l = new Llibre(0,"9788427203180","Spider Man","Marvel","Dunno",1950,1,1,al);
+		llibre.add(l);
+		
+		Seccio s = new Seccio(0,"Cuina",0);
+		sec.add(s);
+		
+		Tematica t = new Tematica(0,"Historica",0,al);
+		tem.add(t);
+		
 	}
 	
 	public static void desarBD(){
-		CtrlBD.desarTotesArees(area);
+		/*CtrlBD.desarTotesArees(area);
 		CtrlBD.desarTotsBibliotecaris(bcari);
 		CtrlBD.desarTotesEstanteries(est);
 		CtrlBD.desarTotsLlibres(llibre);
 		CtrlBD.desarTotesSeccions(sec);
-		CtrlBD.desarTotesTematiques(tem);
+		CtrlBD.desarTotesTematiques(tem);*/
 	}
 	
 	//Ultima ID Entitats
