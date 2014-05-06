@@ -873,7 +873,7 @@ public class DriverDomini {
 							int nouID = CtrlBiblioteca.afegirBibliotecari(novaContrasenya);
 							System.out.println("Nou ID d'usuari �s " + nouID + " amb contrasenya " + novaContrasenya + ".");
 							break;
-						case "6":			//Sortir
+						case "6":			//Eliminar Usuari
 							System.out.println("Introdueix ID usuari a eliminar");
 							int IDEliminar = Integer.parseInt(reader.readLine());
 							Bibliotecari bbtecariAEliminar = CtrlBiblioteca.consultaBibliotecari(IDEliminar);
