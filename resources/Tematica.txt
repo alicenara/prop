@@ -1,5 +1,4 @@
-0;Misteri
-1;Ciencia Ficció
-2;Fantàstica
-3;Romàntica
-4;Historica
+0;Misteri;0;0
+1;Ciencia Ficció;0;0
+2;Fantàstica;0;0
+4;Historica;0;0
