@@ -65,7 +65,7 @@ public class CtrlBD {
 		for (int i=0; i<persones.size();i++){
 			Bibliotecari aux;
 			String[] prop=persones.get(i);
-			aux = new Bibliotecari(prop[0]);
+			aux = new Bibliotecari(Integer.parseInt(prop[0]), prop[1]);
 			b.add(aux);
 		}
 		return b;
@@ -79,7 +79,7 @@ public class CtrlBD {
 			String[] prop=est.get(i);
 			ArrayList<Integer> llibres = new ArrayList<Integer>();
 			for (int j=5; j<prop.length; j++){
-				llibres.add(Integer.parseInt(prop[i]));
+				llibres.add(Integer.parseInt(prop[j]));
 			}
 			aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]),llibres);
 			e.add(aux);
@@ -95,7 +95,7 @@ public class CtrlBD {
 			String[] prop=llibres.get(i);
 			ArrayList<Integer> temSecun = new ArrayList<Integer>();
 			for (int j=8; j<prop.length; j++){
-				temSecun.add(Integer.parseInt(prop[i]));
+				temSecun.add(Integer.parseInt(prop[j]));
 			}
 			aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]),temSecun);
 			l.add(aux);
@@ -125,7 +125,7 @@ public class CtrlBD {
 			String[] prop=tem.get(i);
 			ArrayList<Integer> llibres = new ArrayList<Integer>();
 			for (int j=3; j<prop.length; j++){
-				llibres.add(Integer.parseInt(prop[i]));
+				llibres.add(Integer.parseInt(prop[j]));
 			}
 			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llibres);
 			t.add(aux);
