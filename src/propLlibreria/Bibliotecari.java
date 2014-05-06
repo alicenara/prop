@@ -1,5 +1,4 @@
 package propLlibreria;
-import java.util.*;
 
 public class Bibliotecari {
     

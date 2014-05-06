@@ -1,9 +1,8 @@
 package compartit;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import compartit.*;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Driver per provar GLB

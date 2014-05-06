@@ -505,7 +505,7 @@ public class DriverDomini {
 				switch(accio) {
 					case "1":		//Insertar
 						System.out.println("Introdueix el valors del nou llibre.");
-						System.out.println("Recorda que els valors per introduir un llibre son els següents: \n isbn, titol, autor, editorial, any, edicio, tematica principal(Escriu-ho tot seguit).");
+						System.out.println("Recorda que els valors per introduir un llibre son els segï¿½ents: \n isbn, titol, autor, editorial, any, edicio, tematica principal(Escriu-ho tot seguit).");
 						String input = reader.readLine();
 						String [] infoLlibre = input.split(" ");
 						if (infoLlibre.length < 7 || infoLlibre.length > 7 ) throw new Exception("Has escrito una cantidad de atributos incorrectos");
@@ -606,7 +606,7 @@ public class DriverDomini {
 				accio = reader.readLine();
 				switch(accio) {
 					case "1":		//Insertar
-						System.out.println("Inserta numero de files de la nova estanteria, la seva llarga i la seva colocació en el eix x i y en aquest ordre.");
+						System.out.println("Inserta numero de files de la nova estanteria, la seva llarga i la seva colocaciï¿½ en el eix x i y en aquest ordre.");
 						String paraula = reader.readLine();
 						String[] input = paraula.split(" ");
 						if (input.length > 4) throw new Exception("Son solo 4 elementos\n");
@@ -795,7 +795,7 @@ public class DriverDomini {
 		}
 	}
 	
-	public static void main() {
+	public static void main(String[] args) {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		String contrasenya;
 		boolean permisAcces = false;
@@ -873,7 +873,7 @@ public class DriverDomini {
 							System.out.println("Introdueix contrasenya nou ususari");
 							String novaContrasenya = reader.readLine();
 							int nouID = CtrlBiblioteca.afegirBibliotecari(novaContrasenya);
-							System.out.println("Nou ID d'usuari és " + nouID + " amb contrasenya " + novaContrasenya + ".");
+							System.out.println("Nou ID d'usuari ï¿½s " + nouID + " amb contrasenya " + novaContrasenya + ".");
 							break;
 						case "6":			//Sortir
 							System.out.println("Introdueix ID usuari a eliminar");

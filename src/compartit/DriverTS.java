@@ -2,8 +2,11 @@ package compartit;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-
-public class TSDriver {
+/**
+*
+* @author Daniel Torramilans
+*/
+public class DriverTS {
 	private static double cost(int[] solution, double[][] a, double[][] d) {
 		double res = 0;
 		for (int i = 0; i < solution.length; i++){
@@ -23,6 +26,11 @@ public class TSDriver {
 		System.out.println("] Cost: " + cost(solution, a, d));
 	}
 	
+    /**
+     * 
+     * @param args the command line arguments
+     * @throws java.Exception
+    */
 	public static void main(String[] args) throws Exception {
 		BufferedReader br2 = new BufferedReader (new FileReader("resources/entrada.txt"));
 		int dim = Integer.parseInt(br2.readLine());

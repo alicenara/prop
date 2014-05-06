@@ -9,7 +9,6 @@ import java.io.*;
 public class DriverBB {
     private static BB.QAP q = null;
     private static BB.Node n = null;
-    private static BB.Branch b = null;
     private static BB brunchy = null;
     private static BB.Node[] descent = null;
     
@@ -207,6 +206,7 @@ public class DriverBB {
 
                             q = new BB.QAP(dist, aff);
                             System.out.println("QAP ha sido creado");
+                        	br2.close();
                         } catch (IOException e){
                             System.out.println("No se encuentra el archivo.");
                         }
