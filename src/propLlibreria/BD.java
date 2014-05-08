@@ -133,34 +133,34 @@ public class BD {
 	
 	public static Area getAreaN(String nomA){
 		int i=0;
-		while (i<area.size() && area.get(i).getNomArea()!=nomA) i++;
+		while (i<area.size() && !(area.get(i).getNomArea().equals(nomA))) i++;
 		if(i==area.size()) return null;
 		else return area.get(i);
 	}
 	
 	public static Seccio getSeccioN(String nomS){
 		int i=0;
-		while (i<sec.size() && sec.get(i).getNomSeccio()!=nomS) i++;
+		while (i<sec.size() && !(sec.get(i).getNomSeccio().equals(nomS))) i++;
 		if(i==sec.size()) return null;
 		else return sec.get(i);
 	}
 	public static Tematica getTematicaN(String nomT){
 		int i=0;
-		while (i<tem.size() && tem.get(i).getNomTematica()!=nomT) i++;
+		while (i<tem.size() && !(tem.get(i).getNomTematica().equals(nomT))) i++;
 		if(i==tem.size()) return null;
 		else return tem.get(i);
 	}
 	
 	public static Llibre getLlibreT(String titol){
 		int i=0;
-		while (i<llibre.size() && llibre.get(i).getTitol()!= titol) i++;
+		while (i<llibre.size() && !(llibre.get(i).getTitol().equals(titol))) i++;
 		if(i==llibre.size()) return null;
 		else return llibre.get(i);
 	}
 	
 	public static Llibre getLlibrePerISBN(String isbn){
 		int i=0;
-		while (i<llibre.size() && llibre.get(i).getIsbn()!= isbn) i++;
+		while (i<llibre.size() && !(llibre.get(i).getIsbn().equals(isbn))) i++;
 		if(i==llibre.size()) return null;
 		else return llibre.get(i);
 	}
@@ -168,7 +168,7 @@ public class BD {
 	public static ArrayList<Llibre> getLlibresAutor(String autor) {
 		ArrayList<Llibre> llibresAutor = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
-		if (llibre.get(i).getAutor() == autor) llibresAutor.add(llibre.get(i));
+		if (llibre.get(i).getAutor().equals(autor)) llibresAutor.add(llibre.get(i));
 		}
 		return llibresAutor;
 	}
@@ -184,7 +184,7 @@ public class BD {
 	public static ArrayList<Llibre> getLlibresEditorial(String editorial) {
 		ArrayList<Llibre> llibresEditorial = new ArrayList<Llibre>();
 		for (int i = 0; i < llibre.size(); i++) {
-		if (llibre.get(i).getEditorial() == editorial) llibresEditorial.add(llibre.get(i));
+		if (llibre.get(i).getEditorial().equals(editorial)) llibresEditorial.add(llibre.get(i));
 		}
 		return llibresEditorial;
 	}
