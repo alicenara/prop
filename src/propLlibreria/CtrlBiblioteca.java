@@ -100,7 +100,6 @@ public class CtrlBiblioteca {
 	//post: S'ha creat una nova Seccio amb nom = nomSeccio
 	public static int afegirSeccio(String nomSeccio, int IDArea) {
 		Seccio novaSeccio = new Seccio(nomSeccio, IDArea);
-		BD.afegirSeccio(novaSeccio);
 		return novaSeccio.getID();
 	}
 	
@@ -135,7 +134,6 @@ public class CtrlBiblioteca {
 	//post: S'ha creat una nova Tematica amb nom = nomTematica
 	public static int afegirTematica(String nomTematica, int IDSeccio) {
 		Tematica novaTematica = new Tematica(nomTematica, IDSeccio);
-		BD.afegirTematica(novaTematica);
 		return novaTematica.getID();
 	}
 	
@@ -177,7 +175,6 @@ public class CtrlBiblioteca {
 	//post: S'ha creat una nou Llibre amb isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
 	public static int afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
 		Llibre nouLlibre = new Llibre(isbn, titol, autor, editorial, any, edicio, tPrincipal);
-		BD.afegirLlibre(nouLlibre);
 		afegirLlibreTematica(tPrincipal.getID(),nouLlibre.getID());
 		return nouLlibre.getID();
 	}
@@ -279,7 +276,6 @@ public class CtrlBiblioteca {
 	//post: S'ha creat una nova Estanteria amb nunmFiles = numFiles, llargada = llargda, posX = posX i posY = posY
 	public static int afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
 		Estanteria novaEstanteria = new Estanteria(numFiles, llargada, posX, posY);
-		BD.afegirEstanteria(novaEstanteria);
 		return novaEstanteria.getID();
 	}
 	
@@ -317,7 +313,6 @@ public class CtrlBiblioteca {
 	
 		public static int afegirBibliotecari(String contrasenya) {
 			Bibliotecari nouBibliotecari = new Bibliotecari(contrasenya);
-			BD.afegirBibliotecari(nouBibliotecari);
 			return nouBibliotecari.getID();
 		}
 		
