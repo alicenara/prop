@@ -3,12 +3,12 @@ import java.io.*;
 import java.util.*;
 
 public class GestioDades {
-	private static final String FITXERLLIBRE = "./resources/Llibre.txt";
-	private static final String FITXERTEMATICA = "./resources/Tematica.txt";
-	private static final String FITXERAREA = "./resources/Area.txt";
-	private static final String FITXERBIBLIOTECARI = "./resources/Bibliotecari.txt";
-	private static final String FITXERESTANTERIA = "./resources/Estanteria.txt";
-	private static final String FITXERSECCIO = "./resources/Seccio.txt";
+	private static final String FITXERLLIBRE = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Llibre.txt";
+	private static final String FITXERTEMATICA = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Tematica.txt";
+	private static final String FITXERAREA = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Area.txt";
+	private static final String FITXERBIBLIOTECARI = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Bibliotecari.txt";
+	private static final String FITXERESTANTERIA = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Estanteria.txt";
+	private static final String FITXERSECCIO = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Seccio.txt";
 	String fitxer;
 	BufferedReader br = null;
 	String linia = "";
@@ -37,7 +37,11 @@ public class GestioDades {
 			case 5: fitxer=FITXERSECCIO;
 		}	
 		
-		try{			
+		try{	
+			//InputStream is = this.getClass().getResourceAsStream(fitxer);
+			
+			//br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+			//br = new BufferedReader(new FileReader(getClass().getClassLoader().getResourceAsStream(fitxer)));
 			br = new BufferedReader(new FileReader(fitxer));
 			
 				linia = br.readLine();
@@ -173,7 +177,12 @@ public class GestioDades {
 			case 5: fitxer=FITXERSECCIO;
 		}	
 			
-		try{			
+		try{
+			//InputStream is = this.getClass().getResourceAsStream(fitxer);
+		
+			//br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+		//br = new BufferedReader(new FileReader(getClass().getClassLoader().getResourceAsStream(fitxer)));
+		
 			br = new BufferedReader(new FileReader(fitxer));
 			while ((linia = br.readLine()) != null) {
 				objecte = linia.split(splitBy);

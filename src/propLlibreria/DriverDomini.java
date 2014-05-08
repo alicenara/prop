@@ -796,6 +796,7 @@ public class DriverDomini {
 	public static void main(String[] args) {
 		reader = new BufferedReader(new InputStreamReader(System.in));
 		String contrasenya;
+		CtrlBiblioteca.iniBD();
 		boolean permisAcces = false;
 		System.out.println("Benvolgut/da a la Biblioteca");
 		try {														//try per fer catch per si error de I/O 
