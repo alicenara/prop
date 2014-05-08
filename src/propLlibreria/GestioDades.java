@@ -13,8 +13,6 @@ public class GestioDades {
 	BufferedReader br = null;
 	String linia = "";
 	String splitBy = ";";
-	String path = new File("src/main/resources/conf.properties")
-    .getAbsolutePath();
 	
 	public GestioDades(){}
 	
