@@ -66,7 +66,6 @@ public class CtrlBiblioteca {
 	//post: S'ha creat una nova Area amb nom = nomArea
 	public static int afegirArea(String nomArea) {
 		Area novaArea = new Area(nomArea);
-		BD.afegirArea(novaArea);
 		return novaArea.getID();
 	}
 	
