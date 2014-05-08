@@ -10,35 +10,12 @@ public class BD {
 	private static ArrayList<Tematica> tem = new ArrayList<Tematica>();
 	
 	public static void omplirBD(){
-		/*area=CtrlBD.obtenirTotesArees();
+		area=CtrlBD.obtenirTotesArees();
 		bcari=CtrlBD.obtenirTotsBcaris();
 		est=CtrlBD.obtenirTotesEstanteries();
 		llibre=CtrlBD.obtenirTotsLlibres();
 		sec=CtrlBD.obtenirTotesSec();
-		tem=CtrlBD.obtenirTotesTem();*/
-		
-		//STUB ja que el PATH dels arxius no funciona
-		
-		Area a = new Area(0,"Obres Generals");
-		area.add(a);
-		
-		Bibliotecari b = new Bibliotecari(0,"pass");
-		bcari.add(b);
-		
-		ArrayList<Integer> al = new ArrayList<Integer>();
-		al.add(0);
-		Estanteria e = new Estanteria(0,2,3,4,5,al);
-		est.add(e);
-		
-		Llibre l = new Llibre(0,"9788427203180","Spider Man","Marvel","Dunno",1950,1,1,al);
-		llibre.add(l);
-		
-		Seccio s = new Seccio(0,"Cuina",0);
-		sec.add(s);
-		
-		Tematica t = new Tematica(0,"Historica",0,al);
-		tem.add(t);
-		
+		tem=CtrlBD.obtenirTotesTem();
 	}
 	
 	public static void desarBD(){

@@ -3,16 +3,18 @@ import java.io.*;
 import java.util.*;
 
 public class GestioDades {
-	private static final String FITXERLLIBRE = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Llibre.txt";
-	private static final String FITXERTEMATICA = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Tematica.txt";
-	private static final String FITXERAREA = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Area.txt";
-	private static final String FITXERBIBLIOTECARI = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Bibliotecari.txt";
-	private static final String FITXERESTANTERIA = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Estanteria.txt";
-	private static final String FITXERSECCIO = "C:\\Users\\Alice\\Documents\\GitHub\\prop\\resources\\Seccio.txt";
+	private static final String FITXERLLIBRE = new File("prop/resources/Llibre.txt").getAbsolutePath();
+	private static final String FITXERTEMATICA = new File("prop/resources/Tematica.txt").getAbsolutePath();
+	private static final String FITXERAREA = new File("prop/resources/Area.txt").getAbsolutePath();
+	private static final String FITXERBIBLIOTECARI = new File("prop/resources/Bibliotecari.txt").getAbsolutePath();
+	private static final String FITXERESTANTERIA = new File("prop/resources/Estanteria.txt").getAbsolutePath();
+	private static final String FITXERSECCIO = new File("prop/resources/Seccio.txt").getAbsolutePath();
 	String fitxer;
 	BufferedReader br = null;
 	String linia = "";
 	String splitBy = ";";
+	String path = new File("src/main/resources/conf.properties")
+    .getAbsolutePath();
 	
 	public GestioDades(){}
 	
