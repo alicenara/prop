@@ -12,6 +12,7 @@ public class DriverDomini {
 	
 	public static void menuNavegacio() {
 		System.out.println("Escull tasca a realitzar:");
+		System.out.println("\t 0 Introduir contrasenya");
 		System.out.println("\t 1 Gestiona Biblioteca");
 		System.out.println("\t 2 Consultar Biblioteca");
 		System.out.println("\t 3 Guardar canvis realitzats");
@@ -642,7 +643,7 @@ public class DriverDomini {
 	}
 	
 	
-	public static void ConsultaBiblioteca () {
+	public static void ConsultaBiblioteca() {
 		try {
 			String area;
 			String nomTematica;
@@ -799,21 +800,6 @@ public class DriverDomini {
 		CtrlBiblioteca.iniBD();
 		boolean permisAcces = false;
 		System.out.println("Benvolgut/da a la Biblioteca");
-		try {														//try per fer catch per si error de I/O 
-			while (!permisAcces) {
-				System.out.println("Per favor, introdueix ID:");
-				IDB = Integer.parseInt(reader.readLine());
-				if (CtrlBiblioteca.consultaBibliotecari(IDB) == null) System.out.println("No existeix cap usuari amb aquesta ID");
-				else {
-					System.out.println("Per favor, ara Introdueix contrasenya:");
-					contrasenya = reader.readLine();
-					if (CtrlBiblioteca.iniciaSessioBibliotecari(IDB,contrasenya)) {
-						permisAcces = true;
-						System.out.println("Log-in correcte.");
-					}
-					else System.out.println("Ups! Contrasenya incorrecta...");
-				}
-			}
 			boolean end = false;
 			String input;
 			while (!end) {
@@ -821,6 +807,27 @@ public class DriverDomini {
 					menuNavegacio();
 					input = reader.readLine();
 					switch(input) {
+						case "0":
+							try {														//try per fer catch per si error de I/O 
+								while (!permisAcces) {
+									System.out.println("Per favor, introdueix ID:");
+									IDB = Integer.parseInt(reader.readLine());
+									if (CtrlBiblioteca.consultaBibliotecari(IDB) == null) System.out.println("No existeix cap usuari amb aquesta ID");
+									else {
+										System.out.println("Per favor, ara Introdueix contrasenya:");
+										contrasenya = reader.readLine();
+										if (CtrlBiblioteca.iniciaSessioBibliotecari(IDB,contrasenya)) {
+											permisAcces = true;
+											System.out.println("Log-in correcte.");
+										}
+										else System.out.println("Ups! Contrasenya incorrecta...");
+									}
+								}
+							}catch (IOException io) {
+								System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+							}
+							
+							break;
 						case "1":			//Gestio Biblioteca
 							boolean gestioFeta = false;
 							String gestio;
@@ -853,7 +860,8 @@ public class DriverDomini {
 							}
 							break;
 						case "2":			//Consulta Biblioteca
-	
+							ConsultaBiblioteca();
+							break;	
 						case "3":			//Guardar Canvis
 							CtrlBiblioteca.guardarSolucio();
 							System.out.println("Canvis guardats.");
@@ -872,7 +880,7 @@ public class DriverDomini {
 							System.out.println("Introdueix contrasenya nou ususari");
 							String novaContrasenya = reader.readLine();
 							int nouID = CtrlBiblioteca.afegirBibliotecari(novaContrasenya);
-							System.out.println("Nou ID d'usuari �s " + nouID + " amb contrasenya " + novaContrasenya + ".");
+							System.out.println("Nou ID d'usuari " + nouID + " amb contrasenya " + novaContrasenya + ".");
 							break;
 						case "6":			//Eliminar Usuari
 							System.out.println("Introdueix ID usuari a eliminar");
@@ -901,9 +909,5 @@ public class DriverDomini {
 					System.out.println("Execpcion general. Mensaje: " + e.getMessage());
 				}
 			}
-		}
-		catch (IOException io) {
-			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-		}
 	}
 }
