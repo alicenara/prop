@@ -2,20 +2,26 @@ package propLlibreria;
 import java.util.*;
 
 public class BD {
-	private static ArrayList<Area> area= new ArrayList<Area>();
-	private static ArrayList<Bibliotecari> bcari= new ArrayList<Bibliotecari>();
-	private static ArrayList<Estanteria> est = new ArrayList<Estanteria>();
-	private static ArrayList<Llibre> llibre = new ArrayList<Llibre>();
-	private static ArrayList<Seccio> sec = new ArrayList<Seccio>();
-	private static ArrayList<Tematica> tem = new ArrayList<Tematica>();
+	private static Hashtable<Integer, Area> area = new Hashtable<Integer, Area>();
+	private static Hashtable<Integer, Bibliotecari> bcari = new Hashtable<Integer, Bibliotecari>();
+	private static Hashtable<Integer, Estanteria> est = new Hashtable<Integer, Estanteria>();
+	private static Hashtable<Integer, Llibre> llibre = new Hashtable<Integer, Llibre>();
+	private static Hashtable<Integer, Seccio> sec = new Hashtable<Integer, Seccio>();
+	private static Hashtable<Integer, Tematica> tem = new Hashtable<Integer, Tematica>();
+	private static int ida = 0;
+	private static int idb = 0;
+	private static int ide = 0;
+	private static int idl = 0;
+	private static int ids = 0;
+	private static int idt = 0;
 	
 	public static void omplirBD(){
-		area=CtrlBD.obtenirTotesArees();
-		bcari=CtrlBD.obtenirTotsBcaris();
-		est=CtrlBD.obtenirTotesEstanteries();
-		llibre=CtrlBD.obtenirTotsLlibres();
-		sec=CtrlBD.obtenirTotesSec();
-		tem=CtrlBD.obtenirTotesTem();
+		area = CtrlBD.obtenirTotesArees();
+		bcari = CtrlBD.obtenirTotsBcaris();
+		est = CtrlBD.obtenirTotesEstanteries();
+		llibre = CtrlBD.obtenirTotsLlibres();
+		sec = CtrlBD.obtenirTotesSec();
+		tem = CtrlBD.obtenirTotesTem();
 	}
 	
 	public static void desarBD(){
@@ -30,161 +36,145 @@ public class BD {
 	//Ultima ID Entitats
 	
 	public static int ultimaIDArea(){
-		if (area.size() == 0) return 0;
-		return area.get(area.size()-1).getID()+1;
+		++ida;
+		return ida;
 	}
 	public static int ultimaIDEstanteria(){
-		if (est.size() == 0) return 0;
-		return est.get(est.size()-1).getID()+1;
+		++ide;
+		return ide;
 	}
 	public static int ultimaIDLlibre(){
-		if (llibre.size() == 0) return 0;
-		return llibre.get(llibre.size()-1).getID()+1;
+		++idl;
+		return idl;
 	}
 	public static int ultimaIDSeccio(){
-		if (sec.size() == 0) return 0;
-		return sec.get(sec.size()-1).getID()+1;
+		++ids;
+		return ids;
 	}
 	public static int ultimaIDTematica(){
-		if (tem.size() == 0) return 0;
-		return tem.get(tem.size()-1).getID()+1;
+		++idt;
+		return idt;
 	}
 	
 	public static int ultimaIDBibliotecari(){
-		if (bcari.size() == 0) return 0;
-		return bcari.get(bcari.size()-1).getID()+1;
+		++idb;
+		return idb;
 	}
 	
 	//Get Entitats per Atribut
 	
 	public static Area getArea(int ID){
-		int a = 0;
-		int b = area.size();
-		int i = b/2;
-		while (i<area.size() && area.get(i).getID()!=ID) {
-			if (area.get(i).getID() < ID) a = i;
-			else b = i;
-			i = (b-a)/2 + a;
-		}
-		if(i==area.size()) return null;
-		else return area.get(i);
+		return area.get(ID);
 	}
+	
 	public static Estanteria getEstanteria(int ID){
-		int a = 0;
-		int b = est.size();
-		int i = b/2;
-		while (i<est.size() && est.get(i).getID()!=ID) {
-			if (est.get(i).getID() < ID) a = i;
-			else b = i;
-			i = (b-a)/2 + a;
-		}
-		if(i==est.size()) return null;
-		else return est.get(i);
+		return est.get(ID);
 	}
+	
 	public static Llibre getLlibre(int ID){
-		int a = 0;
-		int b = llibre.size();
-		int i = b/2;
-		while (i<llibre.size() && llibre.get(i).getID()!=ID) {
-			if (llibre.get(i).getID() < ID) a = i;
-			else b = i;
-			i = (b-a)/2 + a;
-		}
-		if(i==llibre.size()) return null;
-		else return llibre.get(i);
+		return llibre.get(ID);
 	}
+	
 	public static Seccio getSeccio(int ID){
-		int a = 0;
-		int b = sec.size();
-		int i = b/2;
-		while (i<sec.size() && sec.get(i).getID()!=ID) {
-			if (sec.get(i).getID() < ID) a = i;
-			else b = i;
-			i = (b-a)/2 + a;
-		}
-		if(i==sec.size()) return null;
-		else return sec.get(i);
+		return sec.get(ID);
 	}
+	
 	public static Tematica getTematica(int ID){
-		int a = 0;
-		int b = sec.size();
-		int i = b/2;
-		while (i<tem.size() && tem.get(i).getID()!=ID) {
-			if (tem.get(i).getID() < ID) a = i;
-			else b = i;
-			i = (b-a)/2 + a;
-		}
-		if(i==tem.size()) return null;
-		else return tem.get(i);
+		return tem.get(ID);
 	}
 	
 	public static Bibliotecari getBibliotecari(int ID){
-		int a = 0;
-		int b = bcari.size();
-		int i = b/2;
-		while (i<bcari.size() && bcari.get(i).getID()!=ID) {
-			if (bcari.get(i).getID() < ID) a = i;
-			else b = i;
-			i = (b-a)/2 + a;
-		}
-		if(i==bcari.size()) return null;
-		else return bcari.get(i);
+		return bcari.get(ID);
 	}
 	
 	public static Area getAreaN(String nomA){
-		int i=0;
-		while (i<area.size() && !(area.get(i).getNomArea().equals(nomA))) i++;
-		if(i==area.size()) return null;
-		else return area.get(i);
+		Iterator<Integer> iterador = area.keySet().iterator();
+		Integer key = 0;
+		boolean trobat = false;
+		while(iterador.hasNext() && !trobat){
+		  key = iterador.next();
+		  if (area.get(key).getNomArea().equals(nomA)) trobat = true;
+		}
+		if (trobat) return area.get(key);
+		else return null;
 	}
 	
 	public static Seccio getSeccioN(String nomS){
-		int i=0;
-		while (i<sec.size() && !(sec.get(i).getNomSeccio().equals(nomS))) i++;
-		if(i==sec.size()) return null;
-		else return sec.get(i);
+		Iterator<Integer> iterador = sec.keySet().iterator();
+		Integer key = 0;
+		boolean trobat = false;
+		while(iterador.hasNext() && !trobat){
+		  key = iterador.next();
+		  if (sec.get(key).getNomSeccio().equals(nomS)) trobat = true;
+		}
+		if (trobat) return sec.get(key);
+		else return null;
 	}
 	public static Tematica getTematicaN(String nomT){
-		int i=0;
-		while (i<tem.size() && !(tem.get(i).getNomTematica().equals(nomT))) i++;
-		if(i==tem.size()) return null;
-		else return tem.get(i);
+		Iterator<Integer> iterador = tem.keySet().iterator();
+		Integer key = 0;
+		boolean trobat = false;
+		while(iterador.hasNext() && !trobat){
+		  key = iterador.next();
+		  if (tem.get(key).getNomTematica().equals(nomT)) trobat = true;
+		}
+		if (trobat) return tem.get(key);
+		else return null;
 	}
 	
 	public static Llibre getLlibreT(String titol){
-		int i=0;
-		while (i<llibre.size() && !(llibre.get(i).getTitol().equals(titol))) i++;
-		if(i==llibre.size()) return null;
-		else return llibre.get(i);
+		Iterator<Integer> iterador = llibre.keySet().iterator();
+		Integer key = 0;
+		boolean trobat = false;
+		while(iterador.hasNext() && !trobat){
+		  key = iterador.next();
+		  if (llibre.get(key).getTitol().equals(titol)) trobat = true;
+		}
+		if (trobat) return llibre.get(key);
+		else return null;
 	}
 	
 	public static Llibre getLlibrePerISBN(String isbn){
-		int i=0;
-		while (i<llibre.size() && !(llibre.get(i).getIsbn().equals(isbn))) i++;
-		if(i==llibre.size()) return null;
-		else return llibre.get(i);
+		Iterator<Integer> iterador = llibre.keySet().iterator();
+		Integer key = 0;
+		boolean trobat = false;
+		while(iterador.hasNext() && !trobat){
+		  key = iterador.next();
+		  if (llibre.get(key).getIsbn().equals(isbn)) trobat = true;
+		}
+		if (trobat) return llibre.get(key);
+		else return null;
 	}
 	
 	public static ArrayList<Llibre> getLlibresAutor(String autor) {
 		ArrayList<Llibre> llibresAutor = new ArrayList<Llibre>();
-		for (int i = 0; i < llibre.size(); i++) {
-		if (llibre.get(i).getAutor().equals(autor)) llibresAutor.add(llibre.get(i));
+		Iterator<Integer> iterador = llibre.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  if (llibre.get(key).getAutor().equals(autor)) llibresAutor.add(llibre.get(key));;
 		}
 		return llibresAutor;
 	}
 	
 	public static ArrayList<Llibre> getLlibresAny(int any) {
 		ArrayList<Llibre> llibresAny = new ArrayList<Llibre>();
-		for (int i = 0; i < llibre.size(); i++) {
-		if (llibre.get(i).getAny() == any) llibresAny.add(llibre.get(i));
+		Iterator<Integer> iterador = llibre.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  if (llibre.get(key).getAny() == any) llibresAny.add(llibre.get(key));;
 		}
 		return llibresAny;
 	}
 	
 	public static ArrayList<Llibre> getLlibresEditorial(String editorial) {
 		ArrayList<Llibre> llibresEditorial = new ArrayList<Llibre>();
-		for (int i = 0; i < llibre.size(); i++) {
-		if (llibre.get(i).getEditorial().equals(editorial)) llibresEditorial.add(llibre.get(i));
+		Iterator<Integer> iterador = llibre.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  if (llibre.get(key).getEditorial().equals(editorial)) llibresEditorial.add(llibre.get(key));;
 		}
 		return llibresEditorial;
 	}
@@ -192,75 +182,75 @@ public class BD {
 	//Afegir i eliminar classes
 	
 	public static void afegirArea(Area a){
-		area.add(a);
+		area.put(a.getID(), a);
 	}
 	
 	public static void esborrarArea(Area a){
-		area.remove(a);
+		area.remove(a.getID());
 	}
 	
 	public static void afegirBibliotecari(Bibliotecari b){
-		bcari.add(b);
+		bcari.put(b.getID(), b);
 	}
 	
 	public static void esborrarBibliotecari(Bibliotecari b){
-		bcari.remove(b);
+		bcari.remove(b.getID());
 	}
 	
 	public static void afegirEstanteria(Estanteria e){
-		est.add(e);
+		est.put(e.getID(), e);
 	}
 	
 	public static void esborrarEstanteria(Estanteria e){
-		est.remove(e);
+		est.remove(e.getID());
 	}
 	
 	public static void afegirLlibre(Llibre l){
-		llibre.add(l);
+		llibre.put(l.getID(), l);
 	}
 	
 	public static void esborrarLlibre(Llibre l){
-		llibre.remove(l);
+		llibre.remove(l.getID());
 	}
 	
 	public static void afegirSeccio(Seccio s){
-		sec.add(s);
+		sec.put(s.getID(), s);
 	}
 	
 	public static void esborrarSeccio(Seccio s){
-		sec.remove(s);
+		sec.remove(s.getID());
 	}
 	
 	public static void afegirTematica(Tematica t){
-		tem.add(t);
+		tem.put(t.getID(), t);
 	}
 	
 	public static void esborrarTematica(Tematica t){
-		tem.remove(t);
+		tem.remove(t.getID());
 	}
 	
 	//Esborrar per ID
 	
 	public static void esborrarAreaID(int ID){
-		area.remove(getArea(ID));
+		area.remove(ID);
 	}
 	
 	public static void esborrarEstanteriaID(int ID){
-		est.remove(getEstanteria(ID));
+		est.remove(ID);
 	}
 	
 	
 	public static void esborrarLlibreID(int ID){
-		llibre.remove(getLlibre(ID));
+		llibre.remove(ID);
 	}
 	
 	
 	public static void esborrarSeccioID(int ID){
-		sec.remove(getSeccio(ID));
+		sec.remove(ID);
 	}
 
 	public static void esborrarTematicaID(int ID){
-		tem.remove(getTematica(ID));
+		tem.remove(ID);
 	}
 
 	
@@ -272,6 +262,7 @@ public class BD {
 	}
 	
 	public static ArrayList<Tematica> tematiquesSeccio(int IDS) {
+		//TODO
 		ArrayList<Tematica> tematiquesS = new ArrayList<Tematica>();
 		for (int i = 0; i < tem.size(); ++i) {
 			if (tem.get(i).getIDSeccio() == IDS) tematiquesS.add(tem.get(i));
