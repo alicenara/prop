@@ -28,6 +28,10 @@ public class Estanteria {
 		llibresEstanteria = llE;
 		this.ID = ID;
 	}
+	
+	public Estanteria (){
+		ID = -1;
+	}
 
 	//Getters and Setters
 	public int getID() {

@@ -39,6 +39,10 @@ public class Llibre extends Objecte {
 		this.temPrincipal = tPrincipal;
 		temSecundaries = tS;
 	}
+	
+	public Llibre (){
+		super(-1);
+	}
 
 	//All getters and setters
 	public int getID() {

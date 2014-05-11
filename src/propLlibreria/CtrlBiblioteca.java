@@ -405,7 +405,7 @@ public class CtrlBiblioteca {
 		ArrayList<Llibre> aux;
 		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
 		for (int i = 0; i < tS.size(); ++i) {
-			aux = BD.llibresTematica(tS.get(i));
+			aux = tS.get(i).getLlibres();
 			for (int j = 0; j < aux.size(); ++j) {
 				llibresSeccio.add(aux.get(j));
 			}
@@ -424,7 +424,7 @@ public class CtrlBiblioteca {
 	//post: Retorna els llibres continguts dins de la tematica amb Identitificador IDT
 	public static ArrayList<Llibre> consultarLlibresTematica(int IDT) {
 		Tematica consTematica = BD.getTematica(IDT);
-		return BD.llibresTematica(consTematica);
+		return consTematica.getLlibres();
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE

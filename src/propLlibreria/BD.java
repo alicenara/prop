@@ -186,7 +186,7 @@ public class BD {
 	}
 	
 	public static void esborrarArea(Area a){
-		area.remove(a.getID());
+		esborrarAreaID(a.getID());
 	}
 	
 	public static void afegirBibliotecari(Bibliotecari b){
@@ -194,7 +194,7 @@ public class BD {
 	}
 	
 	public static void esborrarBibliotecari(Bibliotecari b){
-		bcari.remove(b.getID());
+		esborrarBibliotecariID(b.getID());
 	}
 	
 	public static void afegirEstanteria(Estanteria e){
@@ -202,7 +202,7 @@ public class BD {
 	}
 	
 	public static void esborrarEstanteria(Estanteria e){
-		est.remove(e.getID());
+		esborrarEstanteriaID(e.getID());
 	}
 	
 	public static void afegirLlibre(Llibre l){
@@ -210,7 +210,7 @@ public class BD {
 	}
 	
 	public static void esborrarLlibre(Llibre l){
-		llibre.remove(l.getID());
+		esborrarLlibreID(l.getID());
 	}
 	
 	public static void afegirSeccio(Seccio s){
@@ -218,7 +218,7 @@ public class BD {
 	}
 	
 	public static void esborrarSeccio(Seccio s){
-		sec.remove(s.getID());
+		esborrarSeccioID(s.getID());
 	}
 	
 	public static void afegirTematica(Tematica t){
@@ -226,80 +226,150 @@ public class BD {
 	}
 	
 	public static void esborrarTematica(Tematica t){
-		tem.remove(t.getID());
+		esborrarTematicaID(t.getID());
 	}
 	
 	//Esborrar per ID
 	
 	public static void esborrarAreaID(int ID){
-		area.remove(ID);
+		area.remove((Object)new Integer(ID));
+	}
+	
+	public static void esborrarBibliotecariID(int ID){
+		bcari.remove((Object)new Integer(ID));
 	}
 	
 	public static void esborrarEstanteriaID(int ID){
-		est.remove(ID);
+		est.remove((Object)new Integer(ID));
 	}
 	
 	
 	public static void esborrarLlibreID(int ID){
-		llibre.remove(ID);
+		llibre.remove((Object)new Integer(ID));
 	}
 	
 	
 	public static void esborrarSeccioID(int ID){
-		sec.remove(ID);
+		sec.remove((Object)new Integer(ID));
 	}
 
 	public static void esborrarTematicaID(int ID){
-		tem.remove(ID);
+		tem.remove((Object)new Integer(ID));
 	}
 
 	
 	//Consultores
 	
-	public static ArrayList<Llibre> llibresTematica(Tematica t) {
-		ArrayList<Llibre> llibresT = t.getLlibres();
-		return llibresT;
-	}
-	
 	public static ArrayList<Tematica> tematiquesSeccio(int IDS) {
-		//TODO
 		ArrayList<Tematica> tematiquesS = new ArrayList<Tematica>();
-		for (int i = 0; i < tem.size(); ++i) {
-			if (tem.get(i).getIDSeccio() == IDS) tematiquesS.add(tem.get(i));
+		Iterator<Integer> iterador = tem.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  if (tem.get(key).getIDSeccio() == IDS) tematiquesS.add(tem.get(key));
 		}
 		return tematiquesS;
 	}
 	
 	public static ArrayList<Seccio> seccionsArea(int IDA) {
 		ArrayList<Seccio> seccionsA = new ArrayList<Seccio>();
-		for (int i = 0; i < sec.size(); ++i) {
-			if (sec.get(i).getIDAreaSeccio() == IDA) seccionsA.add(sec.get(i));
+		Iterator<Integer> iterador = sec.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  if (sec.get(key).getIDAreaSeccio() == IDA) seccionsA.add(sec.get(key));
 		}
 		return seccionsA;
 	}
 	
 	public static ArrayList<Llibre> getAllLlibres() {
-		return llibre;
+		ArrayList<Llibre> allLlibres = new ArrayList<Llibre>();
+		Iterator<Integer> iterador = llibre.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  allLlibres.add(llibre.get(key));
+		}
+		return allLlibres;
 	}
 	
 	public static ArrayList <Estanteria> getAllEstanteries() {
-		return est;
+		ArrayList<Estanteria> allEstanteries = new ArrayList<Estanteria>();
+		Iterator<Integer> iterador = est.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  allEstanteries.add(est.get(key));
+		}
+		return allEstanteries;
 	}
 	
 	public static ArrayList<Area> getAllArees() {
-		return area;
+		ArrayList<Area> allArees = new ArrayList<Area>();
+		Iterator<Integer> iterador = area.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  allArees.add(area.get(key));
+		}
+		return allArees;
 	}
 	
 	public static ArrayList<Bibliotecari> getAllBibliotecaris() {
-		return bcari;
+		ArrayList<Bibliotecari> allBibliotecaris = new ArrayList<Bibliotecari>();
+		Iterator<Integer> iterador = bcari.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  allBibliotecaris.add(bcari.get(key));
+		}
+		return allBibliotecaris;
 	}
 	
 	public static ArrayList<Seccio> getAllSeccions() {
-		return sec;
+		ArrayList<Seccio> allSeccions = new ArrayList<Seccio>();
+		Iterator<Integer> iterador = sec.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  allSeccions.add(sec.get(key));
+		}
+		return allSeccions;
 	}
 	
 	public static ArrayList<Tematica> getAllTematiques() {
-		return tem;
+		ArrayList<Tematica> allTematiques = new ArrayList<Tematica>();
+		Iterator<Integer> iterador = tem.keySet().iterator();
+		Integer key = 0;
+		while(iterador.hasNext()){
+		  key = iterador.next();
+		  allTematiques.add(tem.get(key));
+		}
+		return allTematiques;
+	}
+	
+	public static boolean existeixArea(int ID){
+		return area.containsKey(ID);
+	}
+	
+	public static boolean existeixBibliotecari(int ID){
+		return bcari.containsKey(ID);
+	}
+	
+	public static boolean existeixEstanteria(int ID){
+		return est.containsKey(ID);
+	}
+	
+	public static boolean existeixSeccio(int ID){
+		return sec.containsKey(ID);
+	}
+	
+	public static boolean existeixTematica(int ID){
+		return tem.containsKey(ID);
+	}
+	
+	public static boolean existeixLlibre(int ID){
+		return llibre.containsKey(ID);
 	}
 	
 }
