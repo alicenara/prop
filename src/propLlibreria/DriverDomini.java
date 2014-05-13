@@ -87,9 +87,8 @@ public class DriverDomini {
 	//Gestions
 	
 	public static void modificacioArea() {
-		Area area;
-		String nomArea;
 		int IDA;
+		int indexArea;
 		ArrayList<Area> arees = CtrlBiblioteca.seleccionaAllArees();
 		try {
 			boolean modFeta = false;
@@ -103,24 +102,23 @@ public class DriverDomini {
 				String modificacio = reader.readLine();
 				switch(modificacio) {
 					case "1":
-						System.out.println("Quina area vols modificar?");
-						nomArea = reader.readLine();
-						IDA = CtrlBiblioteca.seleccionaAreaN(nomArea).getID();
+						System.out.println("Introdueix index de l'area que vols modificar.");
+						indexArea = Integer.parseInt(reader.readLine())-1;
+						if (indexArea < 0 || indexArea >= arees.size()) throw new Exception("Index introduit es incorrecte.");
+						IDA = arees.get(indexArea).getID();
 						System.out.println("Introdueix nou nom per l'area");
 						String novaArea = reader.readLine();
+						if(CtrlBiblioteca.seleccionaAreaN(novaArea) != null) throw new Exception("Ja existeix una area amb aquest nom.");
 						CtrlBiblioteca.modificarNomArea(IDA, novaArea);
 						break;
 					case "2":
-						System.out.println("Quina area vols modificar?");
-						nomArea = reader.readLine();
-						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
-						if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
-						else {
-							IDA = area.getID();
-							System.out.println("Quina seccio vols introduir?");	
-							String novaSeccio = reader.readLine();
-							CtrlBiblioteca.afegirSeccio(novaSeccio,IDA);
-						}
+						System.out.println("Introdueix index de l'area que vols modificar.");
+						indexArea = Integer.parseInt(reader.readLine())-1;
+						if (indexArea < 0 || indexArea >= arees.size()) throw new Exception("Index introduit es incorrecte.");
+						IDA = arees.get(indexArea).getID();
+						System.out.println("Quina seccio vols introduir?");	
+						String novaSeccio = reader.readLine();
+						CtrlBiblioteca.afegirSeccio(novaSeccio,IDA);
 						break;
 					case "0":
 							modFeta = true;
@@ -161,7 +159,7 @@ public class DriverDomini {
 						System.out.println("Introdueix nom de la nova area.");
 						nomArea = reader.readLine();
 						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
-						if (area != null) throw new Exception("Ya existe una area amb el nom " + nomArea + ".");
+						if (area != null) throw new Exception("Ja existeix una area amb el nom " + nomArea + ".");
 						else CtrlBiblioteca.afegirArea(nomArea);
 						break;
 					case "2":		//Modificar
@@ -171,11 +169,10 @@ public class DriverDomini {
 						System.out.println("Llistat arees:");
 						arees = CtrlBiblioteca.seleccionaAllArees();
 						PrintArees(arees);
-						System.out.println("Quina area vols eliminar?");
-						nomArea = reader.readLine();
-						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
-						if (area == null) throw new Exception("No existe una area con nombre " + nomArea + ".");
-						else CtrlBiblioteca.eliminarArea(area);
+						System.out.println("Introdueix index de l'area que vols eliminar.");
+						int indexArea = Integer.parseInt(reader.readLine())-1;
+						if (indexArea < 0 || indexArea >= arees.size()) throw new Exception("Index introduit es incorrecte.");
+						CtrlBiblioteca.eliminarArea(arees.get(indexArea));
 						break;
 					case "0":		//Sortir
 						accioFeta = true;
@@ -198,11 +195,10 @@ public class DriverDomini {
 		
 	}
 	
-	public static void modificacioGestio() {
+	public static void modificacioSeccio() {
 		try {
 			int IDS;							//ID Seccio
-			String nomSeccio;
-			Seccio seccio;
+			int indexSeccio;
 			boolean modFeta = false;
 			ArrayList<Seccio> seccions = CtrlBiblioteca.seleccionaAllSeccions();
 			while(!modFeta) {
@@ -217,34 +213,30 @@ public class DriverDomini {
 						for (int i = 0; i < seccions.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
 						}
-						System.out.println("Introdueix la seccio a modificar el nom.");
-						nomSeccio = reader.readLine();
-						seccio = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
-						if (seccio == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
-						else {
-							System.out.println("Introdueix nou nom per la seccio");
-							String nouNomSeccio = reader.readLine();
-							IDS = seccio.getID();
-							CtrlBiblioteca.modificarNomSeccio(IDS, nouNomSeccio);
-						}
+						System.out.println("Introdueix index de la seccio que vols modificar.");
+						indexSeccio = Integer.parseInt(reader.readLine())-1;
+						if (indexSeccio < 0 || indexSeccio >= seccions.size()) throw new Exception("Index introduit es incorrecte.");
+						System.out.println("Introdueix nou nom per la seccio");
+						String nouNomSeccio = reader.readLine();
+						if(CtrlBiblioteca.seleccionaSeccioN(nouNomSeccio) != null) throw new Exception("Ja existeix una seccio amb aquest nom");
+						IDS = seccions.get(indexSeccio).getID();
+						CtrlBiblioteca.modificarNomSeccio(IDS, nouNomSeccio);
 						break;
 					case "2":
 						System.out.println("Llistat seccions:");
 						for (int i = 0; i < seccions.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
 						}
-						System.out.println("Introdueix seccio a afegir-li una tematica");
-						nomSeccio = reader.readLine();
-						seccio = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
-						if (seccio == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
-						else {
-							IDS = seccio.getID();
-							System.out.println("Introdueix nom nova tematica a afegir a la seccio");
-							String nomNovaTematica = reader.readLine();
-							Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomNovaTematica);
-							if (tematica != null) throw new Exception("Ya existe una tematica con este nombre");
-							CtrlBiblioteca.afegirTematica(nomNovaTematica,IDS);
-						}
+						System.out.println("Introdueix index de la seccio que vols modificar.");
+						indexSeccio = Integer.parseInt(reader.readLine())-1;
+						if (indexSeccio < 0 || indexSeccio >= seccions.size()) throw new Exception("Index introduit es incorrecte.");
+						IDS = seccions.get(indexSeccio).getID();
+						System.out.println("Introdueix nom nova tematica a afegir a la seccio");
+						String nomNovaTematica = reader.readLine();
+						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomNovaTematica);
+						if (tematica != null) throw new Exception("Ja existeix una amb aquest nom");
+						CtrlBiblioteca.afegirTematica(nomNovaTematica,IDS);
+						
 						break;
 					case "0":
 						modFeta = true;
@@ -268,7 +260,6 @@ public class DriverDomini {
 	
 	public static void gestioSeccio() {
 		String accio;
-		String nomSeccio;
 		Area area;
 		Seccio seccio;
 		ArrayList<Seccio> seccions;
@@ -297,7 +288,7 @@ public class DriverDomini {
 						}
 						break;
 					case "2":		//Modificar
-						modificacioGestio();
+						modificacioSeccio();
 						break;
 					case "3":		//Eliminar
 						System.out.println("Llistat seccions:");
@@ -305,11 +296,10 @@ public class DriverDomini {
 						for (int i = 0; i < seccions.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
 						}
-						System.out.println("Introdueix seccio a eliminar.");
-						nomSeccio = reader.readLine();
-						Seccio seccioAEliminar = CtrlBiblioteca.seleccionaSeccioN(nomSeccio);
-						if (seccioAEliminar == null) throw new Exception("No existe una seccio con nombre " + nomSeccio + ".");
-						CtrlBiblioteca.eliminarSeccio(seccioAEliminar);
+						System.out.println("Introdueix index de la seccio que vols eliminar.");
+						int indexSeccio = Integer.parseInt(reader.readLine())-1;
+						if (indexSeccio < 0 || indexSeccio >= seccions.size()) throw new Exception("Index introduit es incorrecte.");
+						CtrlBiblioteca.eliminarSeccio(seccions.get(indexSeccio));
 						break;
 					case "0":		//Sortir
 						accioFeta = true;
@@ -332,10 +322,8 @@ public class DriverDomini {
 	}
 
 	public static void modificacioTematica() {
-		String nomTematica;
 		int IDT;
 		String modificacio;
-		Tematica tematica;
 		boolean modFeta = false;
 		while (!modFeta) {
 			try {
@@ -345,13 +333,19 @@ public class DriverDomini {
 				modificacio = reader.readLine();
 				switch(modificacio) {
 					case "1":
-						System.out.println("Quina tematica vols modificar?");
-						nomTematica = reader.readLine();
-						tematica = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
-						if (tematica == null) throw new Exception("No existe una tematica con este nombre");
-						IDT = tematica.getID();										//IDTematica
+						System.out.println("Llistat tematiques:");
+						ArrayList<Tematica> tematiques = CtrlBiblioteca.seleccionaAllTematiques();
+						for (int i = 0; i < tematiques.size(); i++) {
+							System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
+						}
+						System.out.println("Introdueix index de la tematica que vols modificar.");
+						int indexTematica = Integer.parseInt(reader.readLine())-1;
+						if (indexTematica < 0 || indexTematica >= tematiques.size()) throw new Exception("Index introduit es incorrecte.");
+						IDT = tematiques.get(indexTematica).getID();										//IDTematica
 						System.out.println("Introdueix nou nom per la tematica");
 						String nomModTematica = reader.readLine();
+						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomModTematica);
+						if (tematica != null) throw new Exception("Ja existeix una tematica amb aquest nom "+ nomModTematica+ ".");
 						CtrlBiblioteca.modificarNomTematica(IDT,nomModTematica);
 						break;
 					case "0":
@@ -375,8 +369,8 @@ public class DriverDomini {
 	}
 	
 	public static void gestioTematica() {
-		String nomTematica;
 		String accio;
+		ArrayList<Tematica> tematiques;
 		boolean accioFeta = false;
 		while(!accioFeta) {
 			try {
@@ -390,12 +384,19 @@ public class DriverDomini {
 						for (int i = 0; i < seccions.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
 						}
-						String seccio = reader.readLine();
-						int IDS = CtrlBiblioteca.seleccionaSeccioN(seccio).getID();
+						System.out.println("Introdueix index de la seccio a la que vols afegir tematica.");
+						int indexSeccio = Integer.parseInt(reader.readLine())-1;
+						if (indexSeccio < 0 || indexSeccio >= seccions.size()) throw new Exception("Index introduit es incorrecte.");
+						int IDS = seccions.get(indexSeccio).getID();
+						System.out.println("Llistat tematiques:");
+						tematiques = CtrlBiblioteca.seleccionaAllTematiques();
+						for (int i = 0; i < tematiques.size(); i++) {
+							System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
+						}
 						System.out.println("Inserta nom nova tematica.");
 						String novaTematica = reader.readLine();
 						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(novaTematica);
-						if (tematica != null) throw new Exception("Ya existe una tematica con nombre "+ novaTematica+ ".");
+						if (tematica != null) throw new Exception("Ja existeix una tematica amb aquest nom "+ novaTematica+ ".");
 						CtrlBiblioteca.afegirTematica(novaTematica,IDS);
 						break;
 					case "2":		//Modificar
@@ -403,15 +404,14 @@ public class DriverDomini {
 						break;
 					case "3":		//Eliminar
 						System.out.println("Llistat tematiques:");
-						ArrayList<Tematica> tematiques = CtrlBiblioteca.seleccionaAllTematiques();
+						tematiques = CtrlBiblioteca.seleccionaAllTematiques();
 						for (int i = 0; i < tematiques.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
 						}
-						System.out.println("Introdueix tematica a eliminar.");
-						nomTematica = reader.readLine();
-						Tematica tematicaAEliminar = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
-						if (tematicaAEliminar == null) throw new Exception("No existe una tematica con este nombre");
-						CtrlBiblioteca.eliminarTematica(tematicaAEliminar);
+						System.out.println("Introdueix index de la tematica que vols eliminar.");
+						int indexTematica = Integer.parseInt(reader.readLine())-1;
+						if (indexTematica < 0 || indexTematica >= tematiques.size()) throw new Exception("Index introduit es incorrecte.");
+						CtrlBiblioteca.eliminarTematica(tematiques.get(indexTematica));
 						break;
 					case "0":		//Sortir
 						accioFeta = true;
@@ -440,54 +440,49 @@ public class DriverDomini {
 		try {
 			System.out.println("Introdueix titol del llibre a modificar:");
 			String titolLlibre = reader.readLine();
-			String nomTemSecMod;
-			Tematica tPrincipalMod;
 			Llibre llibre = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
 			if (llibre == null) throw new Exception ("No existeixen llibres amb titol " + titolLlibre + ".");
 			int IDL = llibre.getID();
 			int IDT;
+			int indexTematica;
 			ArrayList<Tematica> tematiques = CtrlBiblioteca.seleccionaAllTematiques();
-			ArrayList<Tematica> temSecLlibre;
+			ArrayList<Tematica> temSecLlibre = llibre.getTematiquesSecundaries();
 			boolean modFeta = false;
 			while(!modFeta) {
 				menuModificacioLlibre();
 				String modificacio = reader.readLine();
 				switch (modificacio) {
 					case "1":
-						System.out.println("Introdueix nova tematica principal per el llibre.");
 						System.out.println("Llistat tematiques:");
 						for (int i = 0; i < tematiques.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
 						}
-						String nomTematica = reader.readLine();
-						tPrincipalMod = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
-						if (tPrincipalMod == null) throw new Exception("No existe una tematica con este nombre");
-						CtrlBiblioteca.modificarTPrincipalLlibre(IDL,tPrincipalMod);
+						System.out.println("Introdueix index de la tematica que vols que sigui tematica principal del llibre.");
+						indexTematica = Integer.parseInt(reader.readLine())-1;
+						if (indexTematica < 0 || indexTematica >= tematiques.size()) throw new Exception("Index introduit es incorrecte.");
+						CtrlBiblioteca.modificarTPrincipalLlibre(IDL,tematiques.get(indexTematica));
 						break;
 					case "2":
-						System.out.println("Introdueix nova tematica secundaria per el llibre.");
-						temSecLlibre = llibre.getTematiquesSecundaries();
 						System.out.println("El llibre " + titolLlibre + "té aquestes tematiques secundaries:");
 						for (int i = 0; i < temSecLlibre.size(); i++) System.out.println("\t  · "+ temSecLlibre.get(i).getNomTematica());
 						System.out.println("Llistat tematiques:");
 						for (int i = 0; i < tematiques.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
 						}
-						nomTemSecMod = reader.readLine();
-						tPrincipalMod = CtrlBiblioteca.seleccionaTematicaN(nomTemSecMod);
-						if (tPrincipalMod == null) throw new Exception("No existe una tematica con este nombre");
-						IDT = tPrincipalMod.getID();
-						CtrlBiblioteca.afegirTSecundaria(IDL, IDT);
+						System.out.println("Introdueix index de la tematica que vols afegir com a secundaria.");
+						indexTematica = Integer.parseInt(reader.readLine())-1;
+						if (indexTematica < 0 || indexTematica >= tematiques.size()) throw new Exception("Index introduit es incorrecte.");
+						CtrlBiblioteca.afegirTSecundaria(IDL, tematiques.get(indexTematica).getID());
 						break;
 					case "3":
 						temSecLlibre = llibre.getTematiquesSecundaries();
 						System.out.println("El llibre " + titolLlibre + "té aquestes tematiques secundaries:");
-						for (int i = 0; i < temSecLlibre.size(); i++) System.out.println("\t  · "+ temSecLlibre.get(i).getNomTematica());
-						System.out.println("Introdueix la tematica secundaria a eliminar del llibre.");
-						nomTemSecMod = reader.readLine();
-						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTemSecMod);
-						if (tematica == null) throw new Exception("No existe una tematica con este nombre");
-						IDT = tematica.getID();
+						for (int i = 0; i < temSecLlibre.size(); i++) System.out.println("\t  "+ i+1 + " " + temSecLlibre.get(i).getNomTematica());
+						System.out.println("Introdueix la index de la tematica secundaria a eliminar del llibre.");
+						indexTematica = Integer.parseInt(reader.readLine())-1;
+						if (indexTematica < 0 || indexTematica >= tematiques.size()) throw new Exception("Index introduit es incorrecte.");
+						indexTematica = Integer.parseInt(reader.readLine());
+						IDT = temSecLlibre.get(indexTematica).getID();
 						CtrlBiblioteca.esborrarTSecundaria(IDL, IDT);
 						break;
 					case "4":
@@ -710,7 +705,7 @@ public class DriverDomini {
 				menuConsulta();
 				consulta = reader.readLine();
 				switch(consulta) {
-						case "1":
+						case "1":									//Area
 							System.out.println("Llistat arees:");
 							PrintArees(arees);
 							System.out.println("Introdueix l'index de l'area a consultar.Si no, tecleja 0.");
@@ -739,7 +734,7 @@ public class DriverDomini {
 								}
 							}
 							break;
-						case "2":
+						case "2":											//Seccio
 							seccions = CtrlBiblioteca.seleccionaAllSeccions();
 							for (int i = 0; i < seccions.size(); i++) {
 								System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
@@ -761,7 +756,7 @@ public class DriverDomini {
 								}
 							}
 							break;
-						case "3":
+						case "3":											//Tematica
 							tematiques = CtrlBiblioteca.seleccionaAllTematiques();
 							for (int i = 0; i < tematiques.size(); i++) {
 								System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
@@ -776,7 +771,7 @@ public class DriverDomini {
 								}
 							}
 							break;
-						case "4":
+						case "4":											//Llibre
 							System.out.println("Busqueda per: ");
 							System.out.println("\t 1 Titol");
 							System.out.println("\t 2 Autor");
@@ -823,6 +818,7 @@ public class DriverDomini {
 									break;
 								case "6":
 									System.out.println("Introdueix tematica principal:");							//consulta per tematica
+									//TODO
 									nomTematica = reader.readLine();
 									Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
 									if (tematica == null) throw new Exception("No existe una tematica con este nombre");
@@ -835,20 +831,34 @@ public class DriverDomini {
 									break;
 							}
 							break;
-						case "5":					
+						case "5":											//Estanteria		
 							System.out.println("Llistat estanteries");
-							//llistat
 							ArrayList<Estanteria> estanteries = CtrlBiblioteca.seleccionaAllEstanteries();
 							for (int i = 0; i < estanteries.size(); i++) {				//Check this, redundante
-								System.out.println(estanteries.get(i).getID());			//
-							}															//
-							System.out.println("Quina estanteria vols consultar?");
-							String estanteria = reader.readLine();
-							int IDE = Integer.parseInt(estanteria);
-							if (estanteria == null) throw new Exception("No existe una estanteria con ID " + IDE + ".");
-							llibres = CtrlBiblioteca.consultarLlibresEstanteria(IDE);
-							if (llibres.size() == 0) System.out.println("No conte cap llibre la estanteria " + IDE + ".");
-							else  for (int i = 0; i < llibres.size(); i++) printlnfoLlibre(llibres.get(i));      //llistat llibres estanteria
+								System.out.println("\t " + estanteries.get(i).getID());			//
+							}
+							System.out.println("Introdueix index de l'estanteria a consultar. Si no, tecleja 0.");
+							int IDE = Integer.parseInt(reader.readLine());
+							if (IDE != 0) {
+								if (CtrlBiblioteca.existeixEstanteria(IDE)) throw new Exception("No existe una estanteria con ID " + IDE + ".");
+								Estanteria e = CtrlBiblioteca.consultaEstanteria(IDE);
+								System.out.println("Que vols consultar?");
+								System.out.println("\t 1 Consultar propietats estanteria.");
+								System.out.println("\t 2 Consultar llibres estanteria.");
+								switch (reader.readLine()) {
+									case "1":
+										System.out.println("L'estanteria amb id = " + IDE + " te llargada = " + e.getLlargada() + " i esta situada a (" + e.getPosX() + ","+ e.getPosY() + ")" );
+										break;
+									case "2":
+										llibres = CtrlBiblioteca.consultarLlibresEstanteria(IDE);
+										if (llibres.size() == 0) System.out.println("No conte cap llibre la estanteria " + IDE + ".");
+										else  for (int i = 0; i < llibres.size(); i++) printlnfoLlibre(llibres.get(i));      //llistat llibres estanteria
+										break;
+									default:
+										
+										break;
+								}
+							}
 							break;
 						case "0":
 							consultaFeta = true;

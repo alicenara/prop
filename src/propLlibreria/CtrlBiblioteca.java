@@ -72,6 +72,7 @@ public class CtrlBiblioteca {
 	//pre: Existeix una Area tal que el seu Identificador = ID
 	//post: L'Area amb identificador ID te nom nomA
 	public static void modificarNomArea(int ID, String nomA) {
+		
 		Area modArea = BD.getArea(ID);
 		modArea.setNomArea(nomA);
 	}
@@ -302,6 +303,7 @@ public class CtrlBiblioteca {
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: La Estanteria amb identificador = ID ha estat eliminada
 	public static void eliminarEstanteria(int IDE) {
+		
 		BD.esborrarEstanteriaID(IDE);
 	}
 	
@@ -432,5 +434,29 @@ public class CtrlBiblioteca {
 	public static ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = BD.getEstanteria(IDE);
 		return consEstanteria.getLlibres();
+	}
+	
+	public static boolean existeixArea (int ID){
+		return BD.existeixArea(ID);
+	}
+	
+	public static boolean existeixBibliotecari(int ID){
+		return BD.existeixBibliotecari(ID);
+	}
+	
+	public static boolean existeixEstanteria(int ID){
+		return BD.existeixEstanteria(ID);
+	}
+	
+	public static boolean existeixSeccio(int ID){
+		return BD.existeixSeccio(ID);
+	}
+	
+	public static boolean existeixTematica(int ID){
+		return BD.existeixTematica(ID);
+	}
+	
+	public static boolean existeixLlibre(int ID){
+		return BD.existeixLlibre(ID);
 	}
 }
