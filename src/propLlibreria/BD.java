@@ -86,18 +86,100 @@ public class BD {
 			for (int j=3; j<prop.length; j++){
 				llib.add(Integer.parseInt(prop[j]));
 			}
-			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llibres);
+			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llib);
 			tem.put(aux.getID(),aux);
 		}
         }
 	
 	public static void desarBD(){
-		CtrlBD.desarTotesArees(area);
-		CtrlBD.desarTotsBibliotecaris(bcari);
-		CtrlBD.desarTotesEstanteries(est);
-		CtrlBD.desarTotsLlibres(llibre);
-		CtrlBD.desarTotesSeccions(sec);
-		CtrlBD.desarTotesTematiques(tem);
+            
+            // AREA
+            
+                ArrayList<String[]> a = new ArrayList<String[]>();
+		for(int i=0; i<area.size();i++){
+			String[] aux = {Integer.toString(area.get(i).getID()),area.get(i).getNomArea()};
+			a.add(aux);
+		}
+                CtrlBD.desarTotesArees(a);
+                
+            // BIBLIOTECARI
+                
+                ArrayList<String[]> b = new ArrayList<String[]>();
+		for(int i=0; i<bcari.size();i++){
+			String[] aux = {Integer.toString(bcari.get(i).getID()),bcari.get(i).getContrasenya()};
+			b.add(aux);
+		}                
+		CtrlBD.desarTotsBibliotecaris(b);
+                
+            // ESTANTERIA
+                ArrayList<String[]> e = new ArrayList<String[]>();
+		for(int i=0; i<est.size();i++){
+			ArrayList<String> aux = new ArrayList<String>();
+			aux.add(Integer.toString(est.get(i).getID()));
+			aux.add(Integer.toString(est.get(i).getNumFiles()));
+			aux.add(Integer.toString(est.get(i).getLlargada()));
+			aux.add(Integer.toString(est.get(i).getPosX()));
+			aux.add(Integer.toString(est.get(i).getPosY()));
+			
+			ArrayList<Llibre> llibreAux = est.get(i).getLlibres();
+			for(int j=0; j<llibreAux.size();j++){
+				aux.add(Integer.toString(llibreAux.get(j).getID()));
+			}
+			String[] result=null;
+			aux.toArray(result);
+			e.add(result);
+		}
+		CtrlBD.desarTotesEstanteries(e);
+                
+            // LLIBRE
+                ArrayList<String[]> l = new ArrayList<String[]>();
+		for(int i=0; i<llibre.size();i++){			
+			ArrayList<String> aux = new ArrayList<String>();
+			aux.add(Integer.toString(llibre.get(i).getID()));
+			aux.add(llibre.get(i).getIsbn());
+			aux.add(llibre.get(i).getTitol());
+			aux.add(llibre.get(i).getAutor());
+			aux.add(llibre.get(i).getEditorial());
+			aux.add(Integer.toString(llibre.get(i).getAny()));
+			aux.add(Integer.toString(llibre.get(i).getEdicio()));
+			aux.add(Integer.toString(llibre.get(i).getTemPrincipal().getID()));
+			
+			ArrayList<Tematica> temAux = llibre.get(i).getTematiquesSecundaries();
+			for(int j=0; j<temAux.size();j++){
+				aux.add(Integer.toString(temAux.get(j).getID()));
+			}
+			
+			String[] result=null;
+			aux.toArray(result);			
+			l.add(result);
+		}
+		CtrlBD.desarTotsLlibres(l);
+                
+            //SECCIO 
+                ArrayList<String[]> s = new ArrayList<String[]>();
+		for(int i=0; i<sec.size();i++){
+			String[] aux = {Integer.toString(sec.get(i).getID()),sec.get(i).getNomSeccio(),Integer.toString(sec.get(i).getIDAreaSeccio())};
+			s.add(aux);
+		}
+		CtrlBD.desarTotesSeccions(s);
+                
+            // TEMATICA
+                ArrayList<String[]> t = new ArrayList<String[]>();
+		for(int i=0; i<tem.size();i++){			
+			ArrayList<String> aux = new ArrayList<String>();
+			aux.add(Integer.toString(tem.get(i).getID()));
+			aux.add(tem.get(i).getNomTematica());
+			aux.add(Integer.toString(tem.get(i).getIDSeccio()));
+			
+			ArrayList<Llibre> temAux = tem.get(i).getLlibres();
+			for(int j=0; j<temAux.size();j++){
+				aux.add(Integer.toString(temAux.get(j).getID()));
+			}			
+			String[] result=null;
+			aux.toArray(result);			
+			t.add(result);
+		}
+		CtrlBD.desarTotesTematiques(t);
 	}
 	
 	//Ultima ID Entitats
