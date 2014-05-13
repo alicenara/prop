@@ -9,41 +9,7 @@ public class CtrlBD {
 	private static final int ESTANTERIA = 4;
 	private static final int SECCIO = 5;
 	
-	/*
-	//CLASSE LLIBRE 
-	
-	public static int obtenirUltimaIDLlibre(){
-		GestioDades g = new GestioDades();
-		return g.llegirUltimaId(LLIBRE)+1;
-	}
-	
-	public static Tematica obtenirTemPrinLlibre(int id){
-		GestioDades g = new GestioDades();
-		String[] l = g.llegirObjecte(id,LLIBRE);
-		Tematica tem=null;
-		if(l != null){
-			String[] t = g.llegirObjecte(Integer.parseInt(l[0]),TEMATICA);
-			if (t != null)	tem= new Tematica(Integer.parseInt(t[0]),t[1],Integer.parseInt(t[2]));
-		}
-		return tem;
-	}
-	
-	
-	//CLASSE TEMATICA
-	
-	public static int obtenirUltimaIDTematica(){
-		GestioDades g = new GestioDades();
-		return g.llegirUltimaId(TEMATICA)+1;
-	}
-	
-	public static Tematica obtenirTematica(int id){
-		GestioDades g = new GestioDades();
-		String[] t = g.llegirObjecte(id,TEMATICA);
-		Tematica tem=null;
-		if(t != null) tem= new Tematica(Integer.parseInt(t[0]),t[1],Integer.parseInt(t[2]));
-		return tem;
-	}
-*/
+
 	//CLASSE BD
 	
 	public static ArrayList<String[]> obtenirTotesArees(){

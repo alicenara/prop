@@ -22,10 +22,6 @@ public class Seccio {
 		this.ID = ID;
 	}
 	
-	public Seccio (){
-		ID = -1;
-	}
-	
 	//pre:
 	//post: retorna el id de seccio del parametre implicit
 	public int getID(){
