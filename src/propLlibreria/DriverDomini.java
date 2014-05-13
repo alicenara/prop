@@ -495,8 +495,8 @@ public class DriverDomini {
 						CtrlBiblioteca.modificarTPrincipalLlibre(IDL,tematiques.get(indexTematica));
 						break;
 					case "2":
-						System.out.println("El llibre " + titolLlibre + "té aquestes tematiques secundaries:");
-						for (int i = 0; i < temSecLlibre.size(); i++) System.out.println("\t  · "+ temSecLlibre.get(i).getNomTematica());
+						System.out.println("El llibre " + titolLlibre + "tï¿½ aquestes tematiques secundaries:");
+						for (int i = 0; i < temSecLlibre.size(); i++) System.out.println("\t  ï¿½ "+ temSecLlibre.get(i).getNomTematica());
 						System.out.println("Llistat tematiques:");
 						for (int i = 0; i < tematiques.size(); i++) {
 							System.out.println("\t " + (i+1) + " " + tematiques.get(i).getNomTematica());
@@ -508,7 +508,7 @@ public class DriverDomini {
 						break;
 					case "3":
 						temSecLlibre = llibre.getTematiquesSecundaries();
-						System.out.println("El llibre " + titolLlibre + "té aquestes tematiques secundaries:");
+						System.out.println("El llibre " + titolLlibre + "tï¿½ aquestes tematiques secundaries:");
 						for (int i = 0; i < temSecLlibre.size(); i++) System.out.println("\t  "+ i+1 + " " + temSecLlibre.get(i).getNomTematica());
 						System.out.println("Introdueix la index de la tematica secundaria a eliminar del llibre.");
 						indexTematica = Integer.parseInt(reader.readLine())-1;
@@ -577,7 +577,7 @@ public class DriverDomini {
 				case "1":		//Insertar
 					try {
 						System.out.println("Introdueix el valors del nou llibre.");
-						System.out.println("Recorda que els valors per introduir un llibre son els segï¿½ents: \n isbn, titol, autor, editorial, any, edicio, tematica principal(Escriu-ho tot seguit).");
+						System.out.println("Recorda que els valors per introduir un llibre son els segï¿½ï¿½ï¿½ents: \n isbn, titol, autor, editorial, any, edicio, tematica principal(Escriu-ho tot seguit).");
 						String input = reader.readLine();
 						String [] infoLlibre = input.split(" ");
 						if (infoLlibre.length < 7 || infoLlibre.length > 7 ) throw new Exception("Has escrito una cantidad de atributos incorrectos");

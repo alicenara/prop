@@ -19,10 +19,6 @@ public class Area {
 		this.ID = ID;
 	}
 	
-	public Area (){
-		ID = -1;
-	}
-	
 	//pre:
 	//post: retorna nom de l'area
 	public String getNomArea() {
