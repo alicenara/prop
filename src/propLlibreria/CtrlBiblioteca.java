@@ -72,7 +72,6 @@ public class CtrlBiblioteca {
 	//pre: Existeix una Area tal que el seu Identificador = ID
 	//post: L'Area amb identificador ID te nom nomA
 	public static void modificarNomArea(int ID, String nomA) {
-		
 		Area modArea = BD.getArea(ID);
 		modArea.setNomArea(nomA);
 	}
