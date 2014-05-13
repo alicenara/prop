@@ -46,91 +46,34 @@ public class CtrlBD {
 */
 	//CLASSE BD
 	
-	public static ArrayList<Area> obtenirTotesArees(){
+	public static ArrayList<String[]> obtenirTotesArees(){
 		GestioDades g = new GestioDades();
-		ArrayList<String[]> arees= g.llegirTotsObjectes(AREA);
-		ArrayList<Area> a = new ArrayList<Area>();
-		for (int i=0; i<arees.size();i++){
-			Area aux;
-			String[] prop=arees.get(i);
-			aux = new Area(Integer.parseInt(prop[0]),prop[1]);
-			a.add(aux);
-		}
-		return a;
-	}	
-	public static ArrayList<Bibliotecari> obtenirTotsBcaris(){
+		return g.llegirTotsObjectes(AREA);
+        }
+        
+	public static ArrayList<String[]> obtenirTotsBcaris(){
 		GestioDades g = new GestioDades();
-		ArrayList<String[]> persones= g.llegirTotsObjectes(BIBLIOTECARI);
-		ArrayList<Bibliotecari> b = new ArrayList<Bibliotecari>();
-		for (int i=0; i<persones.size();i++){
-			Bibliotecari aux;
-			String[] prop=persones.get(i);
-			aux = new Bibliotecari(Integer.parseInt(prop[0]), prop[1]);
-			b.add(aux);
-		}
-		return b;
+		return g.llegirTotsObjectes(BIBLIOTECARI);		
 	}
-	public static ArrayList<Estanteria> obtenirTotesEstanteries(){
+        
+	public static ArrayList<String[]> obtenirTotesEstanteries(){
 		GestioDades g = new GestioDades();
-		ArrayList<String[]> est= g.llegirTotsObjectes(ESTANTERIA);
-		ArrayList<Estanteria> e = new ArrayList<Estanteria>();
-		for (int i=0; i<est.size();i++){
-			Estanteria aux;
-			String[] prop=est.get(i);
-			ArrayList<Integer> llibres = new ArrayList<Integer>();
-			for (int j=5; j<prop.length; j++){
-				llibres.add(Integer.parseInt(prop[j]));
-			}
-			aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]),llibres);
-			e.add(aux);
-		}
-		return e;
+		return g.llegirTotsObjectes(ESTANTERIA);		
 	}
-	public static ArrayList<Llibre> obtenirTotsLlibres(){
+        
+	public static ArrayList<String[]> obtenirTotsLlibres(){
 		GestioDades g = new GestioDades();
-		ArrayList<String[]> llibres= g.llegirTotsObjectes(LLIBRE);
-		ArrayList<Llibre> l = new ArrayList<Llibre>();
-		for (int i=0; i<llibres.size();i++){
-			Llibre aux;
-			String[] prop=llibres.get(i);
-			ArrayList<Integer> temSecun = new ArrayList<Integer>();
-			for (int j=8; j<prop.length; j++){
-				temSecun.add(Integer.parseInt(prop[j]));
-			}
-			aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]),temSecun);
-			l.add(aux);
-		}
-		return l;
+		return g.llegirTotsObjectes(LLIBRE);		
 	}
 	
-	public static ArrayList<Seccio> obtenirTotesSec(){
+	public static ArrayList<String[]> obtenirTotesSec(){
 		GestioDades g = new GestioDades();
-		ArrayList<String[]> sec= g.llegirTotsObjectes(SECCIO);
-		ArrayList<Seccio> s = new ArrayList<Seccio>();
-		for (int i=0; i<sec.size();i++){
-			Seccio aux;
-			String[] prop=sec.get(i);
-			aux = new Seccio(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
-			s.add(aux);
-		}
-		return s;
+		return g.llegirTotsObjectes(SECCIO);		
 	}
 	
-	public static ArrayList<Tematica> obtenirTotesTem(){
+	public static ArrayList<String[]> obtenirTotesTem(){
 		GestioDades g = new GestioDades();
-		ArrayList<String[]> tem= g.llegirTotsObjectes(TEMATICA);
-		ArrayList<Tematica> t = new ArrayList<Tematica>();
-		for (int i=0; i<tem.size();i++){
-			Tematica aux;
-			String[] prop=tem.get(i);
-			ArrayList<Integer> llibres = new ArrayList<Integer>();
-			for (int j=3; j<prop.length; j++){
-				llibres.add(Integer.parseInt(prop[j]));
-			}
-			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llibres);
-			t.add(aux);
-		}
-		return t;
+		return g.llegirTotsObjectes(TEMATICA);		
 	}
 	
 	public static boolean desarTotesArees(ArrayList<Area> arees){
