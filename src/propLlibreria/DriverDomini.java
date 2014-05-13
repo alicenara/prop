@@ -147,12 +147,12 @@ public class DriverDomini {
 		Area area;
 		ArrayList<Area> arees;
 		boolean accioFeta = false;
-		try {
-			while(!accioFeta) {
-				menuGestio2();
-				accio = reader.readLine();
-				switch(accio) {
-					case "1":		//Insertar
+		while(!accioFeta) {
+			menuGestio2();
+			accio = reader.readLine();
+			switch(accio) {
+				case "1":		//Insertar
+					try {
 						System.out.println("Llistat arees:");
 						arees = CtrlBiblioteca.seleccionaAllArees();
 						PrintArees(arees);
@@ -161,11 +161,22 @@ public class DriverDomini {
 						area = CtrlBiblioteca.seleccionaAreaN(nomArea);
 						if (area != null) throw new Exception("Ja existeix una area amb el nom " + nomArea + ".");
 						else CtrlBiblioteca.afegirArea(nomArea);
-						break;
-					case "2":		//Modificar
-						modificacioArea();
-						break;
-					case "3":		//Eliminar
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					break;
+				case "2":		//Modificar
+					modificacioArea();
+					break;
+				case "3":		//Eliminar
+					try {
 						System.out.println("Llistat arees:");
 						arees = CtrlBiblioteca.seleccionaAllArees();
 						PrintArees(arees);
@@ -173,26 +184,25 @@ public class DriverDomini {
 						int indexArea = Integer.parseInt(reader.readLine())-1;
 						if (indexArea < 0 || indexArea >= arees.size()) throw new Exception("Index introduit es incorrecte.");
 						CtrlBiblioteca.eliminarArea(arees.get(indexArea));
-						break;
-					case "0":		//Sortir
-						accioFeta = true;
-						break;
-					default: 
-						entradaIncorrecta();
-						break;
-				}
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					break;
+				case "0":		//Sortir
+					accioFeta = true;
+					break;
+				default: 
+					entradaIncorrecta();
+					break;
 			}
 		}
-		catch(RuntimeException re) {
-			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
-		}
-		catch (IOException io) {
-			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-		}
-		catch (Exception e) {
-			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
-		}
-		
 	}
 	
 	public static void modificacioSeccio() {
@@ -265,11 +275,11 @@ public class DriverDomini {
 		ArrayList<Seccio> seccions;
 		boolean accioFeta = false;
 		while(!accioFeta) {
-			try {
 				menuGestio2();
 				accio = reader.readLine();
 				switch(accio) {
 					case "1":		//Insertar
+					try {
 						System.out.println("Llistat seccions:");
 						seccions = CtrlBiblioteca.seleccionaAllSeccions();
 						for (int i = 0; i < seccions.size(); i++) {
@@ -286,20 +296,41 @@ public class DriverDomini {
 							if (seccio != null) throw new Exception("Ya existe una seccio con nombre " + novaSeccio + ".");
 							CtrlBiblioteca.afegirSeccio(novaSeccio, area.getID());
 						}
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
 						break;
 					case "2":		//Modificar
 						modificacioSeccio();
 						break;
 					case "3":		//Eliminar
-						System.out.println("Llistat seccions:");
-						seccions = CtrlBiblioteca.seleccionaAllSeccions();
-						for (int i = 0; i < seccions.size(); i++) {
-							System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
+						try {
+							System.out.println("Llistat seccions:");
+							seccions = CtrlBiblioteca.seleccionaAllSeccions();
+							for (int i = 0; i < seccions.size(); i++) {
+								System.out.println("\t " + (i+1) + " " + seccions.get(i).getNomSeccio());
+							}
+							System.out.println("Introdueix index de la seccio que vols eliminar.");
+							int indexSeccio = Integer.parseInt(reader.readLine())-1;
+							if (indexSeccio < 0 || indexSeccio >= seccions.size()) throw new Exception("Index introduit es incorrecte.");
+							CtrlBiblioteca.eliminarSeccio(seccions.get(indexSeccio));
 						}
-						System.out.println("Introdueix index de la seccio que vols eliminar.");
-						int indexSeccio = Integer.parseInt(reader.readLine())-1;
-						if (indexSeccio < 0 || indexSeccio >= seccions.size()) throw new Exception("Index introduit es incorrecte.");
-						CtrlBiblioteca.eliminarSeccio(seccions.get(indexSeccio));
+						catch(RuntimeException re) {
+							System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+						}
+						catch (IOException io) {
+							System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+						}
+						catch (Exception e) {
+							System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+						}
 						break;
 					case "0":		//Sortir
 						accioFeta = true;
@@ -308,16 +339,6 @@ public class DriverDomini {
 						entradaIncorrecta();
 						break;
 				}
-			}
-			catch(RuntimeException re) {
-				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
-			}
-			catch (IOException io) {
-				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-			}
-			catch (Exception e) {
-				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
-			}
 		}
 	}
 
@@ -373,11 +394,11 @@ public class DriverDomini {
 		ArrayList<Tematica> tematiques;
 		boolean accioFeta = false;
 		while(!accioFeta) {
-			try {
-				menuGestio2();
-				accio = reader.readLine();
-				switch(accio) {
-					case "1":		//Insertar
+			menuGestio2();
+			accio = reader.readLine();
+			switch(accio) {
+				case "1":		//Insertar
+					try {
 						System.out.println("A quina seccio pertany la nova tematica?");
 						System.out.println("Llistat seccions:");
 						ArrayList<Seccio> seccions = CtrlBiblioteca.seleccionaAllSeccions();
@@ -398,11 +419,22 @@ public class DriverDomini {
 						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(novaTematica);
 						if (tematica != null) throw new Exception("Ja existeix una tematica amb aquest nom "+ novaTematica+ ".");
 						CtrlBiblioteca.afegirTematica(novaTematica,IDS);
-						break;
-					case "2":		//Modificar
-						modificacioTematica();
-						break;
-					case "3":		//Eliminar
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					break;
+				case "2":		//Modificar
+					modificacioTematica();
+					break;
+				case "3":		//Eliminar
+					try {
 						System.out.println("Llistat tematiques:");
 						tematiques = CtrlBiblioteca.seleccionaAllTematiques();
 						for (int i = 0; i < tematiques.size(); i++) {
@@ -412,23 +444,23 @@ public class DriverDomini {
 						int indexTematica = Integer.parseInt(reader.readLine())-1;
 						if (indexTematica < 0 || indexTematica >= tematiques.size()) throw new Exception("Index introduit es incorrecte.");
 						CtrlBiblioteca.eliminarTematica(tematiques.get(indexTematica));
-						break;
-					case "0":		//Sortir
-						accioFeta = true;
-						break;
-					default: 
-						entradaIncorrecta();
-						break;
-				}
-			}
-			catch(RuntimeException re) {
-				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
-			}
-			catch (IOException io) {
-				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-			}
-			catch (Exception e) {
-				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					break;
+				case "0":		//Sortir
+					accioFeta = true;
+					break;
+				default: 
+					entradaIncorrecta();
+					break;
 			}
 		}
 	}
@@ -539,11 +571,11 @@ public class DriverDomini {
 		boolean accioFeta = false;
 		String titolLlibre;
 		while(!accioFeta) {
-			try {
-				menuGestio2();
-				accio = reader.readLine();
-				switch(accio) {
-					case "1":		//Insertar
+			menuGestio2();
+			accio = reader.readLine();
+			switch(accio) {
+				case "1":		//Insertar
+					try {
 						System.out.println("Introdueix el valors del nou llibre.");
 						System.out.println("Recorda que els valors per introduir un llibre son els seg�ents: \n isbn, titol, autor, editorial, any, edicio, tematica principal(Escriu-ho tot seguit).");
 						String input = reader.readLine();
@@ -556,33 +588,44 @@ public class DriverDomini {
 						Tematica tPrincipal = CtrlBiblioteca.seleccionaTematicaN(nomTematica);
 						if (tPrincipal == null) throw new Exception("No existe una tematica con este nombre");
 						CtrlBiblioteca.afegirLlibre(infoLlibre[0], titolLlibre, infoLlibre[2],infoLlibre[3],Integer.parseInt(infoLlibre[4]),Integer.parseInt(infoLlibre[5]), tPrincipal);
-						break;
-					case "2":		//Modificar
-						modificacioLlibre();
-						break;
-					case "3":		//Eliminar
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					break;
+				case "2":		//Modificar
+					modificacioLlibre();
+					break;
+				case "3":		//Eliminar
+					try {
 						System.out.println("Introdueix el titol del llibre a eliminar");
 						titolLlibre = reader.readLine();
 						Llibre llibreAEliminar = CtrlBiblioteca.seleccionaLlibreT(titolLlibre);
 						if (llibreAEliminar == null) throw new Exception ("No existeix cap llibre amb titol " + titolLlibre + ".");
 						CtrlBiblioteca.eliminarLlibre(llibreAEliminar);
-						break;
-					case "0":		//Sortir
-						accioFeta = true;
-						break;
-					default: 
-						entradaIncorrecta();
-						break;
-				}
-			}
-			catch(RuntimeException re) {
-				System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
-			}
-			catch (IOException io) {
-				System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-			}
-			catch (Exception e) {
-				System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					catch(RuntimeException re) {
+						System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+					}
+					catch (IOException io) {
+						System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+					}
+					catch (Exception e) {
+						System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+					}
+					break;
+				case "0":		//Sortir
+					accioFeta = true;
+					break;
+				default: 
+					entradaIncorrecta();
+					break;
 			}
 		}
 	}
@@ -640,47 +683,60 @@ public class DriverDomini {
 	public static void gestioEstanteria() {
 		String accio;
 		boolean accioFeta = false;
-		try {
 			while(!accioFeta) {
 				menuGestio2();
 				accio = reader.readLine();
 				switch(accio) {
 					case "1":		//Insertar
-						System.out.println("Inserta numero de files de la nova estanteria, la seva llarga i la seva colocacio en el eix x i y en aquest ordre.");
-						String paraula = reader.readLine();
-						String[] input = paraula.split(" ");
-						if (input.length > 4) throw new Exception("Son nomes 4 elements\n");
-						if (Integer.parseInt(input[2]) < 0 && Integer.parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius. \n");
-						CtrlBiblioteca.afegirEstanteria(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2]),Integer.parseInt(input[3]));
+						try {
+							System.out.println("Inserta numero de files de la nova estanteria, la seva llarga i la seva colocacio en el eix x i y en aquest ordre.");
+							String paraula = reader.readLine();
+							String[] input = paraula.split(" ");
+							if (input.length > 4) throw new Exception("Son nomes 4 elements\n");
+							if (Integer.parseInt(input[2]) < 0 && Integer.parseInt(input[3]) < 0 ) throw new Exception("Els eixos x i y son positius. \n");
+							CtrlBiblioteca.afegirEstanteria(Integer.parseInt(input[0]), Integer.parseInt(input[1]), Integer.parseInt(input[2]),Integer.parseInt(input[3]));
+						}
+						catch(RuntimeException re) {
+							System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+						}
+						catch (IOException io) {
+							System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+						}
+						catch (Exception e) {
+							System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+						}
 						break;
 					case "2":		//Modificar
 						modificacioEstanteria();
 						break;
 					case "3":		//Eliminar
-						System.out.println("Inserta ID de l'estanteria a eliminar:");
-						int IDE = Integer.parseInt(reader.readLine());
-						Estanteria estanteriaAEliminar= CtrlBiblioteca.consultaEstanteria(IDE);
-					    if (estanteriaAEliminar == null) throw new Exception("No existeix una tematica amb ID = " + IDE + ".");
-					    CtrlBiblioteca.eliminarEstanteria(IDE);
+						try {
+							System.out.println("Inserta ID de l'estanteria a eliminar:");
+							int IDE = Integer.parseInt(reader.readLine());
+							Estanteria estanteriaAEliminar= CtrlBiblioteca.consultaEstanteria(IDE);
+						    if (estanteriaAEliminar == null) throw new Exception("No existeix una tematica amb ID = " + IDE + ".");
+						    CtrlBiblioteca.eliminarEstanteria(IDE);
+						}
+						catch(RuntimeException re) {
+							System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
+						}
+						catch (IOException io) {
+							System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
+						}
+						catch (Exception e) {
+							System.out.println("Execpcion general. Mensaje: " + e.getMessage());
+						}
 						break;
 					case "0":		//Sortir
 						accioFeta = true;
 						break;
-					default: 
+					default:
 						entradaIncorrecta();
 						break;
 				}
 			}
 		}
-		catch(RuntimeException re) {
-			System.out.println("Excepcion tipo Runtime. Mensaje : " + re.getMessage());
-		}
-		catch (IOException io) {
-			System.out.println("Excepcio provocada per fallada o interrupcio de operacio I/O . Mensaje :" + io.getMessage());
-		}
-		catch (Exception e) {
-			System.out.println("Execpcion general. Mensaje: " + e.getMessage());
-		}
+
 	}
 	
 	public static void PrintArees(ArrayList<Area> arees) {
@@ -840,7 +896,7 @@ public class DriverDomini {
 							System.out.println("Introdueix index de l'estanteria a consultar. Si no, tecleja 0.");
 							int IDE = Integer.parseInt(reader.readLine());
 							if (IDE != 0) {
-								if (CtrlBiblioteca.existeixEstanteria(IDE)) throw new Exception("No existe una estanteria con ID " + IDE + ".");
+								if (!CtrlBiblioteca.existeixEstanteria(IDE)) throw new Exception("No existe una estanteria con ID " + IDE + ".");
 								Estanteria e = CtrlBiblioteca.consultaEstanteria(IDE);
 								System.out.println("Que vols consultar?");
 								System.out.println("\t 1 Consultar propietats estanteria.");
