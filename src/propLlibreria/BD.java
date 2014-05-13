@@ -95,33 +95,41 @@ public class BD {
             
             // AREA
             
-                ArrayList<String[]> a = new ArrayList<String[]>();
-		for(int i=0; i<area.size();i++){
-			String[] aux = {Integer.toString(area.get(i).getID()),area.get(i).getNomArea()};
-			a.add(aux);
+                Iterator<Integer> ia = area.keySet().iterator();
+		Integer key = 0;
+		ArrayList<String[]> a = new ArrayList<String[]>();
+		while(ia.hasNext()){
+                    key = ia.next();
+                    String[] aux = {Integer.toString(area.get(key).getID()),area.get(key).getNomArea()};
+                    a.add(aux);
 		}
                 CtrlBD.desarTotesArees(a);
                 
             // BIBLIOTECARI
-                
+                Iterator<Integer> ib = bcari.keySet().iterator();
+		key = 0;
                 ArrayList<String[]> b = new ArrayList<String[]>();
-		for(int i=0; i<bcari.size();i++){
-			String[] aux = {Integer.toString(bcari.get(i).getID()),bcari.get(i).getContrasenya()};
-			b.add(aux);
+		while(ib.hasNext()){
+                    key = ib.next();
+                    String[] aux = {Integer.toString(bcari.get(key).getID()),bcari.get(key).getContrasenya()};
+                    b.add(aux);
 		}                
 		CtrlBD.desarTotsBibliotecaris(b);
                 
             // ESTANTERIA
+                Iterator<Integer> ic = est.keySet().iterator();
+		key = 0;
                 ArrayList<String[]> e = new ArrayList<String[]>();
-		for(int i=0; i<est.size();i++){
+		while(ic.hasNext()){
+                        key = ic.next();
 			ArrayList<String> aux = new ArrayList<String>();
-			aux.add(Integer.toString(est.get(i).getID()));
-			aux.add(Integer.toString(est.get(i).getNumFiles()));
-			aux.add(Integer.toString(est.get(i).getLlargada()));
-			aux.add(Integer.toString(est.get(i).getPosX()));
-			aux.add(Integer.toString(est.get(i).getPosY()));
+			aux.add(Integer.toString(est.get(key).getID()));
+			aux.add(Integer.toString(est.get(key).getNumFiles()));
+			aux.add(Integer.toString(est.get(key).getLlargada()));
+			aux.add(Integer.toString(est.get(key).getPosX()));
+			aux.add(Integer.toString(est.get(key).getPosY()));
 			
-			ArrayList<Llibre> llibreAux = est.get(i).getLlibres();
+			ArrayList<Llibre> llibreAux = est.get(key).getLlibres();
 			for(int j=0; j<llibreAux.size();j++){
 				aux.add(Integer.toString(llibreAux.get(j).getID()));
 			}
@@ -132,19 +140,22 @@ public class BD {
 		CtrlBD.desarTotesEstanteries(e);
                 
             // LLIBRE
+                Iterator<Integer> id = llibre.keySet().iterator();
+		key = 0;
                 ArrayList<String[]> l = new ArrayList<String[]>();
-		for(int i=0; i<llibre.size();i++){			
+		while(id.hasNext()){
+                        key = id.next();			
 			ArrayList<String> aux = new ArrayList<String>();
-			aux.add(Integer.toString(llibre.get(i).getID()));
-			aux.add(llibre.get(i).getIsbn());
-			aux.add(llibre.get(i).getTitol());
-			aux.add(llibre.get(i).getAutor());
-			aux.add(llibre.get(i).getEditorial());
-			aux.add(Integer.toString(llibre.get(i).getAny()));
-			aux.add(Integer.toString(llibre.get(i).getEdicio()));
-			aux.add(Integer.toString(llibre.get(i).getTemPrincipal().getID()));
+			aux.add(Integer.toString(llibre.get(key).getID()));
+			aux.add(llibre.get(key).getIsbn());
+			aux.add(llibre.get(key).getTitol());
+			aux.add(llibre.get(key).getAutor());
+			aux.add(llibre.get(key).getEditorial());
+			aux.add(Integer.toString(llibre.get(key).getAny()));
+			aux.add(Integer.toString(llibre.get(key).getEdicio()));
+			aux.add(Integer.toString(llibre.get(key).getTemPrincipal().getID()));
 			
-			ArrayList<Tematica> temAux = llibre.get(i).getTematiquesSecundaries();
+			ArrayList<Tematica> temAux = llibre.get(key).getTematiquesSecundaries();
 			for(int j=0; j<temAux.size();j++){
 				aux.add(Integer.toString(temAux.get(j).getID()));
 			}
@@ -156,22 +167,28 @@ public class BD {
 		CtrlBD.desarTotsLlibres(l);
                 
             //SECCIO 
+                Iterator<Integer> ie = sec.keySet().iterator();
+		key = 0;
                 ArrayList<String[]> s = new ArrayList<String[]>();
-		for(int i=0; i<sec.size();i++){
-			String[] aux = {Integer.toString(sec.get(i).getID()),sec.get(i).getNomSeccio(),Integer.toString(sec.get(i).getIDAreaSeccio())};
+		while(ie.hasNext()){
+                        key = ie.next();
+			String[] aux = {Integer.toString(sec.get(key).getID()),sec.get(key).getNomSeccio(),Integer.toString(sec.get(key).getIDAreaSeccio())};
 			s.add(aux);
 		}
 		CtrlBD.desarTotesSeccions(s);
                 
             // TEMATICA
+                Iterator<Integer> it = tem.keySet().iterator();
+		key = 0;
                 ArrayList<String[]> t = new ArrayList<String[]>();
-		for(int i=0; i<tem.size();i++){			
+		while(it.hasNext()){
+                        key = it.next();			
 			ArrayList<String> aux = new ArrayList<String>();
-			aux.add(Integer.toString(tem.get(i).getID()));
-			aux.add(tem.get(i).getNomTematica());
-			aux.add(Integer.toString(tem.get(i).getIDSeccio()));
+			aux.add(Integer.toString(tem.get(key).getID()));
+			aux.add(tem.get(key).getNomTematica());
+			aux.add(Integer.toString(tem.get(key).getIDSeccio()));
 			
-			ArrayList<Llibre> temAux = tem.get(i).getLlibres();
+			ArrayList<Llibre> temAux = tem.get(key).getLlibres();
 			for(int j=0; j<temAux.size();j++){
 				aux.add(Integer.toString(temAux.get(j).getID()));
 			}			
