@@ -128,6 +128,10 @@ public class CtrlBiblioteca {
 		return BD.getSeccioN(nomS);
 	}
 	
+	public static Seccio seleccionaSeccioID(int IDS) {
+		return BD.getSeccio(IDS);
+	}
+	
 	//GESTIO TEMATICA
 	
 	//pre: No existeix una Tematica, tal que el seu nom sigui nomTematica
@@ -167,6 +171,10 @@ public class CtrlBiblioteca {
 	
 	public static Tematica seleccionaTematicaN(String nomT) {
 		return BD.getTematicaN(nomT);
+	}
+	
+	public static Tematica seleccionaTematicaID(int IDT) {
+		return BD.getTematica(IDT);
 	}
 	
 	// GESTIO LLIBRE
