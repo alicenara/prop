@@ -458,4 +458,30 @@ public class CtrlBiblioteca {
 	public static boolean existeixLlibre(int ID){
 		return BD.existeixLlibre(ID);
 	}
+	
+	public static void esborrarAreaID(int IDA){
+		BD.esborrarAreaID(IDA);
+	}
+	
+	public static void esborrarBibliotecariID(int IDB){
+		BD.esborrarBibliotecariID(IDB);
+	}
+	
+	public static void esborrarEstanteriaID(int IDE){
+		BD.esborrarEstanteriaID(IDE);
+	}
+	
+	
+	public static void esborrarLlibreID(int IDL){
+		BD.esborrarLlibreID(IDL);
+	}
+	
+	
+	public static void esborrarSeccioID(int IDS){
+		BD.esborrarSeccioID(IDS);
+	}
+
+	public static void esborrarTematicaID(int IDT){
+		BD.esborrarTematicaID(IDT);
+	}
 }
