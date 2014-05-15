@@ -1,3 +1,5 @@
+11;Obres Generals
+10;trololololo
 9;Historia, Geografia, Biografia
 8;Literatura
 7;Art i recreació
@@ -6,5 +8,4 @@
 4;Llengues o Idiomes
 3;Ciencies Socials
 2;Religió
-1;Filosofia
-0;Obres Generals
+1;wololo

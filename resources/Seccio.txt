@@ -1,2 +1,2 @@
-0;Xocolata;0
-1;Caramel;0
+2;Xocolata;1
+1;Caramel;1
