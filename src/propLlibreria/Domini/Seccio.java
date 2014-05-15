@@ -1,4 +1,6 @@
-package propLlibreria;
+package propLlibreria.Domini;
+
+import propLlibreria.Domini.BD;
 
 public class Seccio {
 	private String nomSeccio;

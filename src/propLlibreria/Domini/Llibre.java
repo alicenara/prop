@@ -1,4 +1,5 @@
-package propLlibreria;
+package propLlibreria.Domini;
+import propLlibreria.Domini.BD;
 import compartit.*;
 import java.util.*;
 

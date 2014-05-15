@@ -1,4 +1,4 @@
-package propLlibreria;
+package propLlibreria.Domini;
 import java.util.*;
 
 public class BD {

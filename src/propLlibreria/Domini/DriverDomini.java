@@ -1,4 +1,4 @@
-package propLlibreria;
+package propLlibreria.Domini;
 
 import java.util.*;
 import java.io.*;
@@ -820,7 +820,7 @@ public class DriverDomini {
 									System.out.println("Introdueix ID de l'area a consultar.Si no, tecleja 0.");
 									IDA = Integer.parseInt(reader.readLine());
 									if (IDA != 0) {
-										if (CtrlBiblioteca.existeixArea(IDA)) throw new Exception("ID area introduit es incorrecte.");
+										if (!CtrlBiblioteca.existeixArea(IDA)) throw new Exception("ID area introduit es incorrecte.");
 										ArrayList<Seccio> seccionsArea = CtrlBiblioteca.consultarSeccionsArea(IDA);
 										System.out.println("Llistat seccions de " + arees.get(IDA).getNomArea() + ":");
 										printSeccions(seccionsArea);

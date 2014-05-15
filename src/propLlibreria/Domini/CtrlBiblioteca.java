@@ -1,4 +1,8 @@
-package propLlibreria;
+package propLlibreria.Domini;
+import propLlibreria.Domini.BD;
+import propLlibreria.Domini.Area;
+import propLlibreria.Domini.CalcularAfinitatsBiblio;
+import propLlibreria.Domini.Bibliotecari;
 import java.util.*;
 
 import compartit.*;
