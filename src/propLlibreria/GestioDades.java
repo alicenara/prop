@@ -16,9 +16,9 @@ public class GestioDades {
 	
 	public GestioDades(){}
 	
-	//GESTIÓ DE LA CLASSE LLIBRE
+	//GESTIï¿½ DE LA CLASSE LLIBRE
 	
-	//funció que llegeix la primera ID de l'arxiu amb tots els llibres 
+	//funciï¿½ que llegeix la primera ID de l'arxiu amb tots els llibres 
 	
 	public int llegirPrimeraId(int file){
 		String codi="";
@@ -66,7 +66,7 @@ public class GestioDades {
 		else return Integer.parseInt(codi);		
 	}
 	
-	//funció que llegeix l'ultima ID de l'arxiu 
+	//funciï¿½ que llegeix l'ultima ID de l'arxiu 
 	
 	public int llegirUltimaId(int file){
 		String codi="";
@@ -111,7 +111,7 @@ public class GestioDades {
 		else return Integer.parseInt(codi);		
 	}	
 	
-	//funció que retorna totes les dades d'un llibre
+	//funciï¿½ que retorna totes les dades d'un llibre
 	
 	public String[] llegirObjecte(int id, int file){
 		String[] objecte=null;
@@ -138,7 +138,7 @@ public class GestioDades {
 			while (noTrobat || (linia = br.readLine()) != null) {
 				objecte = linia.split(splitBy);
 				if (objecte[0]==identificador){
-					//només carrega les dades si coincideixen amb la id
+					//nomï¿½s carrega les dades si coincideixen amb la id
 					noTrobat=false;
 				}
 			}
@@ -178,15 +178,12 @@ public class GestioDades {
 		}	
 			
 		try{
-			//InputStream is = this.getClass().getResourceAsStream(fitxer);
-		
-			//br = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-		//br = new BufferedReader(new FileReader(getClass().getClassLoader().getResourceAsStream(fitxer)));
-		
-			br = new BufferedReader(new FileReader(fitxer));
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(fitxer), "ISO-8859-15"));
 			while ((linia = br.readLine()) != null) {
-				objecte = linia.split(splitBy);
-				resultat.add(objecte);
+                                if(!linia.equals("")){
+                                    objecte = linia.split(splitBy);
+                                    resultat.add(objecte);
+                                }
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -226,24 +223,27 @@ public class GestioDades {
 		
 
 		try {
-		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fitxer), "utf-8"));
+		    writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(fitxer), "ISO-8859-15"));
 		   
 		    for(int i=0;i<obj.size();i++){
 		    	objecte=obj.get(i);
+                        System.out.println(objecte[1]);
 		    	String result="";
-		    	for(int j=0;j<objecte.length;i++){
+		    	for(int j=0;j<objecte.length;j++){
 		    		result+=objecte[j];
 		    		if(j < objecte.length-1) result+=";";
-		    	}
+		    	}                        
 		    	writer.write(result);
 		    	writer.newLine();
 		    }		    
 		} catch (IOException ex) {
+                    System.out.println("Error1");
 			return false;
 		} finally {
 			try {
 			   writer.close();
 		   } catch (Exception ex) {
+                       System.out.println("Error2");
 			   return false;
 		   }
 		}

@@ -23,8 +23,10 @@ public class BD {
 		for (int i=0; i<arees.size();i++){
 			Area aux;
 			String[] prop=arees.get(i);
-			aux = new Area(Integer.parseInt(prop[0]),prop[1]);
-			area.put(aux.getID(),aux);
+                        if(!prop.equals("")){
+                            aux = new Area(Integer.parseInt(prop[0]),prop[1]);
+                            area.put(aux.getID(),aux);
+                        }
 		}	
 	
             // BIBLIOTECARI
@@ -33,8 +35,10 @@ public class BD {
                 for (int i=0; i<persones.size();i++){
 			Bibliotecari aux;
 			String[] prop=persones.get(i);
-			aux = new Bibliotecari(Integer.parseInt(prop[0]), prop[1]);
-			bcari.put(aux.getID(),aux);
+                        if(!prop.equals("")){
+                            aux = new Bibliotecari(Integer.parseInt(prop[0]), prop[1]);
+                            bcari.put(aux.getID(),aux);
+                        }
 		}
             
             // ESTANTERIA
@@ -44,12 +48,14 @@ public class BD {
                 for (int i=0; i<estant.size();i++){
 			Estanteria aux;
 			String[] prop=estant.get(i);
-			ArrayList<Integer> llibres = new ArrayList<Integer>();
-			for (int j=5; j<prop.length; j++){
-				llibres.add(Integer.parseInt(prop[j]));
-			}
-			aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]),llibres);
-			est.put(aux.getID(),aux);
+                        if(!prop.equals("")){
+                            ArrayList<Integer> llibres = new ArrayList<Integer>();
+                            for (int j=5; j<prop.length; j++){
+                                    llibres.add(Integer.parseInt(prop[j]));
+                            }
+                            aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]),llibres);
+                            est.put(aux.getID(),aux);
+                        }
 		}
                 
             // LLIBRE
@@ -58,12 +64,14 @@ public class BD {
                 for (int i=0; i<llibres.size();i++){
 			Llibre aux;
 			String[] prop=llibres.get(i);
-			ArrayList<Integer> temSecun = new ArrayList<Integer>();
-			for (int j=8; j<prop.length; j++){
-				temSecun.add(Integer.parseInt(prop[j]));
-			}
-			aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]),temSecun);
-			llibre.put(aux.getID(),aux);
+                        if(!prop.equals("")){
+                            ArrayList<Integer> temSecun = new ArrayList<Integer>();
+                            for (int j=8; j<prop.length; j++){
+                                    temSecun.add(Integer.parseInt(prop[j]));
+                            }
+                            aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]),temSecun);
+                            llibre.put(aux.getID(),aux);
+                        }
                 }
                 
             // SECCIO
@@ -72,8 +80,10 @@ public class BD {
                 for (int i=0; i<seccio.size();i++){
 			Seccio aux;
 			String[] prop=seccio.get(i);
-			aux = new Seccio(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
-			sec.put(aux.getID(),aux);
+                        if(!prop.equals("")){
+                            aux = new Seccio(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
+                            sec.put(aux.getID(),aux);
+                        }
 		}
                 
             // TEMATICA
@@ -82,25 +92,28 @@ public class BD {
                 for (int i=0; i<tema.size();i++){
 			Tematica aux;
 			String[] prop=tema.get(i);
-			ArrayList<Integer> llib = new ArrayList<Integer>();
-			for (int j=3; j<prop.length; j++){
-				llib.add(Integer.parseInt(prop[j]));
-			}
-			aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llib);
-			tem.put(aux.getID(),aux);
+                        if(!prop.equals("")){
+                            ArrayList<Integer> llib = new ArrayList<Integer>();
+                            for (int j=3; j<prop.length; j++){
+                                    llib.add(Integer.parseInt(prop[j]));
+                            }
+                            aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llib);
+                            tem.put(aux.getID(),aux);
+                        }
+			
 		}
         }
 	
 	public static void desarBD(){
             
-            // AREA
-            
+            // AREA            
                 Iterator<Integer> ia = area.keySet().iterator();
 		Integer key = 0;
 		ArrayList<String[]> a = new ArrayList<String[]>();
 		while(ia.hasNext()){
                     key = ia.next();
                     String[] aux = {Integer.toString(area.get(key).getID()),area.get(key).getNomArea()};
+                    System.out.println(aux[0]);
                     a.add(aux);
 		}
                 CtrlBD.desarTotesArees(a);
@@ -133,8 +146,7 @@ public class BD {
 			for(int j=0; j<llibreAux.size();j++){
 				aux.add(Integer.toString(llibreAux.get(j).getID()));
 			}
-			String[] result=null;
-			aux.toArray(result);
+			String[] result= aux.toArray(new String[aux.size()]);
 			e.add(result);
 		}
 		CtrlBD.desarTotesEstanteries(e);
@@ -153,15 +165,15 @@ public class BD {
 			aux.add(llibre.get(key).getEditorial());
 			aux.add(Integer.toString(llibre.get(key).getAny()));
 			aux.add(Integer.toString(llibre.get(key).getEdicio()));
-			aux.add(Integer.toString(llibre.get(key).getTemPrincipal().getID()));
+                        Tematica t=llibre.get(key).getTemPrincipal();
+			aux.add(Integer.toString(t.getID()));
 			
 			ArrayList<Tematica> temAux = llibre.get(key).getTematiquesSecundaries();
 			for(int j=0; j<temAux.size();j++){
 				aux.add(Integer.toString(temAux.get(j).getID()));
 			}
 			
-			String[] result=null;
-			aux.toArray(result);			
+			String[] result= aux.toArray(new String[aux.size()]);			
 			l.add(result);
 		}
 		CtrlBD.desarTotsLlibres(l);
@@ -192,8 +204,7 @@ public class BD {
 			for(int j=0; j<temAux.size();j++){
 				aux.add(Integer.toString(temAux.get(j).getID()));
 			}			
-			String[] result=null;
-			aux.toArray(result);			
+			String[] result= aux.toArray(new String[aux.size()]);		
 			t.add(result);
 		}
 		CtrlBD.desarTotesTematiques(t);

@@ -1,0 +1,10 @@
+9;Historia, Geografia, Biografia
+8;Literatura
+7;Art i recreació
+6;Ciències Aplicades
+5;Ciències Pures
+4;Llengues o Idiomes
+3;Ciencies Socials
+2;Religió
+1;Filosofia
+0;Obres Generals
