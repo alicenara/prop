@@ -26,6 +26,8 @@ public class BD {
                         if(!prop.equals("")){
                             aux = new Area(Integer.parseInt(prop[0]),prop[1]);
                             area.put(aux.getID(),aux);
+                            if(ida<Integer.parseInt(prop[0]))
+                                ida=Integer.parseInt(prop[0]);
                         }
 		}	
 	
@@ -38,6 +40,8 @@ public class BD {
                         if(!prop.equals("")){
                             aux = new Bibliotecari(Integer.parseInt(prop[0]), prop[1]);
                             bcari.put(aux.getID(),aux);
+                            if(idb<Integer.parseInt(prop[0]))
+                                idb=Integer.parseInt(prop[0]);
                         }
 		}
             
@@ -55,6 +59,8 @@ public class BD {
                             }
                             aux = new Estanteria(Integer.parseInt(prop[0]),Integer.parseInt(prop[1]),Integer.parseInt(prop[2]),Integer.parseInt(prop[3]),Integer.parseInt(prop[4]),llibres);
                             est.put(aux.getID(),aux);
+                            if(ide<Integer.parseInt(prop[0]))
+                                ide=Integer.parseInt(prop[0]);
                         }
 		}
                 
@@ -71,6 +77,8 @@ public class BD {
                             }
                             aux = new Llibre(Integer.parseInt(prop[0]),prop[1],prop[2],prop[3],prop[4],Integer.parseInt(prop[5]),Integer.parseInt(prop[6]),Integer.parseInt(prop[7]),temSecun);
                             llibre.put(aux.getID(),aux);
+                            if(idl<Integer.parseInt(prop[0]))
+                                idl=Integer.parseInt(prop[0]);
                         }
                 }
                 
@@ -83,6 +91,8 @@ public class BD {
                         if(!prop.equals("")){
                             aux = new Seccio(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]));
                             sec.put(aux.getID(),aux);
+                            if(ids<Integer.parseInt(prop[0]))
+                                ids=Integer.parseInt(prop[0]);
                         }
 		}
                 
@@ -99,6 +109,8 @@ public class BD {
                             }
                             aux = new Tematica(Integer.parseInt(prop[0]),prop[1],Integer.parseInt(prop[2]),llib);
                             tem.put(aux.getID(),aux);
+                            if(idt<Integer.parseInt(prop[0]))
+                                idt=Integer.parseInt(prop[0]);
                         }
 			
 		}
@@ -113,7 +125,6 @@ public class BD {
 		while(ia.hasNext()){
                     key = ia.next();
                     String[] aux = {Integer.toString(area.get(key).getID()),area.get(key).getNomArea()};
-                    System.out.println(aux[0]);
                     a.add(aux);
 		}
                 CtrlBD.desarTotesArees(a);

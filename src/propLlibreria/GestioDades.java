@@ -227,7 +227,6 @@ public class GestioDades {
 		   
 		    for(int i=0;i<obj.size();i++){
 		    	objecte=obj.get(i);
-                        System.out.println(objecte[1]);
 		    	String result="";
 		    	for(int j=0;j<objecte.length;j++){
 		    		result+=objecte[j];
