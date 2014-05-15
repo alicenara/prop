@@ -138,9 +138,24 @@ public class DriverDomini {
 						System.out.println("Introdueix ID de l'area que vols modificar.");
 						IDA = Integer.parseInt(reader.readLine());
 						if (!CtrlBiblioteca.existeixArea(IDA)) throw new Exception("ID introduit es incorrecte.");
-						System.out.println("Quina seccio vols introduir?");	
-						String novaSeccio = reader.readLine();
-						CtrlBiblioteca.afegirSeccio(novaSeccio,IDA);
+						ArrayList<Seccio> seccions = CtrlBiblioteca.seleccionaAllSeccions();
+						System.out.println("Llistat totes les seccions");
+						printSeccions(seccions);
+						System.out.println("\t -1 Per introduir-li una nova seccio");
+						System.out.println("Llistat totes les seccions de l'area");
+						ArrayList<Seccio> seccionsArea = CtrlBiblioteca.consultarSeccionsArea(IDA);
+						printSeccions(seccionsArea);
+						int IDS = Integer.parseInt(reader.readLine());
+						if (IDS == -1){
+							System.out.println("Quina nova seccio vols introduir?");
+							String novaSeccioArea = reader.readLine();
+							if(CtrlBiblioteca.seleccionaSeccioN(novaSeccioArea) != null) throw new Exception("Ja existeix una seccio amb aquest nom");
+							CtrlBiblioteca.afegirSeccio(novaSeccioArea,IDA);
+						}
+						else {
+							if (CtrlBiblioteca.existeixSeccio(IDS))throw new Exception("No exiseix una seccio amb aquest ID");
+							CtrlBiblioteca.modificarSeccioArea(IDA, IDS);
+						}
 						break;
 					case "0":
 							modFeta = true;
@@ -270,7 +285,7 @@ public class DriverDomini {
 						System.out.println("Introdueix nom nova tematica a afegir a la seccio");
 						String nomNovaTematica = reader.readLine();
 						Tematica tematica = CtrlBiblioteca.seleccionaTematicaN(nomNovaTematica);
-						if (tematica != null) throw new Exception("Ja existeix una amb aquest nom");
+						if (tematica != null) throw new Exception("Ja existeix una tematica amb aquest nom");
 						CtrlBiblioteca.afegirTematica(nomNovaTematica,IDS);
 						
 						break;
