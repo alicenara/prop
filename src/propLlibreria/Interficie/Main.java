@@ -20,7 +20,7 @@ public class Main {
             new Runnable() {
                 public void run() {
                     CtrlInterficie ctrlInterficie = new CtrlInterficie();
-                    ctrlInterficie.inicializarInterficies();
+                    ctrlInterficie.inicialitzarInterficies();
                 }
             }
         );
