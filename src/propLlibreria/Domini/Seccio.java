@@ -1,11 +1,12 @@
 package propLlibreria.Domini;
 
-import propLlibreria.Domini.BD;
+import java.util.*;
 
 public class Seccio {
 	private String nomSeccio;
 	private final int ID;
 	private int IDArea;
+        private ArrayList<Integer> tematiquesSeccio;
 	
 	//pre:
 	//post: crea una seccio amb nom "nomSeccio"
@@ -49,10 +50,21 @@ public class Seccio {
 		return this.IDArea;
 	}
 	
-	//pre:	el parametre implicit no conte una tematica amb nom "nomTematica"
-	//post: afegeix una tematica al parametre implicit
 	public void afegirTematica(Tematica novaTematica) {
 		novaTematica.setIDSeccio(ID);
+		tematiquesSeccio.add(novaTematica.getID());
+	}
+	
+	public ArrayList<Tematica> getTematiques() {
+		ArrayList<Tematica> tematiques = new ArrayList<Tematica>(); 
+		for (int i = 0; i < tematiquesSeccio.size(); ++i) {
+			tematiques.add(GestioArea.getTematica(tematiquesSeccio.get(i)));
+		}
+		return tematiques;
+	}
+	
+	public void esborrarTematica(int IDT) {
+		tematiquesSeccio.remove((Object)new Integer(IDT));
 	}
 	
 }

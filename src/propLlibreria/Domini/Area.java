@@ -1,8 +1,11 @@
 package propLlibreria.Domini;
 
+import java.util.*;
+
 public class Area {
 	private final int ID;
 	private String nomArea;
+        private ArrayList<Integer> seccionsArea;
 	
 	//pre:
 	//post: es crea una Area amb nom "nomArea"
@@ -34,9 +37,22 @@ public class Area {
 	public int getID() {
 		return ID;
 	}
-	
-	public void afegirSeccio(Seccio novaSeccio) {
+        
+        public void afegirSeccio(Seccio novaSeccio) {
 		novaSeccio.setIDAreaSeccio(ID);
+		seccionsArea.add(novaSeccio.getID());
+	}
+	
+	public ArrayList<Seccio> getSeccions() {
+		ArrayList<Seccio> seccions = new ArrayList<Seccio>(); 
+		for (int i = 0; i < seccionsArea.size(); ++i) {
+			seccions.add(GestioArea.getSeccio(seccionsArea.get(i)));
+		}
+		return seccions;
+	}
+	
+	public void esborrarSeccio(int IDS) {
+		seccionsArea.remove((Object)new Integer(IDS));
 	}
 	
 }
