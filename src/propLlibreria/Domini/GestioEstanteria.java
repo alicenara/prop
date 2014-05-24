@@ -6,11 +6,7 @@ public class GestioEstanteria {
     private static HashMap<Integer, Estanteria> est = new HashMap<Integer, Estanteria>();
     private static int ide = 0;
     
-    public static HashMap<Integer, Estanteria> getHashEstanteria(){
-        return est;
-    }
-    public static void setHashEstanteria(HashMap<Integer, Estanteria> e,int id){
-        est=e;
+    public static void setIde(int id){
         ide=id;
     }
     
