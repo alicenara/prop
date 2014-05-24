@@ -3,12 +3,12 @@ import java.io.*;
 import java.util.*;
 
 public class GestioDades {
-	private static final String FITXERLLIBRE = new File("prop/resources/Llibre.txt").getAbsolutePath();
-	private static final String FITXERTEMATICA = new File("prop/resources/Tematica.txt").getAbsolutePath();
-	private static final String FITXERAREA = new File("prop/resources/Area.txt").getAbsolutePath();
-	private static final String FITXERBIBLIOTECARI = new File("prop/resources/Bibliotecari.txt").getAbsolutePath();
-	private static final String FITXERESTANTERIA = new File("prop/resources/Estanteria.txt").getAbsolutePath();
-	private static final String FITXERSECCIO = new File("prop/resources/Seccio.txt").getAbsolutePath();
+	private static final String FITXERLLIBRE = new File("resources/Llibre.txt").getAbsolutePath();
+	private static final String FITXERTEMATICA = new File("resources/Tematica.txt").getAbsolutePath();
+	private static final String FITXERAREA = new File("resources/Area.txt").getAbsolutePath();
+	private static final String FITXERBIBLIOTECARI = new File("resources/Bibliotecari.txt").getAbsolutePath();
+	private static final String FITXERESTANTERIA = new File("resources/Estanteria.txt").getAbsolutePath();
+	private static final String FITXERSECCIO = new File("resources/Seccio.txt").getAbsolutePath();
 	String fitxer;
 	BufferedReader br = null;
 	String linia = "";
