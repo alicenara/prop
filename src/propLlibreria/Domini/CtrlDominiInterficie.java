@@ -501,4 +501,8 @@ public class CtrlDominiInterficie {
 	public static void esborrarTematicaID(int IDT){
 		BD.esborrarTematicaID(IDT);
 	}
+
+    public static void seleccionaAllEstanteria() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
