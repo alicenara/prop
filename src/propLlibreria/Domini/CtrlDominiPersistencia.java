@@ -29,20 +29,6 @@ public class CtrlDominiPersistencia {
                                 ida=Integer.parseInt(prop[0]);
                         }
 		}	
-	
-            // BIBLIOTECARI
-                
-                ArrayList<String[]> persones = GestioPersistencia.obtenirTotsBcaris();
-                for (int i=0; i<persones.size();i++){
-			Bibliotecari aux;
-			String[] prop=persones.get(i);
-                        if(!prop.equals("")){
-                            aux = new Bibliotecari(Integer.parseInt(prop[0]), prop[1]);
-                            bcari.put(aux.getID(),aux);
-                            if(idb<Integer.parseInt(prop[0]))
-                                idb=Integer.parseInt(prop[0]);
-                        }
-		}
             
             // ESTANTERIA
                 
@@ -127,17 +113,6 @@ public class CtrlDominiPersistencia {
                     a.add(aux);
 		}
                 GestioPersistencia.desarTotesArees(a);
-                
-            // BIBLIOTECARI
-                Iterator<Integer> ib = bcari.keySet().iterator();
-		key = 0;
-                ArrayList<String[]> b = new ArrayList<String[]>();
-		while(ib.hasNext()){
-                    key = ib.next();
-                    String[] aux = {Integer.toString(bcari.get(key).getID()),bcari.get(key).getContrasenya()};
-                    b.add(aux);
-		}                
-		GestioPersistencia.desarTotsBibliotecaris(b);
                 
             // ESTANTERIA
                 Iterator<Integer> ic = est.keySet().iterator();

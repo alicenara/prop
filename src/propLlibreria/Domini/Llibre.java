@@ -109,7 +109,7 @@ public class Llibre extends Objecte {
 	public ArrayList<Tematica> getTematiquesSecundaries() {
 		ArrayList<Tematica> tSec = new ArrayList<Tematica>();
 		for (int i = 0; i < temSecundaries.size(); ++i) {
-			tSec.add(BD.getTematica(temSecundaries.get(i)));
+			tSec.add(GestioArea.getTematica(temSecundaries.get(i)));
 		}
 		return tSec;
 	}	
