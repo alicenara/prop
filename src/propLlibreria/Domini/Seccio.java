@@ -19,10 +19,11 @@ public class Seccio {
 	
 	//pre:
 	//post: crea una seccio amb nom "nomSeccio"
-	public Seccio (int ID, String nomSeccio, int IDArea) {
+	public Seccio (int ID, String nomSeccio, int IDArea, ArrayList<Integer> tS) {
 		this.nomSeccio = nomSeccio;
 		this.IDArea = IDArea;
 		this.ID = ID;
+                tematiquesSeccio = tS;
 	}
 	
 	//pre:

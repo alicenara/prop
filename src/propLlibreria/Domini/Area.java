@@ -17,9 +17,10 @@ public class Area {
 	
 	//pre:
 	//post: es crea una Area amb nom "nomArea"
-	public Area (int ID, String nomArea){
+	public Area (int ID, String nomArea, ArrayList<Integer> sA){
 		this.nomArea = nomArea;
 		this.ID = ID;
+                seccionsArea = sA;
 	}
 	
 	//pre:
