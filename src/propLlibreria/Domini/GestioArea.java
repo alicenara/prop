@@ -92,6 +92,22 @@ public class GestioArea {
             esborrarAreaID(a.getID());
     }
     
+    public static void afegirSeccio(Seccio s){	  	
+            sec.put(s.getID(), s);
+    }	  	
+	
+    public static void esborrarSeccio(Seccio s){
+            esborrarSeccioID(s.getID());
+    }
+	  	
+    public static void afegirTematica(Tematica t){
+            tem.put(t.getID(), t);
+    }
+  
+    public static void esborrarTematica(Tematica t){
+            esborrarTematicaID(t.getID());  	
+    }
+    
     public static void esborrarAreaID(int ID){
             area.remove(ID);
     }

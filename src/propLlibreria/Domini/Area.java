@@ -11,8 +11,8 @@ public class Area {
 	//post: es crea una Area amb nom "nomArea"
 	public Area (String nomArea){
 		this.nomArea = nomArea;
-		ID = BD.ultimaIDArea();
-		BD.afegirArea(this);
+		ID = GestioArea.ultimaIDArea();
+		GestioArea.afegirArea(this);
 	}
 	
 	//pre:

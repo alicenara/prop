@@ -16,8 +16,8 @@ public class Estanteria {
 		this.llargada = llargada;
 		this.posX = posX;
 		this.posY = posY;
-		this.ID = BD.ultimaIDEstanteria();
-		BD.afegirEstanteria(this);
+		this.ID = GestioEstanteria.ultimaIDEstanteria();
+		GestioEstanteria.afegirEstanteria(this);
 	}
 	
 	public Estanteria(int ID, int numFiles, int llargada, int posX, int posY, ArrayList<Integer> llE)  {
@@ -69,7 +69,7 @@ public class Estanteria {
 	public ArrayList<Llibre> getLlibres() {
 		ArrayList<Llibre> llibres = new ArrayList<Llibre>(); 
 		for (int i = 0; i < llibresEstanteria.size(); ++i) {
-			llibres.add(BD.getLlibre(llibresEstanteria.get(i)));
+			llibres.add(GestioLlibre.getLlibre(llibresEstanteria.get(i)));
 		}
 		return llibres;
 	}

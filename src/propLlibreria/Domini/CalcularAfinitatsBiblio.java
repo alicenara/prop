@@ -17,12 +17,12 @@ public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 		Tematica tPriB = bb.getTemPrincipal();
 		if (tPriA.getID() == tPriB.getID())	afins += 10;
 		else {
-			Seccio sA = BD.getSeccio(tPriA.getIDSeccio());
-			Seccio sB = BD.getSeccio(tPriB.getIDSeccio());
+			Seccio sA = GestioArea.getSeccio(tPriA.getIDSeccio());
+			Seccio sB = GestioArea.getSeccio(tPriB.getIDSeccio());
 			if (sA.getID() == sB.getID()) afins += 5;
 			else {
-				Area aA = BD.getArea(sA.getIDAreaSeccio());
-				Area aB = BD.getArea(sB.getIDAreaSeccio());
+				Area aA = GestioArea.getArea(sA.getIDAreaSeccio());
+				Area aB = GestioArea.getArea(sB.getIDAreaSeccio());
 				if (aA.getID() == aB.getID()) afins += 1.5;
 			}
 		}

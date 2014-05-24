@@ -13,8 +13,8 @@ public class Seccio {
 	public Seccio (String nomSeccio, int IDArea) {
 		this.nomSeccio = nomSeccio;
 		this.IDArea = IDArea;
-		this.ID = BD.ultimaIDSeccio();
-		BD.afegirSeccio(this);
+		this.ID = GestioArea.ultimaIDSeccio();
+		GestioArea.afegirSeccio(this);
 	}
 	
 	//pre:
