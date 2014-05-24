@@ -10,3 +10,7 @@ bin/
 ./metadata
 *.class
 /bin
+/nbproject/*
+/nbproject/*
+build.xml
+manifest.mf
