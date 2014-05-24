@@ -1,17 +1,33 @@
 
 package propLlibreria.Interficie;
 
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import propLlibreria.Domini.Area;
+import propLlibreria.Domini.CtrlDominiInterficie;
+import propLlibreria.Domini.Estanteria;
+import propLlibreria.Domini.Llibre;
+import propLlibreria.Domini.Seccio;
+import propLlibreria.Domini.Tematica;
+
 /**
  *
- * @author Alice
+ * @author Ruben
  */
 public class VistaConsultes extends javax.swing.JPanel {
 
     /**
      * Creates new form VistaConsultes
      */
+    private CtrlInterficie controladorInterficie;
+    
+    
     public VistaConsultes() {
         initComponents();
+        assignListeners();
+    }
+    public void actionPerformedButtonCargarAsignaturas(ActionEvent event) {
+        
     }
 
     /**
@@ -23,19 +39,180 @@ public class VistaConsultes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        Seleccio = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jComboBox2 = new javax.swing.JComboBox();
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setFocusable(false);
+
+        jLabel1.setText("Coses de la capcelera");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(196, 196, 196)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 12, Short.MAX_VALUE)
+                .addComponent(jLabel1))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel2.setText("panel de navegabilitat");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(184, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(233, 233, 233))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButton1.setText("OK");
+
+        Seleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Area", "Seccio", "Tematica", "Llibre" }));
+        Seleccio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccioActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(67, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(25, 25, 25))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void assignListeners() {
+        
+    }
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
+        // TODO add your handling code here:
+        String comboboxSelectedItem = (String) Seleccio.getModel()
+                .getSelectedItem();
+        ArrayList<String> resultItem = new ArrayList<String>();
+        
+        try {
+            switch(comboboxSelectedItem) {
+                case "Area":
+                   ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
+                   for (int i = 0; i < arees.size(); ++i) resultItem.add(arees.get(i).getNomArea());
+                    break; 
+                case "Seccio":
+                    ArrayList<Seccio> seccions = CtrlDominiInterficie.seleccionaAllSeccions();
+                    for (int i = 0; i < seccions.size(); ++i) resultItem.add(seccions.get(i).getNomSeccio());
+                    break;
+                case "Tematica":
+                    ArrayList<Tematica> tematiques = CtrlDominiInterficie.seleccionaAllTematiques();
+                    for (int i = 0; i < tematiques.size(); ++i) resultItem.add(tematiques.get(i).getNomTematica());
+                    break;
+                case "Llibre":
+                    
+                    ArrayList<Llibre> llibres = CtrlDominiInterficie.seleccionaAllLlibres();
+                    for (int i = 0; i < llibres.size(); ++i) resultItem.add(llibres.get(i).getTitol());
+                    break;
+                case "Estanteria":
+                    ArrayList<Estanteria> estanteries =  CtrlDominiInterficie.seleccionaAllEstanteries();
+                    for (int i = 0; i < estanteries.size(); ++i) resultItem.add(Integer.toString(estanteries.get(i).getID()));
+                    break;
+            }
+            DefaultComboBoxModel listmodel = new DefaultComboBoxModel ();
+            for (int i = 0; i < resultItem.size(); ++i) jComboBox2.addItem(resultItem.get(i));
+            
+        }
+        catch (Exception e){}   
+    }//GEN-LAST:event_SeleccioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox Seleccio;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
