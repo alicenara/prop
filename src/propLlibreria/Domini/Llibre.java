@@ -1,5 +1,4 @@
 package propLlibreria.Domini;
-import propLlibreria.Domini.BD;
 import compartit.*;
 import java.util.*;
 
@@ -98,7 +97,7 @@ public class Llibre extends Objecte {
 	}
 	
 	public void eliminarTematicaSecundaria(Tematica tem) {
-		temSecundaries.remove((Object)new Integer(tem.getID()));
+		temSecundaries.remove(new Integer(tem.getID()));
 	}
 	
 	//pre:

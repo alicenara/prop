@@ -52,7 +52,7 @@ public class Area {
 	}
 	
 	public void esborrarSeccio(int IDS) {
-		seccionsArea.remove((Object)new Integer(IDS));
+		seccionsArea.remove(new Integer(IDS));
 	}
 	
 }

@@ -1,5 +1,4 @@
 package propLlibreria.Domini;
-import propLlibreria.Domini.BD;
 import java.util.*;
 
 public class Estanteria {
@@ -80,7 +79,7 @@ public class Estanteria {
 	}
 	
 	public void esborrarLlibre(int IDL) {
-		llibresEstanteria.remove((Object)new Integer(IDL));
+		llibresEstanteria.remove(new Integer(IDL));
 	}
 	
 	public void buidarLlibres() {

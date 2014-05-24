@@ -1,4 +1,5 @@
 package propLlibreria.Domini;
+import propLlibreria.Persistencia.GestioPersistencia;
 import java.util.*;
 
 public class BD {
@@ -19,7 +20,7 @@ public class BD {
            
             // AREA           
                 
-		ArrayList<String[]> arees = CtrlBD.obtenirTotesArees();
+		ArrayList<String[]> arees = GestioPersistencia.obtenirTotesArees();
 		for (int i=0; i<arees.size();i++){
 			Area aux;
 			String[] prop=arees.get(i);
@@ -33,7 +34,7 @@ public class BD {
 	
             // BIBLIOTECARI
                 
-                ArrayList<String[]> persones = CtrlBD.obtenirTotsBcaris();
+                ArrayList<String[]> persones = GestioPersistencia.obtenirTotsBcaris();
                 for (int i=0; i<persones.size();i++){
 			Bibliotecari aux;
 			String[] prop=persones.get(i);
@@ -47,8 +48,8 @@ public class BD {
             
             // ESTANTERIA
                 
-                ArrayList<String[]> estant = CtrlBD.obtenirTotesEstanteries();
-		estant = CtrlBD.obtenirTotesEstanteries();
+                ArrayList<String[]> estant = GestioPersistencia.obtenirTotesEstanteries();
+		estant = GestioPersistencia.obtenirTotesEstanteries();
                 for (int i=0; i<estant.size();i++){
 			Estanteria aux;
 			String[] prop=estant.get(i);
@@ -66,7 +67,7 @@ public class BD {
                 
             // LLIBRE
                 
-                ArrayList<String[]> llibres = CtrlBD.obtenirTotsLlibres();
+                ArrayList<String[]> llibres = GestioPersistencia.obtenirTotsLlibres();
                 for (int i=0; i<llibres.size();i++){
 			Llibre aux;
 			String[] prop=llibres.get(i);
@@ -84,7 +85,7 @@ public class BD {
                 
             // SECCIO
                 
-                ArrayList<String[]> seccio = CtrlBD.obtenirTotesSec();
+                ArrayList<String[]> seccio = GestioPersistencia.obtenirTotesSec();
                 for (int i=0; i<seccio.size();i++){
 			Seccio aux;
 			String[] prop=seccio.get(i);
@@ -98,7 +99,7 @@ public class BD {
                 
             // TEMATICA
                 
-                ArrayList<String[]> tema = CtrlBD.obtenirTotesTem();
+                ArrayList<String[]> tema = GestioPersistencia.obtenirTotesTem();
                 for (int i=0; i<tema.size();i++){
 			Tematica aux;
 			String[] prop=tema.get(i);
@@ -127,7 +128,7 @@ public class BD {
                     String[] aux = {Integer.toString(area.get(key).getID()),area.get(key).getNomArea()};
                     a.add(aux);
 		}
-                CtrlBD.desarTotesArees(a);
+                GestioPersistencia.desarTotesArees(a);
                 
             // BIBLIOTECARI
                 Iterator<Integer> ib = bcari.keySet().iterator();
@@ -138,7 +139,7 @@ public class BD {
                     String[] aux = {Integer.toString(bcari.get(key).getID()),bcari.get(key).getContrasenya()};
                     b.add(aux);
 		}                
-		CtrlBD.desarTotsBibliotecaris(b);
+		GestioPersistencia.desarTotsBibliotecaris(b);
                 
             // ESTANTERIA
                 Iterator<Integer> ic = est.keySet().iterator();
@@ -160,7 +161,7 @@ public class BD {
 			String[] result= aux.toArray(new String[aux.size()]);
 			e.add(result);
 		}
-		CtrlBD.desarTotesEstanteries(e);
+		GestioPersistencia.desarTotesEstanteries(e);
                 
             // LLIBRE
                 Iterator<Integer> id = llibre.keySet().iterator();
@@ -187,7 +188,7 @@ public class BD {
 			String[] result= aux.toArray(new String[aux.size()]);			
 			l.add(result);
 		}
-		CtrlBD.desarTotsLlibres(l);
+		GestioPersistencia.desarTotsLlibres(l);
                 
             //SECCIO 
                 Iterator<Integer> ie = sec.keySet().iterator();
@@ -198,7 +199,7 @@ public class BD {
 			String[] aux = {Integer.toString(sec.get(key).getID()),sec.get(key).getNomSeccio(),Integer.toString(sec.get(key).getIDAreaSeccio())};
 			s.add(aux);
 		}
-		CtrlBD.desarTotesSeccions(s);
+		GestioPersistencia.desarTotesSeccions(s);
                 
             // TEMATICA
                 Iterator<Integer> it = tem.keySet().iterator();
@@ -218,7 +219,7 @@ public class BD {
 			String[] result= aux.toArray(new String[aux.size()]);		
 			t.add(result);
 		}
-		CtrlBD.desarTotesTematiques(t);
+		GestioPersistencia.desarTotesTematiques(t);
 	}
 	
 	//Ultima ID Entitats
@@ -310,7 +311,7 @@ public class BD {
 		else return null;
 	}
 	
-	public static Llibre getLlibreT(String titol){
+	public static Llibre getLlibreTitol(String titol){
 		Iterator<Integer> iterador = llibre.keySet().iterator();
 		Integer key = 0;
 		boolean trobat = false;
@@ -322,7 +323,7 @@ public class BD {
 		else return null;
 	}
 	
-	public static Llibre getLlibrePerISBN(String isbn){
+	public static Llibre getLlibreISBN(String isbn){
 		Iterator<Integer> iterador = llibre.keySet().iterator();
 		Integer key = 0;
 		boolean trobat = false;

@@ -91,7 +91,7 @@ public class GestioLlibre {
     }
 	
     public static void esborrarLlibreID(int ID){
-            llibre.remove((Object)new Integer(ID));
+            llibre.remove(ID);
     }
     
     public static ArrayList<Llibre> getAllLlibres() {

@@ -1,8 +1,7 @@
-package propLlibreria.Domini;
-import propLlibreria.Persistencia.GestioDades;
+package propLlibreria.Persistencia;
 import java.util.*;
 
-public class CtrlBD {
+public class GestioPersistencia {
 	private static final int LLIBRE = 0;
 	private static final int TEMATICA = 1;
 	private static final int AREA = 2;

@@ -65,7 +65,7 @@ public class Tematica {
 	}
 	
 	public void esborrarLlibre(int IDL) {
-		llibresTematica.remove((Object)new Integer(IDL));
+		llibresTematica.remove(new Integer(IDL));
 	}
 		
 }
