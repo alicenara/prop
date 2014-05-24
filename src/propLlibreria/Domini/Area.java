@@ -11,15 +11,16 @@ public class Area {
 	//post: es crea una Area amb nom "nomArea"
 	public Area (String nomArea){
 		this.nomArea = nomArea;
-		ID = BD.ultimaIDArea();
-		BD.afegirArea(this);
+		ID = GestioArea.ultimaIDArea();
+		GestioArea.afegirArea(this);
 	}
 	
 	//pre:
 	//post: es crea una Area amb nom "nomArea"
-	public Area (int ID, String nomArea){
+	public Area (int ID, String nomArea, ArrayList<Integer> sA){
 		this.nomArea = nomArea;
 		this.ID = ID;
+                seccionsArea = sA;
 	}
 	
 	//pre:

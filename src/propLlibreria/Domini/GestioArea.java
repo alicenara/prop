@@ -2,16 +2,6 @@ package propLlibreria.Domini;
 
 import java.util.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author sergibdn94
- */
 public class GestioArea {
     private static HashMap<Integer, Area> area = new HashMap<Integer, Area>();
     private static HashMap<Integer, Seccio> sec = new HashMap<Integer, Seccio>();
@@ -20,6 +10,33 @@ public class GestioArea {
     private static int ida = 0;
     private static int ids = 0;
     private static int idt = 0;
+    
+    public static HashMap<Integer, Area> getHashArea(){
+        return area;
+    }
+    
+    public static HashMap<Integer, Seccio> getHashSeccio(){
+       return sec;
+    }
+
+    public static HashMap<Integer, Tematica> getHashTematica(){
+       return tem;
+    }
+
+    public static void setHashArea(HashMap<Integer, Area> a, int id){
+       area=a;
+       ida=id;
+    }
+
+    public static void setHashSeccio(HashMap<Integer, Seccio> s, int id){
+       sec=s;
+       ids=id;
+    }
+
+    public static void setHashTematica(HashMap<Integer, Tematica> t, int id){
+       tem=t;
+       idt=id;
+    }
  
     public static int ultimaIDArea(){
             ++ida;
@@ -90,6 +107,22 @@ public class GestioArea {
 	
     public static void esborrarArea(Area a){
             esborrarAreaID(a.getID());
+    }
+    
+    public static void afegirSeccio(Seccio s){	  	
+            sec.put(s.getID(), s);
+    }	  	
+	
+    public static void esborrarSeccio(Seccio s){
+            esborrarSeccioID(s.getID());
+    }
+	  	
+    public static void afegirTematica(Tematica t){
+            tem.put(t.getID(), t);
+    }
+  
+    public static void esborrarTematica(Tematica t){
+            esborrarTematicaID(t.getID());  	
     }
     
     public static void esborrarAreaID(int ID){

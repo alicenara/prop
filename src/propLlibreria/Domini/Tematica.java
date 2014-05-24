@@ -1,5 +1,4 @@
 package propLlibreria.Domini;
-import propLlibreria.Domini.BD;
 import java.util.*;
 
 public class Tematica {
@@ -13,8 +12,8 @@ public class Tematica {
 	public Tematica (String nomTematica, int IDSeccio) {
 		this.nomTematica = nomTematica;
 		this.IDSeccio = IDSeccio;
-		this.ID = BD.ultimaIDTematica();
-		BD.afegirTematica(this);
+		this.ID = GestioArea.ultimaIDTematica();
+		GestioArea.afegirTematica(this);
 	}
 	
 	//pre:
@@ -59,7 +58,7 @@ public class Tematica {
 	public ArrayList<Llibre> getLlibres() {
 		ArrayList<Llibre> llibres = new ArrayList<Llibre>(); 
 		for (int i = 0; i < llibresTematica.size(); ++i) {
-			llibres.add(BD.getLlibre(llibresTematica.get(i)));
+			llibres.add(GestioLlibre.getLlibre(llibresTematica.get(i)));
 		}
 		return llibres;
 	}

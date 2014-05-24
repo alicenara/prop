@@ -13,16 +13,17 @@ public class Seccio {
 	public Seccio (String nomSeccio, int IDArea) {
 		this.nomSeccio = nomSeccio;
 		this.IDArea = IDArea;
-		this.ID = BD.ultimaIDSeccio();
-		BD.afegirSeccio(this);
+		this.ID = GestioArea.ultimaIDSeccio();
+		GestioArea.afegirSeccio(this);
 	}
 	
 	//pre:
 	//post: crea una seccio amb nom "nomSeccio"
-	public Seccio (int ID, String nomSeccio, int IDArea) {
+	public Seccio (int ID, String nomSeccio, int IDArea, ArrayList<Integer> tS) {
 		this.nomSeccio = nomSeccio;
 		this.IDArea = IDArea;
 		this.ID = ID;
+                tematiquesSeccio = tS;
 	}
 	
 	//pre:

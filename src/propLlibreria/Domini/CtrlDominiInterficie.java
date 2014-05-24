@@ -1,39 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package propLlibreria.Domini;
 import compartit.*;
 import java.util.*;
 
-/**
- *
- * @author sergibdn94
- */
 public class CtrlDominiInterficie {
     
-	//Inicialitzaci� del programa
+	//Inicialització del programa
 	//pre:
 	//post: s'inicialitza la classe amb tots els vectors
 	public static void iniBD() {
-		BD.omplirBD();
+		CtrlDominiPersistencia.omplirBD();
 	}
 	
 	//Abans d'acabar el programa
 	//pre:
 	//post: es desen les dades dels vectors
 	public static void guardarSolucio() {
-		BD.desarBD();
+		CtrlDominiPersistencia.desarBD();
 	}
 	
 	//Utilitzaci� de les classes compartides	
 	//pre:
 	//post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
 	public static void reordenacioBiblioteca() throws Exception {
-		ArrayList<Llibre> a = BD.getAllLlibres();
-		ArrayList<Estanteria> e = BD.getAllEstanteries();
+		ArrayList<Llibre> a = GestioLlibre.getAllLlibres();
+		ArrayList<Estanteria> e = GestioEstanteria.getAllEstanteries();
 		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
 		ArrayList<Integer> llocsEstanteries = new ArrayList<Integer>();
 		for(int i = 0; i < e.size(); ++i) 
@@ -60,11 +50,11 @@ public class CtrlDominiInterficie {
 		CalcularDistancies calcDist = new CalcularDistancies();
 		TS solver = new TS(calcAfin, calcDist);
 		Solucio solucio = new Solucio(solver, llibres, llocs);
-		ArrayList<Estanteria> all = BD.getAllEstanteries();
+		ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
 		for(int i = 0; i < all.size(); ++i)
 			all.get(i).buidarLlibres();
 		for(int i = 0; i < llocsEstanteries.size(); ++i) {
-			Estanteria est = BD.getEstanteria(llocsEstanteries.get(i));
+			Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
 			est.afegirLlibre(solucio.assignacions[i]);
 		}
 	}	
@@ -81,26 +71,26 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una Area tal que el seu Identificador = ID
 	//post: L'Area amb identificador ID te nom nomA
 	public static void modificarNomArea(int ID, String nomA) {
-		Area modArea = BD.getArea(ID);
+		Area modArea = GestioArea.getArea(ID);
 		modArea.setNomArea(nomA);
 	}
 	
 	//pre: Existeix una Area tal que el seu Identificador = IDA i una Seccio tal que el seu identificador es IDS i no esta continguda en l'Area
 	//post: L'Area amb identificador IDA conte la Seccio amb identificador IDS 
 	public static void modificarSeccioArea(int IDA, int IDS) {
-		Area modArea = BD.getArea(IDA);
-		Seccio afSeccio = BD.getSeccio(IDS);
+		Area modArea = GestioArea.getArea(IDA);
+		Seccio afSeccio = GestioArea.getSeccio(IDS);
 		modArea.afegirSeccio(afSeccio);
 	}
 	
 	//pre: Existeix una Area = esbArea
 	//post: L'Area = esbArea ha estat eliminada
 	public static void eliminarArea(Area esbArea) {
-		BD.esborrarArea(esbArea);
+		GestioArea.esborrarArea(esbArea);
 	}
 	
 	public static Area seleccionaAreaN(String nomA) {
-		return BD.getAreaN(nomA);
+		return GestioArea.getAreaN(nomA);
 	}
 	
 	// GESTIO SECCIO
@@ -115,30 +105,30 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una Seccio tal que el seu Identificador = ID
 	//post: La Seccio amb identificador ID te nom nomS
 	public static void modificarNomSeccio(int ID, String nomS) {
-		Seccio modSeccio = BD.getSeccio(ID);
+		Seccio modSeccio = GestioArea.getSeccio(ID);
 		modSeccio.setNomSeccio(nomS);
 	}
 	
 	//pre: Existeix una Seccio tal que el seu Identificador = IDS i una Tematica tal que el seu identificador es IDT i no esta continguda en la Seccio
 	//post: La Seccio amb identificador IDS conte la Tematica amb identificador IDT 
 	public static void modificarTematicaSeccio(int IDS, int IDT) {
-		Seccio modSeccio = BD.getSeccio(IDS);
-		Tematica afTematica = BD.getTematica(IDT);
+		Seccio modSeccio = GestioArea.getSeccio(IDS);
+		Tematica afTematica = GestioArea.getTematica(IDT);
 		modSeccio.afegirTematica(afTematica);
 	}
 	
 	//pre: Existeix una Seccio = esbSeccio
 	//post: La Seccio = esbSeccio ha estat eliminada
 	public static void eliminarSeccio(Seccio esbSeccio) {
-		BD.esborrarSeccio(esbSeccio);
+		GestioArea.esborrarSeccio(esbSeccio);
 	}
 	
 	public static Seccio seleccionaSeccioN(String nomS) {
-		return BD.getSeccioN(nomS);
+		return GestioArea.getSeccioN(nomS);
 	}
 	
 	public static Seccio seleccionaSeccioID(int IDS) {
-		return BD.getSeccio(IDS);
+		return GestioArea.getSeccio(IDS);
 	}
 	
 	//GESTIO TEMATICA
@@ -153,37 +143,37 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una Tematica tal que el seu Identificador = ID
 	//post: La Tematica amb identificador ID te nom nomT
 	public static void modificarNomTematica(int ID, String nomT) {
-		Tematica modTematica = BD.getTematica(ID);
+		Tematica modTematica = GestioArea.getTematica(ID);
 		modTematica.setNomTematica(nomT);
 	}
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i no esta contingut en la Tematica
 	//post: La Tematica amb identificador IDT conte el Llibre amb identificador IDL 
 	public static void afegirLlibreTematica(int IDT, int IDL) {
-		Tematica modTematica = BD.getTematica(IDT);
-		Llibre afLlibre = BD.getLlibre(IDL);
+		Tematica modTematica = GestioArea.getTematica(IDT);
+		Llibre afLlibre = GestioLlibre.getLlibre(IDL);
 		modTematica.afegirLlibre(afLlibre);
 	}
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i esta contingut en la Tematica
 	//post: La Tematica amb identificador IDT no conte el Llibre amb identificador IDL 
 	public static void eliminarLlibreTematica(int IDT, int IDL) {
-		Tematica modTematica = BD.getTematica(IDT);
+		Tematica modTematica = GestioArea.getTematica(IDT);
 		modTematica.esborrarLlibre(IDL);
 	}
 	
 	//pre: Existeix una Tematica = esbTematica
 	//post: La Tematica = esbTematica ha estat eliminada
 	public static void eliminarTematica(Tematica esbTematica) {
-		BD.esborrarTematica(esbTematica);
+		GestioArea.esborrarTematica(esbTematica);
 	}
 	
 	public static Tematica seleccionaTematicaN(String nomT) {
-		return BD.getTematicaN(nomT);
+		return GestioArea.getTematicaN(nomT);
 	}
 	
 	public static Tematica seleccionaTematicaID(int IDT) {
-		return BD.getTematica(IDT);
+		return GestioArea.getTematica(IDT);
 	}
 	
 	// GESTIO LLIBRE
@@ -199,92 +189,92 @@ public class CtrlDominiInterficie {
 	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i no esta continguda en les Tematiques Secundaries del Llibre
 	//post: El Llibre amb identificador IDL conte en les seves Tematiques Secundaries la Tematica amb identificador IDT
 	public static void afegirTSecundaria(int IDL, int IDT) {
-		Llibre modLlibre = BD.getLlibre(IDL);
-		Tematica afTematica = BD.getTematica(IDT);
+		Llibre modLlibre = GestioLlibre.getLlibre(IDL);
+		Tematica afTematica = GestioArea.getTematica(IDT);
 		modLlibre.afegirTematicaSecundaria(afTematica);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i esta continguda en les Tematiques Secundaries del Llibre
 	//post: El Llibre amb identificador IDL no conte en les seves Tematiques Secundaries la Tematica amb identificador IDT
 	public static void esborrarTSecundaria(int IDL, int IDT) {
-		Llibre modLlibre = BD.getLlibre(IDL);
-		Tematica esbTematica = BD.getTematica(IDT);
+		Llibre modLlibre = GestioLlibre.getLlibre(IDL);
+		Tematica esbTematica = GestioArea.getTematica(IDT);
 		modLlibre.eliminarTematicaSecundaria(esbTematica);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te isbn = modIsbn
 	public static void modificarIsbnLlibre(int ID, String modIsbn) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setIsbn(modIsbn);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te titol = modTitol
 	public static void modificarTitolLlibre(int ID, String modTitol) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setTitol(modTitol);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te autor = modAutor
 	public static void modificarAutorLlibre(int ID, String modAutor) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setAutor(modAutor);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te editorial = modEditorial
 	public static void modificarEditorialLlibre(int ID, String modEditorial) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setEditorial(modEditorial);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te any = modAny
 	public static void modificarAnyLlibre(int ID, int modAny) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setAny(modAny);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID
 	//post: El Llibre amb identificador ID te edicio = modEdicio
 	public static void modificarEdicioLlibre(int ID, int modEdicio) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setEdicio(modEdicio);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = ID i existeix una Tematica tal que Tematica = tPrincipalmod
 	//post: El Llibre amb identificador ID te temPrincipal = codi identificador de modTPrincipal
 	public static void modificarTPrincipalLlibre(int ID, Tematica modTPrincipal) {
-		Llibre modLlibre = BD.getLlibre(ID);
+		Llibre modLlibre = GestioLlibre.getLlibre(ID);
 		modLlibre.setTemPrincipal(modTPrincipal.getID());
 	}
 	
 	//pre: Existeix un Llibre = esbLlibre
 	//post: El Llibre = esbLlibre ha estat eliminat
 	public static void eliminarLlibre(Llibre esbLlibre) {
-		BD.esborrarLlibre(esbLlibre);
+		GestioLlibre.esborrarLlibre(esbLlibre);
 	}
 	
 	public static Llibre seleccionaLlibreT(String titol) {
-		return BD.getLlibreT(titol);
+		return GestioLlibre.getLlibreTitol(titol);
 	}
 	
 	public static Llibre consultaLlibrePerISBN(String isbn){
-		return BD.getLlibrePerISBN(isbn);
+		return GestioLlibre.getLlibreISBN(isbn);
 	}
 	
 	public static ArrayList<Llibre> consultaLlibresAutor(String autor) {
-		return BD.getLlibresAutor(autor);
+		return GestioLlibre.getLlibresAutor(autor);
 	}
 	
 	public static ArrayList<Llibre> consultaLlibresAny(int any) {
-		return BD.getLlibresAny(any);
+		return GestioLlibre.getLlibresAny(any);
 	}
 	
 	public static ArrayList<Llibre> consultaLlibresEditorial(String editorial) {
-		return BD.getLlibresEditorial(editorial);
+		return GestioLlibre.getLlibresEditorial(editorial);
 	}
 	
 	// GESTIO ESTANTERIA
@@ -299,19 +289,19 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
 	//post: La Estanteria amb identificador ID te numFiles = modNumFiles
 	public static void modificarNumFilesEstanteria(int ID, int modNumFiles) {
-		Estanteria modEstanteria = BD.getEstanteria(ID);
+		Estanteria modEstanteria = GestioEstanteria.getEstanteria(ID);
 		modEstanteria.setNumFiles(modNumFiles);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID
 	//post: La Estanteria amb identificador ID te llargada = modLlargada
 	public static void modificarLlargadaEstanteria(int ID, int modLlargada) {
-		Estanteria modEstanteria = BD.getEstanteria(ID);
+		Estanteria modEstanteria = GestioEstanteria.getEstanteria(ID);
 		modEstanteria.setLlargada(modLlargada);
 	}
 	
 	public static void modificarCoordenadesEstanteria(int ID, int modX, int modY) {
-		Estanteria modEstanteria = BD.getEstanteria(ID);
+		Estanteria modEstanteria = GestioEstanteria.getEstanteria(ID);
 		modEstanteria.setPosX(modX);
 		modEstanteria.setPosX(modY);
 	}
@@ -319,72 +309,41 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: La Estanteria amb identificador = ID ha estat eliminada
 	public static void eliminarEstanteria(int IDE) {
-		
-		BD.esborrarEstanteriaID(IDE);
+		GestioEstanteria.esborrarEstanteriaID(IDE);
 	}
 	
 	public static Estanteria consultaEstanteria(int ID) {
-		return BD.getEstanteria(ID);
+		return GestioEstanteria.getEstanteria(ID);
 	}
-	
-	//GESTIO BIBLIOTECARI
-	
-		public static int afegirBibliotecari(String contrasenya) {
-			Bibliotecari nouBibliotecari = new Bibliotecari(contrasenya);
-			return nouBibliotecari.getID();
-		}
-		
-		public static boolean restablirContrasenyaBibliotecari(int IDB, String oldContrasenya, String newContrasenya) {
-			Bibliotecari modBibliotecari = BD.getBibliotecari(IDB);
-			return modBibliotecari.restablirContrasenya(oldContrasenya, newContrasenya);
-		}
-		
-		public static boolean iniciaSessioBibliotecari(int ID, String contrasenya) {
-			Bibliotecari modBibliotecari = BD.getBibliotecari(ID);
-			if (contrasenya.equals(modBibliotecari.getContrasenya())) return true;
-			else return false;
-		}
-		
-		public static void eliminarBibliotecari(Bibliotecari esbBibliotecari) {
-			BD.esborrarBibliotecari(esbBibliotecari);
-		}
-		
-		public static Bibliotecari consultaBibliotecari(int ID) {
-			return BD.getBibliotecari(ID);
-		}
-	
+        
 	//Consultores
 	
 	public static ArrayList<Llibre> seleccionaAllLlibres() {
-		return BD.getAllLlibres();
+		return GestioLlibre.getAllLlibres();
 	}
 	
 	public static ArrayList<Estanteria> seleccionaAllEstanteries() {
-		return BD.getAllEstanteries();
+		return GestioEstanteria.getAllEstanteries();
 	}
 	
 	public static ArrayList<Tematica> seleccionaAllTematiques() {
-		return BD.getAllTematiques();
+		return GestioArea.getAllTematiques();
 	}
 	
 	public static ArrayList<Seccio> seleccionaAllSeccions() {
-		return BD.getAllSeccions();
+		return GestioArea.getAllSeccions();
 	}
 	
 	public static ArrayList<Area> seleccionaAllArees() {
-		return BD.getAllArees();
-	}
-	
-	public static ArrayList<Bibliotecari> seleccionaAllBibliotecaris() {
-		return BD.getAllBibliotecaris();
+		return GestioArea.getAllArees();
 	}
 	
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		
 	public static ArrayList<Llibre> consultarLlibresArea(int IDA) {
 		ArrayList<Llibre> llibresArea = new ArrayList<Llibre>();
-		ArrayList<Llibre> aux;
-		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
+		ArrayList<Llibre> aux = new ArrayList<Llibre>();
+		ArrayList<Seccio> sA = GestioArea.getArea(IDA).getSeccions();
 		for (int i = 0; i < sA.size(); ++i) {
 			aux = consultarLlibresSeccio(sA.get(i).getID());
 			for (int j = 0; j < aux.size(); ++j) {
@@ -397,18 +356,19 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna les seccions contingudes dins de l'area amb Identitificador IDA
 	public static ArrayList<Seccio> consultarSeccionsArea(int IDA) {
-		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
-		return sA;
+		Area consArea = GestioArea.getArea(IDA);
+		return consArea.getSeccions();
 	}
 	
 	//pre: Existeix una area tal que el seu Identificador = IDA
 	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA	
 	public static ArrayList<Tematica> consultarTematiquesArea(int IDA) {
 		ArrayList<Tematica> tA = new ArrayList<Tematica>();
-		ArrayList<Tematica> aux;
-		ArrayList<Seccio> sA = BD.seccionsArea(IDA);
+		ArrayList<Tematica> aux = new ArrayList<Tematica>();
+                Area consArea = GestioArea.getArea(IDA);
+		ArrayList<Seccio> sA = consArea.getSeccions();
 		for (int i = 0; i < sA.size(); ++i) {
-			aux = BD.tematiquesSeccio(sA.get(i).getID());
+			aux = sA.get(i).getTematiques();
 			for (int j = 0; j < aux.size(); ++j) {
 				tA.add(aux.get(j));
 			}
@@ -420,8 +380,8 @@ public class CtrlDominiInterficie {
 	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
 	public static ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
 		ArrayList<Llibre> llibresSeccio = new ArrayList<Llibre>();
-		ArrayList<Llibre> aux;
-		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
+                ArrayList<Llibre> aux = new ArrayList<Llibre>();
+		ArrayList<Tematica> tS = consultarTematiquesSeccio(IDS);
 		for (int i = 0; i < tS.size(); ++i) {
 			aux = tS.get(i).getLlibres();
 			for (int j = 0; j < aux.size(); ++j) {
@@ -434,72 +394,64 @@ public class CtrlDominiInterficie {
 	//pre: Existeix una seccio tal que el seu Identificador = IDS
 	//post: Retorna les tematiques contingudes dins de la seccio amb Identitificador IDS
 	public static ArrayList<Tematica> consultarTematiquesSeccio(int IDS) {
-		ArrayList<Tematica> tS = BD.tematiquesSeccio(IDS);
-		return tS;
+		Seccio consSeccio = GestioArea.getSeccio(IDS);
+                return consSeccio.getTematiques();
 	}
 	
 	//pre: Existeix una tematica tal que el seu Identificador = IDT
 	//post: Retorna els llibres continguts dins de la tematica amb Identitificador IDT
 	public static ArrayList<Llibre> consultarLlibresTematica(int IDT) {
-		Tematica consTematica = BD.getTematica(IDT);
+		Tematica consTematica = GestioArea.getTematica(IDT);
 		return consTematica.getLlibres();
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: Retorna els llibres continguts dins de la estanteria amb Identitificador IDE
 	public static ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
-		Estanteria consEstanteria = BD.getEstanteria(IDE);
+		Estanteria consEstanteria = GestioEstanteria.getEstanteria(IDE);
 		return consEstanteria.getLlibres();
 	}
 	
 	public static boolean existeixArea (int ID){
-		return BD.existeixArea(ID);
-	}
-	
-	public static boolean existeixBibliotecari(int ID){
-		return BD.existeixBibliotecari(ID);
+		return GestioArea.existeixArea(ID);
 	}
 	
 	public static boolean existeixEstanteria(int ID){
-		return BD.existeixEstanteria(ID);
+		return GestioEstanteria.existeixEstanteria(ID);
 	}
 	
 	public static boolean existeixSeccio(int ID){
-		return BD.existeixSeccio(ID);
+		return GestioArea.existeixSeccio(ID);
 	}
 	
 	public static boolean existeixTematica(int ID){
-		return BD.existeixTematica(ID);
+		return GestioArea.existeixTematica(ID);
 	}
 	
 	public static boolean existeixLlibre(int ID){
-		return BD.existeixLlibre(ID);
+		return GestioLlibre.existeixLlibre(ID);
 	}
 	
 	public static void esborrarAreaID(int IDA){
-		BD.esborrarAreaID(IDA);
-	}
-	
-	public static void esborrarBibliotecariID(int IDB){
-		BD.esborrarBibliotecariID(IDB);
+		GestioArea.esborrarAreaID(IDA);
 	}
 	
 	public static void esborrarEstanteriaID(int IDE){
-		BD.esborrarEstanteriaID(IDE);
+		GestioEstanteria.esborrarEstanteriaID(IDE);
 	}
 	
 	
 	public static void esborrarLlibreID(int IDL){
-		BD.esborrarLlibreID(IDL);
+		GestioLlibre.esborrarLlibreID(IDL);
 	}
 	
 	
 	public static void esborrarSeccioID(int IDS){
-		BD.esborrarSeccioID(IDS);
+		GestioArea.esborrarSeccioID(IDS);
 	}
 
 	public static void esborrarTematicaID(int IDT){
-		BD.esborrarTematicaID(IDT);
+		GestioArea.esborrarTematicaID(IDT);
 	}
 
     public static void seleccionaAllEstanteria() {
