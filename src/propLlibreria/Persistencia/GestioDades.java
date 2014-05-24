@@ -6,7 +6,6 @@ public class GestioDades {
 	private static final String FITXERLLIBRE = new File("resources/Llibre.txt").getAbsolutePath();
 	private static final String FITXERTEMATICA = new File("resources/Tematica.txt").getAbsolutePath();
 	private static final String FITXERAREA = new File("resources/Area.txt").getAbsolutePath();
-	private static final String FITXERBIBLIOTECARI = new File("resources/Bibliotecari.txt").getAbsolutePath();
 	private static final String FITXERESTANTERIA = new File("resources/Estanteria.txt").getAbsolutePath();
 	private static final String FITXERSECCIO = new File("resources/Seccio.txt").getAbsolutePath();
 	String fitxer;
@@ -30,11 +29,9 @@ public class GestioDades {
 				break;
 			case 2: fitxer=FITXERAREA;
 				break;
-			case 3: fitxer=FITXERBIBLIOTECARI;
+			case 3: fitxer=FITXERESTANTERIA;
 				break;
-			case 4: fitxer=FITXERESTANTERIA;
-				break;
-			case 5: fitxer=FITXERSECCIO;
+			case 4: fitxer=FITXERSECCIO;
 		}	
 		
 		try{	
@@ -78,11 +75,9 @@ public class GestioDades {
 				break;
 			case 2: fitxer=FITXERAREA;
 				break;
-			case 3: fitxer=FITXERBIBLIOTECARI;
+			case 3: fitxer=FITXERESTANTERIA;
 				break;
-			case 4: fitxer=FITXERESTANTERIA;
-				break;
-			case 5: fitxer=FITXERSECCIO;
+			case 4: fitxer=FITXERSECCIO;
 		}		
 		
 		try{			
@@ -125,11 +120,9 @@ public class GestioDades {
 				break;
 			case 2: fitxer=FITXERAREA;
 				break;
-			case 3: fitxer=FITXERBIBLIOTECARI;
+			case 3: fitxer=FITXERESTANTERIA;
 				break;
-			case 4: fitxer=FITXERESTANTERIA;
-				break;
-			case 5: fitxer=FITXERSECCIO;
+			case 4: fitxer=FITXERSECCIO;
 		}		
 			
 		try{			
@@ -170,11 +163,9 @@ public class GestioDades {
 				break;
 			case 2: fitxer=FITXERAREA;
 				break;
-			case 3: fitxer=FITXERBIBLIOTECARI;
+			case 3: fitxer=FITXERESTANTERIA;
 				break;
-			case 4: fitxer=FITXERESTANTERIA;
-				break;
-			case 5: fitxer=FITXERSECCIO;
+			case 4: fitxer=FITXERSECCIO;
 		}	
 			
 		try{
@@ -214,11 +205,9 @@ public class GestioDades {
 				break;
 			case 2: fitxer=FITXERAREA;
 				break;
-			case 3: fitxer=FITXERBIBLIOTECARI;
+			case 3: fitxer=FITXERESTANTERIA;
 				break;
-			case 4: fitxer=FITXERESTANTERIA;
-				break;
-			case 5: fitxer=FITXERSECCIO;
+			case 4: fitxer=FITXERSECCIO;
 		}	
 		
 
