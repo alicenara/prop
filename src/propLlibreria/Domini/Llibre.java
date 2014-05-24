@@ -15,8 +15,7 @@ public class Llibre extends Objecte {
 	
 	//All attributes constructor
 	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
-		super(BD.ultimaIDLlibre());
-		//TODO increment ID automatic
+		super(GestioLlibre.ultimaIDLlibre());
 		this.isbn = isbn;
 		this.titol=titol;
 		this.autor=autor;
@@ -24,7 +23,7 @@ public class Llibre extends Objecte {
 		this.any=any;
 		this.edicio=edicio;
 		this.temPrincipal = tPrincipal.getID();
-		BD.afegirLlibre(this);
+		GestioLlibre.afegirLlibre(this);
 		tPrincipal.afegirLlibre(this);
 	}
 	
@@ -87,7 +86,7 @@ public class Llibre extends Objecte {
 	//pre:
 	//post: retorna la tematica principal del parametre implicit
 	public Tematica getTemPrincipal() {
-		return BD.getTematica(temPrincipal);
+		return GestioArea.getTematica(temPrincipal);
 	}
 	
 	//pre:	el parametre implicit no conte novaTematica
