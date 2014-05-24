@@ -15,7 +15,6 @@ public class CtrlDominiPersistencia {
         // AREA           
 
         ArrayList<String[]> arees = CtrlPersistencia.obtenirTotesArees();
-
         for (int i=0; i<arees.size();i++){
             Area aux;
             String[] prop=arees.get(i);
@@ -36,7 +35,6 @@ public class CtrlDominiPersistencia {
         // ESTANTERIA
 
         ArrayList<String[]> estant = CtrlPersistencia.obtenirTotesEstanteries();
-        estant = CtrlPersistencia.obtenirTotesEstanteries();
         for (int i=0; i<estant.size();i++){
             Estanteria aux;
             String[] prop=estant.get(i);
