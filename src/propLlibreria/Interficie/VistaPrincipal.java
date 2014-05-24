@@ -8,12 +8,12 @@ package propLlibreria.Interficie;
 
 /**
  *
- * @author Alice
+ * @author towerthousand
  */
-public class VistaPrincipal extends javax.swing.JFrame {
+public final class VistaPrincipal extends javax.swing.JFrame {
     
     VistaConsultes vConsultes;
-    VistaMenuGestio vGestio;
+    VistaGestio vGestio;
     VistaMenuPrincipal vPrincipal;
     
     /**
@@ -44,8 +44,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
         //</editor-fold>
         initComponents();
         vPrincipal = new VistaMenuPrincipal();
+        vGestio = new VistaGestio();
         vConsultes = new VistaConsultes();
-        vGestio = new VistaMenuGestio();
         this.ferVisiblePrincipal();
     }
     
