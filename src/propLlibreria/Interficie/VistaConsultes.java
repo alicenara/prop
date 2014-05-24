@@ -3,6 +3,7 @@ package propLlibreria.Interficie;
 
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import java.io.*;
 import propLlibreria.Domini.Area;
 import propLlibreria.Domini.CtrlDominiInterficie;
 import propLlibreria.Domini.Estanteria;
@@ -44,7 +45,9 @@ public class VistaConsultes extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         Seleccio = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jComboBox2 = new javax.swing.JComboBox();
+        seleccioItem = new javax.swing.JComboBox();
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jTextField1 = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -94,17 +97,17 @@ public class VistaConsultes extends javax.swing.JPanel {
 
         jButton1.setText("OK");
 
-        Seleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Area", "Seccio", "Tematica", "Llibre" }));
+        Seleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona...", "Area", "Seccio", "Tematica", "Llibre", "Estanteria" }));
         Seleccio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SeleccioActionPerformed(evt);
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        seleccioItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta" }));
+        seleccioItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                seleccioItemActionPerformed(evt);
             }
         });
 
@@ -119,12 +122,16 @@ public class VistaConsultes extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(67, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(80, 80, 80)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(seleccioItem, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jTextField1)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addGap(25, 25, 25))))
         );
@@ -136,9 +143,12 @@ public class VistaConsultes extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(seleccioItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -158,23 +168,19 @@ public class VistaConsultes extends javax.swing.JPanel {
     private void assignListeners() {
         
     }
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void seleccioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccioItemActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
-        // TODO add your handling code here:
-        String comboboxSelectedItem = (String) Seleccio.getModel()
+        String SeleccioSelectedItem = (String) Seleccio.getModel()
+                .getSelectedItem();
+        String combobox2SelectedItem = (String) seleccioItem.getModel()
                 .getSelectedItem();
         ArrayList<String> resultItem = new ArrayList<String>();
-        
         try {
-            switch(comboboxSelectedItem) {
+            switch(SeleccioSelectedItem) {
                 case "Area":
                    ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
                    for (int i = 0; i < arees.size(); ++i) resultItem.add(arees.get(i).getNomArea());
-                    break; 
+                   break; 
                 case "Seccio":
                     ArrayList<Seccio> seccions = CtrlDominiInterficie.seleccionaAllSeccions();
                     for (int i = 0; i < seccions.size(); ++i) resultItem.add(seccions.get(i).getNomSeccio());
@@ -192,24 +198,63 @@ public class VistaConsultes extends javax.swing.JPanel {
                     ArrayList<Estanteria> estanteries =  CtrlDominiInterficie.seleccionaAllEstanteries();
                     for (int i = 0; i < estanteries.size(); ++i) resultItem.add(Integer.toString(estanteries.get(i).getID()));
                     break;
+                
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_seleccioItemActionPerformed
+
+    private void opcionsArea() {}
+    private void opcionsSeccio() {}
+    private void opcionsTematica() {}
+    private void opcionsLlibre() {}
+    private void opcionsEstanteria() {}
+    
+    private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
+        // TODO add your handling code here:
+        String comboboxSelectedItem = (String) Seleccio.getModel()
+                .getSelectedItem();
+        ArrayList<String> resultItem = new ArrayList<String>();
+        try {
+            switch(comboboxSelectedItem) {
+                case "Area":
+                    opcionsArea();
+                    break; 
+                case "Seccio":
+                    opcionsSeccio();
+                    break;
+                case "Tematica":
+                    opcionsTematica();
+                    break;
+                case "Llibre":
+                    opcionsLlibre();
+                    break;
+                case "Estanteria":
+                    opcionsEstanteria();
+                    break;
             }
             DefaultComboBoxModel listmodel = new DefaultComboBoxModel ();
-            for (int i = 0; i < resultItem.size(); ++i) jComboBox2.addItem(resultItem.get(i));
-            
+            for (int i = 0; i < resultItem.size(); ++i) seleccioItem.addItem(resultItem.get(i));
         }
-        catch (Exception e){}   
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }   
     }//GEN-LAST:event_SeleccioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox Seleccio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox seleccioItem;
     // End of variables declaration//GEN-END:variables
 }
