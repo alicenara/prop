@@ -26,9 +26,6 @@ public class VistaConsultes extends javax.swing.JPanel {
         initComponents();
         assignListeners();
     }
-    public void actionPerformedButtonCargarAsignaturas(ActionEvent event) {
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
