@@ -2,19 +2,18 @@ package propLlibreria.Domini;
 
 import java.util.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author sergibdn94
- */
 public class GestioLlibre {
     private static HashMap<Integer, Llibre> llibre = new HashMap<Integer, Llibre>();
     private static int idl = 0;
+    
+    public static void setHashLlibre(HashMap<Integer, Llibre> l, int id){
+        llibre=l;
+        idl=id;
+    }
+    
+    public static HashMap<Integer, Llibre> getHashLlibre(){
+        return llibre;
+    }
     
     public static int ultimaIDLlibre(){
             ++idl;

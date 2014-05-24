@@ -1,20 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package propLlibreria.Domini;
 import compartit.*;
 import java.util.*;
 
-/**
- *
- * @author sergibdn94
- */
 public class CtrlDominiInterficie {
     
-	//Inicialitzaci� del programa
+	//Inicialització del programa
 	//pre:
 	//post: s'inicialitza la classe amb tots els vectors
 	public static void iniBD() {

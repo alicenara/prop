@@ -236,13 +236,13 @@ public class GestioDades {
 		    	writer.newLine();
 		    }		    
 		} catch (IOException ex) {
-                    System.out.println("Error1");
+                    System.out.println("No existeix l'arxiu");
 			return false;
 		} finally {
 			try {
 			   writer.close();
 		   } catch (Exception ex) {
-                       System.out.println("Error2");
+                       System.out.println("No es pot tacar el buffer");
 			   return false;
 		   }
 		}

@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package propLlibreria.Domini;
 
 import java.util.*;
 
-/**
- *
- * @author sergibdn94
- */
 public class GestioEstanteria {
     private static HashMap<Integer, Estanteria> est = new HashMap<Integer, Estanteria>();
     private static int ide = 0;
+    
+    public static HashMap<Integer, Estanteria> getHashEstanteria(){
+        return est;
+    }
+    public static void setHashEstanteria(HashMap<Integer, Estanteria> e,int id){
+        est=e;
+        ide=id;
+    }
     
     public static int ultimaIDEstanteria(){
             ++ide;
