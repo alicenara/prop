@@ -46,7 +46,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         vPrincipal = new VistaMenuPrincipal();
         vConsultes = new VistaConsultes();
         vGestio = new VistaMenuGestio();
-        this.setContentPane(vPrincipal);
+        this.ferVisiblePrincipal();
     }
     
     /**
@@ -58,7 +58,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PROP");
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
@@ -86,4 +86,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public void ferVisible() {
         this.setVisible(true);
     } 
+
+    void ferVisibleGestionar() {
+        this.setContentPane(vGestio);
+    }
+
+    void ferVisibleConsultar() {
+        this.setContentPane(vConsultes);
+    }
+    
+    void ferVisiblePrincipal() {
+        this.setContentPane(vPrincipal);
+    }
 }
