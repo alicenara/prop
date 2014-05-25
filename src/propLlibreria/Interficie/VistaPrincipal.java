@@ -89,13 +89,22 @@ public final class VistaPrincipal extends javax.swing.JFrame {
 
     void ferVisibleGestionar() {
         this.setContentPane(vGestio);
+        vPrincipal.setVisible(false);
+        vGestio.setVisible(true);
+        vConsultes.setVisible(false);
     }
 
     void ferVisibleConsultar() {
         this.setContentPane(vConsultes);
+        vPrincipal.setVisible(false);
+        vGestio.setVisible(false);
+        vConsultes.setVisible(true);
     }
     
     void ferVisiblePrincipal() {
         this.setContentPane(vPrincipal);
+        vPrincipal.setVisible(true);
+        vGestio.setVisible(false);
+        vConsultes.setVisible(false);
     }
 }
