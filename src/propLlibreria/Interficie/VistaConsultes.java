@@ -1,16 +1,19 @@
 
 package propLlibreria.Interficie;
 
-import java.util.ArrayList;
-import javax.swing.DefaultComboBoxModel;
 import java.io.*;
+import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import propLlibreria.Domini.Area;
 import propLlibreria.Domini.CtrlDominiInterficie;
 import propLlibreria.Domini.Estanteria;
 import propLlibreria.Domini.Llibre;
 import propLlibreria.Domini.Seccio;
 import propLlibreria.Domini.Tematica;
-
 /**
  *
  * @author Ruben
@@ -20,12 +23,13 @@ public class VistaConsultes extends javax.swing.JPanel {
     /**
      * Creates new form VistaConsultes
      */
+    @SuppressWarnings("FieldMayBeFinal")
     private CtrlInterficie controladorInterficie;
     
     
     public VistaConsultes() {
         initComponents();
-        assignListeners();
+        
     }
 
     /**
@@ -40,13 +44,10 @@ public class VistaConsultes extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         Seleccio = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        seleccioItem = new javax.swing.JComboBox();
-        jScrollBar1 = new javax.swing.JScrollBar();
+        funcionsSeleccio = new javax.swing.JComboBox();
+        OKButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
@@ -74,29 +75,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                 .addComponent(jLabel1))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel2.setText("panel de navegabilitat");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(184, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(233, 233, 233))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jButton1.setText("OK");
-
         Seleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona...", "Area", "Seccio", "Tematica", "Llibre", "Estanteria" }));
         Seleccio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,10 +82,40 @@ public class VistaConsultes extends javax.swing.JPanel {
             }
         });
 
-        seleccioItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta" }));
-        seleccioItem.addActionListener(new java.awt.event.ActionListener() {
+        jScrollPane1.setAutoscrolls(true);
+
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta..." }));
+        funcionsSeleccio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seleccioItemActionPerformed(evt);
+                funcionsSeleccioActionPerformed(evt);
+            }
+        });
+
+        OKButton.setText("OK");
+        OKButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OKButtonActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
+        jTextField1.setText("Introdueix dades");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField1FocusLost(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
             }
         });
 
@@ -116,48 +124,48 @@ public class VistaConsultes extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 63, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(seleccioItem, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(25, 25, 25))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(OKButton)
+                        .addGap(45, 45, 45))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(seleccioItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(OKButton))
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,60 +173,55 @@ public class VistaConsultes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void assignListeners() {
+    
+    private void restablirOpcions() {
+        funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..."}));
+    }
+    private void opcionsArea() {
+        funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area", "Tematiques d'area", "Llibres d'area" }));
+    }
+    private void opcionsSeccio() {
+    funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes seccions", "Tematiques seccio", "Llibres seccio" }));
+    }
+    private void opcionsTematica() {
+    funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes tematiques", "Llibres tematiques" }));
+    }
+    private void opcionsLlibre() {
+    funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta..." , "Consulta per títol", "Consulta per autor", "Consulta per tematica principal", "Consulta per isbn", "Consulta per any", "Consulta per editorial"}));
         
     }
-    private void seleccioItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccioItemActionPerformed
+    private void opcionsEstanteria() {
+        funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta...", "Totes estanteries", "Llibres estanteria", "Localitzacio estanteria", "Mida estanteria",}));
+    }
+    private void funcionsSeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionsSeleccioActionPerformed
         // TODO add your handling code here:
-        String SeleccioSelectedItem = (String) Seleccio.getModel()
+        String funcionsSeleccioItem = (String) funcionsSeleccio.getModel()
                 .getSelectedItem();
-        String combobox2SelectedItem = (String) seleccioItem.getModel()
-                .getSelectedItem();
-        ArrayList<String> resultItem = new ArrayList<String>();
+        System.out.println(funcionsSeleccioItem);
         try {
-            switch(SeleccioSelectedItem) {
-                case "Area":
-                   ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
-                   for (int i = 0; i < arees.size(); ++i) resultItem.add(arees.get(i).getNomArea());
-                   break; 
-                case "Seccio":
-                    ArrayList<Seccio> seccions = CtrlDominiInterficie.seleccionaAllSeccions();
-                    for (int i = 0; i < seccions.size(); ++i) resultItem.add(seccions.get(i).getNomSeccio());
-                    break;
-                case "Tematica":
-                    ArrayList<Tematica> tematiques = CtrlDominiInterficie.seleccionaAllTematiques();
-                    for (int i = 0; i < tematiques.size(); ++i) resultItem.add(tematiques.get(i).getNomTematica());
-                    break;
-                case "Llibre":
-                    
-                    ArrayList<Llibre> llibres = CtrlDominiInterficie.seleccionaAllLlibres();
-                    for (int i = 0; i < llibres.size(); ++i) resultItem.add(llibres.get(i).getTitol());
-                    break;
-                case "Estanteria":
-                    ArrayList<Estanteria> estanteries =  CtrlDominiInterficie.seleccionaAllEstanteries();
-                    for (int i = 0; i < estanteries.size(); ++i) resultItem.add(Integer.toString(estanteries.get(i).getID()));
-                    break;
-                
-            }
+            //TODO
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }//GEN-LAST:event_seleccioItemActionPerformed
+        
+    }//GEN-LAST:event_funcionsSeleccioActionPerformed
 
-    private void opcionsArea() {}
-    private void opcionsSeccio() {}
-    private void opcionsTematica() {}
-    private void opcionsLlibre() {}
-    private void opcionsEstanteria() {}
-    
     private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
         // TODO add your handling code here:
-        String comboboxSelectedItem = (String) Seleccio.getModel()
+        String SeleccioItem = (String) Seleccio.getModel()
                 .getSelectedItem();
-        ArrayList<String> resultItem = new ArrayList<String>();
         try {
-            switch(comboboxSelectedItem) {
+            switch(SeleccioItem) {
+                case "Selecciona...":
+                    restablirOpcions();
+                    break;
                 case "Area":
                     opcionsArea();
                     break; 
@@ -235,26 +238,206 @@ public class VistaConsultes extends javax.swing.JPanel {
                     opcionsEstanteria();
                     break;
             }
-            DefaultComboBoxModel listmodel = new DefaultComboBoxModel ();
-            for (int i = 0; i < resultItem.size(); ++i) seleccioItem.addItem(resultItem.get(i));
         }
         catch (Exception e){
             System.out.println(e.getMessage());
         }   
     }//GEN-LAST:event_SeleccioActionPerformed
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+    
+    private void consultaArea(String funcio) {
+        try {
+            System.out.println("Consulta area");
+            switch(funcio) {
+                case "Totes arees":
+                    ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
+                    JTextArea txt = new JTextArea();
+                    txt.setEditable(false);
+                    txt.setLineWrap(true);
+                    txt.insert("· " + arees.get(0).getNomArea(),0);
+                    for (int i = 1; i < arees.size(); i++) txt.append("\n·"+arees.get(i).getNomArea());
+                    jScrollPane1.setViewportView(txt);
+                    break;
+                case "Seccions d'area":
+                    
+                    break;
+                case "Tematiques d'area":
+                    break;
+                case "Llibres d'area":
+                    break;       
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    private void consultaSeccio(String funcio) {
+      try {
+          System.out.println("Consulta seccio");
+            switch(funcio) {
+                case "Totes seccions" :
+                    ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
+                    JTextArea txt = new JTextArea();
+                    txt.setEditable(false);
+                    txt.setLineWrap(true);
+                    txt.insert("· " + arees.get(0).getNomArea(),0);
+                    for (int i = 1; i < arees.size(); i++) txt.append("\n·"+arees.get(i).getNomArea());
+                    jScrollPane1.setViewportView(txt);
+                    break;
+                case "Tematiques seccio" :
+                    break;
+                case "Llibres seccio" :
+                    break; 
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+    }
+    
+    private void consultaTematica(String funcio) {
+        try {
+            System.out.println("Consulta Tematica");
+            switch(funcio) {
+                case "Totes tematiques":
+                    System.out.println("Consulta Tematica2");
+                    ArrayList<Tematica> tematiques = CtrlDominiInterficie.seleccionaAllTematiques();
+                    JTextArea txt = new JTextArea();
+                    txt.setEditable(false);
+                    txt.setLineWrap(true);
+                    txt.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+                    txt.insert("· " + tematiques.get(0).getNomTematica(),0);
+                    for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
+                    jScrollPane1.setViewportView(txt);
+                    break;
+                case "Llibres tematiques":
+                    
+                    break;
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private void consultaLlibre(String funcio) {
+      try {
+          System.out.println("Consulta llibre");
+            switch(funcio) {
+                case "Consulta per títol":
+                    
+                    break;
+                case "Consulta per autor":
+                    break;
+                case "Consulta per tematica principal":
+                    break;
+                case "Consulta per isbn":
+                    break;
+                case "Consulta per any":
+                    break;
+                case "Consulta per editorial":
+                    break;
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }  
+    }
+    
+    private void consultaEstanteria(String funcio) {
+        try {
+            System.out.println("Consulta Estanteria");
+            switch(funcio) {
+                case "Totes estanteries":
+                    ArrayList<Estanteria>  estanteries = CtrlDominiInterficie.seleccionaAllEstanteries();
+                    if (estanteries.size() > 0) {
+                        JTextArea txt = new JTextArea();
+                        txt.setEditable(false);
+                        txt.setLineWrap(true);
+                        txt.insert("· " + estanteries.get(0).getID(),0);
+                        for (int i = 1; i < estanteries.size(); i++) txt.append("\n·"+estanteries.get(i).getID());
+                        jScrollPane1.setViewportView(txt);
+                    }
+                    break;
+                case "Llibres estanteria":
+                    break;
+                case "Localitzacio estanteria":
+                    break;
+                case "Mida estanteria":
+                    break;
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            System.out.println("Consulta...");
+            String SeleccioItem = (String) Seleccio.getModel()
+                .getSelectedItem();
+            String funcionsSeleccioItem = (String) funcionsSeleccio.getModel()
+                .getSelectedItem();
+            switch (SeleccioItem) {
+                case "Area":
+                    consultaArea(funcionsSeleccioItem);
+                    break; 
+                case "Seccio":
+                    consultaSeccio(funcionsSeleccioItem);
+                    break;
+                case "Tematica":
+                    consultaTematica(funcionsSeleccioItem);
+                    break;
+                case "Llibre":
+                    consultaLlibre(funcionsSeleccioItem);
+                    break;
+                case "Estanteria":
+                    consultaEstanteria(funcionsSeleccioItem);
+                    break;
+                default:
+                    
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_OKButtonActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+        if(jTextField1.getText().trim().equals("Introdueix dades")){
+           jTextField1.setText("");
+           jTextField1.setForeground(new java.awt.Color(0,0,0));
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+        if(jTextField1.getText().trim().equals("")) {
+           jTextField1.setText("Introdueix dades");
+           jTextField1.setForeground(new java.awt.Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        OKButton.setEnabled(true);
+    }//GEN-LAST:event_jTextField1KeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton OKButton;
     private javax.swing.JComboBox Seleccio;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox funcionsSeleccio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JComboBox seleccioItem;
     // End of variables declaration//GEN-END:variables
 }
