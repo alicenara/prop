@@ -6,15 +6,9 @@ public class GestioLlibre {
     private static HashMap<Integer, Llibre> llibre = new HashMap<Integer, Llibre>();
     private static int idl = 0;
     
-    public static void setHashLlibre(HashMap<Integer, Llibre> l, int id){
-        llibre=l;
+    public static void setIdl(int id){
         idl=id;
     }
-    
-    public static HashMap<Integer, Llibre> getHashLlibre(){
-        return llibre;
-    }
-    
     public static int ultimaIDLlibre(){
             ++idl;
             return idl;

@@ -11,33 +11,18 @@ public class GestioArea {
     private static int ids = 0;
     private static int idt = 0;
     
-    public static HashMap<Integer, Area> getHashArea(){
-        return area;
+    public static void setIda(int id){
+        ida=id;
     }
     
-    public static HashMap<Integer, Seccio> getHashSeccio(){
-       return sec;
+    public static void setIds(int id){
+        ids=id;
+    }
+    
+    public static void setIdt(int id){
+        idt=id;
     }
 
-    public static HashMap<Integer, Tematica> getHashTematica(){
-       return tem;
-    }
-
-    public static void setHashArea(HashMap<Integer, Area> a, int id){
-       area=a;
-       ida=id;
-    }
-
-    public static void setHashSeccio(HashMap<Integer, Seccio> s, int id){
-       sec=s;
-       ids=id;
-    }
-
-    public static void setHashTematica(HashMap<Integer, Tematica> t, int id){
-       tem=t;
-       idt=id;
-    }
- 
     public static int ultimaIDArea(){
             ++ida;
             return ida;

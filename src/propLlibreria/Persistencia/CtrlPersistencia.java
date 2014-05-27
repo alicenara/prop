@@ -5,19 +5,13 @@ public class CtrlPersistencia {
     private static final int LLIBRE = 0;
     private static final int TEMATICA = 1;
     private static final int AREA = 2;
-    private static final int BIBLIOTECARI = 3;
-    private static final int ESTANTERIA = 4;
-    private static final int SECCIO = 5;
+    private static final int ESTANTERIA = 3;
+    private static final int SECCIO = 4;
 
 
     public static ArrayList<String[]> obtenirTotesArees(){
             GestioDades g = new GestioDades();
             return g.llegirTotsObjectes(AREA);
-    }
-
-    public static ArrayList<String[]> obtenirTotsBcaris(){
-            GestioDades g = new GestioDades();
-            return g.llegirTotsObjectes(BIBLIOTECARI);		
     }
 
     public static ArrayList<String[]> obtenirTotesEstanteries(){
@@ -43,11 +37,6 @@ public class CtrlPersistencia {
     public static boolean desarTotesArees(ArrayList<String[]> a){
             GestioDades g = new GestioDades();
             return g.escriureTotsObjectes(a,AREA);	
-    }
-
-    public static boolean desarTotsBibliotecaris(ArrayList<String[]> b){
-            GestioDades g = new GestioDades();
-            return g.escriureTotsObjectes(b,BIBLIOTECARI);	
     }
 
     public static boolean desarTotesEstanteries(ArrayList<String[]> e){
