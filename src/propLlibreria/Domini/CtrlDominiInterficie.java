@@ -89,8 +89,9 @@ public class CtrlDominiInterficie {
 		GestioArea.esborrarArea(esbArea);
 	}
 	
-	public static Area seleccionaAreaN(String nomA) {
-		return GestioArea.getAreaN(nomA);
+	public static int seleccionaAreaN(String nomA) {
+		Area areaN = GestioArea.getAreaN(nomA);
+                return areaN.getID();
 	}
 	
 	// GESTIO SECCIO
@@ -123,12 +124,9 @@ public class CtrlDominiInterficie {
 		GestioArea.esborrarSeccio(esbSeccio);
 	}
 	
-	public static Seccio seleccionaSeccioN(String nomS) {
-		return GestioArea.getSeccioN(nomS);
-	}
-	
-	public static Seccio seleccionaSeccioID(int IDS) {
-		return GestioArea.getSeccio(IDS);
+	public static int seleccionaSeccioN(String nomS) {
+                Seccio seccioN = GestioArea.getSeccioN(nomS);
+		return seccioN.getID();
 	}
 	
 	//GESTIO TEMATICA
