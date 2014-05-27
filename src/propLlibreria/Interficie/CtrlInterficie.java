@@ -15,7 +15,7 @@ public final class CtrlInterficie {
   }
 
   public void inicialitzarPresentacio() {
-    //CtrlDominiInterficie.iniBD();
+    CtrlDominiInterficie.iniBD();
     vistaPrincipal.ferVisible();
   }
 }
