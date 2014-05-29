@@ -40,16 +40,12 @@ public class VistaConsultes extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-<<<<<<< HEAD
         seaGlassContext1 = new com.seaglasslookandfeel.SeaGlassContext();
         seaGlassToggleButtonUI1 = new com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-=======
         Fons = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
->>>>>>> a313530a8a9f7c10a2ee43b88a50e541d359be78
         jLabel1 = new javax.swing.JLabel();
         Seleccio = new javax.swing.JComboBox();
         MostraResult = new javax.swing.JScrollPane();
@@ -346,7 +342,6 @@ public class VistaConsultes extends javax.swing.JPanel {
           System.out.println("Consulta seccio");
             switch(funcio) {
                 case "Totes seccions" :
-<<<<<<< HEAD
                     ArrayList<Seccio> seccions = CtrlDominiInterficie.seleccionaAllSeccions();
                     if (seccions.size() > 0) {
                         JTextArea txt = new JTextArea();
@@ -354,9 +349,8 @@ public class VistaConsultes extends javax.swing.JPanel {
                         txt.setLineWrap(true);
                         txt.insert("· " + seccions.get(0).getNomSeccio(),0);
                         for (int i = 1; i < seccions.size(); i++) txt.append("\n·"+seccions.get(i).getNomSeccio());
-                        jScrollPane1.setViewportView(txt);
+                        MostrarResult.setViewportView(txt);
                     }
-=======
                     ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
                     JTextArea txt = new JTextArea();
                     txt.setEditable(false);
@@ -364,7 +358,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                     txt.insert("· " + arees.get(0).getNomArea(),0);
                     for (int i = 1; i < arees.size(); i++) txt.append("\n·"+arees.get(i).getNomArea());
                     MostraResult.setViewportView(txt);
->>>>>>> a313530a8a9f7c10a2ee43b88a50e541d359be78
                     break;
                 case "Tematiques seccio" :
                     break;
@@ -383,7 +376,6 @@ public class VistaConsultes extends javax.swing.JPanel {
             switch(funcio) {
                 case "Totes tematiques":
                     ArrayList<Tematica> tematiques = CtrlDominiInterficie.seleccionaAllTematiques();
-<<<<<<< HEAD
                     if (tematiques.size() > 0) {
                         JTextArea txt = new JTextArea();
                         txt.setEditable(false);
@@ -392,7 +384,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                         for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
                         jScrollPane1.setViewportView(txt);
                     }
-=======
                     JTextArea txt = new JTextArea();
                     txt.setEditable(false);
                     txt.setLineWrap(true);
@@ -400,7 +391,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                     txt.insert("· " + tematiques.get(0).getNomTematica(),0);
                     for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
                     MostraResult.setViewportView(txt);
->>>>>>> a313530a8a9f7c10a2ee43b88a50e541d359be78
                     break;
                 case "Llibres tematiques":
                     
