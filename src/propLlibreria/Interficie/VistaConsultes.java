@@ -1,4 +1,3 @@
-
 package propLlibreria.Interficie;
 
 import java.io.*;
@@ -24,12 +23,11 @@ public class VistaConsultes extends javax.swing.JPanel {
      * Creates new form VistaConsultes
      */
     @SuppressWarnings("FieldMayBeFinal")
-    private CtrlInterficie controladorInterficie;
     
     
     public VistaConsultes() {
         initComponents();
-        jTextField1.setEnabled(false);
+        IntroduccioDades.setEnabled(false);
     }
 
     /**
@@ -40,10 +38,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        seaGlassContext1 = new com.seaglasslookandfeel.SeaGlassContext();
-        seaGlassToggleButtonUI1 = new com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+
         Fons = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -51,7 +46,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         MostraResult = new javax.swing.JScrollPane();
         funcionsSeleccio = new javax.swing.JComboBox();
         OKButton = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        IntroduccioDades = new javax.swing.JTextField();
 
         Fons.setBackground(new java.awt.Color(204, 204, 255));
         Fons.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -101,25 +96,25 @@ public class VistaConsultes extends javax.swing.JPanel {
             }
         });
 
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("Introdueix dades");
-        jTextField1.setEnabled(false);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        IntroduccioDades.setForeground(new java.awt.Color(153, 153, 153));
+        IntroduccioDades.setText("Introdueix dades");
+        IntroduccioDades.setEnabled(false);
+        IntroduccioDades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                IntroduccioDadesActionPerformed(evt);
             }
         });
-        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+        IntroduccioDades.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField1FocusGained(evt);
+                IntroduccioDadesFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField1FocusLost(evt);
+                IntroduccioDadesFocusLost(evt);
             }
         });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        IntroduccioDades.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                IntroduccioDadesKeyTyped(evt);
             }
         });
 
@@ -139,7 +134,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)
+                        .addComponent(IntroduccioDades)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(OKButton)
                         .addGap(45, 45, 45))))
@@ -155,7 +150,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(IntroduccioDades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(OKButton))
                 .addGap(21, 21, 21)
                 .addComponent(MostraResult, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
@@ -177,9 +172,9 @@ public class VistaConsultes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void IntroduccioDadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IntroduccioDadesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_IntroduccioDadesActionPerformed
 
     private void funcionsSeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionsSeleccioActionPerformed
         // TODO add your handling code here:
@@ -190,8 +185,8 @@ public class VistaConsultes extends javax.swing.JPanel {
         System.out.println(funcionsSeleccioItem);
         try {
             //TODO
-            if ((SeleccioItem == null) ||("Selecciona...".equals(SeleccioItem)) || (funcionsSeleccioItem == null) || ("Tipus consulta...".equals(funcionsSeleccioItem)) || ("Totes arees".equals(funcionsSeleccioItem))) jTextField1.setEnabled(false);
-            else jTextField1.setEnabled(true);
+            if ((SeleccioItem == null) ||("Selecciona...".equals(SeleccioItem)) || (funcionsSeleccioItem == null) || ("Tipus consulta...".equals(funcionsSeleccioItem)) || ("Totes arees".equals(funcionsSeleccioItem))) IntroduccioDades.setEnabled(false);
+            else IntroduccioDades.setEnabled(true);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -263,26 +258,26 @@ public class VistaConsultes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_OKButtonActionPerformed
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+    private void IntroduccioDadesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_IntroduccioDadesFocusGained
         // TODO add your handling code here:
-        if(jTextField1.getText().trim().equals("Introdueix dades")){
-            jTextField1.setText("");
-            jTextField1.setForeground(new java.awt.Color(0,0,0));
+        if(IntroduccioDades.getText().trim().equals("Introdueix dades")){
+            IntroduccioDades.setText("");
+            IntroduccioDades.setForeground(new java.awt.Color(0,0,0));
         }
-    }//GEN-LAST:event_jTextField1FocusGained
+    }//GEN-LAST:event_IntroduccioDadesFocusGained
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+    private void IntroduccioDadesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_IntroduccioDadesFocusLost
         // TODO add your handling code here:
-        if(jTextField1.getText().trim().equals("")) {
-            jTextField1.setText("Introdueix dades");
-            jTextField1.setForeground(new java.awt.Color(153, 153, 153));
+        if(IntroduccioDades.getText().trim().equals("")) {
+            IntroduccioDades.setText("Introdueix dades");
+            IntroduccioDades.setForeground(new java.awt.Color(153, 153, 153));
         }
-    }//GEN-LAST:event_jTextField1FocusLost
+    }//GEN-LAST:event_IntroduccioDadesFocusLost
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void IntroduccioDadesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IntroduccioDadesKeyTyped
         // TODO add your handling code here:
         OKButton.setEnabled(true);
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_IntroduccioDadesKeyTyped
 
     
     private void restablirOpcions() {
@@ -349,7 +344,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         txt.setLineWrap(true);
                         txt.insert("· " + seccions.get(0).getNomSeccio(),0);
                         for (int i = 1; i < seccions.size(); i++) txt.append("\n·"+seccions.get(i).getNomSeccio());
-                        MostrarResult.setViewportView(txt);
+                        MostraResult.setViewportView(txt);
                     }
                     ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
                     JTextArea txt = new JTextArea();
@@ -382,7 +377,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         txt.setLineWrap(true);
                         txt.append("·"+tematiques.get(0).getNomTematica());
                         for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
-                        jScrollPane1.setViewportView(txt);
+                        MostraResult.setViewportView(txt);
                     }
                     JTextArea txt = new JTextArea();
                     txt.setEditable(false);
@@ -458,13 +453,11 @@ public class VistaConsultes extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fons;
     private javax.swing.JPanel Header;
+    private javax.swing.JTextField IntroduccioDades;
     private javax.swing.JScrollPane MostraResult;
     private javax.swing.JButton OKButton;
     private javax.swing.JComboBox Seleccio;
     private javax.swing.JComboBox funcionsSeleccio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
-    private com.seaglasslookandfeel.SeaGlassContext seaGlassContext1;
-    private com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI seaGlassToggleButtonUI1;
     // End of variables declaration//GEN-END:variables
 }
