@@ -29,7 +29,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     
     public VistaConsultes() {
         initComponents();
-        
+        jTextField1.setEnabled(false);
     }
 
     /**
@@ -41,6 +41,8 @@ public class VistaConsultes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        seaGlassContext1 = new com.seaglasslookandfeel.SeaGlassContext();
+        seaGlassToggleButtonUI1 = new com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -100,6 +102,7 @@ public class VistaConsultes extends javax.swing.JPanel {
 
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setText("Introdueix dades");
+        jTextField1.setEnabled(false);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -173,6 +176,113 @@ public class VistaConsultes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void funcionsSeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionsSeleccioActionPerformed
+        // TODO add your handling code here:
+        String SeleccioItem = (String) Seleccio.getModel()
+        .getSelectedItem();
+        String funcionsSeleccioItem = (String) funcionsSeleccio.getModel()
+        .getSelectedItem();
+        System.out.println(funcionsSeleccioItem);
+        try {
+            //TODO
+            if ((SeleccioItem == null) ||("Selecciona...".equals(SeleccioItem)) || (funcionsSeleccioItem == null) || ("Tipus consulta...".equals(funcionsSeleccioItem)) || ("Totes arees".equals(funcionsSeleccioItem))) jTextField1.setEnabled(false);
+            else jTextField1.setEnabled(true);
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }//GEN-LAST:event_funcionsSeleccioActionPerformed
+
+    private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
+        // TODO add your handling code here:
+        String SeleccioItem = (String) Seleccio.getModel()
+        .getSelectedItem();
+        try {
+            switch(SeleccioItem) {
+                case "Selecciona...":
+                restablirOpcions();
+                break;
+                case "Area":
+                opcionsArea();
+                break;
+                case "Seccio":
+                opcionsSeccio();
+                break;
+                case "Tematica":
+                opcionsTematica();
+                break;
+                case "Llibre":
+                opcionsLlibre();
+                break;
+                case "Estanteria":
+                opcionsEstanteria();
+                break;
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_SeleccioActionPerformed
+
+    private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            System.out.println("Consulta...");
+            String SeleccioItem = (String) Seleccio.getModel()
+            .getSelectedItem();
+            String funcionsSeleccioItem = (String) funcionsSeleccio.getModel()
+            .getSelectedItem();
+            switch (SeleccioItem) {
+                case "Area":
+                consultaArea(funcionsSeleccioItem);
+                break;
+                case "Seccio":
+                consultaSeccio(funcionsSeleccioItem);
+                break;
+                case "Tematica":
+                consultaTematica(funcionsSeleccioItem);
+                break;
+                case "Llibre":
+                consultaLlibre(funcionsSeleccioItem);
+                break;
+                case "Estanteria":
+                consultaEstanteria(funcionsSeleccioItem);
+                break;
+                default:
+
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_OKButtonActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        // TODO add your handling code here:
+        if(jTextField1.getText().trim().equals("Introdueix dades")){
+            jTextField1.setText("");
+            jTextField1.setForeground(new java.awt.Color(0,0,0));
+        }
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+        // TODO add your handling code here:
+        if(jTextField1.getText().trim().equals("")) {
+            jTextField1.setText("Introdueix dades");
+            jTextField1.setForeground(new java.awt.Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_jTextField1FocusLost
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        // TODO add your handling code here:
+        OKButton.setEnabled(true);
+    }//GEN-LAST:event_jTextField1KeyTyped
+
     
     private void restablirOpcions() {
         funcionsSeleccio.removeAllItems();
@@ -181,6 +291,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     private void opcionsArea() {
         funcionsSeleccio.removeAllItems();
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area", "Tematiques d'area", "Llibres d'area" }));
+        //funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area", "Tematiques d'area", "Llibres d'area" }));
     }
     private void opcionsSeccio() {
     funcionsSeleccio.removeAllItems();
@@ -198,56 +309,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     private void opcionsEstanteria() {
         funcionsSeleccio.removeAllItems();
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta...", "Totes estanteries", "Llibres estanteria", "Localitzacio estanteria", "Mida estanteria",}));
-    }
-    private void funcionsSeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionsSeleccioActionPerformed
-        // TODO add your handling code here:
-        String funcionsSeleccioItem = (String) funcionsSeleccio.getModel()
-                .getSelectedItem();
-        System.out.println(funcionsSeleccioItem);
-        try {
-            //TODO
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        
-    }//GEN-LAST:event_funcionsSeleccioActionPerformed
-
-    private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
-        // TODO add your handling code here:
-        String SeleccioItem = (String) Seleccio.getModel()
-                .getSelectedItem();
-        try {
-            switch(SeleccioItem) {
-                case "Selecciona...":
-                    restablirOpcions();
-                    break;
-                case "Area":
-                    opcionsArea();
-                    break; 
-                case "Seccio":
-                    opcionsSeccio();
-                    break;
-                case "Tematica":
-                    opcionsTematica();
-                    break;
-                case "Llibre":
-                    opcionsLlibre();
-                    break;
-                case "Estanteria":
-                    opcionsEstanteria();
-                    break;
-            }
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }   
-    }//GEN-LAST:event_SeleccioActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-    
+    }    
     private void consultaArea(String funcio) {
         try {
             System.out.println("Consulta area");
@@ -279,13 +341,15 @@ public class VistaConsultes extends javax.swing.JPanel {
           System.out.println("Consulta seccio");
             switch(funcio) {
                 case "Totes seccions" :
-                    ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
-                    JTextArea txt = new JTextArea();
-                    txt.setEditable(false);
-                    txt.setLineWrap(true);
-                    txt.insert("· " + arees.get(0).getNomArea(),0);
-                    for (int i = 1; i < arees.size(); i++) txt.append("\n·"+arees.get(i).getNomArea());
-                    jScrollPane1.setViewportView(txt);
+                    ArrayList<Seccio> seccions = CtrlDominiInterficie.seleccionaAllSeccions();
+                    if (seccions.size() > 0) {
+                        JTextArea txt = new JTextArea();
+                        txt.setEditable(false);
+                        txt.setLineWrap(true);
+                        txt.insert("· " + seccions.get(0).getNomSeccio(),0);
+                        for (int i = 1; i < seccions.size(); i++) txt.append("\n·"+seccions.get(i).getNomSeccio());
+                        jScrollPane1.setViewportView(txt);
+                    }
                     break;
                 case "Tematiques seccio" :
                     break;
@@ -303,15 +367,15 @@ public class VistaConsultes extends javax.swing.JPanel {
             System.out.println("Consulta Tematica");
             switch(funcio) {
                 case "Totes tematiques":
-                    System.out.println("Consulta Tematica2");
                     ArrayList<Tematica> tematiques = CtrlDominiInterficie.seleccionaAllTematiques();
-                    JTextArea txt = new JTextArea();
-                    txt.setEditable(false);
-                    txt.setLineWrap(true);
-                    txt.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
-                    txt.insert("· " + tematiques.get(0).getNomTematica(),0);
-                    for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
-                    jScrollPane1.setViewportView(txt);
+                    if (tematiques.size() > 0) {
+                        JTextArea txt = new JTextArea();
+                        txt.setEditable(false);
+                        txt.setLineWrap(true);
+                        txt.append("·"+tematiques.get(0).getNomTematica());
+                        for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
+                        jScrollPane1.setViewportView(txt);
+                    }
                     break;
                 case "Llibres tematiques":
                     
@@ -375,60 +439,6 @@ public class VistaConsultes extends javax.swing.JPanel {
         }
     }
     
-    private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
-        // TODO add your handling code here:
-        try {
-            System.out.println("Consulta...");
-            String SeleccioItem = (String) Seleccio.getModel()
-                .getSelectedItem();
-            String funcionsSeleccioItem = (String) funcionsSeleccio.getModel()
-                .getSelectedItem();
-            switch (SeleccioItem) {
-                case "Area":
-                    consultaArea(funcionsSeleccioItem);
-                    break; 
-                case "Seccio":
-                    consultaSeccio(funcionsSeleccioItem);
-                    break;
-                case "Tematica":
-                    consultaTematica(funcionsSeleccioItem);
-                    break;
-                case "Llibre":
-                    consultaLlibre(funcionsSeleccioItem);
-                    break;
-                case "Estanteria":
-                    consultaEstanteria(funcionsSeleccioItem);
-                    break;
-                default:
-                    
-            }
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }//GEN-LAST:event_OKButtonActionPerformed
-
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
-        // TODO add your handling code here:
-        if(jTextField1.getText().trim().equals("Introdueix dades")){
-           jTextField1.setText("");
-           jTextField1.setForeground(new java.awt.Color(0,0,0));
-        }
-    }//GEN-LAST:event_jTextField1FocusGained
-
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
-        // TODO add your handling code here:
-        if(jTextField1.getText().trim().equals("")) {
-           jTextField1.setText("Introdueix dades");
-           jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        }
-    }//GEN-LAST:event_jTextField1FocusLost
-
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        // TODO add your handling code here:
-        OKButton.setEnabled(true);
-    }//GEN-LAST:event_jTextField1KeyTyped
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton OKButton;
@@ -439,5 +449,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private com.seaglasslookandfeel.SeaGlassContext seaGlassContext1;
+    private com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI seaGlassToggleButtonUI1;
     // End of variables declaration//GEN-END:variables
 }
