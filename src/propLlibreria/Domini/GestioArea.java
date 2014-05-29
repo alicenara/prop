@@ -89,25 +89,13 @@ public class GestioArea {
     public static void afegirArea(Area a){
             area.put(a.getID(), a);
     }
-	
-    public static void esborrarArea(Area a){
-            esborrarAreaID(a.getID());
-    }
     
     public static void afegirSeccio(Seccio s){	  	
             sec.put(s.getID(), s);
     }	  	
-	
-    public static void esborrarSeccio(Seccio s){
-            esborrarSeccioID(s.getID());
-    }
 	  	
     public static void afegirTematica(Tematica t){
             tem.put(t.getID(), t);
-    }
-  
-    public static void esborrarTematica(Tematica t){
-            esborrarTematicaID(t.getID());  	
     }
     
     public static void esborrarAreaID(int ID){
@@ -165,6 +153,21 @@ public class GestioArea {
 
     public static boolean existeixTematica(int ID){
             return tem.containsKey(ID);
-    }    
+    }
+    
+    public static ArrayList<Seccio> getSeccionsArea(int IDA) {
+        Area modArea = getArea(IDA);
+        return modArea.getSeccions();
+    }
+    
+    public static ArrayList<Tematica> getTematiquesSeccio(int IDS) {
+        Seccio consSeccio = getSeccio(IDS);
+        return consSeccio.getTematiques();
+    }
+    
+    public static ArrayList<Llibre> getLlibresTematica(int IDT) {
+        Tematica consTematica = getTematica(IDT);
+        return consTematica.getLlibres();
+    }
     
 }

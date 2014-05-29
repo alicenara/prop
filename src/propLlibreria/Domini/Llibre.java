@@ -85,8 +85,8 @@ public class Llibre extends Objecte {
 	}
 	//pre:
 	//post: retorna la tematica principal del parametre implicit
-	public Tematica getTemPrincipal() {
-		return GestioArea.getTematica(temPrincipal);
+	public int getTemPrincipal() {
+		return temPrincipal;
 	}
 	
 	//pre:	el parametre implicit no conte novaTematica
@@ -95,8 +95,8 @@ public class Llibre extends Objecte {
 		temSecundaries.add(novaTematica.getID());
 	}
 	
-	public void eliminarTematicaSecundaria(Tematica tem) {
-		temSecundaries.remove(new Integer(tem.getID()));
+	public void eliminarTematicaSecundaria(int IDT) {
+		temSecundaries.remove(new Integer(IDT));
 	}
 	
 	//pre:

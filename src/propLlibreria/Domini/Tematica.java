@@ -41,11 +41,11 @@ public class Tematica {
 		this.nomTematica = nouNomTematica;
 	}
 	
-	public void setIDSeccio(int nouIDSeccio) {
+        public void setIDSeccioTematica(int nouIDSeccio) {
 		this.IDSeccio = nouIDSeccio;
 	}
 	
-	public int getIDSeccio() {
+	public int getIDSeccioTematica() {
 		return IDSeccio;
 	}
 	

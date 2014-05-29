@@ -167,7 +167,7 @@ public class CtrlDominiPersistencia {
                 aux.add(auxL.getEditorial());
                 aux.add(Integer.toString(auxL.getAny()));
                 aux.add(Integer.toString(auxL.getEdicio()));
-                Tematica t=auxL.getTemPrincipal();
+                Tematica t=GestioArea.getTematica(auxL.getTemPrincipal());
                 aux.add(Integer.toString(t.getID()));
 
                 ArrayList<Tematica> temAux = auxL.getTematiquesSecundaries();
@@ -208,7 +208,7 @@ public class CtrlDominiPersistencia {
             ArrayList<String> aux = new ArrayList<String>();
             aux.add(Integer.toString(auxT.getID()));
             aux.add(auxT.getNomTematica());
-            aux.add(Integer.toString(auxT.getIDSeccio()));
+            aux.add(Integer.toString(auxT.getIDSeccioTematica()));
 
             ArrayList<Llibre> temAux = auxT.getLlibres();
             for(int j=0; j<temAux.size();j++){

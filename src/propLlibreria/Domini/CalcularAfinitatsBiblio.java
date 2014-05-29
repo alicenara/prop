@@ -13,12 +13,12 @@ public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 		Llibre aa = (Llibre) a;
 		Llibre bb = (Llibre) b;
 		double afins = 0;
-		Tematica tPriA = aa.getTemPrincipal();
-		Tematica tPriB = bb.getTemPrincipal();
+		Tematica tPriA = GestioArea.getTematica(aa.getTemPrincipal());
+		Tematica tPriB = GestioArea.getTematica(bb.getTemPrincipal());
 		if (tPriA.getID() == tPriB.getID())	afins += 10;
 		else {
-			Seccio sA = GestioArea.getSeccio(tPriA.getIDSeccio());
-			Seccio sB = GestioArea.getSeccio(tPriB.getIDSeccio());
+			Seccio sA = GestioArea.getSeccio(tPriA.getIDSeccioTematica());
+			Seccio sB = GestioArea.getSeccio(tPriB.getIDSeccioTematica());
 			if (sA.getID() == sB.getID()) afins += 5;
 			else {
 				Area aA = GestioArea.getArea(sA.getIDAreaSeccio());
@@ -34,8 +34,8 @@ public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 		double afin = 0.0;
 		ArrayList<Tematica> tA = a.getTematiquesSecundaries();
 		ArrayList<Tematica> tB = b.getTematiquesSecundaries();
-		Tematica tpA = a.getTemPrincipal();
-		Tematica tpB = b.getTemPrincipal();
+		Tematica tpA = GestioArea.getTematica(a.getTemPrincipal());
+		Tematica tpB = GestioArea.getTematica(b.getTemPrincipal());
 		for(int i = 0; i < tA.size(); ++i) {
 			if(tA.get(i).getID() == tpB.getID()) afin += 1;
 			for(int j = 0; j < tB.size(); ++j) {

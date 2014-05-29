@@ -52,7 +52,7 @@ public class Seccio {
 	}
 	
 	public void afegirTematica(Tematica novaTematica) {
-		novaTematica.setIDSeccio(ID);
+		novaTematica.setIDSeccioTematica(ID);
 		tematiquesSeccio.add(novaTematica.getID());
 	}
 	

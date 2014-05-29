@@ -18,28 +18,26 @@ public class GestioLlibre {
             return llibre.get(ID);
     }
     
-    public static Llibre getLlibreTitol(String titol){
+    public static ArrayList<Llibre> getLlibreTitol(String titol){
+            ArrayList<Llibre> llibresTitol = new ArrayList<Llibre>();
             Iterator<Integer> iterador = llibre.keySet().iterator();
             Integer key = 0;
-            boolean trobat = false;
-            while(iterador.hasNext() && !trobat){
+            while(iterador.hasNext()){
               key = iterador.next();
-              if (llibre.get(key).getTitol().equals(titol)) trobat = true;
+              if (llibre.get(key).getTitol().equals(titol)) llibresTitol.add(llibre.get(key));
             }
-            if (trobat) return llibre.get(key);
-            else return null;
+            return llibresTitol;
     }
 	
-    public static Llibre getLlibreISBN(String isbn){
+    public static ArrayList<Llibre> getLlibreISBN(String isbn){
+            ArrayList<Llibre> llibresIsbn = new ArrayList<Llibre>();
             Iterator<Integer> iterador = llibre.keySet().iterator();
             Integer key = 0;
-            boolean trobat = false;
-            while(iterador.hasNext() && !trobat){
+            while(iterador.hasNext()){
               key = iterador.next();
-              if (llibre.get(key).getIsbn().equals(isbn)) trobat = true;
+              if (llibre.get(key).getIsbn().equals(isbn)) llibresIsbn.add(llibre.get(key));
             }
-            if (trobat) return llibre.get(key);
-            else return null;
+            return llibresIsbn;
     }
 
     public static ArrayList<Llibre> getLlibresAutor(String autor) {
@@ -48,7 +46,7 @@ public class GestioLlibre {
             Integer key = 0;
             while(iterador.hasNext()){
               key = iterador.next();
-              if (llibre.get(key).getAutor().equals(autor)) llibresAutor.add(llibre.get(key));;
+              if (llibre.get(key).getAutor().equals(autor)) llibresAutor.add(llibre.get(key));
             }
             return llibresAutor;
     }
@@ -59,7 +57,7 @@ public class GestioLlibre {
             Integer key = 0;
             while(iterador.hasNext()){
               key = iterador.next();
-              if (llibre.get(key).getAny() == any) llibresAny.add(llibre.get(key));;
+              if (llibre.get(key).getAny() == any) llibresAny.add(llibre.get(key));
             }
             return llibresAny;
     }
@@ -70,17 +68,13 @@ public class GestioLlibre {
             Integer key = 0;
             while(iterador.hasNext()){
               key = iterador.next();
-              if (llibre.get(key).getEditorial().equals(editorial)) llibresEditorial.add(llibre.get(key));;
+              if (llibre.get(key).getEditorial().equals(editorial)) llibresEditorial.add(llibre.get(key));
             }
             return llibresEditorial;
     }
     
     public static void afegirLlibre(Llibre l){
             llibre.put(l.getID(), l);
-    }
-	
-    public static void esborrarLlibre(Llibre l){
-            esborrarLlibreID(l.getID());
     }
 	
     public static void esborrarLlibreID(int ID){
