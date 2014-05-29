@@ -41,38 +41,43 @@ public class VistaConsultes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+<<<<<<< HEAD
         seaGlassContext1 = new com.seaglasslookandfeel.SeaGlassContext();
         seaGlassToggleButtonUI1 = new com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+=======
+        Fons = new javax.swing.JPanel();
+        Header = new javax.swing.JPanel();
+>>>>>>> a313530a8a9f7c10a2ee43b88a50e541d359be78
         jLabel1 = new javax.swing.JLabel();
         Seleccio = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        MostraResult = new javax.swing.JScrollPane();
         funcionsSeleccio = new javax.swing.JComboBox();
         OKButton = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        Fons.setBackground(new java.awt.Color(204, 204, 255));
+        Fons.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setFocusable(false);
+        Header.setBackground(new java.awt.Color(255, 255, 255));
+        Header.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Header.setFocusable(false);
 
         jLabel1.setText("Coses de la capcelera");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout HeaderLayout = new javax.swing.GroupLayout(Header);
+        Header.setLayout(HeaderLayout);
+        HeaderLayout.setHorizontalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(HeaderLayout.createSequentialGroup()
                 .addGap(196, 196, 196)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        HeaderLayout.setVerticalGroup(
+            HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
@@ -84,7 +89,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setAutoscrolls(true);
+        MostraResult.setAutoscrolls(true);
 
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta..." }));
         funcionsSeleccio.addActionListener(new java.awt.event.ActionListener() {
@@ -122,18 +127,18 @@ public class VistaConsultes extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout FonsLayout = new javax.swing.GroupLayout(Fons);
+        Fons.setLayout(FonsLayout);
+        FonsLayout.setHorizontalGroup(
+            FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(FonsLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FonsLayout.createSequentialGroup()
+                        .addComponent(MostraResult, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 63, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(FonsLayout.createSequentialGroup()
                         .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,21 +148,21 @@ public class VistaConsultes extends javax.swing.JPanel {
                         .addComponent(OKButton)
                         .addGap(45, 45, 45))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        FonsLayout.setVerticalGroup(
+            FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FonsLayout.createSequentialGroup()
+                .addComponent(Header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FonsLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(OKButton))
                 .addGap(21, 21, 21)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(MostraResult, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -167,12 +172,12 @@ public class VistaConsultes extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Fons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Fons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -321,7 +326,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                     txt.setLineWrap(true);
                     txt.insert("· " + arees.get(0).getNomArea(),0);
                     for (int i = 1; i < arees.size(); i++) txt.append("\n·"+arees.get(i).getNomArea());
-                    jScrollPane1.setViewportView(txt);
+                    MostraResult.setViewportView(txt);
                     break;
                 case "Seccions d'area":
                     
@@ -341,6 +346,7 @@ public class VistaConsultes extends javax.swing.JPanel {
           System.out.println("Consulta seccio");
             switch(funcio) {
                 case "Totes seccions" :
+<<<<<<< HEAD
                     ArrayList<Seccio> seccions = CtrlDominiInterficie.seleccionaAllSeccions();
                     if (seccions.size() > 0) {
                         JTextArea txt = new JTextArea();
@@ -350,6 +356,15 @@ public class VistaConsultes extends javax.swing.JPanel {
                         for (int i = 1; i < seccions.size(); i++) txt.append("\n·"+seccions.get(i).getNomSeccio());
                         jScrollPane1.setViewportView(txt);
                     }
+=======
+                    ArrayList<Area> arees = CtrlDominiInterficie.seleccionaAllArees();
+                    JTextArea txt = new JTextArea();
+                    txt.setEditable(false);
+                    txt.setLineWrap(true);
+                    txt.insert("· " + arees.get(0).getNomArea(),0);
+                    for (int i = 1; i < arees.size(); i++) txt.append("\n·"+arees.get(i).getNomArea());
+                    MostraResult.setViewportView(txt);
+>>>>>>> a313530a8a9f7c10a2ee43b88a50e541d359be78
                     break;
                 case "Tematiques seccio" :
                     break;
@@ -368,6 +383,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             switch(funcio) {
                 case "Totes tematiques":
                     ArrayList<Tematica> tematiques = CtrlDominiInterficie.seleccionaAllTematiques();
+<<<<<<< HEAD
                     if (tematiques.size() > 0) {
                         JTextArea txt = new JTextArea();
                         txt.setEditable(false);
@@ -376,6 +392,15 @@ public class VistaConsultes extends javax.swing.JPanel {
                         for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
                         jScrollPane1.setViewportView(txt);
                     }
+=======
+                    JTextArea txt = new JTextArea();
+                    txt.setEditable(false);
+                    txt.setLineWrap(true);
+                    txt.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+                    txt.insert("· " + tematiques.get(0).getNomTematica(),0);
+                    for (int i = 1; i < tematiques.size(); i++) txt.append("\n·"+tematiques.get(i).getNomTematica());
+                    MostraResult.setViewportView(txt);
+>>>>>>> a313530a8a9f7c10a2ee43b88a50e541d359be78
                     break;
                 case "Llibres tematiques":
                     
@@ -423,7 +448,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         txt.setLineWrap(true);
                         txt.insert("· " + estanteries.get(0).getID(),0);
                         for (int i = 1; i < estanteries.size(); i++) txt.append("\n·"+estanteries.get(i).getID());
-                        jScrollPane1.setViewportView(txt);
+                        MostraResult.setViewportView(txt);
                     }
                     break;
                 case "Llibres estanteria":
@@ -441,13 +466,13 @@ public class VistaConsultes extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Fons;
+    private javax.swing.JPanel Header;
+    private javax.swing.JScrollPane MostraResult;
     private javax.swing.JButton OKButton;
     private javax.swing.JComboBox Seleccio;
     private javax.swing.JComboBox funcionsSeleccio;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private com.seaglasslookandfeel.SeaGlassContext seaGlassContext1;
     private com.seaglasslookandfeel.ui.SeaGlassToggleButtonUI seaGlassToggleButtonUI1;
