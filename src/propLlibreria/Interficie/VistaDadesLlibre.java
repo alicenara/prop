@@ -1,20 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package propLlibreria.Interficie;
+import java.util.ArrayList;
 
-/**
- *
- * @author Alice
- */
 public class VistaDadesLlibre extends javax.swing.JPanel {
-
-    /**
-     * Creates new form VistaDadesLlibre
-     */
+    String isbn="";
+    
     public VistaDadesLlibre() {
         initComponents();
     }
@@ -28,168 +17,222 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        labTitol = new javax.swing.JLabel();
+        labISBN = new javax.swing.JLabel();
+        labAutor = new javax.swing.JLabel();
+        labEditorial = new javax.swing.JLabel();
+        labAny = new javax.swing.JLabel();
+        labTemPrin = new javax.swing.JLabel();
+        labTemSec = new javax.swing.JLabel();
+        ISBN = new javax.swing.JLabel();
+        Titol = new javax.swing.JLabel();
+        Autor = new javax.swing.JLabel();
+        Editorial = new javax.swing.JLabel();
+        Any = new javax.swing.JLabel();
+        TemPrin = new javax.swing.JLabel();
+        TemSec = new javax.swing.JLabel();
+        labEstant = new javax.swing.JLabel();
+        Estant = new javax.swing.JLabel();
+        Imatge = new javax.swing.JLabel();
+        Edicio = new javax.swing.JLabel();
+        labEdicio = new javax.swing.JLabel();
 
-        jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel3.setText("Titol:");
+        labTitol.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labTitol.setText("Titol:");
 
-        jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel4.setText("ISBN:");
+        labISBN.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labISBN.setText("ISBN:");
 
-        jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel5.setText("Autor:");
+        labAutor.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labAutor.setText("Autor:");
 
-        jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel6.setText("Editorial:");
+        labEditorial.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labEditorial.setText("Editorial:");
 
-        jLabel7.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel7.setText("Any:");
+        labAny.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labAny.setText("Any:");
 
-        jLabel8.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel8.setText("Tematica Principal:");
+        labTemPrin.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labTemPrin.setText("Temàtica principal:");
 
-        jLabel9.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel9.setText("Tematiques Secundàries:");
+        labTemSec.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labTemSec.setText("Tematiques secundàries:");
 
-        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel1.setText("result");
+        ISBN.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        ISBN.setText("result");
 
-        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel2.setText("result");
+        Titol.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        Titol.setText("result");
 
-        jLabel10.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel10.setText("result");
+        Autor.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        Autor.setText("result");
 
-        jLabel11.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel11.setText("result");
+        Editorial.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        Editorial.setText("result");
 
-        jLabel12.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel12.setText("result");
+        Any.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        Any.setText("result");
 
-        jLabel13.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel13.setText("result");
+        TemPrin.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        TemPrin.setText("result");
 
-        jLabel14.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel14.setText("result");
+        TemSec.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        TemSec.setText("result");
 
-        jLabel15.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel15.setText("Estanteria:");
+        labEstant.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labEstant.setText("Estanteria:");
 
-        jLabel16.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        jLabel16.setText("result");
+        Estant.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        Estant.setText("result");
+
+        Imatge.setText("imatge");
+
+        Edicio.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        Edicio.setText("result");
+
+        labEdicio.setFont(new java.awt.Font("Arial Unicode MS", 1, 15)); // NOI18N
+        labEdicio.setText("Edició:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(308, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(Imatge)
+                .addGap(95, 95, 95)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labEditorial)
+                                    .addComponent(labAutor))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Autor, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                                    .addComponent(Editorial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labISBN)
+                                    .addComponent(labTitol))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(Titol, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(ISBN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addContainerGap(320, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(91, 91, 91))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labEstant)
+                                .addGap(27, 27, 27)
+                                .addComponent(Estant, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labTemPrin)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TemPrin, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labAny)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Any, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labTemSec)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TemSec, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labEdicio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Edicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel11))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel12))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel14))
+                    .addComponent(labISBN)
+                    .addComponent(ISBN))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel16))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(labTitol)
+                    .addComponent(Titol))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labAutor)
+                    .addComponent(Autor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labEditorial)
+                    .addComponent(Editorial))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labAny)
+                        .addComponent(Any))
+                    .addComponent(Imatge))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labEdicio)
+                    .addComponent(Edicio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labTemPrin)
+                    .addComponent(TemPrin))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labTemSec)
+                    .addComponent(TemSec, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Estant)
+                    .addComponent(labEstant))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("Dades del llibre");
     }// </editor-fold>//GEN-END:initComponents
 
+     private void carregarCamps(){
+         ArrayList<String[]> llibre = new ArrayList<String[]>();
+        //llibre=CtrlInterficie.consultaLlibrePerISBN(isbn);
+         String[] llib=llibre.get(0);
+         ISBN.setText(llib[0]);
+         Titol.setText(llib[1]);
+         Autor.setText(llib[2]);
+         Editorial.setText(llib[3]);
+         Any.setText(llib[4]);
+         Edicio.setText(llib[5]);
+         TemPrin.setText(llib[6]);
+         String temSec="";
+         for(int i=7;i<llib.length;i++){
+             temSec+=llib[i];
+             if(i<llib.length-1) temSec+=", ";         
+         }
+         TemSec.setText(temSec);
+     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel Any;
+    private javax.swing.JLabel Autor;
+    private javax.swing.JLabel Edicio;
+    private javax.swing.JLabel Editorial;
+    private javax.swing.JLabel Estant;
+    private javax.swing.JLabel ISBN;
+    private javax.swing.JLabel Imatge;
+    private javax.swing.JLabel TemPrin;
+    private javax.swing.JLabel TemSec;
+    private javax.swing.JLabel Titol;
+    private javax.swing.JLabel labAny;
+    private javax.swing.JLabel labAutor;
+    private javax.swing.JLabel labEdicio;
+    private javax.swing.JLabel labEditorial;
+    private javax.swing.JLabel labEstant;
+    private javax.swing.JLabel labISBN;
+    private javax.swing.JLabel labTemPrin;
+    private javax.swing.JLabel labTemSec;
+    private javax.swing.JLabel labTitol;
     // End of variables declaration//GEN-END:variables
 }
