@@ -50,7 +50,7 @@ public class VistaGestioAfegirEstanteria extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));
 
-        botoAfegir.setText("Afegir");
+        botoAfegir.setText("Crear");
         botoAfegir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botoAfegirActionPerformed(evt);

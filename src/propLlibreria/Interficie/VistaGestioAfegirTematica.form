@@ -39,10 +39,7 @@
                       <Component id="labelSeccio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="botoAfegir" min="-2" pref="86" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="botoAfegir" min="-2" pref="86" max="-2" attributes="0"/>
                           <Component id="comboSeccio" min="-2" pref="138" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -74,7 +71,7 @@
   <SubComponents>
     <Component class="javax.swing.JToggleButton" name="botoAfegir">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Afegir"/>
+        <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoAfegirActionPerformed"/>

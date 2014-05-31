@@ -206,4 +206,5 @@ public class VistaGestio extends javax.swing.JPanel {
     private javax.swing.JComboBox listAccions;
     private javax.swing.JComboBox listObjects;
     // End of variables declaration//GEN-END:variables
+
 }
