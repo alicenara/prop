@@ -23,10 +23,6 @@ public class GestioEstanteria {
             est.put(e.getID(), e);
     }
 
-    public static void esborrarEstanteria(Estanteria e){
-            esborrarEstanteriaID(e.getID());
-    }
-    
     public static void esborrarEstanteriaID(int ID){
             est.remove(ID);
     }
