@@ -67,6 +67,9 @@ public final class CtrlInterficie {
   
   public static void modificarNomSeccio(String nomSold, String nomSnew) throws Exception{
       int id = seleccionaSeccio(nomSold);
+      if (CtrlDominiInterficie.existeixSeccio(nomSnew)) {
+            throw new Exception("nouNomSeccioJaExisteix");
+        }
       CtrlDominiInterficie.modificarNomSeccio(id, nomSnew);
   }
   
@@ -90,6 +93,9 @@ public final class CtrlInterficie {
   
   public static void modificarNomTematica(String nomTold, String nomTnew) throws Exception{
       int id = seleccionaTematica(nomTold);
+      if (CtrlDominiInterficie.existeixTematica(nomTnew)) {
+            throw new Exception("nouNomTematicaJaExisteix");
+        }
       CtrlDominiInterficie.modificarNomTematica(id, nomTnew);
   }
   

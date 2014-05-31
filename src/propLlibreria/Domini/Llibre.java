@@ -14,7 +14,7 @@ public class Llibre extends Objecte {
 	private ArrayList<Integer> temSecundaries;
 	
 	//All attributes constructor
-	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal){
+	public Llibre (String isbn, String titol, String autor, String editorial, int any, int edicio, int IDTp){
 		super(GestioLlibre.ultimaIDLlibre());
 		this.isbn = isbn;
 		this.titol=titol;
@@ -22,9 +22,9 @@ public class Llibre extends Objecte {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
-		this.temPrincipal = tPrincipal.getID();
 		GestioLlibre.afegirLlibre(this);
-		tPrincipal.afegirLlibre(this);
+                Tematica tp = GestioArea.getTematica(IDTp);
+		tp.afegirLlibre(this);
 	}
 	
 	public Llibre (int ID, String isbn, String titol, String autor, String editorial, int any, int edicio, int tPrincipal, ArrayList<Integer> tS){

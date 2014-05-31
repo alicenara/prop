@@ -226,9 +226,8 @@ public class CtrlDominiInterficie {
 	
 	//pre: No existeix una Tematica, tal que el seu nom sigui nomTematica
 	//post: S'ha creat una nova Tematica amb nom = nomTematica
-	public static int afegirTematica(String nomTematica, int IDSeccio) {
+	public static void afegirTematica(String nomTematica, int IDSeccio) {
 		Tematica novaTematica = new Tematica(nomTematica, IDSeccio);
-		return novaTematica.getID();
 	}
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = ID
@@ -288,10 +287,8 @@ public class CtrlDominiInterficie {
 	
 	//pre: Existeix una Tematica tal que Tematica = tPrincipal i no existeix un Llibre, tal que isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
 	//post: S'ha creat una nou Llibre amb isbn = isbn, titol = titol, autor = autor, editorial = editorial, any = any i edicio = edicio
-	public static int afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, Tematica tPrincipal) {
-		Llibre nouLlibre = new Llibre(isbn, titol, autor, editorial, any, edicio, tPrincipal);
-		afegirLlibreTematica(tPrincipal.getID(),nouLlibre.getID());
-		return nouLlibre.getID();
+	public static void afegirLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, int IDTp) {
+		Llibre nouLlibre = new Llibre(isbn, titol, autor, editorial, any, edicio, IDTp);
 	}
 	
 	//pre: Existeix un Llibre tal que el seu Identificador = IDL i una Tematica tal que el seu identificador es IDT i no esta continguda en les Tematiques Secundaries del Llibre
@@ -469,9 +466,8 @@ public class CtrlDominiInterficie {
 	
 	//pre: No existeix una Estanteria, tal que la seva posicio sigui posX = posX i posY = PosY
 	//post: S'ha creat una nova Estanteria amb nunmFiles = numFiles, llargada = llargda, posX = posX i posY = posY
-	public static int afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
+	public static void afegirEstanteria(int numFiles, int llargada, int posX, int posY) {
 		Estanteria novaEstanteria = new Estanteria(numFiles, llargada, posX, posY);
-		return novaEstanteria.getID();
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = ID

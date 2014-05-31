@@ -12,9 +12,10 @@ public class Seccio {
 	//post: crea una seccio amb nom "nomSeccio"
 	public Seccio (String nomSeccio, int IDArea) {
 		this.nomSeccio = nomSeccio;
-		this.IDArea = IDArea;
 		this.ID = GestioArea.ultimaIDSeccio();
 		GestioArea.afegirSeccio(this);
+                Area a = GestioArea.getArea(IDArea);
+                a.afegirSeccio(this);
 	}
 	
 	//pre:

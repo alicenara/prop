@@ -11,9 +11,10 @@ public class Tematica {
 	//post: crea tematica a partir de BD amb nom de tematica igual a "nomTematica"
 	public Tematica (String nomTematica, int IDSeccio) {
 		this.nomTematica = nomTematica;
-		this.IDSeccio = IDSeccio;
 		this.ID = GestioArea.ultimaIDTematica();
 		GestioArea.afegirTematica(this);
+                Seccio s = GestioArea.getSeccio(IDSeccio);
+                s.afegirTematica(this);
 	}
 	
 	//pre:
