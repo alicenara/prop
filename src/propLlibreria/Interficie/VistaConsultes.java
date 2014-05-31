@@ -271,6 +271,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             System.out.println("Consulta area");
             System.out.println(funcio);
+            System.out.println(funcio);
             switch(funcio) {
                 case "Totes arees":
                     MyTableModel myData = new MyTableModel();
