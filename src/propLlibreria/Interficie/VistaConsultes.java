@@ -2,6 +2,7 @@ package propLlibreria.Interficie;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.io.*;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
@@ -264,6 +265,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                 dataRow = value;
         }
     }
+    
 
         private void consultaArea(String funcio) {
         try {
@@ -279,19 +281,23 @@ public class VistaConsultes extends javax.swing.JPanel {
                     rows.add(columns);
                     rows.add(columns);
                     myData.setRowsValues(rows);
-                    DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
+                    /*DefaultTableCellRenderer r = new DefaultTableCellRenderer() {
                         @Override
                         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                            setForeground(Color.red);
+                            setForeground(Color.blue);
+                            
                             setHorizontalAlignment(JLabel.CENTER);
                             setFont(getFont().deriveFont(10f));
                             return this;
                         }
-                    };
+                    };*/
                     JTable tablaArees = new JTable(myData);
-                    tablaArees.getColumnModel().getColumn(0).setCellRenderer(r);
+                    
+                    //tablaArees.getTableHeader().getDefaultRenderer().setAligmentX(CENTER_ALIGNMENT);
+                    //tablaArees.getColumnModel().getColumn(0).setHeaderValue("newHeader");(r);
                     MostraResult.setViewportView(tablaArees);
+          
                     break;
                 case "Seccions d'area":
                     break;
@@ -376,7 +382,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         txt.setEditable(false);
                         txt.setLineWrap(true);
                         txt.insert("· " + estanteries.get(0).getID(),0);
-                        for (int i = 1; i < estanteries.size(); i++) txt.append("\n·"+estanteries.get(i).getID());
+                        for (int i = 1; i < estanteries.si+ze(); i++) txt.append("\n·"+estanteries.get(i).getID());
                         MostraResult.setViewportView(txt);
                     }*/
                     break;
@@ -418,7 +424,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                 consultaEstanteria(funcionsSeleccioItem);
                 break;
                 default:
-
+                break;
             }
         }
         catch (Exception e) {
@@ -528,10 +534,4 @@ public class VistaConsultes extends javax.swing.JPanel {
     private javax.swing.JComboBox funcionsSeleccio;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-
-    private static class Jtable {
-
-        public Jtable() {
-        }
-    }
 }
