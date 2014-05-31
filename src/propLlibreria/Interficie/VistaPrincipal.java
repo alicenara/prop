@@ -15,6 +15,8 @@ public final class VistaPrincipal extends javax.swing.JFrame {
     VistaConsultes vConsultes;
     VistaGestio vGestio;
     VistaMenuPrincipal vPrincipal;
+    VistaOrdenacio vOrd;
+    VistaMentreOrdena vMOrd;
     
     /**
      * Creates new form VistaPrincipal
@@ -46,6 +48,8 @@ public final class VistaPrincipal extends javax.swing.JFrame {
         vPrincipal = new VistaMenuPrincipal();
         vGestio = new VistaGestio();
         vConsultes = new VistaConsultes();
+        vOrd = new VistaOrdenacio();
+        vMOrd = new VistaMentreOrdena();
         this.ferVisiblePrincipal();
     }
     
@@ -92,6 +96,8 @@ public final class VistaPrincipal extends javax.swing.JFrame {
         vPrincipal.setVisible(false);
         vGestio.setVisible(true);
         vConsultes.setVisible(false);
+        vOrd.setVisible(false);
+        vMOrd.setVisible(false);
     }
 
     void ferVisibleConsultar() {
@@ -99,6 +105,8 @@ public final class VistaPrincipal extends javax.swing.JFrame {
         vPrincipal.setVisible(false);
         vGestio.setVisible(false);
         vConsultes.setVisible(true);
+        vOrd.setVisible(false);
+        vMOrd.setVisible(false);
     }
     
     void ferVisiblePrincipal() {
@@ -106,5 +114,23 @@ public final class VistaPrincipal extends javax.swing.JFrame {
         vPrincipal.setVisible(true);
         vGestio.setVisible(false);
         vConsultes.setVisible(false);
+        vOrd.setVisible(false);
+        vMOrd.setVisible(false);
     }
+    void ferVisibleOrdenar() {
+        this.setContentPane(vOrd);
+        vPrincipal.setVisible(false);
+        vGestio.setVisible(false);
+        vConsultes.setVisible(false);
+        vOrd.setVisible(true);
+        vMOrd.setVisible(false);
+    }
+    void ferVisibleMentreOrdena() {
+        this.setContentPane(vMOrd);
+        vPrincipal.setVisible(false);
+        vGestio.setVisible(false);
+        vConsultes.setVisible(false);
+        vOrd.setVisible(false);
+        vMOrd.setVisible(true);        
+    }    
 }
