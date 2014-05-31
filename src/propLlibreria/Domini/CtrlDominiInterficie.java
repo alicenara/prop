@@ -196,8 +196,10 @@ public class CtrlDominiInterficie {
                 for (int i = 0; i < tS.size(); ++i) {
                     Tematica t = tS.get(i);
                     Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
+                    Area a = GestioArea.getArea(s.getIDAreaSeccio());
                     tem.add(t.getNomTematica());
                     tem.add(s.getNomSeccio());
+                    tem.add(a.getNomArea());
                     temS.add(tem);
                 }
                 return temS;
@@ -569,8 +571,10 @@ public class CtrlDominiInterficie {
                 for (int i = 0; i < tematiques.size(); ++i) {
                     Tematica t = tematiques.get(i);
                     Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
+                    Area a = GestioArea.getArea(s.getIDAreaSeccio());
                     tem.add(t.getNomTematica());
                     tem.add(s.getNomSeccio());
+                    tem.add(a.getNomArea());
                     allTematiques.add(tem);
                 }
                 return allTematiques;

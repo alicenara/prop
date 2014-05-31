@@ -52,6 +52,7 @@ public class GestioEstanteria {
     
     public static boolean existeixEstanteria(int x, int y){
             Estanteria e = getEstanteriaCoord(x,y);
+            if(e == null) return false;
             return est.containsKey(e.getID());
     }
 

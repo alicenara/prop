@@ -107,6 +107,7 @@ public class GestioLlibre {
     
     public static boolean existeixLlibre(String titol, String autor, int any){
             Llibre l = getLlibreTAA(titol,autor,any);
+            if(l == null) return false;
             return llibre.containsKey(l.getID());
     }
     

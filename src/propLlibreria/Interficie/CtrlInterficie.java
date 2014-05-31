@@ -56,7 +56,13 @@ public final class CtrlInterficie {
         if (CtrlDominiInterficie.existeixSeccio(nomSeccio)) {
             throw new Exception("novaSeccioJaExisteix");
         }
-        else CtrlDominiInterficie.afegirArea(nomSeccio);
+        else if (!CtrlDominiInterficie.existeixArea(nomArea)) {
+            throw new Exception("AreadenovaSeccioNoExisteix");
+        }
+        else {
+            int ida = seleccionaArea(nomArea);
+            CtrlDominiInterficie.afegirSeccio(nomSeccio,ida);
+        }
   }
   
   public static void modificarNomSeccio(String nomSold, String nomSnew) throws Exception{
