@@ -50,8 +50,9 @@ public class GestioEstanteria {
             return allEstanteries;
     }
     
-    public static boolean existeixEstanteria(int ID){
-            return est.containsKey(ID);
+    public static boolean existeixEstanteria(int x, int y){
+            Estanteria e = getEstanteriaCoord(x,y);
+            return est.containsKey(e.getID());
     }
 
 }

@@ -143,16 +143,19 @@ public class GestioArea {
             return allTematiques;
     }
     
-    public static boolean existeixArea(int ID){
-            return area.containsKey(ID);
+    public static boolean existeixArea(String nomA){
+            Area a = getAreaN(nomA);
+            return area.containsKey(a.getID());
     }
         
-    public static boolean existeixSeccio(int ID){
-            return sec.containsKey(ID);
+    public static boolean existeixSeccio(String nomS){
+            Seccio s = getSeccioN(nomS);
+            return sec.containsKey(s.getID());
     }
 
-    public static boolean existeixTematica(int ID){
-            return tem.containsKey(ID);
+    public static boolean existeixTematica(String nomT){
+            Tematica t = getTematicaN(nomT);
+            return tem.containsKey(t.getID());
     }
     
     public static ArrayList<Seccio> getSeccionsArea(int IDA) {

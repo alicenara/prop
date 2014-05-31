@@ -14,11 +14,10 @@ public class Main {
     public static void main (String[] args) {
         javax.swing.SwingUtilities.invokeLater (
             new Runnable() {
-                CtrlInterficie ctrlInterficie;
                 
-                @Override
+               @Override
                 public void run() {
-                    ctrlInterficie = new CtrlInterficie();
+                    CtrlInterficie.inicialitzarPresentacio();
                 }
             });
     }

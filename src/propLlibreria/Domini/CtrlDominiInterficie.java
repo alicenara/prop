@@ -34,8 +34,7 @@ public class CtrlDominiInterficie {
 				}
 		if(a.size() != b.size()) {
 			if(a.size()  > b.size() ) {
-				System.out.println("Masses llibres per tants pocs llocs!");
-				return;
+                                throw new Exception("massesLlibres");
 			}
 			while(a.size() != b.size()) {
 				b.remove(b.size()-1);
@@ -49,23 +48,27 @@ public class CtrlDominiInterficie {
 		CalcularAfinitatsBiblio calcAfin = new CalcularAfinitatsBiblio();
 		CalcularDistancies calcDist = new CalcularDistancies();
 		TS solver = new TS(calcAfin, calcDist);
-		Solucio solucio = new Solucio(solver, llibres, llocs);
-		ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
-		for(int i = 0; i < all.size(); ++i)
-			all.get(i).buidarLlibres();
-		for(int i = 0; i < llocsEstanteries.size(); ++i) {
-			Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
-			est.afegirLlibre(solucio.assignacions[i]);
-		}
+                try {
+                    Solucio solucio = new Solucio(solver, llibres, llocs);
+                    ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
+                    for(int i = 0; i < all.size(); ++i)
+                            all.get(i).buidarLlibres();
+                    for(int i = 0; i < llocsEstanteries.size(); ++i) {
+                            Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
+                            est.afegirLlibre(solucio.assignacions[i]);
+                    }
+                }
+                catch(Exception exc) {
+                    throw new Exception("errorAlgoritme");
+                }
 	}	
 	
 	//GESTIO AREA
 	
 	//pre: No existeix una Area, tal que el seu nom sigui nomArea
 	//post: S'ha creat una nova Area amb nom = nomArea
-	public static int afegirArea(String nomArea) {
+	public static void afegirArea(String nomArea) {
 		Area novaArea = new Area(nomArea);
-		return novaArea.getID();
 	}
 	
 	//pre: Existeix una Area tal que el seu Identificador = ID
@@ -94,9 +97,10 @@ public class CtrlDominiInterficie {
 		GestioArea.esborrarAreaID(IDA);
 	}
 	
-	public static int seleccionaAreaN(String nomA) {
+	public static int seleccionaAreaN(String nomA) throws Exception{
 		Area areaN = GestioArea.getAreaN(nomA);
-                return areaN.getID();
+                if (areaN == null) throw new Exception("noExisteixArea");
+                else return areaN.getID();
 	}
         
         public static ArrayList<ArrayList<String> > consultaSeccionsArea(int IDA) {
@@ -180,9 +184,10 @@ public class CtrlDominiInterficie {
 		GestioArea.esborrarSeccioID(IDS);
 	}
 	
-	public static int seleccionaSeccioN(String nomS) {
+	public static int seleccionaSeccioN(String nomS) throws Exception{
                 Seccio seccioN = GestioArea.getSeccioN(nomS);
-		return seccioN.getID();
+		if (seccioN == null) throw new Exception("noExisteixSeccio");
+                else return seccioN.getID();
 	}
         
         public static ArrayList<ArrayList<String> > consultaTematiquesSeccio(int IDS) {
@@ -253,8 +258,10 @@ public class CtrlDominiInterficie {
 		GestioArea.esborrarTematicaID(IDT);
 	}
 	
-	public static Tematica seleccionaTematicaN(String nomT) {
-		return GestioArea.getTematicaN(nomT);
+	public static int seleccionaTematicaN(String nomT) throws Exception{
+		Tematica tematicaN = GestioArea.getTematicaN(nomT);
+                if (tematicaN == null) throw new Exception("noExisteixTematica");
+                else return tematicaN.getID();
 	}
 	
 	public static ArrayList<ArrayList<String> > consultaLlibresTematica(int IDT) {
@@ -350,9 +357,10 @@ public class CtrlDominiInterficie {
 		modLlibre.setTemPrincipal(IDT);
 	}
         
-        public static int seleccionaLlibre(String titol, String autor, int any) {
+        public static int seleccionaLlibre(String titol, String autor, int any) throws Exception{
 		Llibre llibre = GestioLlibre.getLlibreTAA(titol,autor,any);
-                return llibre.getID();
+                if (llibre == null) throw new Exception("noExisteixLlibre");
+                else return llibre.getID();
 	}
 	
 	//pre: Existeix un Llibre = esbLlibre
@@ -491,9 +499,10 @@ public class CtrlDominiInterficie {
 		GestioEstanteria.esborrarEstanteriaID(IDE);
 	}
 	
-	public static int seleccionaEstanteria(int posX, int posY) {
+	public static int seleccionaEstanteria(int posX, int posY) throws Exception{
 		Estanteria estanteriaC = GestioEstanteria.getEstanteriaCoord(posX, posY);
-                return estanteriaC.getID();
+                if (estanteriaC == null) throw new Exception("noExisteixEstanteria");
+                else return estanteriaC.getID();
 	}
         
         //pre: Existeix una Estanteria tal que el seu Identificador = IDE
@@ -540,23 +549,23 @@ public class CtrlDominiInterficie {
 		return GestioArea.getAllArees();
 	} 
 	
-	public static boolean existeixArea (int ID){
-		return GestioArea.existeixArea(ID);
+	public static boolean existeixArea (String nomA){
+		return GestioArea.existeixArea(nomA);
 	}
 	
-	public static boolean existeixEstanteria(int ID){
-		return GestioEstanteria.existeixEstanteria(ID);
+	public static boolean existeixEstanteria(int x, int y){
+		return GestioEstanteria.existeixEstanteria(x,y);
 	}
 	
-	public static boolean existeixSeccio(int ID){
-		return GestioArea.existeixSeccio(ID);
+	public static boolean existeixSeccio(String nomS){
+		return GestioArea.existeixSeccio(nomS);
 	}
 	
-	public static boolean existeixTematica(int ID){
-		return GestioArea.existeixTematica(ID);
+	public static boolean existeixTematica(String nomT){
+		return GestioArea.existeixTematica(nomT);
 	}
 	
-	public static boolean existeixLlibre(int ID){
-		return GestioLlibre.existeixLlibre(ID);
+	public static boolean existeixLlibre(String titol, String autor, int any){
+		return GestioLlibre.existeixLlibre(titol,autor,any);
 	}
 }
