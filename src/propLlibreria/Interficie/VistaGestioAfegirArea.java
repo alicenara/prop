@@ -78,9 +78,19 @@ public class VistaGestioAfegirArea extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoAfegirActionPerformed
-        String nom = labelNom.getText();
-        //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
-        JOptionPane.showMessageDialog(null, "Elemento Añadido","Info",JOptionPane.INFORMATION_MESSAGE);
+        String nom = inputNom.getText();
+        if(nom == null || nom.equals("")) {
+            JOptionPane.showMessageDialog(null, "No es pot afegir un àrea sense nom","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            CtrlInterficie.afegirArea(nom);
+        }
+        catch(Exception exc) {
+            JOptionPane.showMessageDialog(null, "Ja existeix un àrea amb aquest nom.\nCodi d'error: " + exc.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Element afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 
 

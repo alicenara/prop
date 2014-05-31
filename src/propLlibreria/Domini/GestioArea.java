@@ -145,16 +145,19 @@ public class GestioArea {
     
     public static boolean existeixArea(String nomA){
             Area a = getAreaN(nomA);
+            if(a == null) return false;
             return area.containsKey(a.getID());
     }
         
     public static boolean existeixSeccio(String nomS){
             Seccio s = getSeccioN(nomS);
+            if(s == null) return false;
             return sec.containsKey(s.getID());
     }
 
     public static boolean existeixTematica(String nomT){
             Tematica t = getTematicaN(nomT);
+            if(t == null) return false;
             return tem.containsKey(t.getID());
     }
     
