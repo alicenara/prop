@@ -11,14 +11,43 @@ package propLlibreria.Interficie;
  * @author towerthousand
  */
 public class VistaGestio extends javax.swing.JPanel {
-
+    
+    private final VistaGestioEliminar vEliminar;
+    
     /**
      * Creates new form VistaGestio
      */
     public VistaGestio() {
         initComponents();
+        vEliminar = new VistaGestioEliminar();
+    }
+    
+    private void setVistaParcial(javax.swing.JPanel vista) {
+        javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
+        layered.setLayout(layeredLayout);
+        layeredLayout.setHorizontalGroup(
+            layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(vista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layeredLayout.setVerticalGroup(
+            layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(vista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layered.setLayer(vista, javax.swing.JLayeredPane.DEFAULT_LAYER);
     }
 
+    private void redisplay() {
+        String selectedObject = (String) listObjects.getModel().getSelectedItem();
+        String selectedAction = (String) listAccions.getModel().getSelectedItem();
+        if(selectedObject == null || selectedAction == null) return;
+        if(selectedAction.equals("Selecciona...") || selectedObject.equals("Selecciona...")) return;
+        if(selectedAction.equals("Eliminar")) {
+            setVistaParcial(vEliminar);
+            vEliminar.redisplay(selectedObject);
+        }
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,19 +57,82 @@ public class VistaGestio extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        listObjects = new javax.swing.JComboBox();
+        listAccions = new javax.swing.JComboBox();
+        layered = new javax.swing.JLayeredPane();
+
+        setMaximumSize(new java.awt.Dimension(500, 500));
+        setMinimumSize(new java.awt.Dimension(500, 500));
+        setPreferredSize(new java.awt.Dimension(500, 500));
+
+        listObjects.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona...", "Àrea", "Secció", "Temàtica", "Estanteria", "Llibre" }));
+        listObjects.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listObjectsActionPerformed(evt);
+            }
+        });
+
+        listAccions.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona...", "Crear", "Modificar", "Eliminar" }));
+        listAccions.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listAccionsActionPerformed(evt);
+            }
+        });
+
+        layered.setMaximumSize(new java.awt.Dimension(476, 405));
+        layered.setMinimumSize(new java.awt.Dimension(476, 405));
+        layered.setName(""); // NOI18N
+
+        javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
+        layered.setLayout(layeredLayout);
+        layeredLayout.setHorizontalGroup(
+            layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
+        );
+        layeredLayout.setVerticalGroup(
+            layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 405, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(listObjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(listAccions, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(layered, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(listObjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listAccions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(layered, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void listObjectsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listObjectsActionPerformed
+        redisplay();
+    }//GEN-LAST:event_listObjectsActionPerformed
 
+    private void listAccionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listAccionsActionPerformed
+        redisplay();
+    }//GEN-LAST:event_listAccionsActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLayeredPane layered;
+    private javax.swing.JComboBox listAccions;
+    private javax.swing.JComboBox listObjects;
     // End of variables declaration//GEN-END:variables
 }
