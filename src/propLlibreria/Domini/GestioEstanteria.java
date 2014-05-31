@@ -27,6 +27,18 @@ public class GestioEstanteria {
             est.remove(ID);
     }
     
+    public static Estanteria getEstanteriaCoord(int x, int y) {
+            Iterator<Integer> iterador = est.keySet().iterator();
+            Integer key = 0;
+            boolean trobat = false;
+            while(iterador.hasNext() && !trobat){
+              key = iterador.next();
+              if (est.get(key).getPosX() == x && est.get(key).getPosY() == y) trobat = true;
+            }
+            if (trobat) return est.get(key);
+            else return null;
+    }
+    
     public static ArrayList <Estanteria> getAllEstanteries() {
             ArrayList<Estanteria> allEstanteries = new ArrayList<Estanteria>();
             Iterator<Integer> iterador = est.keySet().iterator();
