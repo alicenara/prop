@@ -3,15 +3,8 @@ package propLlibreria.Interficie;
 import javax.swing.SwingUtilities;
 import propLlibreria.Domini.CtrlDominiInterficie;
 
-/**
- *
- * @author Alice
- */
 public class VistaMenuPrincipal extends javax.swing.JPanel {
 
-    /**
-     * Creates new form VistaMenuPrincipal
-     */
     public VistaMenuPrincipal() {
         initComponents();
     }
@@ -28,7 +21,8 @@ public class VistaMenuPrincipal extends javax.swing.JPanel {
         botoGestionar = new javax.swing.JButton();
         botoDesarSortir = new javax.swing.JButton();
         botoConsultar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        labSelecciona = new javax.swing.JLabel();
+        bOrdena = new javax.swing.JButton();
 
         setMinimumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(500, 500));
@@ -54,34 +48,45 @@ public class VistaMenuPrincipal extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Seleccioni la operació a realitzar:");
-        jLabel1.setOpaque(true);
+        labSelecciona.setText("Seleccioni la operació a realitzar:");
+        labSelecciona.setOpaque(true);
+
+        bOrdena.setText("Ordenar");
+        bOrdena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bOrdenaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(120, 120, 120)
+                .addGap(119, 119, 119)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                    .addComponent(botoGestionar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botoConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botoDesarSortir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labSelecciona, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(botoConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bOrdena, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botoGestionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botoDesarSortir, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(120, 120, 120))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(100, 100, 100)
-                .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addComponent(labSelecciona)
+                .addGap(36, 36, 36)
                 .addComponent(botoGestionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bOrdena)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botoConsultar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botoDesarSortir)
-                .addContainerGap(238, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -101,11 +106,17 @@ public class VistaMenuPrincipal extends javax.swing.JPanel {
         v.dispose();
     }//GEN-LAST:event_botoDesarSortirActionPerformed
 
+    private void bOrdenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bOrdenaActionPerformed
+        VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
+        v.ferVisibleOrdenar();
+    }//GEN-LAST:event_bOrdenaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bOrdena;
     private javax.swing.JButton botoConsultar;
     private javax.swing.JButton botoDesarSortir;
     private javax.swing.JButton botoGestionar;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labSelecciona;
     // End of variables declaration//GEN-END:variables
 }
