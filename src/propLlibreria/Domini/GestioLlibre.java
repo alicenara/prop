@@ -73,6 +73,19 @@ public class GestioLlibre {
             return llibresEditorial;
     }
     
+     public static Llibre getLlibreTAA(String titol, String autor, int any) {
+            Iterator<Integer> iterador = llibre.keySet().iterator();
+            Integer key = 0;
+            boolean trobat = false;
+            while(iterador.hasNext() && !trobat){
+              key = iterador.next();
+              Llibre lli = llibre.get(key);
+              if (lli.getTitol().equals(titol) && lli.getAutor().equals(autor) && lli.getAny() == any) trobat = true;
+            }
+            if (trobat) return llibre.get(key);
+            else return null;
+    }
+    
     public static void afegirLlibre(Llibre l){
             llibre.put(l.getID(), l);
     }
