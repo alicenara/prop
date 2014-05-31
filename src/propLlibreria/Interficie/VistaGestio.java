@@ -35,6 +35,11 @@ public class VistaGestio extends javax.swing.JPanel {
     }
     
     private void setVistaParcial(javax.swing.JPanel vista) {
+        vAfegirEstanteria.resetFields();
+        vAfegirArea.resetFields();
+        vAfegirLlibre.resetFields();
+        vAfegirSeccio.resetFields();
+        vAfegirTematica.resetFields();
         if(active != null) {active.setVisible(false); active = null;}
         if(vista == null) return;
         active = vista;
