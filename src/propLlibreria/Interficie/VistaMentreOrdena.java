@@ -1,23 +1,53 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package propLlibreria.Interficie;
+import java.util.concurrent.ExecutionException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
-/**
- *
- * @author Alice
- */
 public class VistaMentreOrdena extends javax.swing.JPanel {
 
-    /**
-     * Creates new form VistaMentreOrdena
-     */
+
     public VistaMentreOrdena() {
         initComponents();
+        bExport.setVisible(false);
+        //ordenar();
     }
+    
+    private void ordenar(){
+        SwingWorker<Boolean, Void> ordena;
+        ordena = new SwingWorker<Boolean, Void>() {
+            @Override
+            protected Boolean doInBackground() throws Exception {
+                //TODO ordenar d'alguna de les maneres
+                return true;
+            }
+            
+            @Override
+            protected void done() {
+                boolean status;
+                try {
+                    status = get();                    
+                    if(status){
+                        ordenacioAcabada();
+                    } 
+                } catch (InterruptedException e) {
+                    // This is thrown if the thread's interrupted.
+                } catch (ExecutionException e) {
+                    // This is thrown if we throw an exception from doInBackground. 
+                }
+            }
+        };
+        
+        ordena.execute();
+    }
+    
+    private void ordenacioAcabada(){
+        bExport.setVisible(true);
+        bSortir.setText("Tornar al menú");
+        labProgressGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propLlibreria/Interficie/icons/tick.gif"))); // NOI18N
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,15 +58,27 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pbOrdenant = new javax.swing.JProgressBar();
         labKeepCalm = new javax.swing.JLabel();
         bSortir = new javax.swing.JButton();
+        bExport = new javax.swing.JButton();
+        labProgressGif = new javax.swing.JLabel();
 
         labKeepCalm.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         labKeepCalm.setText("Ordenant. Esperi si us plau.");
 
         bSortir.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        bSortir.setText("Sortir");
+        bSortir.setText("Cancel·lar");
+        bSortir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSortirActionPerformed(evt);
+            }
+        });
+
+        bExport.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        bExport.setText("<html>Exportar en pdf</html>");
+        bExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        labProgressGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propLlibreria/Interficie/icons/spinner-blue.gif"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -44,30 +86,54 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(labKeepCalm)
-                        .addComponent(pbOrdenant, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                        .addContainerGap(193, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bExport, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labProgressGif)
+                .addGap(181, 181, 181))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addComponent(labKeepCalm)
-                .addGap(36, 36, 36)
-                .addComponent(pbOrdenant, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(bSortir)
-                .addGap(46, 46, 46))
+                .addGap(32, 32, 32)
+                .addComponent(labProgressGif)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bExport, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bSortirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSortirActionPerformed
+        if(bSortir.getText().equals("Cancel·lar")){
+            JFrame dialog = new JFrame();
+            int n = JOptionPane.showConfirmDialog( dialog, "Estas segur que ho vols cancel·lar?\n"+"Això tancarà el programa.", "Cancelar ordenació", JOptionPane.YES_NO_OPTION);
+            if(n==0){
+                VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
+                v.dispose();
+            }
+        }else{
+            VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
+            v.ferVisibleGestionar();
+        }       
+    }//GEN-LAST:event_bSortirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bExport;
     private javax.swing.JButton bSortir;
     private javax.swing.JLabel labKeepCalm;
-    private javax.swing.JProgressBar pbOrdenant;
+    private javax.swing.JLabel labProgressGif;
     // End of variables declaration//GEN-END:variables
 }
