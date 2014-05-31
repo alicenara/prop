@@ -12,7 +12,13 @@ package propLlibreria.Interficie;
  */
 public class VistaGestio extends javax.swing.JPanel {
     
+    private final VistaGestioAfegirEstanteria vAfegirEstanteria;
+    private final VistaGestioAfegirArea vAfegirArea;
     private final VistaGestioEliminar vEliminar;
+    private final VistaGestioAfegirSeccio vAfegirSeccio;
+    private final VistaGestioAfegirTematica vAfegirTematica;
+    private final VistaGestioAfegirLlibre vAfegirLlibre;
+    private javax.swing.JPanel active;
     
     /**
      * Creates new form VistaGestio
@@ -20,30 +26,95 @@ public class VistaGestio extends javax.swing.JPanel {
     public VistaGestio() {
         initComponents();
         vEliminar = new VistaGestioEliminar();
+        vAfegirEstanteria = new VistaGestioAfegirEstanteria();
+        vAfegirArea = new VistaGestioAfegirArea();
+        vAfegirSeccio = new VistaGestioAfegirSeccio();
+        vAfegirTematica = new VistaGestioAfegirTematica();
+        vAfegirLlibre = new VistaGestioAfegirLlibre();
+        active = null;
     }
     
     private void setVistaParcial(javax.swing.JPanel vista) {
+        if(active != null) {active.setVisible(false); active = null;}
+        if(vista == null) return;
+        active = vista;
+        active.setVisible(true);
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
         layered.setLayout(layeredLayout);
         layeredLayout.setHorizontalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(vista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(active, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layeredLayout.setVerticalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(vista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(active, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        layered.setLayer(vista, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layered.setLayer(active, javax.swing.JLayeredPane.DEFAULT_LAYER);
     }
 
     private void redisplay() {
         String selectedObject = (String) listObjects.getModel().getSelectedItem();
         String selectedAction = (String) listAccions.getModel().getSelectedItem();
-        if(selectedObject == null || selectedAction == null) return;
-        if(selectedAction.equals("Selecciona...") || selectedObject.equals("Selecciona...")) return;
+        if(selectedAction.equals("Selecciona...") || selectedObject.equals("Selecciona...")) setVistaParcial(null);
         if(selectedAction.equals("Eliminar")) {
             setVistaParcial(vEliminar);
             vEliminar.redisplay(selectedObject);
+        }
+        switch(selectedObject){
+            case "Àrea": {
+                switch(selectedAction) {
+                    case "Crear":
+                        setVistaParcial(vAfegirArea);
+                        break;
+                    case "Modificar":
+                        setVistaParcial(null);
+                        break;
+                }
+                break;
+            }
+            case "Secció": {
+                switch(selectedAction) {
+                    case "Crear":
+                        setVistaParcial(vAfegirSeccio);
+                        break;
+                    case "Modificar":
+                        setVistaParcial(null);
+                        break;
+                }
+                break;
+            }
+            case "Temàtica": {
+                switch(selectedAction) {
+                    case "Crear":
+                        setVistaParcial(vAfegirTematica);
+                        break;
+                    case "Modificar":
+                        break;
+                }
+                break;
+            }
+            case "Estanteria": {
+                switch(selectedAction) {
+                    case "Crear":
+                        setVistaParcial(vAfegirEstanteria);
+                        break;
+                    case "Modificar":
+                        setVistaParcial(null);
+                        break;
+                }
+                break;
+            }
+            case "Llibre": {
+                switch(selectedAction) {
+                    case "Crear":
+                        setVistaParcial(vAfegirLlibre);
+                        break;
+                    case "Modificar":
+                        setVistaParcial(null);
+                        break;
+                }
+                break;
+            }
         }
         
     }
