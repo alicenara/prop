@@ -113,6 +113,37 @@ public class CtrlDominiInterficie {
                 return secA;
         }
         
+        //pre: Existeix una area tal que el seu Identificador = IDA
+	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA	
+	public static ArrayList<ArrayList<String> > consultarTematiquesArea(int IDA) {
+		ArrayList<ArrayList<String> > tA = new ArrayList<ArrayList<String> >();
+		ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
+                Area consArea = GestioArea.getArea(IDA);
+		ArrayList<Seccio> sA = consArea.getSeccions();
+		for (int i = 0; i < sA.size(); ++i) {
+			aux = consultaTematiquesSeccio(sA.get(i).getID());
+			for (int j = 0; j < aux.size(); ++j) {
+				tA.add(aux.get(j));
+			}
+		}
+		return tA;
+	}
+        
+        //pre: Existeix una area tal que el seu Identificador = IDA
+	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		
+	public static ArrayList<ArrayList<String> > consultarLlibresArea(int IDA) {
+		ArrayList<ArrayList<String> > llibresArea = new ArrayList<ArrayList<String> >();
+		ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
+                Area consArea = GestioArea.getArea(IDA);
+		ArrayList<Seccio> sA = consArea.getSeccions();
+		for (int i = 0; i < sA.size(); ++i) {
+			aux = consultarLlibresSeccio(sA.get(i).getID());
+			for (int j = 0; j < aux.size(); ++j) {
+				llibresArea.add(aux.get(j));
+			}
+		}
+		return llibresArea;
+	}
 	
 	// GESTIO SECCIO
 	
@@ -167,6 +198,22 @@ public class CtrlDominiInterficie {
                 }
                 return temS;
         }
+        
+        //pre: Existeix una seccio tal que el seu Identificador = IDS
+	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
+	public static ArrayList<ArrayList<String> > consultarLlibresSeccio(int IDS) {
+		ArrayList<ArrayList<String> > llibresSeccio = new ArrayList<ArrayList<String> >();
+                ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
+                Seccio consSeccio = GestioArea.getSeccio(IDS);
+		ArrayList<Tematica> tS = consSeccio.getTematiques();
+		for (int i = 0; i < tS.size(); ++i) {
+			aux = consultaLlibresTematica(tS.get(i).getID());
+			for (int j = 0; j < aux.size(); ++j) {
+				llibresSeccio.add(aux.get(j));
+			}
+		}
+		return llibresSeccio;
+	}
         
 	
 	//GESTIO TEMATICA
@@ -301,6 +348,11 @@ public class CtrlDominiInterficie {
 	public static void modificarTPrincipalLlibre(int IDL, int IDT) {
 		Llibre modLlibre = GestioLlibre.getLlibre(IDL);
 		modLlibre.setTemPrincipal(IDT);
+	}
+        
+        public static int seleccionaLlibre(String titol, String autor, int any) {
+		Llibre llibre = GestioLlibre.getLlibreTAA(titol,autor,any);
+                return llibre.getID();
 	}
 	
 	//pre: Existeix un Llibre = esbLlibre
@@ -439,15 +491,31 @@ public class CtrlDominiInterficie {
 		GestioEstanteria.esborrarEstanteriaID(IDE);
 	}
 	
-	public static Estanteria consultaEstanteria(int ID) {
-		return GestioEstanteria.getEstanteria(ID);
+	public static int seleccionaEstanteria(int posX, int posY) {
+		Estanteria estanteriaC = GestioEstanteria.getEstanteriaCoord(posX, posY);
+                return estanteriaC.getID();
 	}
         
         //pre: Existeix una Estanteria tal que el seu Identificador = IDE
 	//post: Retorna els llibres continguts dins de la estanteria amb Identitificador IDE
-	public static ArrayList<Llibre> consultarLlibresEstanteria(int IDE) {
+	public static ArrayList<ArrayList<String> > consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = GestioEstanteria.getEstanteria(IDE);
-		return consEstanteria.getLlibres();
+		ArrayList<Llibre> lliE = consEstanteria.getLlibres();
+                ArrayList<String> lli = new ArrayList<String>();
+                ArrayList<ArrayList<String> > lliEst = new ArrayList<ArrayList<String> >();
+                for (int i = 0; i < lliE.size(); ++i) {
+                    Llibre l = lliE.get(i);
+                    Tematica t = GestioArea.getTematica(l.getTemPrincipal());
+                    lli.add(l.getIsbn());
+                    lli.add(l.getTitol());
+                    lli.add(l.getAutor());
+                    lli.add(l.getEditorial());
+                    lli.add(Integer.toString(l.getAny()));
+                    lli.add(Integer.toString(l.getEdicio()));
+                    lli.add(t.getNomTematica());
+                    lliEst.add(lli);
+                }
+                return lliEst;
 	}
         
 	//Consultores
@@ -470,53 +538,7 @@ public class CtrlDominiInterficie {
 	
 	public static ArrayList<Area> seleccionaAllArees() {
 		return GestioArea.getAllArees();
-	}
-	
-	//pre: Existeix una area tal que el seu Identificador = IDA
-	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		
-	public static ArrayList<Llibre> consultarLlibresArea(int IDA) {
-		ArrayList<Llibre> llibresArea = new ArrayList<Llibre>();
-		ArrayList<Llibre> aux = new ArrayList<Llibre>();
-		ArrayList<Seccio> sA = GestioArea.getArea(IDA).getSeccions();
-		for (int i = 0; i < sA.size(); ++i) {
-			aux = consultarLlibresSeccio(sA.get(i).getID());
-			for (int j = 0; j < aux.size(); ++j) {
-				llibresArea.add(aux.get(j));
-			}
-		}
-		return llibresArea;
-	}
-	
-	//pre: Existeix una area tal que el seu Identificador = IDA
-	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA	
-	public static ArrayList<Tematica> consultarTematiquesArea(int IDA) {
-		ArrayList<Tematica> tA = new ArrayList<Tematica>();
-		ArrayList<Tematica> aux = new ArrayList<Tematica>();
-                Area consArea = GestioArea.getArea(IDA);
-		ArrayList<Seccio> sA = consArea.getSeccions();
-		for (int i = 0; i < sA.size(); ++i) {
-			aux = sA.get(i).getTematiques();
-			for (int j = 0; j < aux.size(); ++j) {
-				tA.add(aux.get(j));
-			}
-		}
-		return tA;
-	}
-	
-	//pre: Existeix una seccio tal que el seu Identificador = IDS
-	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
-	public static ArrayList<Llibre> consultarLlibresSeccio(int IDS) {
-		ArrayList<Llibre> llibresSeccio = new ArrayList<Llibre>();
-                ArrayList<Llibre> aux = new ArrayList<Llibre>();
-		ArrayList<Tematica> tS = consultarTematiquesSeccio(IDS);
-		for (int i = 0; i < tS.size(); ++i) {
-			aux = tS.get(i).getLlibres();
-			for (int j = 0; j < aux.size(); ++j) {
-				llibresSeccio.add(aux.get(j));
-			}
-		}
-		return llibresSeccio;
-	}
+	} 
 	
 	public static boolean existeixArea (int ID){
 		return GestioArea.existeixArea(ID);
