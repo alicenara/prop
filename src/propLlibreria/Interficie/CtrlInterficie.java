@@ -23,7 +23,7 @@ public final class CtrlInterficie {
   
   //AREA
   
-  public static int seleccionaArea(String nomA) throws Exception{
+  private static int seleccionaArea(String nomA) throws Exception{
         int id = CtrlDominiInterficie.seleccionaAreaN(nomA);
         return id;
   }
@@ -47,12 +47,12 @@ public final class CtrlInterficie {
   
   //SECCIO
   
-  public static int seleccionaSeccio(String nomS) throws Exception{
+  private static int seleccionaSeccio(String nomS) throws Exception{
         int id = CtrlDominiInterficie.seleccionaSeccioN(nomS);
         return id;
   }
   
-  public static void afegirSeccio(String nomSeccio) throws Exception{
+  public static void afegirSeccio(String nomSeccio, String nomArea) throws Exception{
         if (CtrlDominiInterficie.existeixSeccio(nomSeccio)) {
             throw new Exception("novaSeccioJaExisteix");
         }
@@ -70,7 +70,7 @@ public final class CtrlInterficie {
   
   //TEMATICA
   
-  public static int seleccionaTematica(String nomT) throws Exception{
+  private static int seleccionaTematica(String nomT) throws Exception{
         int id = CtrlDominiInterficie.seleccionaTematicaN(nomT);
         return id;
   }
@@ -93,7 +93,7 @@ public final class CtrlInterficie {
   
   //LLIBRE
   
-  public static int seleccionaLlibre(String titol, String autor, int any) throws Exception{
+  private static int seleccionaLlibre(String titol, String autor, int any) throws Exception{
         int id = CtrlDominiInterficie.seleccionaLlibre(titol,autor,any);
         return id;
   }
@@ -104,7 +104,7 @@ public final class CtrlInterficie {
   
   //ESTANTERIA
   
-  public static int seleccionaEstanteria(int posX, int posY) throws Exception{
+  private static int seleccionaEstanteria(int posX, int posY) throws Exception{
         int id = CtrlDominiInterficie.seleccionaEstanteria(posX,posY);
         return id;
   }

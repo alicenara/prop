@@ -153,9 +153,8 @@ public class CtrlDominiInterficie {
 	
 	//pre: No existeix una Seccio, tal que el seu nom sigui nomSeccio
 	//post: S'ha creat una nova Seccio amb nom = nomSeccio
-	public static int afegirSeccio(String nomSeccio, int IDArea) {
+	public static void afegirSeccio(String nomSeccio, int IDArea) {
 		Seccio novaSeccio = new Seccio(nomSeccio, IDArea);
-		return novaSeccio.getID();
 	}
 	
 	//pre: Existeix una Seccio tal que el seu Identificador = ID
