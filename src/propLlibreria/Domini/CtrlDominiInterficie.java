@@ -529,24 +529,78 @@ public class CtrlDominiInterficie {
         
 	//Consultores
 	
-	public static ArrayList<Llibre> seleccionaAllLlibres() {
-		return GestioLlibre.getAllLlibres();
+	public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
+		ArrayList<ArrayList<String> > allLlibres = new ArrayList<ArrayList<String> >();
+                ArrayList<Llibre> llibres = GestioLlibre.getAllLlibres();
+                ArrayList<String> lli = new ArrayList<String>();
+                for (int i = 0; i < llibres.size(); ++i) {
+                    Llibre l = llibres.get(i);
+                    Tematica t = GestioArea.getTematica(l.getTemPrincipal());
+                    lli.add(l.getIsbn());
+                    lli.add(l.getTitol());
+                    lli.add(l.getAutor());
+                    lli.add(l.getEditorial());
+                    lli.add(Integer.toString(l.getAny()));
+                    lli.add(Integer.toString(l.getEdicio()));
+                    lli.add(t.getNomTematica());
+                    allLlibres.add(lli);
+                }
+                return allLlibres;
 	}
 	
-	public static ArrayList<Estanteria> seleccionaAllEstanteries() {
-		return GestioEstanteria.getAllEstanteries();
+	public static ArrayList<ArrayList<String> > seleccionaAllEstanteries() {
+		ArrayList<ArrayList<String> > allEstanteries = new ArrayList<ArrayList<String> >();
+                ArrayList<Estanteria> estanteries = GestioEstanteria.getAllEstanteries();
+                ArrayList<String> est = new ArrayList<String>();
+                for (int i = 0; i < estanteries.size(); ++i) {
+                    Estanteria e = estanteries.get(i);
+                    est.add(Integer.toString(e.getPosX()));
+                    est.add(Integer.toString(e.getPosY()));
+                    est.add(Integer.toString(e.getNumFiles()));
+                    est.add(Integer.toString(e.getLlargada()));
+                    allEstanteries.add(est);
+                }
+                return allEstanteries;
 	}
 	
-	public static ArrayList<Tematica> seleccionaAllTematiques() {
-		return GestioArea.getAllTematiques();
+	public static ArrayList<ArrayList<String> > seleccionaAllTematiques() {
+                ArrayList<ArrayList<String> > allTematiques = new ArrayList<ArrayList<String> >();
+                ArrayList<Tematica> tematiques = GestioArea.getAllTematiques();
+                ArrayList<String> tem = new ArrayList<String>();
+                for (int i = 0; i < tematiques.size(); ++i) {
+                    Tematica t = tematiques.get(i);
+                    Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
+                    tem.add(t.getNomTematica());
+                    tem.add(s.getNomSeccio());
+                    allTematiques.add(tem);
+                }
+                return allTematiques;
 	}
 	
-	public static ArrayList<Seccio> seleccionaAllSeccions() {
-		return GestioArea.getAllSeccions();
+	public static ArrayList<ArrayList<String> > seleccionaAllSeccions() {
+		ArrayList<ArrayList<String> > allSeccions = new ArrayList<ArrayList<String> >();
+                ArrayList<Seccio> seccions = GestioArea.getAllSeccions();
+                ArrayList<String> sec = new ArrayList<String>();
+                for (int i = 0; i < seccions.size(); ++i) {
+                    Seccio s = seccions.get(i);
+                    Area a = GestioArea.getArea(s.getIDAreaSeccio());
+                    sec.add(s.getNomSeccio());
+                    sec.add(a.getNomArea());
+                    allSeccions.add(sec);
+                }
+                return allSeccions;
 	}
 	
-	public static ArrayList<Area> seleccionaAllArees() {
-		return GestioArea.getAllArees();
+	public static ArrayList<ArrayList<String> > seleccionaAllArees() {
+		ArrayList<ArrayList<String> > allArees = new ArrayList<ArrayList<String> >();
+                ArrayList<Area> arees = GestioArea.getAllArees();
+                ArrayList<String> area = new ArrayList<String>();
+                for (int i = 0; i < arees.size(); ++i) {
+                    Area a = arees.get(i);
+                    area.add(a.getNomArea());
+                    allArees.add(area);
+                }
+                return allArees;
 	} 
 	
 	public static boolean existeixArea (String nomA){

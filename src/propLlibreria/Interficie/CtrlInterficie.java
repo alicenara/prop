@@ -1,11 +1,9 @@
 
 package propLlibreria.Interficie;
+import java.util.*;
 import propLlibreria.Domini.CtrlDominiInterficie;
 
-/**
- *
- * @author towerthousand
- */
+
 public final class CtrlInterficie {
     private static VistaPrincipal vistaPrincipal;
 
@@ -42,6 +40,11 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.modificarNomArea(id, nomAnew);
   }
   
+  public static ArrayList<ArrayList<String> > seleccionaAllArees() {
+      return CtrlDominiInterficie.seleccionaAllArees();
+  }
+  
+  
   //SECCIO
   
   public static int seleccionaSeccio(String nomS) throws Exception{
@@ -59,6 +62,10 @@ public final class CtrlInterficie {
   public static void modificarNomSeccio(String nomSold, String nomSnew) throws Exception{
       int id = seleccionaSeccio(nomSold);
       CtrlDominiInterficie.modificarNomSeccio(id, nomSnew);
+  }
+  
+  public static ArrayList<ArrayList<String> > seleccionaAllSeccions() {
+      return CtrlDominiInterficie.seleccionaAllSeccions();
   }
   
   //TEMATICA
@@ -80,6 +87,10 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.modificarNomTematica(id, nomTnew);
   }
   
+  public static ArrayList<ArrayList<String> > seleccionaAllTematiques() {
+      return CtrlDominiInterficie.seleccionaAllTematiques();
+  }
+  
   //LLIBRE
   
   public static int seleccionaLlibre(String titol, String autor, int any) throws Exception{
@@ -87,11 +98,19 @@ public final class CtrlInterficie {
         return id;
   }
   
+  public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
+      return CtrlDominiInterficie.seleccionaAllLlibres();
+  }
+  
   //ESTANTERIA
   
   public static int seleccionaEstanteria(int posX, int posY) throws Exception{
         int id = CtrlDominiInterficie.seleccionaEstanteria(posX,posY);
         return id;
+  }
+  
+  public static ArrayList<ArrayList<String> > seleccionaAllEstanteries() {
+      return CtrlDominiInterficie.seleccionaAllEstanteries();
   }
   
 }
