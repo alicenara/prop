@@ -37,7 +37,44 @@ public final class CtrlInterficie {
   
   public static void modificarNomArea(String nomAold, String nomAnew) throws Exception{
       int id = seleccionaArea(nomAold);
+      if (CtrlDominiInterficie.existeixArea(nomAnew)) {
+            throw new Exception("nouNomAreaJaExisteix");
+      }
       CtrlDominiInterficie.modificarNomArea(id, nomAnew);
+  }
+  
+  public static void afegirSeccioArea(String nomA, String nomS) throws Exception{
+      int ida = seleccionaArea(nomA);
+      int ids = seleccionaSeccio(nomS);
+      //TODO area no conte la seccio
+      CtrlDominiInterficie.afegirSeccioArea(ida, ids);
+  }
+  
+  public static void eliminarSeccioArea(String nomA, String nomS) throws Exception{
+      int ida = seleccionaArea(nomA);
+      int ids = seleccionaSeccio(nomS);
+      //TODO area conte la seccio
+      CtrlDominiInterficie.eliminarSeccioArea(ida, ids);
+  }
+  
+  public static void eliminarArea(String nomA) throws Exception{
+      int ida = seleccionaArea(nomA);
+      CtrlDominiInterficie.eliminarArea(ida);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarSeccionsArea(String nomA) throws Exception {
+      int ida = seleccionaArea(nomA);
+      return CtrlDominiInterficie.consultarSeccionsArea(ida);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarTematiquesArea(String nomA) throws Exception {
+      int ida = seleccionaArea(nomA);
+      return CtrlDominiInterficie.consultarTematiquesArea(ida);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarLlibresArea(String nomA) throws Exception {
+      int ida = seleccionaArea(nomA);
+      return CtrlDominiInterficie.consultarLlibresArea(ida);
   }
   
   public static ArrayList<ArrayList<String> > seleccionaAllArees() {
@@ -56,9 +93,6 @@ public final class CtrlInterficie {
         if (CtrlDominiInterficie.existeixSeccio(nomSeccio)) {
             throw new Exception("novaSeccioJaExisteix");
         }
-        else if (!CtrlDominiInterficie.existeixArea(nomArea)) {
-            throw new Exception("AreadenovaSeccioNoExisteix");
-        }
         else {
             int ida = seleccionaArea(nomArea);
             CtrlDominiInterficie.afegirSeccio(nomSeccio,ida);
@@ -69,8 +103,37 @@ public final class CtrlInterficie {
       int id = seleccionaSeccio(nomSold);
       if (CtrlDominiInterficie.existeixSeccio(nomSnew)) {
             throw new Exception("nouNomSeccioJaExisteix");
-        }
+      }
       CtrlDominiInterficie.modificarNomSeccio(id, nomSnew);
+  }
+  
+  public static void afegirTematicaSeccio(String nomS, String nomT) throws Exception{
+      int ids = seleccionaSeccio(nomS);
+      int idt = seleccionaTematica(nomT);
+      //TODO EXC seccio no conte la tematica
+      CtrlDominiInterficie.afegirSeccioArea(ids, idt);
+  }
+  
+  public static void eliminarTematicaSeccio(String nomS, String nomT) throws Exception{
+      int ids = seleccionaSeccio(nomS);
+      int idt = seleccionaTematica(nomT);
+      //TODO EXC seccio conte la tematica
+      CtrlDominiInterficie.eliminarSeccioArea(ids, idt);
+  }
+  
+  public static void eliminarSeccio(String nomS) throws Exception {
+      int ids = seleccionaSeccio(nomS);
+      CtrlDominiInterficie.eliminarSeccio(ids);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarTematiquesSeccio(String nomS) throws Exception {
+      int ids = seleccionaSeccio(nomS);
+      return CtrlDominiInterficie.consultarTematiquesSeccio(ids);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarLlibresSeccio(String nomS) throws Exception {
+      int ids = seleccionaSeccio(nomS);
+      return CtrlDominiInterficie.consultarLlibresSeccio(ids);
   }
   
   public static ArrayList<ArrayList<String> > seleccionaAllSeccions() {
@@ -84,18 +147,21 @@ public final class CtrlInterficie {
         return id;
   }
   
-  public static void afegirTematica(String nomTematica) throws Exception{
+  public static void afegirTematica(String nomTematica, String nomSeccio) throws Exception{
         if (CtrlDominiInterficie.existeixTematica(nomTematica)) {
             throw new Exception("novaTematicaJaExisteix");
         }
-        else CtrlDominiInterficie.afegirArea(nomTematica);
+        else {
+            int ids = seleccionaSeccio(nomSeccio);
+            CtrlDominiInterficie.afegirTematica(nomTematica,ids);
+        }
   }
   
   public static void modificarNomTematica(String nomTold, String nomTnew) throws Exception{
       int id = seleccionaTematica(nomTold);
       if (CtrlDominiInterficie.existeixTematica(nomTnew)) {
             throw new Exception("nouNomTematicaJaExisteix");
-        }
+      }
       CtrlDominiInterficie.modificarNomTematica(id, nomTnew);
   }
   

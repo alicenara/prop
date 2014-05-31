@@ -103,7 +103,7 @@ public class CtrlDominiInterficie {
                 else return areaN.getID();
 	}
         
-        public static ArrayList<ArrayList<String> > consultaSeccionsArea(int IDA) {
+        public static ArrayList<ArrayList<String> > consultarSeccionsArea(int IDA) {
                 ArrayList<String> sec = new ArrayList<String>();
                 ArrayList<ArrayList<String> > secA = new ArrayList<ArrayList<String> >();
                 ArrayList<Seccio> sA = GestioArea.getSeccionsArea(IDA);
@@ -125,7 +125,7 @@ public class CtrlDominiInterficie {
                 Area consArea = GestioArea.getArea(IDA);
 		ArrayList<Seccio> sA = consArea.getSeccions();
 		for (int i = 0; i < sA.size(); ++i) {
-			aux = consultaTematiquesSeccio(sA.get(i).getID());
+			aux = consultarTematiquesSeccio(sA.get(i).getID());
 			for (int j = 0; j < aux.size(); ++j) {
 				tA.add(aux.get(j));
 			}
@@ -189,7 +189,7 @@ public class CtrlDominiInterficie {
                 else return seccioN.getID();
 	}
         
-        public static ArrayList<ArrayList<String> > consultaTematiquesSeccio(int IDS) {
+        public static ArrayList<ArrayList<String> > consultarTematiquesSeccio(int IDS) {
                 ArrayList<String> tem = new ArrayList<String>();
                 ArrayList<ArrayList<String> > temS = new ArrayList<ArrayList<String> >();
                 ArrayList<Tematica> tS = GestioArea.getTematiquesSeccio(IDS);
