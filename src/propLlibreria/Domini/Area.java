@@ -12,6 +12,7 @@ public class Area {
 	public Area (String nomArea){
 		this.nomArea = nomArea;
 		ID = GestioArea.ultimaIDArea();
+                seccionsArea = new ArrayList<Integer>();
 		GestioArea.afegirArea(this);
 	}
 	

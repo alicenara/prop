@@ -17,6 +17,7 @@ public class Estanteria {
 		this.posX = posX;
 		this.posY = posY;
 		this.ID = GestioEstanteria.ultimaIDEstanteria();
+                llibresEstanteria = new ArrayList<Integer>();
 		GestioEstanteria.afegirEstanteria(this);
 	}
 	
