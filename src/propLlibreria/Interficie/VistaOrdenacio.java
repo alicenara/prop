@@ -6,15 +6,13 @@ public class VistaOrdenacio extends javax.swing.JPanel {
   
     private int escollit=0;
     private final VistaMentreOrdena vMentreOrdena;
-    private javax.swing.JPanel active;
     
     public VistaOrdenacio() {
         initComponents();
         //if(ctrlInterficie.obtenirNumLlibres()>10) 
             labAvis.setVisible(true);
         //else labAvis.setVisible(false);
-        vMentreOrdena = new VistaMentreOrdena();
-        active = null;
+        vMentreOrdena = new VistaMentreOrdena();        
     }
     
     private void ocultarTot(){
@@ -27,21 +25,20 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     
     private void cridaVistaMentreOrdena() {
         ocultarTot();
-        if(active != null) {active.setVisible(false); active = null;}
         if(vMentreOrdena == null) return;
-        active = vMentreOrdena;
-        active.setVisible(true);
+        vMentreOrdena.tipusOrdenacio(escollit);
+        vMentreOrdena.setVisible(true);
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
         layered.setLayout(layeredLayout);
         layeredLayout.setHorizontalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(active, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(vMentreOrdena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layeredLayout.setVerticalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(active, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(vMentreOrdena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        layered.setLayer(active, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layered.setLayer(vMentreOrdena, javax.swing.JLayeredPane.DEFAULT_LAYER);
     } 
 
     /**
@@ -124,9 +121,9 @@ public class VistaOrdenacio extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labInfo)
                 .addGap(29, 29, 29)
-                .addGroup(layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
