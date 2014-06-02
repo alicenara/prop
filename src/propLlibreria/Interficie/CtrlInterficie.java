@@ -54,7 +54,7 @@ public final class CtrlInterficie {
       int ida = seleccionaArea(nomA);
       int ids = seleccionaSeccio(nomS);
       if (!CtrlDominiInterficie.conteAreaSeccio(ida,ids)) throw new Exception("areaNoConteSeccio");
-      CtrlDominiInterficie.eliminarSeccioArea(ida, ids);
+      CtrlDominiInterficie.esborrarSeccioArea(ida, ids);
   }
   
   public static void eliminarArea(String nomA) throws Exception{
@@ -110,15 +110,15 @@ public final class CtrlInterficie {
   public static void afegirTematicaSeccio(String nomS, String nomT) throws Exception{
       int ids = seleccionaSeccio(nomS);
       int idt = seleccionaTematica(nomT);
-      //TODO EXC seccio no conte la tematica
-      CtrlDominiInterficie.afegirSeccioArea(ids, idt);
+      if (CtrlDominiInterficie.conteSeccioTematica(ids,idt)) throw new Exception("seccioJaConteTematica");
+      CtrlDominiInterficie.afegirTematicaSeccio(ids, idt);
   }
   
   public static void eliminarTematicaSeccio(String nomS, String nomT) throws Exception{
       int ids = seleccionaSeccio(nomS);
       int idt = seleccionaTematica(nomT);
-      //TODO EXC seccio conte la tematica
-      CtrlDominiInterficie.eliminarSeccioArea(ids, idt);
+      if (!CtrlDominiInterficie.conteSeccioTematica(ids,idt)) throw new Exception("seccioNoConteTematica");
+      CtrlDominiInterficie.esborrarTematicaSeccio(ids, idt);
   }
   
   public static void eliminarSeccio(String nomS) throws Exception {

@@ -86,13 +86,10 @@ public class CtrlDominiInterficie {
 		modArea.afegirSeccio(afSeccio);
 	}
         
-        public static void eliminarSeccioArea(int IDA, int IDS) throws Exception{
+        public static void esborrarSeccioArea(int IDA, int IDS) {
 		Area modArea = GestioArea.getArea(IDA);
-                Seccio esbSeccio = GestioArea.getSeccio(IDS);
-                if (esbSeccio.getTematiques().isEmpty()) {
-                    modArea.esborrarSeccio(IDS);
-                }
-                else throw new Exception("existeixenTematiquesASeccio");
+                esborrarTematiquesSeccio(IDS);
+                modArea.esborrarSeccio(IDS);
 	}
 	
 	//pre: Existeix una Area = esbArea
@@ -189,8 +186,17 @@ public class CtrlDominiInterficie {
         
         public static void esborrarTematicaSeccio(int IDS, int IDT) {
 		Seccio modSeccio = GestioArea.getSeccio(IDS);
-		modSeccio.esborrarTematica(IDT);
+		esborrarLlibresTematica(IDT);
+                modSeccio.esborrarTematica(IDT);
 	}
+        
+        public static void esborrarTematiquesSeccio(int IDS) {
+                Seccio modSeccio = GestioArea.getSeccio(IDS);
+                ArrayList<Tematica> tS = modSeccio.getTematiques();
+                for (int i = 0; i < tS.size(); ++i) {
+                    esborrarTematicaSeccio(IDS,tS.get(i).getID());
+                }
+        }
 	
 	//pre: Existeix una Seccio = esbSeccio
 	//post: La Seccio = esbSeccio ha estat eliminada
@@ -262,10 +268,18 @@ public class CtrlDominiInterficie {
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i esta contingut en la Tematica
 	//post: La Tematica amb identificador IDT no conte el Llibre amb identificador IDL 
-	public static void eliminarLlibreTematica(int IDT, int IDL) {
+	public static void esborrarLlibreTematica(int IDT, int IDL) {
 		Tematica modTematica = GestioArea.getTematica(IDT);
 		modTematica.esborrarLlibre(IDL);
 	}
+        
+        public static void esborrarLlibresTematica(int IDT) {
+                Tematica modTematica = GestioArea.getTematica(IDT);
+                ArrayList<Llibre> llT = modTematica.getLlibres();
+                for (int i = 0; i < llT.size(); ++i) {
+                    modTematica.esborrarLlibre(llT.get(i).getID());
+                }
+        }
 	
 	//pre: Existeix una Tematica = esbTematica
 	//post: La Tematica = esbTematica ha estat eliminada
