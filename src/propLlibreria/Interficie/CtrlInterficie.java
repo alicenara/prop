@@ -50,16 +50,9 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.afegirSeccioArea(ida, ids);
   }
   
-  public static void eliminarSeccioArea(String nomA, String nomS) throws Exception{
-      int ida = seleccionaArea(nomA);
-      int ids = seleccionaSeccio(nomS);
-      if (!CtrlDominiInterficie.conteAreaSeccio(ida,ids)) throw new Exception("areaNoConteSeccio");
-      CtrlDominiInterficie.esborrarSeccioArea(ida, ids);
-  }
-  
   public static void eliminarArea(String nomA) throws Exception{
       int ida = seleccionaArea(nomA);
-      CtrlDominiInterficie.eliminarArea(ida);
+      CtrlDominiInterficie.esborrarArea(ida);
   }
   
   public static ArrayList<ArrayList<String> > consultarSeccionsArea(String nomA) throws Exception {
@@ -114,16 +107,9 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.afegirTematicaSeccio(ids, idt);
   }
   
-  public static void eliminarTematicaSeccio(String nomS, String nomT) throws Exception{
+  public static void eliminarSeccio(String nomS) throws Exception{
       int ids = seleccionaSeccio(nomS);
-      int idt = seleccionaTematica(nomT);
-      if (!CtrlDominiInterficie.conteSeccioTematica(ids,idt)) throw new Exception("seccioNoConteTematica");
-      CtrlDominiInterficie.esborrarTematicaSeccio(ids, idt);
-  }
-  
-  public static void eliminarSeccio(String nomS) throws Exception {
-      int ids = seleccionaSeccio(nomS);
-      CtrlDominiInterficie.eliminarSeccio(ids);
+      CtrlDominiInterficie.esborrarSeccio(ids);
   }
   
   public static ArrayList<ArrayList<String> > consultarTematiquesSeccio(String nomS) throws Exception {
@@ -165,6 +151,23 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.modificarNomTematica(id, nomTnew);
   }
   
+  public static void afegirLlibreTematica(String nomT, String titol, String autor, int any) throws Exception{
+      int idt = seleccionaTematica(nomT);
+      int idl = seleccionaLlibre(titol,autor,any);
+      if (CtrlDominiInterficie.conteTematicaLlibre(idt,idl)) throw new Exception("tematicaJaConteLlibre");
+      CtrlDominiInterficie.afegirLlibreTematica(idt, idl);
+  }
+  
+  public static void eliminarTematica(String nomT) throws Exception{
+      int idt = seleccionaTematica(nomT);
+      CtrlDominiInterficie.esborrarTematica(idt);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarLlibresTematica(String nomT) throws Exception {
+      int idt = seleccionaTematica(nomT);
+      return CtrlDominiInterficie.consultarLlibresTematica(idt);
+  }
+  
   public static ArrayList<ArrayList<String> > seleccionaAllTematiques() {
       return CtrlDominiInterficie.seleccionaAllTematiques();
   }
@@ -174,6 +177,26 @@ public final class CtrlInterficie {
   private static int seleccionaLlibre(String titol, String autor, int any) throws Exception{
         int id = CtrlDominiInterficie.seleccionaLlibre(titol,autor,any);
         return id;
+  }
+  
+  public static void crearLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, String nomTp) throws Exception{
+      if (CtrlDominiInterficie.existeixLlibre(titol,autor,any)) {
+            throw new Exception("nouLlibreJaExisteix");
+        }
+        else {
+            int idtp = seleccionaTematica(nomTp);
+            CtrlDominiInterficie.afegirLlibre(isbn,titol,autor,editorial,any,edicio,idtp);
+        }
+  }
+  
+  public static void modificarIsbnLlibre(String titol, String autor, int any, String modIsbn) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarIsbnLlibre(idl,modIsbn);
+  }
+  
+  public static void modificarTitolLlibre(String titol, String autor, int any, String modTitol) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarTitolLlibre(idl,modTitol);
   }
   
   public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
