@@ -67,6 +67,7 @@ public class Seccio {
 	
 	public void esborrarTematica(int IDT) {
 		tematiquesSeccio.remove(new Integer(IDT));
+                GestioArea.esborrarTematicaID(IDT);
 	}
 	
 }
