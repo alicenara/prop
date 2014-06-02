@@ -12,6 +12,7 @@ public class Tematica {
 	public Tematica (String nomTematica, int IDSeccio) {
 		this.nomTematica = nomTematica;
 		this.ID = GestioArea.ultimaIDTematica();
+                llibresTematica = new ArrayList<Integer>();
 		GestioArea.afegirTematica(this);
                 Seccio s = GestioArea.getSeccio(IDSeccio);
                 s.afegirTematica(this);
@@ -66,6 +67,7 @@ public class Tematica {
 	
 	public void esborrarLlibre(int IDL) {
 		llibresTematica.remove(new Integer(IDL));
+                GestioLlibre.esborrarLlibreID(IDL);
 	}
 		
 }

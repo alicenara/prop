@@ -13,6 +13,7 @@ public class Seccio {
 	public Seccio (String nomSeccio, int IDArea) {
 		this.nomSeccio = nomSeccio;
 		this.ID = GestioArea.ultimaIDSeccio();
+                tematiquesSeccio = new ArrayList<Integer>();
 		GestioArea.afegirSeccio(this);
                 Area a = GestioArea.getArea(IDArea);
                 a.afegirSeccio(this);
@@ -67,6 +68,7 @@ public class Seccio {
 	
 	public void esborrarTematica(int IDT) {
 		tematiquesSeccio.remove(new Integer(IDT));
+                GestioArea.esborrarTematicaID(IDT);
 	}
 	
 }

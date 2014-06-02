@@ -86,9 +86,10 @@ public class CtrlDominiInterficie {
 		modArea.afegirSeccio(afSeccio);
 	}
         
-        public static void eliminarSeccioArea(int IDA, int IDS) {
+        public static void esborrarSeccioArea(int IDA, int IDS) {
 		Area modArea = GestioArea.getArea(IDA);
-		modArea.esborrarSeccio(IDS);
+                esborrarTematiquesSeccio(IDS);
+                modArea.esborrarSeccio(IDS);
 	}
 	
 	//pre: Existeix una Area = esbArea
@@ -103,16 +104,27 @@ public class CtrlDominiInterficie {
                 else return areaN.getID();
 	}
         
+        public static boolean conteAreaSeccio(int IDA, int IDS) {
+                Seccio seccio = GestioArea.getSeccio(IDS);
+                ArrayList<Seccio> sA = GestioArea.getSeccionsArea(IDA);
+                boolean trobat = false;
+                for (int i = 0; i < sA.size() && !trobat; ++i) {
+                    if (sA.get(i) == seccio) trobat = true;
+                }
+                return trobat;
+        }
+        
         public static ArrayList<ArrayList<String> > consultarSeccionsArea(int IDA) {
-                ArrayList<String> sec = new ArrayList<String>();
                 ArrayList<ArrayList<String> > secA = new ArrayList<ArrayList<String> >();
                 ArrayList<Seccio> sA = GestioArea.getSeccionsArea(IDA);
                 for (int i = 0; i < sA.size(); ++i) {
+                    ArrayList<String> sec = new ArrayList<String>();
                     Seccio s = sA.get(i);
                     Area a = GestioArea.getArea(s.getIDAreaSeccio());
                     sec.add(s.getNomSeccio());
                     sec.add(a.getNomArea());
                     secA.add(sec);
+                    sec.clear();
                 }
                 return secA;
         }
@@ -174,8 +186,17 @@ public class CtrlDominiInterficie {
         
         public static void esborrarTematicaSeccio(int IDS, int IDT) {
 		Seccio modSeccio = GestioArea.getSeccio(IDS);
-		modSeccio.esborrarTematica(IDT);
+		esborrarLlibresTematica(IDT);
+                modSeccio.esborrarTematica(IDT);
 	}
+        
+        public static void esborrarTematiquesSeccio(int IDS) {
+                Seccio modSeccio = GestioArea.getSeccio(IDS);
+                ArrayList<Tematica> tS = modSeccio.getTematiques();
+                for (int i = 0; i < tS.size(); ++i) {
+                    esborrarTematicaSeccio(IDS,tS.get(i).getID());
+                }
+        }
 	
 	//pre: Existeix una Seccio = esbSeccio
 	//post: La Seccio = esbSeccio ha estat eliminada
@@ -190,10 +211,10 @@ public class CtrlDominiInterficie {
 	}
         
         public static ArrayList<ArrayList<String> > consultarTematiquesSeccio(int IDS) {
-                ArrayList<String> tem = new ArrayList<String>();
                 ArrayList<ArrayList<String> > temS = new ArrayList<ArrayList<String> >();
                 ArrayList<Tematica> tS = GestioArea.getTematiquesSeccio(IDS);
                 for (int i = 0; i < tS.size(); ++i) {
+                    ArrayList<String> tem = new ArrayList<String>();
                     Tematica t = tS.get(i);
                     Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
                     Area a = GestioArea.getArea(s.getIDAreaSeccio());
@@ -247,10 +268,18 @@ public class CtrlDominiInterficie {
 	
 	//pre: Existeix una Tematica tal que el seu Identificador = IDT i un Llibre tal que el seu identificador es IDL i esta contingut en la Tematica
 	//post: La Tematica amb identificador IDT no conte el Llibre amb identificador IDL 
-	public static void eliminarLlibreTematica(int IDT, int IDL) {
+	public static void esborrarLlibreTematica(int IDT, int IDL) {
 		Tematica modTematica = GestioArea.getTematica(IDT);
 		modTematica.esborrarLlibre(IDL);
 	}
+        
+        public static void esborrarLlibresTematica(int IDT) {
+                Tematica modTematica = GestioArea.getTematica(IDT);
+                ArrayList<Llibre> llT = modTematica.getLlibres();
+                for (int i = 0; i < llT.size(); ++i) {
+                    modTematica.esborrarLlibre(llT.get(i).getID());
+                }
+        }
 	
 	//pre: Existeix una Tematica = esbTematica
 	//post: La Tematica = esbTematica ha estat eliminada
@@ -265,10 +294,10 @@ public class CtrlDominiInterficie {
 	}
 	
 	public static ArrayList<ArrayList<String> > consultaLlibresTematica(int IDT) {
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliT = new ArrayList<ArrayList<String> >();
                 ArrayList<Llibre> lT = GestioArea.getLlibresTematica(IDT);
                 for (int i = 0; i < lT.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = lT.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -369,9 +398,9 @@ public class CtrlDominiInterficie {
 	
 	public static ArrayList<ArrayList<String> > seleccionaLlibreT(String titol) {
 		ArrayList<Llibre> llTitol = GestioLlibre.getLlibreTitol(titol);
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliT = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < llTitol.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = llTitol.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -388,9 +417,9 @@ public class CtrlDominiInterficie {
 	
 	public static ArrayList<ArrayList<String> > consultaLlibrePerISBN(String isbn){
 		ArrayList<Llibre> llIsbn = GestioLlibre.getLlibreISBN(isbn);
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliI = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < llIsbn.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = llIsbn.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -407,9 +436,9 @@ public class CtrlDominiInterficie {
 	
 	public static ArrayList<ArrayList<String> > consultaLlibresAutor(String autor) {
 		ArrayList<Llibre> llAutor = GestioLlibre.getLlibresAutor(autor);
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliA = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < llAutor.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = llAutor.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -426,9 +455,9 @@ public class CtrlDominiInterficie {
 	
 	public static ArrayList<ArrayList<String> > consultaLlibresAny(int any) {
 		ArrayList<Llibre> llAny = GestioLlibre.getLlibresAny(any);
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliA = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < llAny.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = llAny.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -445,9 +474,9 @@ public class CtrlDominiInterficie {
 	
 	public static ArrayList<ArrayList<String> > consultaLlibresEditorial(String editorial) {
 		ArrayList<Llibre> llEd = GestioLlibre.getLlibresEditorial(editorial);
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliE = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < llEd.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = llEd.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -507,9 +536,9 @@ public class CtrlDominiInterficie {
 	public static ArrayList<ArrayList<String> > consultarLlibresEstanteria(int IDE) {
 		Estanteria consEstanteria = GestioEstanteria.getEstanteria(IDE);
 		ArrayList<Llibre> lliE = consEstanteria.getLlibres();
-                ArrayList<String> lli = new ArrayList<String>();
                 ArrayList<ArrayList<String> > lliEst = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < lliE.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = lliE.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -529,8 +558,8 @@ public class CtrlDominiInterficie {
 	public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
 		ArrayList<ArrayList<String> > allLlibres = new ArrayList<ArrayList<String> >();
                 ArrayList<Llibre> llibres = GestioLlibre.getAllLlibres();
-                ArrayList<String> lli = new ArrayList<String>();
                 for (int i = 0; i < llibres.size(); ++i) {
+                    ArrayList<String> lli = new ArrayList<String>();
                     Llibre l = llibres.get(i);
                     Tematica t = GestioArea.getTematica(l.getTemPrincipal());
                     lli.add(l.getIsbn());
@@ -548,8 +577,8 @@ public class CtrlDominiInterficie {
 	public static ArrayList<ArrayList<String> > seleccionaAllEstanteries() {
 		ArrayList<ArrayList<String> > allEstanteries = new ArrayList<ArrayList<String> >();
                 ArrayList<Estanteria> estanteries = GestioEstanteria.getAllEstanteries();
-                ArrayList<String> est = new ArrayList<String>();
                 for (int i = 0; i < estanteries.size(); ++i) {
+                    ArrayList<String> est = new ArrayList<String>();
                     Estanteria e = estanteries.get(i);
                     est.add(Integer.toString(e.getPosX()));
                     est.add(Integer.toString(e.getPosY()));
@@ -563,8 +592,8 @@ public class CtrlDominiInterficie {
 	public static ArrayList<ArrayList<String> > seleccionaAllTematiques() {
                 ArrayList<ArrayList<String> > allTematiques = new ArrayList<ArrayList<String> >();
                 ArrayList<Tematica> tematiques = GestioArea.getAllTematiques();
-                ArrayList<String> tem = new ArrayList<String>();
                 for (int i = 0; i < tematiques.size(); ++i) {
+                    ArrayList<String> tem = new ArrayList<String>();
                     Tematica t = tematiques.get(i);
                     Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
                     Area a = GestioArea.getArea(s.getIDAreaSeccio());
@@ -579,8 +608,8 @@ public class CtrlDominiInterficie {
 	public static ArrayList<ArrayList<String> > seleccionaAllSeccions() {
 		ArrayList<ArrayList<String> > allSeccions = new ArrayList<ArrayList<String> >();
                 ArrayList<Seccio> seccions = GestioArea.getAllSeccions();
-                ArrayList<String> sec = new ArrayList<String>();
                 for (int i = 0; i < seccions.size(); ++i) {
+                    ArrayList<String> sec = new ArrayList<String>();
                     Seccio s = seccions.get(i);
                     Area a = GestioArea.getArea(s.getIDAreaSeccio());
                     sec.add(s.getNomSeccio());
@@ -593,8 +622,8 @@ public class CtrlDominiInterficie {
 	public static ArrayList<ArrayList<String> > seleccionaAllArees() {
 		ArrayList<ArrayList<String> > allArees = new ArrayList<ArrayList<String> >();
                 ArrayList<Area> arees = GestioArea.getAllArees();
-                ArrayList<String> area = new ArrayList<String>();
                 for (int i = 0; i < arees.size(); ++i) {
+                    ArrayList<String> area = new ArrayList<String>();
                     Area a = arees.get(i);
                     area.add(a.getNomArea());
                     allArees.add(area);
