@@ -7,11 +7,16 @@ import javax.swing.SwingWorker;
 
 public class VistaMentreOrdena extends javax.swing.JPanel {
 
+    private int tipusOrd;
 
     public VistaMentreOrdena() {
         initComponents();
         bExport.setVisible(false);
         //ordenar();
+    }
+    
+    public void tipusOrdenacio(int tipus){
+        this.tipusOrd=tipus;
     }
     
     private void ordenar(){
