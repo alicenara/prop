@@ -199,6 +199,37 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.modificarTitolLlibre(idl,modTitol);
   }
   
+  public static void modificarAutorLlibre(String titol, String autor, int any, String modAutor) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarAutorLlibre(idl,modAutor);
+  }
+  
+  public static void modificarEditorialLlibre(String titol, String autor, int any, String modEditorial) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarEditorialLlibre(idl,modEditorial);
+  }
+  
+  public static void modificarAnyLlibre(String titol, String autor, int any, int modAny) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarAnyLlibre(idl,modAny);
+  }
+  
+  public static void modificarEdicioLlibre(String titol, String autor, int any, int modEdicio) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarEdicioLlibre(idl,modEdicio);
+  }
+  
+  public static void modificarTPrincipalLlibre(String titol, String autor, int any, String nomT) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      int idt = seleccionaTematica(nomT);
+      CtrlDominiInterficie.modificarEdicioLlibre(idl,idt);
+  }
+  
+  public static void eliminarLlibre(String titol, String autor, int any) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.esborrarLlibre(idl);
+  }
+  
   public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
       return CtrlDominiInterficie.seleccionaAllLlibres();
   }
