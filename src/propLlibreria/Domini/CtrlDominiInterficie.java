@@ -113,6 +113,7 @@ public class CtrlDominiInterficie {
                     sec.add(s.getNomSeccio());
                     sec.add(a.getNomArea());
                     secA.add(sec);
+                    sec.clear();
                 }
                 return secA;
         }
@@ -201,6 +202,7 @@ public class CtrlDominiInterficie {
                     tem.add(s.getNomSeccio());
                     tem.add(a.getNomArea());
                     temS.add(tem);
+                    tem.clear();
                 }
                 return temS;
         }
@@ -279,6 +281,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliT.add(lli);
+                    lli.clear();
                 }
                 return lliT;
         }
@@ -382,6 +385,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliT.add(lli);
+                    lli.clear();
                 }
                 return lliT;
 	}
@@ -401,6 +405,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliI.add(lli);
+                    lli.clear();
                 }
                 return lliI;
 	}
@@ -420,6 +425,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliA.add(lli);
+                    lli.clear();
                 }
                 return lliA;
 	}
@@ -439,6 +445,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliA.add(lli);
+                    lli.clear();
                 }
                 return lliA;
 	}
@@ -458,6 +465,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliE.add(lli);
+                    lli.clear();
                 }
                 return lliE;
 	}
@@ -520,6 +528,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     lliEst.add(lli);
+                    lli.clear();
                 }
                 return lliEst;
 	}
@@ -541,6 +550,7 @@ public class CtrlDominiInterficie {
                     lli.add(Integer.toString(l.getEdicio()));
                     lli.add(t.getNomTematica());
                     allLlibres.add(lli);
+                    lli.clear();
                 }
                 return allLlibres;
 	}
@@ -556,6 +566,7 @@ public class CtrlDominiInterficie {
                     est.add(Integer.toString(e.getNumFiles()));
                     est.add(Integer.toString(e.getLlargada()));
                     allEstanteries.add(est);
+                    est.clear();
                 }
                 return allEstanteries;
 	}
@@ -572,6 +583,7 @@ public class CtrlDominiInterficie {
                     tem.add(s.getNomSeccio());
                     tem.add(a.getNomArea());
                     allTematiques.add(tem);
+                    tem.clear();
                 }
                 return allTematiques;
 	}
@@ -586,6 +598,7 @@ public class CtrlDominiInterficie {
                     sec.add(s.getNomSeccio());
                     sec.add(a.getNomArea());
                     allSeccions.add(sec);
+                    sec.clear();
                 }
                 return allSeccions;
 	}
@@ -598,6 +611,7 @@ public class CtrlDominiInterficie {
                     Area a = arees.get(i);
                     area.add(a.getNomArea());
                     allArees.add(area);
+                    area.clear();
                 }
                 return allArees;
 	} 
