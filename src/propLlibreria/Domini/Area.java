@@ -54,6 +54,7 @@ public class Area {
 	
 	public void esborrarSeccio(int IDS) {
 		seccionsArea.remove(new Integer(IDS));
+                GestioArea.esborrarSeccioID(IDS);
 	}
 	
 }

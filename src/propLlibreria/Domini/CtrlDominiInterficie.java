@@ -103,6 +103,16 @@ public class CtrlDominiInterficie {
                 else return areaN.getID();
 	}
         
+        public static boolean conteAreaSeccio(int IDA, int IDS) {
+                Seccio seccio = GestioArea.getSeccio(IDS);
+                ArrayList<Seccio> sA = GestioArea.getSeccionsArea(IDA);
+                boolean trobat = false;
+                for (int i = 0; i < sA.size() && !trobat; ++i) {
+                    if (sA.get(i) == seccio) trobat = true;
+                }
+                return trobat;
+        }
+        
         public static ArrayList<ArrayList<String> > consultarSeccionsArea(int IDA) {
                 ArrayList<String> sec = new ArrayList<String>();
                 ArrayList<ArrayList<String> > secA = new ArrayList<ArrayList<String> >();

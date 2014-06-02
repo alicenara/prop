@@ -28,7 +28,7 @@ public final class CtrlInterficie {
         return id;
   }
   
-  public static void afegirArea(String nomArea) throws Exception{
+  public static void crearArea(String nomArea) throws Exception{
         if (CtrlDominiInterficie.existeixArea(nomArea)) {
             throw new Exception("novaAreaJaExisteix");
         }
@@ -46,14 +46,14 @@ public final class CtrlInterficie {
   public static void afegirSeccioArea(String nomA, String nomS) throws Exception{
       int ida = seleccionaArea(nomA);
       int ids = seleccionaSeccio(nomS);
-      //TODO area no conte la seccio
+      if (CtrlDominiInterficie.conteAreaSeccio(ida,ids)) throw new Exception("areaJaConteSeccio");
       CtrlDominiInterficie.afegirSeccioArea(ida, ids);
   }
   
   public static void eliminarSeccioArea(String nomA, String nomS) throws Exception{
       int ida = seleccionaArea(nomA);
       int ids = seleccionaSeccio(nomS);
-      //TODO area conte la seccio
+      if (!CtrlDominiInterficie.conteAreaSeccio(ida,ids)) throw new Exception("areaNoConteSeccio");
       CtrlDominiInterficie.eliminarSeccioArea(ida, ids);
   }
   
@@ -89,7 +89,7 @@ public final class CtrlInterficie {
         return id;
   }
   
-  public static void afegirSeccio(String nomSeccio, String nomArea) throws Exception{
+  public static void crearSeccio(String nomSeccio, String nomArea) throws Exception{
         if (CtrlDominiInterficie.existeixSeccio(nomSeccio)) {
             throw new Exception("novaSeccioJaExisteix");
         }
@@ -147,7 +147,7 @@ public final class CtrlInterficie {
         return id;
   }
   
-  public static void afegirTematica(String nomTematica, String nomSeccio) throws Exception{
+  public static void crearTematica(String nomTematica, String nomSeccio) throws Exception{
         if (CtrlDominiInterficie.existeixTematica(nomTematica)) {
             throw new Exception("novaTematicaJaExisteix");
         }
