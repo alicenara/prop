@@ -228,11 +228,15 @@ public final class CtrlInterficie {
   public static void afegirTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
       int idl = seleccionaLlibre(titol,autor,any);
       int idt = seleccionaTematica(nomTs);
+      if (CtrlDominiInterficie.conteLlibreTS(idl,idt)) throw new Exception("llibreJaConteTematicaS");
       CtrlDominiInterficie.afegirTSecundaria(idl, idt);
   }
   
   public static void esborrarTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
-  
+      int idl = seleccionaLlibre(titol,autor,any);
+      int idt = seleccionaTematica(nomTs);
+      if (!CtrlDominiInterficie.conteLlibreTS(idl,idt)) throw new Exception("llibreNoConteTematicaS");
+      CtrlDominiInterficie.esborrarTSecundaria(idl, idt);
   }
   
   public static void eliminarLlibre(String titol, String autor, int any) throws Exception{
