@@ -422,8 +422,8 @@ public class CtrlDominiInterficie {
                 Tematica t = GestioArea.getTematica(IDTs);
                 ArrayList<Tematica> tL = GestioLlibre.getTematiquesSecundaries(IDL);
                 boolean trobat = false;
-                for (int i = 0; i < sA.size() && !trobat; ++i) {
-                    if (sA.get(i) == seccio) trobat = true;
+                for (int i = 0; i < tL.size() && !trobat; ++i) {
+                    if (tL.get(i) == t) trobat = true;
                 }
                 return trobat;
         }
