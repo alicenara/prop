@@ -8,4 +8,4 @@
 4;Llengues o Idiomes
 3;Ciencies Socials
 2;Religió
-1;wololo
+1;wololo;1;2

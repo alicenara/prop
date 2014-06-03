@@ -17,8 +17,8 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.guardarSolucio();
   }
   
-  public static void reordenacioBiblioteca() throws Exception{
-        CtrlDominiInterficie.reordenacioBiblioteca();
+  public static void reordenacioBiblioteca(boolean heuristic) throws Exception{
+        CtrlDominiInterficie.reordenacioBiblioteca(heuristic);
   }
   
   //AREA
@@ -197,6 +197,67 @@ public final class CtrlInterficie {
   public static void modificarTitolLlibre(String titol, String autor, int any, String modTitol) throws Exception{
       int idl = seleccionaLlibre(titol,autor,any);
       CtrlDominiInterficie.modificarTitolLlibre(idl,modTitol);
+  }
+  
+  public static void modificarAutorLlibre(String titol, String autor, int any, String modAutor) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarAutorLlibre(idl,modAutor);
+  }
+  
+  public static void modificarEditorialLlibre(String titol, String autor, int any, String modEditorial) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarEditorialLlibre(idl,modEditorial);
+  }
+  
+  public static void modificarAnyLlibre(String titol, String autor, int any, int modAny) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarAnyLlibre(idl,modAny);
+  }
+  
+  public static void modificarEdicioLlibre(String titol, String autor, int any, int modEdicio) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.modificarEdicioLlibre(idl,modEdicio);
+  }
+  
+  public static void modificarTPrincipalLlibre(String titol, String autor, int any, String nomT) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      int idt = seleccionaTematica(nomT);
+      CtrlDominiInterficie.modificarEdicioLlibre(idl,idt);
+  }
+  
+  public static void afegirTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      int idt = seleccionaTematica(nomTs);
+      CtrlDominiInterficie.afegirTSecundaria(idl, idt);
+  }
+  
+  public static void esborrarTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
+  
+  }
+  
+  public static void eliminarLlibre(String titol, String autor, int any) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      CtrlDominiInterficie.esborrarLlibre(idl);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresTitol(String titol) {
+      return CtrlDominiInterficie.consultaLlibresTitol(titol);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresPerISBN(String isbn) {
+      return CtrlDominiInterficie.consultaLlibresPerISBN(isbn);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresAutor(String autor) {
+      return CtrlDominiInterficie.consultaLlibresAutor(autor);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresAny(int any) {
+      return CtrlDominiInterficie.consultaLlibresAny(any);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresEditorial(String editorial) {
+      return CtrlDominiInterficie.consultaLlibresEditorial(editorial);
   }
   
   public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {

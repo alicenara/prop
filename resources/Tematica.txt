@@ -1,5 +1,5 @@
 5;Misteri;1;1
-4;Gossos;1;1
-3;Historica;1;1
-2;Fantàstica;1;1
-1;Ciencia Ficció;1;1
+4;Gossos;1;2
+3;Historica;1;3
+2;Fantàstica;1;4
+1;Ciencia Ficció;1;5
