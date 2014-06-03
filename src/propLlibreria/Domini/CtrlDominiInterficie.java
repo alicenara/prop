@@ -417,6 +417,16 @@ public class CtrlDominiInterficie {
                 if (llibre == null) throw new Exception("noExisteixLlibre");
                 else return llibre.getID();
 	}
+        
+        public static boolean conteLlibreTS(int IDL, int IDTs) {
+                Tematica t = GestioArea.getTematica(IDTs);
+                ArrayList<Tematica> tL = GestioLlibre.getTematiquesSecundaries(IDL);
+                boolean trobat = false;
+                for (int i = 0; i < sA.size() && !trobat; ++i) {
+                    if (sA.get(i) == seccio) trobat = true;
+                }
+                return trobat;
+        }
 	
 	//pre: Existeix un Llibre = esbLlibre
 	//post: El Llibre = esbLlibre ha estat eliminat
