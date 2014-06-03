@@ -1,4 +1,5 @@
+5;Altres;9;10
 4;Literatura;7;8
-3;Ciencies;5;6
+3;Ciencies;5;6;11
 2;Lletres;3;4
 1;Art;1;2

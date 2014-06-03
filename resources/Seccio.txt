@@ -1,11 +1,11 @@
-11;Ciencies Socials;3
-10;Religió;5
-9;Obres Generals;5;
-8;Literatura infantil;4
-7;Literatura juvenil;4
-6;Ciències Aplicades;3
-5;Ciències Pures;3
-4;Llengues o Idiomes;2
-3;Historia, Geografia, Biografia;2
-2;Clàsic;1
-1;Barroc;1
+11;Ciencies Socials;3;20;21
+10;Religió;5;19
+9;Obres Generals;5;17;18
+8;Literatura infantil;4;14;15;16
+7;Literatura juvenil;4;12;13
+6;Ciències Aplicades;3;11
+5;Ciències Pures;3;9;10
+4;Llengues o Idiomes;2;7;8
+3;Historia, Geografia, Biografia;2;5;6
+2;Clàsic;1;3;4
+1;Barroc;1;1;2

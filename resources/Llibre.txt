@@ -1,7 +1,33 @@
-7;9788427203180;Spider Man;Marvel;Dunno;1950;1;1;1
-6;9788427203186;El exilio;R.A.Salvatore;Ivrea;2014;1;3;1
-5;9788427203185;La guarida;R.A.Salvatore;Ivrea;1987;1;2;1
-4;9788427203184;El elfo oscuro;R.A.Salvatore;Ivrea;1985;1;2;1
-3;9788427203183;Leal;Veronica Roth;Molino;2014;1;3;1
-2;9788427203182;Divergente;Veronica Roth;Molino;2012;1;2;1
-1;9788427203181;Insurgente;Veronica Roth;Molino;2012;1;2;1
+33;9788446036388;El libro de la psicología;Sin autor;Akal;2012;4;21;20
+32;9789702600312;Introducción a la psicología;Morris;Prentice Hall Iberia;2001;3;21;20
+31;9788494027291;El arqueólogo y el futuro;Eduald Carbonell i Roura;New Books;2013;2;20;21
+30;9781481102926;La Tora Del Rebe Najman;Rabi Najman de Breslov;Breslov Research Institute;1970;10;19
+29;9789876521307;La Economia como Ciencia Estricta;Hugo Azcurra;Cooperativas;2013;6;18;17
+28;9789876274555;Derecho y leyes;Guarino Julian;Ediciones B;2014;10;17;18
+27;9788498775747;El jardín de las letras;Sin autor;Educación infantil Algaida;2010;1;16;14;15;13
+26;9788421685129;Las divertidas aventuras de las letras;Sin autor;Bruño;1987;4;16;14;15;13
+25;9788498069440;Diccionario español-inglés;Sin autor;TodoLibro;1999;2;15;14;16;13
+24;9788499137520;El gran libro de los animales;Sin autor;TodoLibro;2000;1;14;15;16;13
+23;9788473291149;Mirall trencat;Mercè Rodoreda;Club Editor;2010;4;13;5;15;16;21
+22;9788448036768;La canción de la princesa oscura;Javier Bolado;Timun Mas;2004;5;12;15;16
+21;9788448037246;El elfo oscuro;R.A.Salvatore;Timun Mas;1995;3;12;15;16
+20;9788448008123;El exilio;R.A.Salvatore;Timun Mas;2013;2;12;14;16
+19;9788448031473;La guarida;R.A.Salvatore;Timun Mas;2000;3;12;13;15
+18;9788415656630;Servicios en Red;Román Carceller Cheza;Macmillan;2010;5;11;6
+17;9788415656647;Seguridad Informática;Gema Escrivá Gascó;Macmillan;2012;3;11;6
+16;9788400094201;Los avances de la química;Bernardo Herradón García;CSIC;2011;3;10;9
+15;9788473602402;Problemas de física;Enrique Burbano y Carlos Gracia;Editorial Tébar Flores;2000;3;9;10
+14;9788473602365;Fisica General;Hermanos Burbano y Carlos Gracia;Editorial Tébar Flores;1990;32;9;10
+13;9783468960482;Diccionario moderno alemán;Sin autor;Langenscheidt;2010;5;8;7
+12;9788429762921;Diccionari de l'insistut d'estudis catalans;Institut Estudis Catalans;Edicions 62;2009;3;7;5;8;15
+11;9788497887090;Un historia de la informática;Miquel Barceló;Editorial UOC;2011;1;6;11
+10;9788496836808;Ceros y unos;Daniel Rodríguez Herrera;Ciudadela Libros;2011;1;6;11
+9;9788485031856;Historia de Cataluña;Jaume Sobrequés i Callicó;Editorial Base;2013;2;5;6;7
+8;9788499327600;Història de Catalunya;Pilarin Bayes;Estrella Polar;2012;1;5;6
+7;9788492654932;Otra historia de Cataluña;Marcelo Capdeferro;LibrosLibres;2012;3;5;6;7
+6;9788480049412;Historia del arte clásico en la antigüedad;Cruz Martínez de la Torre;Editorial Universtaria;2010;2;4;3
+5;9788430544836;Grecia clásica;Jean Charbonneaux;Aguilar;1970;1;4;3
+4;9788478385886;Arte de la prehistoria y el mundo antiguo;José Alvarez y José Manuel Pita;Ediciones del prado;1994;1;3;4
+3;9788493569495;Visiones de la pintura barroca sevillana;Arsenio Moreno Mendoza;Bosque de palabras;2008;1;2;1
+2;9788437609942;Pintura barroca en España 1600-1750;Alfonso Pérez Sánchez;Catedra;1992;1;2;1
+1;9788437603926;Escultura barroca en España 1600-1770;Juan Jose Martin;Catedra;1998;1;1;2
