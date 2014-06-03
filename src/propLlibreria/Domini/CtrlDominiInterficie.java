@@ -139,10 +139,10 @@ public class CtrlDominiInterficie {
 	//post: Retorna les tematiques contingudes dins de l'area amb Identitificador IDA	
 	public static ArrayList<ArrayList<String> > consultarTematiquesArea(int IDA) {
 		ArrayList<ArrayList<String> > tA = new ArrayList<ArrayList<String> >();
-		ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
                 Area consArea = GestioArea.getArea(IDA);
 		ArrayList<Seccio> sA = consArea.getSeccions();
 		for (int i = 0; i < sA.size(); ++i) {
+                        ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
 			aux = consultarTematiquesSeccio(sA.get(i).getID());
 			for (int j = 0; j < aux.size(); ++j) {
 				tA.add(aux.get(j));
@@ -155,10 +155,10 @@ public class CtrlDominiInterficie {
 	//post: Retorna els llibres continguts dins de l'area amb Identitificador IDA		
 	public static ArrayList<ArrayList<String> > consultarLlibresArea(int IDA) {
 		ArrayList<ArrayList<String> > llibresArea = new ArrayList<ArrayList<String> >();
-		ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
                 Area consArea = GestioArea.getArea(IDA);
 		ArrayList<Seccio> sA = consArea.getSeccions();
 		for (int i = 0; i < sA.size(); ++i) {
+                        ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
 			aux = consultarLlibresSeccio(sA.get(i).getID());
 			for (int j = 0; j < aux.size(); ++j) {
 				llibresArea.add(aux.get(j));
@@ -247,10 +247,10 @@ public class CtrlDominiInterficie {
 	//post: Retorna els llibres contingut dins de la seccio amb Identitificador IDS
 	public static ArrayList<ArrayList<String> > consultarLlibresSeccio(int IDS) {
 		ArrayList<ArrayList<String> > llibresSeccio = new ArrayList<ArrayList<String> >();
-                ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
                 Seccio consSeccio = GestioArea.getSeccio(IDS);
 		ArrayList<Tematica> tS = consSeccio.getTematiques();
 		for (int i = 0; i < tS.size(); ++i) {
+                        ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
 			aux = consultarLlibresTematica(tS.get(i).getID());
 			for (int j = 0; j < aux.size(); ++j) {
 				llibresSeccio.add(aux.get(j));
@@ -668,7 +668,20 @@ public class CtrlDominiInterficie {
                     allArees.add(area);
                 }
                 return allArees;
-	} 
+	}
+        
+        public static ArrayList<ArrayList<String> > consultaOrdenacioBiblio() {
+                ArrayList <Estanteria> e = GestioEstanteria.getAllEstanteries();
+                ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
+                for (int i = 0; i < e.size(); ++i) {
+                    ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
+                    aux = consultarLlibresEstanteria(e.get(i).getID());
+                    for (int j = 0; j < aux.size(); ++j) {
+                        result.add(aux.get(j));
+                    }
+                }
+                return result;
+        }
 	
 	public static boolean existeixArea (String nomA){
 		return GestioArea.existeixArea(nomA);
