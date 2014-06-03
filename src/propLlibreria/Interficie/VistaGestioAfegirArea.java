@@ -84,7 +84,7 @@ public class VistaGestioAfegirArea extends javax.swing.JPanel {
             return;
         }
         try {
-            CtrlInterficie.afegirArea(nom);
+            CtrlInterficie.crearArea(nom);
         }
         catch(Exception exc) {
             JOptionPane.showMessageDialog(null, "Ja existeix un àrea amb aquest nom.\nCodi d'error: " + exc.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);

@@ -22,14 +22,15 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
      */
     public VistaGestioEliminar() {
         initComponents();
+        tipusObjecte = "Àrea";
     }
     
     public void resetFields() {
+        refillTable();
     }
     
-    public void redisplay(String newTipusObjecte) {
+    public void setObjectType(String newTipusObjecte) {
         tipusObjecte = newTipusObjecte;
-        refillTable();
     }
 
     private void refillTable() {
@@ -40,33 +41,25 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
         switch(tipusObjecte) {
             case "Àrea": {
                 columns.add("Nom Àrea");
-                //TODO: Agafar les arees de veritat
-                ArrayList<String> obj = new ArrayList<String>();
-                obj.add("TestArea");
-                rows.add(obj);
-                rows.add(obj);
+                ArrayList<ArrayList<String> > arees = CtrlInterficie.seleccionaAllArees();
+                for(int i = 0; i < arees.size(); ++i)
+                    rows.add(arees.get(i));
                 break;
             }
             case "Secció": {
                 columns.add("Nom Secció");
                 columns.add("Nom Àrea Pare");
-                //TODO: Agafar les seccions de veritat
-                ArrayList<String> obj = new ArrayList<String>();
-                obj.add("TestSeccio");
-                obj.add("TestAreaPare");
-                rows.add(obj);
-                rows.add(obj);
+                ArrayList<ArrayList<String> > seccions = CtrlInterficie.seleccionaAllSeccions();
+                for(int i = 0; i < seccions.size(); ++i)
+                    rows.add(seccions.get(i));
                 break;
             }
             case "Temàtica": {
                 columns.add("Nom Temàtica");
                 columns.add("Nom Secció Pare");
-                //TODO: Agafar les tematiques de veritat
-                ArrayList<String> obj = new ArrayList<String>();
-                obj.add("TestTematica");
-                obj.add("TestSeccióPare");
-                rows.add(obj);
-                rows.add(obj);
+                ArrayList<ArrayList<String> > tematiques = CtrlInterficie.seleccionaAllTematiques();
+                for(int i = 0; i < tematiques.size(); ++i)
+                    rows.add(tematiques.get(i));
                 break;
             }
             case "Estanteria": {
@@ -74,14 +67,9 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                 columns.add("PosicióY");
                 columns.add("Estants");
                 columns.add("Llargada");
-                //TODO: Agafar les estanteries de veritat
-                ArrayList<String> obj = new ArrayList<String>();
-                obj.add("TestPosicioX");
-                obj.add("TestPosicioY");
-                obj.add("TestEstants");
-                obj.add("TestLlargada");
-                rows.add(obj);
-                rows.add(obj);
+                ArrayList<ArrayList<String> > estanteries = CtrlInterficie.seleccionaAllEstanteries();
+                for(int i = 0; i < estanteries.size(); ++i)
+                    rows.add(estanteries.get(i));
                 break;
             }
             case "Llibre": {
@@ -92,17 +80,9 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                 columns.add("Any");
                 columns.add("Edició");
                 columns.add("Temàtica Principal");
-                //TODO: Agafar les seccions de veritat
-                ArrayList<String> obj = new ArrayList<String>();
-                obj.add("TestISBN");
-                obj.add("TestTitol");
-                obj.add("TestAutor");
-                obj.add("TestEditorial");
-                obj.add("TestAny");
-                obj.add("TestEdicio");
-                obj.add("TestTematicaPrincipal");
-                rows.add(obj);
-                rows.add(obj);
+                ArrayList<ArrayList<String> > llibres = CtrlInterficie.seleccionaAllLlibres();
+                for(int i = 0; i < llibres.size(); ++i)
+                    rows.add(llibres.get(i));
                 break;
             }
         }
@@ -172,10 +152,52 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoEliminarActionPerformed
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int result = JOptionPane.showConfirmDialog (null, "Seguro que quieres borrar este elemento?","Warning",dialogButton);
-        if(result != JOptionPane.YES_OPTION) return;
-        //TODO ELIMINAR EL PUTU OBJECTE
+        switch(tipusObjecte) {
+            case "Àrea": {
+                int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta àrea?\nS'eliminaràn recursivament les seves seccions i temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
+                if(result != JOptionPane.YES_OPTION) return;
+                int[] selected = taulaResultats.getSelectedRows();
+                boolean end = false;
+                for(int i = 0; i < selected.length && !end; ++i) {
+                    String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                    try {CtrlInterficie.eliminarArea(s);}
+                    catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                        end = true;
+                    }
+                }
+            }
+            case "Secció": {
+                int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta secció?\nS'eliminaràn recursivament les seves temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
+                if(result != JOptionPane.YES_OPTION) return;
+                int[] selected = taulaResultats.getSelectedRows();
+                boolean end = false;
+                for(int i = 0; i < selected.length && !end; ++i) {
+                    String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                    try {CtrlInterficie.eliminarSeccio(s);}
+                    catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                        end = true;
+                    }
+                }
+                break;
+            }
+            case "Temàtica": {
+                int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta temàtica?\nS'eliminaràn els llibres que tinguin aquesta temàtica com a principal","Warning",JOptionPane.YES_NO_OPTION);
+                if(result != JOptionPane.YES_OPTION) return;
+                int[] selected = taulaResultats.getSelectedRows();
+                boolean end = false;
+                for(int i = 0; i < selected.length && !end; ++i) {
+                    String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                    try {CtrlInterficie.eliminarTematica(s);}
+                    catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+                        end = true;
+                    }
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Esborrat correctament","Info",JOptionPane.INFORMATION_MESSAGE);                
         refillTable();
     }//GEN-LAST:event_botoEliminarActionPerformed
 

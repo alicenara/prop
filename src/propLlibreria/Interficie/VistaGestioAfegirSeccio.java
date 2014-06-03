@@ -6,6 +6,7 @@
 
 package propLlibreria.Interficie;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +24,11 @@ public class VistaGestioAfegirSeccio extends javax.swing.JPanel {
 
     public void resetFields() {
         inputNom.setText("");
-        //TODO: AFEGIR AREES A LA COMBOBOX
+        ArrayList<ArrayList<String> > arees = CtrlInterficie.seleccionaAllArees();
+        String[] model = new String[arees.size()];
+        for(int i = 0; i < arees.size(); ++i)
+            model[i] = arees.get(i).get(0);
+        comboArea.setModel(new javax.swing.DefaultComboBoxModel(model));
     }
     
     /**
@@ -74,8 +79,8 @@ public class VistaGestioAfegirSeccio extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botoAfegir, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52))
-                            .addComponent(comboArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(151, Short.MAX_VALUE))
+                            .addComponent(comboArea, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(151, 151, 151))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,7 +92,7 @@ public class VistaGestioAfegirSeccio extends javax.swing.JPanel {
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelArea)
-                    .addComponent(comboArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botoAfegir)
                 .addContainerGap(278, Short.MAX_VALUE))
@@ -95,8 +100,19 @@ public class VistaGestioAfegirSeccio extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoAfegirActionPerformed
-        String nom = labelNom.getText();
-        //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
+        String nom = inputNom.getText();
+        String nomArea = (String) comboArea.getModel().getSelectedItem();
+        if(nom == null || nomArea == null || nom.equals("") || nomArea.equals("")) {
+            JOptionPane.showMessageDialog(null, "Rellena todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            CtrlInterficie.crearSeccio(nom, nomArea);
+        }
+        catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
+                return;
+        }
         JOptionPane.showMessageDialog(null, "Elemento Añadido","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 
