@@ -275,6 +275,39 @@ public final class CtrlInterficie {
         return id;
   }
   
+  public static void crearEstanteria(int numFiles, int llargada, int posX, int posY) throws Exception{
+      if (CtrlDominiInterficie.existeixEstanteria(posX,posY)) {
+            throw new Exception("novaEstanteriaJaExisteix");
+        }
+        else CtrlDominiInterficie.afegirEstanteria(numFiles,llargada,posX,posY);
+  }
+  
+  public static void modificarNumFilesEstanteria(int posX, int posY, int modNumFiles) throws Exception{
+      int ide = seleccionaEstanteria(posX,posY);
+      CtrlDominiInterficie.modificarNumFilesEstanteria(ide,modNumFiles);
+  }
+  
+  public static void modificarLlargadaEstanteria(int posX, int posY, int modLlargada) throws Exception{
+      int ide = seleccionaEstanteria(posX,posY);
+      CtrlDominiInterficie.modificarLlargadaEstanteria(ide,modLlargada);
+  }
+  
+  public static void modificarCoordenadesEstanteria(int posXold, int posYold, int posXnew, int posYnew) throws Exception{
+      int ide = seleccionaEstanteria(posXold,posYold);
+      if (CtrlDominiInterficie.existeixEstanteria(posXnew,posYnew)) throw new Exception("novesCoordEstanteriaJaExisteixen");
+      CtrlDominiInterficie.modificarCoordenadesEstanteria(ide,posXnew,posYnew);
+  }
+  
+  public static void eliminarEstanteria(int posX, int posY) throws Exception{
+      int ide = seleccionaEstanteria(posX,posY);
+      CtrlDominiInterficie.esborrarEstanteria(ide);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarLlibresEstanteria(int posX, int posY) throws Exception{
+      int ide = seleccionaEstanteria(posX,posY);
+      return CtrlDominiInterficie.consultarLlibresEstanteria(ide);
+  }
+  
   public static ArrayList<ArrayList<String> > seleccionaAllEstanteries() {
       return CtrlDominiInterficie.seleccionaAllEstanteries();
   }
