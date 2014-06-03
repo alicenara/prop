@@ -163,7 +163,7 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.esborrarTematica(idt);
   }
   
-  public static ArrayList<ArrayList<String> > consultarLlibresTematica(String nomT) throws Exception {
+  public static ArrayList<ArrayList<String> > consultarLlibresTematica(String nconsultarLlibresTeomT) throws Exception {
       int idt = seleccionaTematica(nomT);
       return CtrlDominiInterficie.consultarLlibresTematica(idt);
   }
