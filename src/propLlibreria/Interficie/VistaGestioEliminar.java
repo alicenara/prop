@@ -152,52 +152,70 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoEliminarActionPerformed
-        switch(tipusObjecte) {
-            case "Àrea": {
-                int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta àrea?\nS'eliminaràn recursivament les seves seccions i temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
-                if(result != JOptionPane.YES_OPTION) return;
-                int[] selected = taulaResultats.getSelectedRows();
-                boolean end = false;
-                for(int i = 0; i < selected.length && !end; ++i) {
-                    String s = (String)taulaResultats.getValueAt(selected[i], 0);
-                    try {CtrlInterficie.eliminarArea(s);}
-                    catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-                        end = true;
+        try {
+            switch(tipusObjecte) {
+                case "Àrea": {
+                    int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta àrea?\nS'eliminaràn recursivament les seves seccions i temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
+                    if(result != JOptionPane.YES_OPTION) return;
+                    int[] selected = taulaResultats.getSelectedRows();
+                    boolean end = false;
+                    for(int i = 0; i < selected.length && !end; ++i) {
+                        String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                        CtrlInterficie.eliminarArea(s);
                     }
+                    break;
                 }
-                break;
-            }
-            case "Secció": {
-                int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta secció?\nS'eliminaràn recursivament les seves temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
-                if(result != JOptionPane.YES_OPTION) return;
-                int[] selected = taulaResultats.getSelectedRows();
-                boolean end = false;
-                for(int i = 0; i < selected.length && !end; ++i) {
-                    String s = (String)taulaResultats.getValueAt(selected[i], 0);
-                    try {CtrlInterficie.eliminarSeccio(s);}
-                    catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-                        end = true;
+                case "Secció": {
+                    int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta secció?\nS'eliminaràn recursivament les seves temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
+                    if(result != JOptionPane.YES_OPTION) return;
+                    int[] selected = taulaResultats.getSelectedRows();
+                    boolean end = false;
+                    for(int i = 0; i < selected.length && !end; ++i) {
+                        String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                        CtrlInterficie.eliminarSeccio(s);
                     }
+                    break;
                 }
-                break;
-            }
-            case "Temàtica": {
-                int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta temàtica?\nS'eliminaràn els llibres que tinguin aquesta temàtica com a principal","Warning",JOptionPane.YES_NO_OPTION);
-                if(result != JOptionPane.YES_OPTION) return;
-                int[] selected = taulaResultats.getSelectedRows();
-                boolean end = false;
-                for(int i = 0; i < selected.length && !end; ++i) {
-                    String s = (String)taulaResultats.getValueAt(selected[i], 0);
-                    try {CtrlInterficie.eliminarTematica(s);}
-                    catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
-                        end = true;
+                case "Temàtica": {
+                    int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta temàtica?\nS'eliminaràn els llibres que tinguin aquesta temàtica com a principal","Warning",JOptionPane.YES_NO_OPTION);
+                    if(result != JOptionPane.YES_OPTION) return;
+                    int[] selected = taulaResultats.getSelectedRows();
+                    boolean end = false;
+                    for(int i = 0; i < selected.length && !end; ++i) {
+                        String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                        CtrlInterficie.eliminarTematica(s);
                     }
+                    break;
                 }
-                break;
+                case "Estanteria": {
+                    int result = JOptionPane.showConfirmDialog (null, "Segur que vols esborrar aquesta estanteria?","Warning",JOptionPane.YES_NO_OPTION);
+                    if(result != JOptionPane.YES_OPTION) return;
+                    int[] selected = taulaResultats.getSelectedRows();
+                    boolean end = false;
+                    for(int i = 0; i < selected.length && !end; ++i) {
+                        String s = (String)taulaResultats.getValueAt(selected[i], 0);
+                        //CtrlInterficie.eliminaEstanteria(s);
+                    }
+                    break;
+                }
+                case "Llibre": {
+                    int result = JOptionPane.showConfirmDialog (null, "Segur que vols esborrar aquest llibre?","Warning",JOptionPane.YES_NO_OPTION);
+                    if(result != JOptionPane.YES_OPTION) return;
+                    int[] selected = taulaResultats.getSelectedRows();
+                    boolean end = false;
+                    for(int i = 0; i < selected.length && !end; ++i) {
+                        String s1 = (String)taulaResultats.getValueAt(selected[i], 1);
+                        String s2 = (String)taulaResultats.getValueAt(selected[i], 2);
+                        String s3 = (String)taulaResultats.getValueAt(selected[i], 4);
+                        CtrlInterficie.eliminarLlibre(s1, s2, Integer.parseInt(s3));
+                    }
+                    break;
+                }
             }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error en esborrar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(null, "Esborrat correctament","Info",JOptionPane.INFORMATION_MESSAGE);                
         refillTable();

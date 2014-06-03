@@ -90,7 +90,7 @@ public class VistaGestioAfegirArea extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Ja existeix un àrea amb aquest nom.\nCodi d'error: " + exc.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JOptionPane.showMessageDialog(null, "Element afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 
 

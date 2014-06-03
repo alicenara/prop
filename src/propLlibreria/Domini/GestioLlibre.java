@@ -105,6 +105,11 @@ public class GestioLlibre {
             return allLlibres;
     }
     
+    public static ArrayList<Tematica> getTematiquesSecundaries(int IDL) {
+            Llibre l = getLlibre(IDL);
+            return l.getTematiquesSecundaries();
+    }
+    
     public static boolean existeixLlibre(String titol, String autor, int any){
             Llibre l = getLlibreTAA(titol,autor,any);
             if(l == null) return false;

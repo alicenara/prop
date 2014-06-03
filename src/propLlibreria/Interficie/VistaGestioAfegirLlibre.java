@@ -201,7 +201,7 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
     private void botoAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoAfegirActionPerformed
         String nom = labelNom.getText();
         //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
-        JOptionPane.showMessageDialog(null, "Elemento Añadido","Info",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 
 

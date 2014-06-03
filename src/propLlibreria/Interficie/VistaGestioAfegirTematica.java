@@ -101,7 +101,7 @@ public class VistaGestioAfegirTematica extends javax.swing.JPanel {
         String nom = inputNom.getText();
         String nomArea = (String) comboSeccio.getModel().getSelectedItem();
         if(nom == null || nomArea == null || nom.equals("") || nomArea.equals("")) {
-            JOptionPane.showMessageDialog(null, "Rellena todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No es pot afegir una temàtica sense nom","Error",JOptionPane.ERROR_MESSAGE);
             return;
         }
         try {
@@ -111,7 +111,7 @@ public class VistaGestioAfegirTematica extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
                 return;
         }
-        JOptionPane.showMessageDialog(null, "Elemento Añadido","Info",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 
 
