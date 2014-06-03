@@ -22,6 +22,7 @@ public class Llibre extends Objecte {
 		this.editorial=editorial;
 		this.any=any;
 		this.edicio=edicio;
+                temSecundaries = new ArrayList<Integer>();
 		GestioLlibre.afegirLlibre(this);
                 Tematica tp = GestioArea.getTematica(IDTp);
 		tp.afegirLlibre(this);
