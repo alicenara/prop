@@ -4,8 +4,10 @@ import java.util.ArrayList;
 public class VistaDadesLlibre extends javax.swing.JPanel {
     String isbn="";
     
-    public VistaDadesLlibre() {
+    public VistaDadesLlibre(String isbn) {
         initComponents();
+        this.isbn=isbn;
+        carregarCamps();
     }
 
     /**
@@ -198,22 +200,22 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
      private void carregarCamps(){
-         ArrayList<String[]> llibre = new ArrayList<String[]>();
-        //llibre=CtrlInterficie.consultaLlibrePerISBN(isbn);
-         String[] llib=llibre.get(0);
-         ISBN.setText(llib[0]);
-         Titol.setText(llib[1]);
-         Autor.setText(llib[2]);
-         Editorial.setText(llib[3]);
-         Any.setText(llib[4]);
-         Edicio.setText(llib[5]);
-         TemPrin.setText(llib[6]);
-         String temSec="";
-         for(int i=7;i<llib.length;i++){
-             temSec+=llib[i];
-             if(i<llib.length-1) temSec+=", ";         
-         }
-         TemSec.setText(temSec);
+        ArrayList<ArrayList<String>> llibre = new ArrayList<ArrayList<String>>();
+        llibre=CtrlInterficie.consultaLlibresPerISBN(isbn);
+        ArrayList<String> llib=llibre.get(0);
+        ISBN.setText(llib.get(0));
+        Titol.setText(llib.get(0));
+        Autor.setText(llib.get(0));
+        Editorial.setText(llib.get(0));
+        Any.setText(llib.get(0));
+        Edicio.setText(llib.get(0));
+        TemPrin.setText(llib.get(0));
+        String temSec="";
+        for(int i=7;i<llib.size();i++){
+            temSec+=llib.get(i);
+            if(i<llib.size()-1) temSec+=", ";         
+        }
+        TemSec.setText(temSec);
      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

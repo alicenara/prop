@@ -1,2 +1,11 @@
-2;Xocolata;1
-1;Caramel;1;1;2;3;4;5
+11;Ciencies Socials;3
+10;Religió;5
+9;Obres Generals;5;
+8;Literatura infantil;4
+7;Literatura juvenil;4
+6;Ciències Aplicades;3
+5;Ciències Pures;3
+4;Llengues o Idiomes;2
+3;Historia, Geografia, Biografia;2
+2;Clàsic;1
+1;Barroc;1
