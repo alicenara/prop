@@ -21,7 +21,7 @@ public class CtrlDominiInterficie {
 	//Utilitzaci� de les classes compartides	
 	//pre:
 	//post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
-	public static void reordenacioBiblioteca() throws Exception {
+	public static void reordenacioBiblioteca(boolean heuristic) throws Exception {
 		ArrayList<Llibre> a = GestioLlibre.getAllLlibres();
 		ArrayList<Estanteria> e = GestioEstanteria.getAllEstanteries();
 		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
@@ -47,7 +47,9 @@ public class CtrlDominiInterficie {
 		
 		CalcularAfinitatsBiblio calcAfin = new CalcularAfinitatsBiblio();
 		CalcularDistancies calcDist = new CalcularDistancies();
-		TS solver = new TS(calcAfin, calcDist);
+		SolucionadorQAP solver;
+                if(heuristic) solver = new TS(calcAfin, calcDist);
+                else solver = new BB(calcAfin, calcDist);
                 try {
                     Solucio solucio = new Solucio(solver, llibres, llocs);
                     ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
@@ -442,7 +444,7 @@ public class CtrlDominiInterficie {
                 return lliT;
 	}
 	
-	public static ArrayList<ArrayList<String> > consultaLlibrePerISBN(String isbn){
+	public static ArrayList<ArrayList<String> > consultaLlibresPerISBN(String isbn){
 		ArrayList<Llibre> llIsbn = GestioLlibre.getLlibreISBN(isbn);
                 ArrayList<ArrayList<String> > lliI = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < llIsbn.size(); ++i) {

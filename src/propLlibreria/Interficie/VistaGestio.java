@@ -6,6 +6,8 @@
 
 package propLlibreria.Interficie;
 
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author towerthousand
@@ -40,6 +42,7 @@ public class VistaGestio extends javax.swing.JPanel {
         vAfegirLlibre.resetFields();
         vAfegirSeccio.resetFields();
         vAfegirTematica.resetFields();
+        vEliminar.resetFields();
         if(active != null) {active.setVisible(false); active = null;}
         if(vista == null) return;
         active = vista;
@@ -62,8 +65,8 @@ public class VistaGestio extends javax.swing.JPanel {
         String selectedAction = (String) listAccions.getModel().getSelectedItem();
         if(selectedAction.equals("Selecciona...") || selectedObject.equals("Selecciona...")) setVistaParcial(null);
         if(selectedAction.equals("Eliminar")) {
+            vEliminar.setObjectType(selectedObject);
             setVistaParcial(vEliminar);
-            vEliminar.redisplay(selectedObject);
         }
         switch(selectedObject){
             case "Àrea": {
@@ -136,6 +139,7 @@ public class VistaGestio extends javax.swing.JPanel {
         listObjects = new javax.swing.JComboBox();
         listAccions = new javax.swing.JComboBox();
         layered = new javax.swing.JLayeredPane();
+        botoEnrere = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
@@ -170,12 +174,21 @@ public class VistaGestio extends javax.swing.JPanel {
             .addGap(0, 405, Short.MAX_VALUE)
         );
 
+        botoEnrere.setText("Enrere");
+        botoEnrere.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoEnrereActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botoEnrere)
+                .addGap(32, 32, 32)
                 .addComponent(listObjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(listAccions, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,10 +201,15 @@ public class VistaGestio extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(listObjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(listAccions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(listObjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(listAccions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botoEnrere)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(layered, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -205,8 +223,14 @@ public class VistaGestio extends javax.swing.JPanel {
     private void listAccionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listAccionsActionPerformed
         redisplay();
     }//GEN-LAST:event_listAccionsActionPerformed
+
+    private void botoEnrereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoEnrereActionPerformed
+        VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
+        v.ferVisiblePrincipal();
+    }//GEN-LAST:event_botoEnrereActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botoEnrere;
     private javax.swing.JLayeredPane layered;
     private javax.swing.JComboBox listAccions;
     private javax.swing.JComboBox listObjects;

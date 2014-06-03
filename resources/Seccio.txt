@@ -1,2 +1,2 @@
 2;Xocolata;1
-1;Caramel;1
+1;Caramel;1;1;2;3;4;5

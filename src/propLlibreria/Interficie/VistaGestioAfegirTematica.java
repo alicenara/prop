@@ -6,6 +6,7 @@
 
 package propLlibreria.Interficie;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,7 +24,11 @@ public class VistaGestioAfegirTematica extends javax.swing.JPanel {
 
     public void resetFields() {
         inputNom.setText("");
-        //TODO: AFEGIR SECCIONS A LA COMBOBOX
+        ArrayList<ArrayList<String> > seccions = CtrlInterficie.seleccionaAllSeccions();
+        String[] model = new String[seccions.size()];
+        for(int i = 0; i < seccions.size(); ++i)
+            model[i] = seccions.get(i).get(0);
+        comboSeccio.setModel(new javax.swing.DefaultComboBoxModel(model));
     }
     
     /**
@@ -93,8 +98,19 @@ public class VistaGestioAfegirTematica extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoAfegirActionPerformed
-        String nom = labelNom.getText();
-        //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
+        String nom = inputNom.getText();
+        String nomArea = (String) comboSeccio.getModel().getSelectedItem();
+        if(nom == null || nomArea == null || nom.equals("") || nomArea.equals("")) {
+            JOptionPane.showMessageDialog(null, "Rellena todos los campos","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            CtrlInterficie.crearTematica(nom, nomArea);
+        }
+        catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
+                return;
+        }
         JOptionPane.showMessageDialog(null, "Elemento Añadido","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 

@@ -17,8 +17,8 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.guardarSolucio();
   }
   
-  public static void reordenacioBiblioteca() throws Exception{
-        CtrlDominiInterficie.reordenacioBiblioteca();
+  public static void reordenacioBiblioteca(boolean heuristic) throws Exception{
+        CtrlDominiInterficie.reordenacioBiblioteca(heuristic);
   }
   
   //AREA
@@ -225,9 +225,39 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.modificarEdicioLlibre(idl,idt);
   }
   
+  public static void afegirTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
+      int idl = seleccionaLlibre(titol,autor,any);
+      int idt = seleccionaTematica(nomTs);
+      CtrlDominiInterficie.afegirTSecundaria(idl, idt);
+  }
+  
+  public static void esborrarTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
+  
+  }
+  
   public static void eliminarLlibre(String titol, String autor, int any) throws Exception{
       int idl = seleccionaLlibre(titol,autor,any);
       CtrlDominiInterficie.esborrarLlibre(idl);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresTitol(String titol) {
+      return CtrlDominiInterficie.consultaLlibresTitol(titol);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresPerISBN(String isbn) {
+      return CtrlDominiInterficie.consultaLlibresPerISBN(isbn);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresAutor(String autor) {
+      return CtrlDominiInterficie.consultaLlibresAutor(autor);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresAny(int any) {
+      return CtrlDominiInterficie.consultaLlibresAny(any);
+  }
+  
+  public static ArrayList<ArrayList<String> > consultaLlibresEditorial(String editorial) {
+      return CtrlDominiInterficie.consultaLlibresEditorial(editorial);
   }
   
   public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
