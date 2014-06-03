@@ -166,6 +166,7 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                         end = true;
                     }
                 }
+                break;
             }
             case "Secció": {
                 int result = JOptionPane.showConfirmDialog (null, "Segur que vols borrar aquesta secció?\nS'eliminaràn recursivament les seves temàtiques,\naixí com els llibres que tinguin una d'aquestes temàtiques com a principal","Warning",JOptionPane.YES_NO_OPTION);
@@ -195,6 +196,7 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                         end = true;
                     }
                 }
+                break;
             }
         }
         JOptionPane.showMessageDialog(null, "Esborrat correctament","Info",JOptionPane.INFORMATION_MESSAGE);                
