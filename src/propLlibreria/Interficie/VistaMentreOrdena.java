@@ -8,6 +8,8 @@ import javax.swing.SwingWorker;
 public class VistaMentreOrdena extends javax.swing.JPanel {
 
     private int tipusOrd;
+    //tipusOrd=1 = heuristico
+    //tipusOrd=0 = exacto
 
     public VistaMentreOrdena() {
         initComponents();
@@ -24,7 +26,11 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         ordena = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                //TODO ordenar d'alguna de les maneres
+                if(tipusOrd==1){
+                    
+                }else{
+                    
+                }
                 return true;
             }
             
@@ -127,6 +133,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
             if(n==0){
                 VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
                 v.dispose();
+                System.exit(0);
             }
         }else{
             VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
