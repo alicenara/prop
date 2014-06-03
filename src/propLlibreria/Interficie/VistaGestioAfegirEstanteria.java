@@ -130,7 +130,7 @@ public class VistaGestioAfegirEstanteria extends javax.swing.JPanel {
         int estants = (Integer) spinEstants.getValue();
         int llargada = (Integer) spinLlargada.getValue();
         //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
-        JOptionPane.showMessageDialog(null, "Elemento Añadido","Info",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 
 
