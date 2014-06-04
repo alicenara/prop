@@ -130,7 +130,6 @@ public class CtrlDominiInterficie {
                     sec.add(s.getNomSeccio());
                     sec.add(a.getNomArea());
                     secA.add(sec);
-                    sec.clear();
                 }
                 return secA;
         }
