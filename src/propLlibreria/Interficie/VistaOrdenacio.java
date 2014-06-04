@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 
 public class VistaOrdenacio extends javax.swing.JPanel {
   
-    private int escollit=0;
+    private boolean escollit=false;
     //escollit=1 = heuristico
     //escollit=0 = exacto
     private final VistaMentreOrdena vMentreOrdena;
@@ -153,13 +153,13 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBandBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandBActionPerformed
-        escollit=0;
+        escollit=false;
         cridaVistaMentreOrdena();
     }//GEN-LAST:event_bBandBActionPerformed
 
     private void bHeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHeurActionPerformed
         // TODO add your handling code here:
-        escollit=1;
+        escollit=true;
         cridaVistaMentreOrdena();
     }//GEN-LAST:event_bHeurActionPerformed
 

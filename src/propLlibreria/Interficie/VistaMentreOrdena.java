@@ -7,17 +7,17 @@ import javax.swing.SwingWorker;
 
 public class VistaMentreOrdena extends javax.swing.JPanel {
 
-    private int tipusOrd;
+    private boolean tipusOrd;
     //tipusOrd=1 = heuristico
     //tipusOrd=0 = exacto
 
     public VistaMentreOrdena() {
         initComponents();
         bExport.setVisible(false);
-        //ordenar();
+        ordenar();
     }
     
-    public void tipusOrdenacio(int tipus){
+    public void tipusOrdenacio(boolean tipus){
         this.tipusOrd=tipus;
     }
     
@@ -26,11 +26,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         ordena = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
-                if(tipusOrd==1){
-                    
-                }else{
-                    
-                }
+                CtrlInterficie.reordenacioBiblioteca(tipusOrd);
                 return true;
             }
             
