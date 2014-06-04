@@ -295,7 +295,13 @@ public class VistaConsultes extends javax.swing.JPanel {
         funcionsSeleccio.removeAllItems();
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta...", "Totes estanteries", "Llibres estanteria"}));
     }
-        
+    
+    private PropTableModel setModelTable(ArrayList<String> columns, ArrayList<ArrayList<String> > rows) {
+        PropTableModel myData = new PropTableModel();
+        myData.setColumnsValues(columns);
+        myData.setRowsValues(rows);
+        return myData;
+    }
     private PropTableModel valorsModelArea() {
         try {
             String funcio = (String)funcionsSeleccio.getModel()
@@ -320,11 +326,11 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres d'area":
                     columns = valorsHeaderLlibre();
-                    rows = CtrlInterficie.consultarLlibresArea(IntroduccioDades.getText());
+                    ArrayList<ArrayList<String> > extendedRows = CtrlInterficie.consultarLlibresArea(IntroduccioDades.getText());
+                    rows = valorsReduitsLlibres(extendedRows);
                     break;
             }
-            myData.setColumnsValues(columns);
-            myData.setRowsValues(rows);
+            myData = setModelTable(columns,rows);
             return myData;
         }
         catch (Exception e) {
@@ -366,11 +372,11 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres seccio" :
                     columns = valorsHeaderLlibre();
-                    rows = CtrlInterficie.consultarLlibresSeccio(IntroduccioDades.getText());
+                    ArrayList<ArrayList<String> > extendedRows = CtrlInterficie.consultarLlibresSeccio(IntroduccioDades.getText());
+                    rows = valorsReduitsLlibres(extendedRows);
                     break; 
             }
-            myData.setColumnsValues(columns);
-            myData.setRowsValues(rows);
+            myData = setModelTable(columns,rows);
             return myData;
         }
         catch (Exception e) {
@@ -409,11 +415,11 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres tematiques":
                     columns = valorsHeaderLlibre();
-                    CtrlInterficie.consultarLlibresTematica(IntroduccioDades.getText());
+                    ArrayList<ArrayList<String> > extendedRows = CtrlInterficie.consultarLlibresTematica(IntroduccioDades.getText());
+                    rows = valorsReduitsLlibres(extendedRows);
                     break;
             }
-            myData.setColumnsValues(columns);
-            myData.setRowsValues(rows);
+            myData = setModelTable(columns,rows);
             return myData;
         }
         catch (Exception e) {
@@ -455,11 +461,19 @@ public class VistaConsultes extends javax.swing.JPanel {
         columns.add("ISBN");
         columns.add("Titol");
         columns.add("Autor");
-        columns.add("Editorial");
         columns.add("Any");
-        columns.add("Edicio");
         columns.add("Tematica");
         return columns;
+    }
+    
+    private ArrayList<ArrayList<String> > valorsReduitsLlibres(ArrayList<ArrayList<String> > rows) {
+        ArrayList<ArrayList<String> > llibres = new ArrayList<ArrayList<String> >();
+        for(int i = 0; i < rows.size(); ++i) {
+            rows.get(i).remove(5);
+            rows.get(i).remove(3);
+            llibres.add(rows.get(i));
+        }
+        return llibres;
     }
     private PropTableModel valorsModelLlibre(boolean inException) {
         try {
@@ -493,11 +507,13 @@ public class VistaConsultes extends javax.swing.JPanel {
                     case "Consulta ordenacio llibres":
                         columns.add("Estanteria");
                         rows = CtrlInterficie.consultarOrdenacioBiblio();
+                        
                         break;
                 }
             }
-            myData.setColumnsValues(columns);
-            myData.setRowsValues(rows);
+            ArrayList<ArrayList<String> > reducedRows = new ArrayList<ArrayList<String> >();
+            reducedRows = valorsReduitsLlibres(rows);
+            myData = setModelTable(columns,rows);
             return myData;
         }
         catch (Exception e) {
@@ -548,8 +564,8 @@ public class VistaConsultes extends javax.swing.JPanel {
             System.out.println("Consulta Estanteria");
             switch(funcio) {
                 case "Totes estanteries":
-                    columns.add("X");
-                    columns.add("Y");
+                    columns.add("Coordenada X");
+                    columns.add("Coordenada Y");
                     columns.add("Num Files");
                     columns.add("LLargada");
                     rows = CtrlInterficie.seleccionaAllEstanteries();
@@ -669,11 +685,6 @@ public class VistaConsultes extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }
-    
-        
-
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fons;
     private javax.swing.JTextField IntroduccioDades;
