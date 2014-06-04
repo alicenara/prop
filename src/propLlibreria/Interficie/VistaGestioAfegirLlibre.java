@@ -6,7 +6,9 @@
 
 package propLlibreria.Interficie;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
@@ -23,7 +25,15 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
 
     public void resetFields() {
         inputISBN.setText("");
-        //TODO: AFEGIR SECCIONS A LA COMBOBOX
+        ArrayList<ArrayList<String> > tematiques = CtrlInterficie.seleccionaAllTematiques();
+        String[] model = new String[tematiques.size()];
+        javax.swing.DefaultListModel m = new javax.swing.DefaultListModel();
+        for(int i = 0; i < tematiques.size(); ++i) {
+            model[i] = tematiques.get(i).get(0);
+            m.addElement(tematiques.get(i).get(0));
+        }
+        comboTematicaPrincipal.setModel(new javax.swing.DefaultComboBoxModel(model));
+        listSecundaries.setModel(m);
     }
     
     /**
@@ -49,11 +59,11 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
         inputISBN = new javax.swing.JTextField();
         labelEditorial = new javax.swing.JLabel();
         inputEditorial = new javax.swing.JTextField();
-        spinEdicio1 = new javax.swing.JSpinner();
+        spinAny = new javax.swing.JSpinner();
         botoAfegir = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        labelNom1 = new javax.swing.JLabel();
+        listSecundaries = new javax.swing.JList();
+        labelSecundaries = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
@@ -78,10 +88,10 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
 
         labelEditorial.setText("Editorial");
 
-        spinEdicio1.setModel(new javax.swing.SpinnerNumberModel(2000, 0, 2015, 1));
-        spinEdicio1.setMaximumSize(new java.awt.Dimension(10, 33));
-        spinEdicio1.setMinimumSize(new java.awt.Dimension(10, 33));
-        spinEdicio1.setPreferredSize(new java.awt.Dimension(10, 33));
+        spinAny.setModel(new javax.swing.SpinnerNumberModel(2000, 0, 2015, 1));
+        spinAny.setMaximumSize(new java.awt.Dimension(10, 33));
+        spinAny.setMinimumSize(new java.awt.Dimension(10, 33));
+        spinAny.setPreferredSize(new java.awt.Dimension(10, 33));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,7 +110,7 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
                             .addComponent(labelAny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spinEdicio1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spinAny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(spinEdicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,7 +151,7 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelAny)
-                    .addComponent(spinEdicio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spinAny, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTematica)
@@ -155,14 +165,14 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        listSecundaries.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listSecundaries);
 
-        labelNom1.setText("Temàtiques secundàries");
+        labelSecundaries.setText("Temàtiques secundàries");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -177,7 +187,7 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelNom1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelSecundaries, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35))
                             .addComponent(jScrollPane1))))
                 .addContainerGap())
@@ -188,7 +198,7 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(labelNom1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelSecundaries, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -199,9 +209,27 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botoAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoAfegirActionPerformed
-        String nom = labelNom.getText();
-        //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
-        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
+        String autor = inputAutor.getText();
+        String isbn = inputISBN.getText();                                          
+        String editorial = inputEditorial.getText();                                     
+        String titol = inputTitol.getText();                                            
+        int any = (Integer) spinAny.getValue();                                         
+        int edicio = (Integer) spinEdicio.getValue();          
+        String tprincipal = (String) comboTematicaPrincipal.getModel().getSelectedItem();
+        ListModel m = listSecundaries.getModel();
+        ArrayList<String> sec = new ArrayList<String>();
+        for(int i = 0; i < m.getSize(); ++i)
+            if(listSecundaries.isSelectedIndex(i))
+                sec.add((String)m.getElementAt(i));
+        try {
+            CtrlInterficie.crearLlibre(isbn, titol, autor, editorial, any, edicio, tprincipal);
+            for(int i = 0; i < sec.size(); ++i) CtrlInterficie.afegirTSecundaria(titol, autor, any, sec.get(i));
+        }
+        catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al inserir.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
+                return;
+        }
+        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);            
     }//GEN-LAST:event_botoAfegirActionPerformed
 
 
@@ -212,7 +240,6 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
     private javax.swing.JTextField inputEditorial;
     private javax.swing.JTextField inputISBN;
     private javax.swing.JTextField inputTitol;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelAny;
@@ -220,10 +247,11 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
     private javax.swing.JLabel labelEdicio;
     private javax.swing.JLabel labelEditorial;
     private javax.swing.JLabel labelNom;
-    private javax.swing.JLabel labelNom1;
+    private javax.swing.JLabel labelSecundaries;
     private javax.swing.JLabel labelTematica;
     private javax.swing.JLabel labelTitol;
+    private javax.swing.JList listSecundaries;
+    private javax.swing.JSpinner spinAny;
     private javax.swing.JSpinner spinEdicio;
-    private javax.swing.JSpinner spinEdicio1;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="labelNom1" min="-2" pref="174" max="-2" attributes="0"/>
+                              <Component id="labelSecundaries" min="-2" pref="174" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -53,7 +53,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="labelNom1" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="labelSecundaries" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
                   </Group>
@@ -87,7 +87,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="spinEdicio1" max="32767" attributes="0"/>
+                              <Component id="spinAny" max="32767" attributes="0"/>
                               <Component id="spinEdicio" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -141,7 +141,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelAny" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="spinEdicio1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spinAny" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -219,7 +219,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="inputEditorial">
         </Component>
-        <Component class="javax.swing.JSpinner" name="spinEdicio1">
+        <Component class="javax.swing.JSpinner" name="spinAny">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="2000" maximum="2015" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
@@ -252,7 +252,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList1">
+        <Component class="javax.swing.JList" name="listSecundaries">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="5">
@@ -267,7 +267,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="labelNom1">
+    <Component class="javax.swing.JLabel" name="labelSecundaries">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tem&#xe0;tiques secund&#xe0;ries"/>
       </Properties>
