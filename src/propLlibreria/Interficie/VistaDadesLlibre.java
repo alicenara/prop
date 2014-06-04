@@ -204,12 +204,12 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         llibre=CtrlInterficie.consultaLlibresPerISBN(isbn);
         ArrayList<String> llib=llibre.get(0);
         ISBN.setText(llib.get(0));
-        Titol.setText(llib.get(0));
-        Autor.setText(llib.get(0));
-        Editorial.setText(llib.get(0));
-        Any.setText(llib.get(0));
-        Edicio.setText(llib.get(0));
-        TemPrin.setText(llib.get(0));
+        Titol.setText(llib.get(1));
+        Autor.setText(llib.get(2));
+        Editorial.setText(llib.get(3));
+        Any.setText(llib.get(4));
+        Edicio.setText(llib.get(5));
+        TemPrin.setText(llib.get(6));
         String temSec="";
         for(int i=7;i<llib.size();i++){
             temSec+=llib.get(i);
