@@ -545,7 +545,7 @@ public class CtrlDominiInterficie {
                 return result;
         }
         
-        public static ArrayList<ArrayList<String> > consultaEstanteriaLlibre(int IDL) {
+        public static ArrayList<ArrayList<String> > consultaEstanteriaLlibre(int IDL) throws Exception{
                 ArrayList<Estanteria> estanteries = GestioEstanteria.getAllEstanteries();
                 ArrayList<ArrayList<String> > est = new ArrayList<ArrayList<String> >();
                 Llibre l = GestioLlibre.getLlibre(IDL);
@@ -562,6 +562,7 @@ public class CtrlDominiInterficie {
                         }
                     }
                 }
+                if (est.isEmpty())throw new Exception("llibreNoOrdenat");
                 return est;
         }
 	
@@ -590,7 +591,7 @@ public class CtrlDominiInterficie {
 	public static void modificarCoordenadesEstanteria(int ID, int modX, int modY) {
 		Estanteria modEstanteria = GestioEstanteria.getEstanteria(ID);
 		modEstanteria.setPosX(modX);
-		modEstanteria.setPosX(modY);
+		modEstanteria.setPosY(modY);
 	}
 	
 	//pre: Existeix una Estanteria tal que el seu Identificador = IDE
