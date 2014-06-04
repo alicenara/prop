@@ -208,7 +208,7 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         ArrayList<String> temS=llibre.get(0);
         ArrayList<String> est;
         try{
-            llibre=CtrlInterficie.getEstanteriaLlibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
+            llibre=CtrlInterficie.getEstanteriaLLibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
         }catch(Exception e){
             est = null;
         }
@@ -230,8 +230,8 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         String estanteria="<html>";
         if(est!=null){
             estanteria+="Coordenades: "+est.get(0);
-            estanteria+="<br> Fila: "+est.get(0);
-            estanteria+="<br> Posició en la fila: "+est.get(0);
+            estanteria+="<br> Fila: "+est.get(1);
+            estanteria+="<br> Posició en la fila: "+est.get(2);
         }else{
             estanteria+="No està ordenat.";
         }       
