@@ -692,8 +692,7 @@ public class CtrlDominiInterficie {
                     ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
                     aux = consultarLlibresEstanteria(e.get(i).getID());
                     for (int j = 0; j < aux.size(); ++j) {
-                        aux.get(j).add(Integer.toString(e.get(i).getPosX()));
-                        aux.get(j).add(Integer.toString(e.get(i).getPosY()));
+                        aux.get(j).add(Integer.toString(e.get(i).getPosX())+","+Integer.toString(e.get(i).getPosY()));
                         result.add(aux.get(j));
                     }
                 }
