@@ -40,7 +40,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         funcionsSeleccio = new javax.swing.JComboBox();
         OKButton = new javax.swing.JButton();
         IntroduccioDades = new javax.swing.JTextField();
-        butoEnrere = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         Fons.setBackground(new java.awt.Color(204, 204, 255));
         Fons.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -99,11 +99,11 @@ public class VistaConsultes extends javax.swing.JPanel {
             }
         });
 
-        butoEnrere.setText("Enrere");
-        butoEnrere.setActionCommand("Enrere");
-        butoEnrere.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Enrere");
+        jButton1.setActionCommand("Enrere");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butoEnrereActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -115,13 +115,13 @@ public class VistaConsultes extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(FonsLayout.createSequentialGroup()
-                        .addComponent(butoEnrere)
+                        .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(funcionsSeleccio, 0, 131, Short.MAX_VALUE)
+                            .addComponent(funcionsSeleccio, 0, 135, Short.MAX_VALUE)
                             .addComponent(Seleccio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(IntroduccioDades, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(IntroduccioDades, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(OKButton)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,7 +143,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FonsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(butoEnrere)
+                            .addComponent(jButton1)
                             .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,10 +168,10 @@ public class VistaConsultes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_FonsKeyPressed
 
-    private void butoEnrereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butoEnrereActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
         v.ferVisiblePrincipal();
-    }//GEN-LAST:event_butoEnrereActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void IntroduccioDadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IntroduccioDadesKeyPressed
         // TODO add your handling code here:
@@ -217,7 +217,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                 || (funcionsSeleccioItem == null) || ("Tipus consulta...".equals(funcionsSeleccioItem))
                 || ("Totes arees".equals(funcionsSeleccioItem)) || ("Totes seccions".equals(funcionsSeleccioItem))
                 || ("Totes tematiques".equals(funcionsSeleccioItem)) || ("Tots els llibres".equals(funcionsSeleccioItem))
-                || ("Totes estanteries".equals(funcionsSeleccioItem))) {
+                || ("Totes estanteries".equals(funcionsSeleccioItem)) || ("Consulta ordenacio llibres".equals(funcionsSeleccioItem))) {
                 IntroduccioDades.setEnabled(false);
                 IntroduccioDades.setText("");
             }
@@ -272,11 +272,13 @@ public class VistaConsultes extends javax.swing.JPanel {
     }
     private void opcionsArea() {
         funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area", "Tematiques d'area", "Llibres d'area"}));
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area",
+                                                                                        "Tematiques d'area", "Llibres d'area"}));
     }
     private void opcionsSeccio() {
     funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes seccions", "Tematiques seccio", "Llibres seccio" }));
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes seccions",
+                                                                                        "Tematiques seccio", "Llibres seccio" }));
     }
     private void opcionsTematica() {
     funcionsSeleccio.removeAllItems();
@@ -285,8 +287,8 @@ public class VistaConsultes extends javax.swing.JPanel {
     private void opcionsLlibre() {
     funcionsSeleccio.removeAllItems();
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..." , "Tots els llibres", "Consulta per títol",
-                                                                                        "Consulta per autor", "Consulta per isbn",
-                                                                                        "Consulta per any", "Consulta per editorial"}));
+                                                                                        "Consulta per autor", "Consulta per isbn","Consulta per any",
+                                                                                        "Consulta per editorial","Consulta ordenacio llibres"}));
         
     }
     private void opcionsEstanteria() {
@@ -310,8 +312,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                 case "Seccions d'area":
                     columns.add("Nom seccio");
                     columns.add("Nom area");
-                    rows = CtrlInterficie.consultarSeccionsArea(IntroduccioDades.getText());
-                    if (rows.size() > 0) System.out.println("yeyeyeye");
+                    rows = CtrlInterficie.consultarSeccionsArea(IntroduccioDades.getText());    
                     break;
                 case "Tematiques d'area":
                     columns.add("Nom tematica");
@@ -336,10 +337,8 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             System.out.println("Consulta area");
             PropTableModel myData = valorsModelArea();
-            System.out.println("Consulta area done");
             JTable taulaArees = new JTable((TableModel) myData);
             MostraResult.setViewportView(taulaArees);
-            System.out.println("peto");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -395,7 +394,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         } 
     }
     
-        private PropTableModel valorsModelTematica(boolean inException) {
+        private PropTableModel valorsModelTematica() {
         try {
             String funcio = (String)funcionsSeleccio.getModel()
                 .getSelectedItem();
@@ -410,6 +409,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres tematiques":
                     columns = valorsHeaderLlibre();
+                    CtrlInterficie.consultarLlibresTematica(IntroduccioDades.getText());
                     break;
             }
             myData.setColumnsValues(columns);
@@ -424,7 +424,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         
     private void consultaTematica() {
         try {
-            PropTableModel myData = valorsModelTematica(false);
+            PropTableModel myData = valorsModelTematica();
             if (myData != null) {
                 JTable tablaTematiques = new JTable((TableModel) myData);
                 MostraResult.setViewportView(tablaTematiques);
@@ -467,7 +467,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                 .getSelectedItem();
             PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = valorsHeaderLlibre();
-            myData.setColumnsValues(columns);
+            
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
             if (!inException) {
                 switch(funcio) {
@@ -489,6 +489,10 @@ public class VistaConsultes extends javax.swing.JPanel {
                         break;
                     case "Consulta per editorial":
                         rows = CtrlInterficie.consultaLlibresEditorial(IntroduccioDades.getText());
+                        break;
+                    case "Consulta ordenacio llibres":
+                        columns.add("Estanteria");
+                        rows = CtrlInterficie.consultarOrdenacioBiblio();
                         break;
                 }
             }
@@ -515,13 +519,14 @@ public class VistaConsultes extends javax.swing.JPanel {
                 taulaLlibres.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 3) {
+                    if (e.getClickCount() == 2) {
                         Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
                         VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
                         JFrame frameDadesLlibre = new JFrame();
-                        frameDadesLlibre.setVisible(true);
+                        frameDadesLlibre.setSize(new Dimension(600,400));
+                        frameDadesLlibre.setResizable(false);
                         frameDadesLlibre.add(dadesLlibre);
-                      System.out.println(taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0));
+                        frameDadesLlibre.setVisible(true);
                     }
                   }
                 });
@@ -567,7 +572,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         catch (Exception e) {
             String missatge;
             if (e.getMessage().equals("Valors introduits incorrectament")) missatge = "Recorda que el model per consultar dades es el següent: x,y";
-            else missatge = "No existeix cap estanteria en aquestes coordenades";
+            else missatge = "No existeix cap estanteria amb aquestes coordenades";
             JOptionPane.showMessageDialog(null, missatge,"Info",JOptionPane.INFORMATION_MESSAGE);
             System.out.println(e.getMessage());
         }
@@ -675,7 +680,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     private javax.swing.JScrollPane MostraResult;
     private javax.swing.JButton OKButton;
     private javax.swing.JComboBox Seleccio;
-    private javax.swing.JButton butoEnrere;
     private javax.swing.JComboBox funcionsSeleccio;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
