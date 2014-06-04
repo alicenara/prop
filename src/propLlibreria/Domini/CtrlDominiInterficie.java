@@ -669,7 +669,7 @@ public class CtrlDominiInterficie {
                 return allArees;
 	}
         
-        public static ArrayList<ArrayList<String> > consultaOrdenacioBiblio() {
+        public static ArrayList<ArrayList<String> > consultarOrdenacioBiblio() {
                 ArrayList <Estanteria> e = GestioEstanteria.getAllEstanteries();
                 ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < e.size(); ++i) {
