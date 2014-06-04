@@ -50,7 +50,8 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     private void ordenacioAcabada(){
         bExport.setVisible(true);
         bSortir.setText("Tornar al menú");
-        labProgressGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propLlibreria/Interficie/icons/tick.gif"))); // NOI18N
+        labProgressGif.setVisible(false);
+        labKeepCalm.setText("Ordenació acabada.");
     }
     
 
