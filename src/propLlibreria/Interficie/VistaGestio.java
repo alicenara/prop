@@ -6,6 +6,7 @@
 
 package propLlibreria.Interficie;
 
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
@@ -20,6 +21,10 @@ public class VistaGestio extends javax.swing.JPanel {
     private final VistaGestioAfegirSeccio vAfegirSeccio;
     private final VistaGestioAfegirTematica vAfegirTematica;
     private final VistaGestioAfegirLlibre vAfegirLlibre;
+    private final VistaGestioModificarArea vModArea;
+    private final VistaGestioModificarSeccio vModSeccio;
+    private final VistaGestioModificarTematica vModTematica;
+    private final VistaGestioModificarLlibre vModLlibre;
     private javax.swing.JPanel active;
     
     /**
@@ -33,6 +38,10 @@ public class VistaGestio extends javax.swing.JPanel {
         vAfegirSeccio = new VistaGestioAfegirSeccio();
         vAfegirTematica = new VistaGestioAfegirTematica();
         vAfegirLlibre = new VistaGestioAfegirLlibre();
+        vModArea = new VistaGestioModificarArea();
+        vModSeccio = new VistaGestioModificarSeccio();
+        vModTematica = new VistaGestioModificarTematica();
+        vModLlibre = new VistaGestioModificarLlibre();
         active = null;
     }
     
@@ -43,6 +52,10 @@ public class VistaGestio extends javax.swing.JPanel {
         vAfegirSeccio.resetFields();
         vAfegirTematica.resetFields();
         vEliminar.resetFields();
+        vModArea.resetFields();
+        vModSeccio.resetFields();
+        vModTematica.resetFields();
+        vModLlibre.resetFields();
         if(active != null) {active.setVisible(false); active = null;}
         if(vista == null) return;
         active = vista;
@@ -75,7 +88,7 @@ public class VistaGestio extends javax.swing.JPanel {
                         setVistaParcial(vAfegirArea);
                         break;
                     case "Modificar":
-                        setVistaParcial(null);
+                        setVistaParcial(vModArea);
                         break;
                 }
                 break;
@@ -86,7 +99,7 @@ public class VistaGestio extends javax.swing.JPanel {
                         setVistaParcial(vAfegirSeccio);
                         break;
                     case "Modificar":
-                        setVistaParcial(null);
+                        setVistaParcial(vModSeccio);
                         break;
                 }
                 break;
@@ -97,6 +110,7 @@ public class VistaGestio extends javax.swing.JPanel {
                         setVistaParcial(vAfegirTematica);
                         break;
                     case "Modificar":
+                        setVistaParcial(vModTematica);
                         break;
                 }
                 break;
@@ -118,7 +132,7 @@ public class VistaGestio extends javax.swing.JPanel {
                         setVistaParcial(vAfegirLlibre);
                         break;
                     case "Modificar":
-                        setVistaParcial(null);
+                        setVistaParcial(vModLlibre);
                         break;
                 }
                 break;

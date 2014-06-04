@@ -193,8 +193,9 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                     int[] selected = taulaResultats.getSelectedRows();
                     boolean end = false;
                     for(int i = 0; i < selected.length && !end; ++i) {
-                        String s = (String)taulaResultats.getValueAt(selected[i], 0);
-                        //CtrlInterficie.eliminaEstanteria(s);
+                        String s1 = (String)taulaResultats.getValueAt(selected[i], 0);
+                        String s2 = (String)taulaResultats.getValueAt(selected[i], 1);
+                        CtrlInterficie.eliminarEstanteria(Integer.parseInt(s1), Integer.parseInt(s2));
                     }
                     break;
                 }

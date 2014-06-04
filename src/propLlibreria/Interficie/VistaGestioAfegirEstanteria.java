@@ -129,7 +129,13 @@ public class VistaGestioAfegirEstanteria extends javax.swing.JPanel {
         int y = (Integer) spinY.getValue();
         int estants = (Integer) spinEstants.getValue();
         int llargada = (Integer) spinLlargada.getValue();
-        //TODO: AFEGIR-HO I MIRAR EXCEPCIONS
+        try {
+           CtrlInterficie.crearEstanteria(estants, llargada, x, y);
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al inserir.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
+            return;
+        }
         JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_botoAfegirActionPerformed
 

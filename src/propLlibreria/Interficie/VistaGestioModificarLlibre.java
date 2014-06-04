@@ -7,6 +7,8 @@
 package propLlibreria.Interficie;
 
 import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
@@ -14,22 +16,24 @@ import javax.swing.ListModel;
  *
  * @author towerthousand
  */
-public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
+public class VistaGestioModificarLlibre extends javax.swing.JPanel {
 
     /**
      * Creates new form VistaGestióAfegirEstanteria
      */
-    public VistaGestioAfegirLlibre() {
+    public VistaGestioModificarLlibre() {
         initComponents();
     }
 
     public void resetFields() {
-        inputISBN.setText("");
-        inputAutor.setText("");
-        inputEditorial.setText("");
-        inputTitol.setText("");
-        spinAny.setValue(2000);
-        spinEdicio.setValue(1);
+        ArrayList<ArrayList<String> > llibres = CtrlInterficie.seleccionaAllLlibres();
+        String[] modelLlibres = new String[llibres.size()];
+        for(int i = 0; i < llibres.size(); ++i) {
+            String s = llibres.get(i).get(1) + ", de " + llibres.get(i).get(2) + ". ISBN:" + llibres.get(i).get(0);
+            modelLlibres[i] = s;
+        }
+        comboLlibre.setModel(new javax.swing.DefaultComboBoxModel(modelLlibres));
+        
         ArrayList<ArrayList<String> > tematiques = CtrlInterficie.seleccionaAllTematiques();
         String[] model = new String[tematiques.size()];
         javax.swing.DefaultListModel m = new javax.swing.DefaultListModel();
@@ -39,8 +43,44 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
         }
         comboTematicaPrincipal.setModel(new javax.swing.DefaultComboBoxModel(model));
         listSecundaries.setModel(m);
+        refill();
     }
     
+    private void refill() {
+        int selected = comboLlibre.getSelectedIndex();
+        ArrayList<ArrayList<String> > llibres = CtrlInterficie.seleccionaAllLlibres();
+        inputISBN.setText(llibres.get(selected).get(0));
+        inputAutor.setText(llibres.get(selected).get(2));
+        inputEditorial.setText(llibres.get(selected).get(3));
+        inputTitol.setText(llibres.get(selected).get(1));
+        spinAny.setValue(Integer.parseInt(llibres.get(selected).get(4)));
+        spinEdicio.setValue(Integer.parseInt(llibres.get(selected).get(5)));
+        comboTematicaPrincipal.setSelectedItem(llibres.get(selected).get(6));
+        //CtrlInterficie.consulta TODO, SERGI
+        setSelectedValues(listSecundaries, "TODO");
+    }
+    
+    public void setSelectedValues(JList list, Object... values) {
+        list.clearSelection();
+        for (Object value : values) {
+            int index = getIndex(list.getModel(), value);
+            if (index >=0) {
+                list.addSelectionInterval(index, index);
+            }
+        }
+        list.ensureIndexIsVisible(list.getSelectedIndex());
+    }
+
+    public int getIndex(ListModel model, Object value) {
+        if (value == null) return -1;
+        if (model instanceof DefaultListModel) {
+            return ((DefaultListModel) model).indexOf(value);
+        }
+        for (int i = 0; i < model.getSize(); i++) {
+            if (value.equals(model.getElementAt(i))) return i;
+        }
+        return -1;
+    }       
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,6 +109,7 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         listSecundaries = new javax.swing.JList();
         labelSecundaries = new javax.swing.JLabel();
+        comboLlibre = new javax.swing.JComboBox();
 
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
@@ -115,8 +156,8 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
                             .addComponent(labelAny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spinAny, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(spinEdicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(spinAny, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spinEdicio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelEditorial, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -125,10 +166,10 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
                             .addComponent(labelNom, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputISBN)
-                            .addComponent(inputEditorial, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inputAutor, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(inputTitol, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(inputISBN, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputEditorial, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputAutor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputTitol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,6 +220,13 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
 
         labelSecundaries.setText("Temàtiques secundàries");
 
+        comboLlibre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboLlibre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboLlibreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -186,30 +234,31 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botoAfegir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboLlibre, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botoAfegir, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelSecundaries, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(35, 35, 35))
-                            .addComponent(jScrollPane1))))
+                            .addComponent(labelSecundaries, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(comboLlibre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelSecundaries, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botoAfegir)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(47, 47, 47))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -237,9 +286,14 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);            
     }//GEN-LAST:event_botoAfegirActionPerformed
 
+    private void comboLlibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLlibreActionPerformed
+        refill();
+    }//GEN-LAST:event_comboLlibreActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botoAfegir;
+    private javax.swing.JComboBox comboLlibre;
     private javax.swing.JComboBox comboTematicaPrincipal;
     private javax.swing.JTextField inputAutor;
     private javax.swing.JTextField inputEditorial;
