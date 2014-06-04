@@ -248,6 +248,11 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.esborrarLlibre(idl);
   }
   
+  public static ArrayList<ArrayList<String> > consultaTematiquesSLlibre(String titol, String autor, int any) throws Exception{
+      int id = seleccionaLlibre(titol,autor,any);
+      return CtrlDominiInterficie.consultaTematiquesSLlibre(id);
+  }
+  
   public static ArrayList<ArrayList<String> > consultaLlibresTitol(String titol) {
       return CtrlDominiInterficie.consultaLlibresTitol(titol);
   }

@@ -528,6 +528,22 @@ public class CtrlDominiInterficie {
                 }
                 return lliE;
 	}
+        
+        public static ArrayList<ArrayList<String> > consultaTematiquesSLlibre(int IDL) {
+                ArrayList<Tematica> tsL = GestioLlibre.getTematiquesSecundaries(IDL);
+                ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
+                for (int i = 0; i < tsL.size(); ++i) {
+                    ArrayList<String> tem = new ArrayList<String>();
+                    Tematica t = tsL.get(i);
+                    Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
+                    Area a = GestioArea.getArea(s.getIDAreaSeccio());
+                    tem.add(t.getNomTematica());
+                    tem.add(s.getNomSeccio());
+                    tem.add(a.getNomArea());
+                    result.add(tem);
+                }
+                return result;
+        }
 	
 	// GESTIO ESTANTERIA
 	

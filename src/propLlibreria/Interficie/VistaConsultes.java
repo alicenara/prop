@@ -505,23 +505,28 @@ public class VistaConsultes extends javax.swing.JPanel {
     private void consultaLlibre() {
       try {
             PropTableModel myData = valorsModelLlibre(false);
-            final JTable tablaLlibres = new JTable((TableModel) myData);
+            final JTable taulaLlibres = new JTable((TableModel) myData);
             if (myData.getRowCount() > 0) {
                 //myData.setRowsValues(rows);
-                tablaLlibres.getSelectedColumn();
-                tablaLlibres.getSelectedRow();
+                taulaLlibres.getSelectedColumn();
+                taulaLlibres.getSelectedRow();
                 //System.out.println(tablaLlibres.getValueAt(tablaLlibres.getSelectedRow(), tablaLlibres.getSelectedColumn()));
                 //MyRenderer r = new MyRenderer();
-                tablaLlibres.addMouseListener(new MouseAdapter() {
+                taulaLlibres.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 2) {
-                      System.out.println(tablaLlibres.getValueAt(tablaLlibres.getSelectedRow(), tablaLlibres.getSelectedColumn()));
+                    if (e.getClickCount() == 3) {
+                        Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
+                        VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
+                        JFrame frameDadesLlibre = new JFrame();
+                        frameDadesLlibre.setVisible(true);
+                        frameDadesLlibre.add(dadesLlibre);
+                      System.out.println(taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0));
                     }
                   }
                 });
             }
-            MostraResult.setViewportView(tablaLlibres);
+            MostraResult.setViewportView(taulaLlibres);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
