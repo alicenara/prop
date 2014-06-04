@@ -200,19 +200,22 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         ArrayList<ArrayList<String>> llibre = new ArrayList<ArrayList<String>>();
         llibre=CtrlInterficie.consultaLlibresPerISBN(isbn);
         ArrayList<String> llib=llibre.get(0);
+        ArrayList<ArrayList<String>> llibre1 = new ArrayList<ArrayList<String>>();
         try{
-            llibre=CtrlInterficie.consultaTematiquesSLlibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
+            llibre1=CtrlInterficie.consultaTematiquesSLlibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
         }catch(Exception e){
             System.out.println(e);
         }
-        ArrayList<String> temS=llibre.get(0);
+        ArrayList<String> temS=llibre1.get(0);
+        ArrayList<ArrayList<String>> llibre2 = new ArrayList<ArrayList<String>>();
         ArrayList<String> est;
         try{
-            llibre=CtrlInterficie.getEstanteriaLlibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
+            llibre2=CtrlInterficie.getEstanteriaLlibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
+            est=llibre2.get(0);
         }catch(Exception e){
             est = null;
         }
-        est=llibre.get(0);
+        
         ISBN.setText(llib.get(0));
         Titol.setText(llib.get(1));
         Autor.setText(llib.get(2));
