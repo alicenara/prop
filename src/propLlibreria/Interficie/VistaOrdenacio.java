@@ -4,9 +4,6 @@ import javax.swing.SwingUtilities;
 
 public class VistaOrdenacio extends javax.swing.JPanel {
   
-    private boolean escollit=false;
-    //escollit=1 = heuristico
-    //escollit=0 = exacto
     private final VistaMentreOrdena vMentreOrdena;
     
     public VistaOrdenacio() {
@@ -27,7 +24,6 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     private void cridaVistaMentreOrdena() {
         ocultarTot();
         if(vMentreOrdena == null) return;
-        vMentreOrdena.tipusOrdenacio(escollit);
         vMentreOrdena.setVisible(true);
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
         layered.setLayout(layeredLayout);
@@ -153,14 +149,14 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBandBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandBActionPerformed
-        escollit=false;
         cridaVistaMentreOrdena();
+        vMentreOrdena.ordenar(false);
     }//GEN-LAST:event_bBandBActionPerformed
 
     private void bHeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHeurActionPerformed
         // TODO add your handling code here:
-        escollit=true;
         cridaVistaMentreOrdena();
+        vMentreOrdena.ordenar(true);
     }//GEN-LAST:event_bHeurActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
