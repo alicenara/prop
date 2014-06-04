@@ -273,6 +273,11 @@ public final class CtrlInterficie {
       return CtrlDominiInterficie.consultaLlibresEditorial(editorial);
   }
   
+  public static ArrayList<ArrayList<String> > getEstanteriaLLibre(String titol, String autor, int any) throws Exception{
+      int id = seleccionaLlibre(titol,autor,any);
+      return CtrlDominiInterficie.consultaEstanteriaLlibre(id);
+  }
+  
   public static ArrayList<ArrayList<String> > seleccionaAllLlibres() {
       return CtrlDominiInterficie.seleccionaAllLlibres();
   }
