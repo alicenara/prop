@@ -56,7 +56,8 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
             }
             case "Temàtica": {
                 columns.add("Nom Temàtica");
-                columns.add("Nom Secció Pare");
+                columns.add("Nom Secció");
+                columns.add("Nom Àrea");
                 ArrayList<ArrayList<String> > tematiques = CtrlInterficie.seleccionaAllTematiques();
                 for(int i = 0; i < tematiques.size(); ++i)
                     rows.add(tematiques.get(i));
@@ -76,13 +77,14 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                 columns.add("ISBN");
                 columns.add("Títol");
                 columns.add("Autor");
-                columns.add("Editorial");
                 columns.add("Any");
-                columns.add("Edició");
                 columns.add("Temàtica Principal");
                 ArrayList<ArrayList<String> > llibres = CtrlInterficie.seleccionaAllLlibres();
-                for(int i = 0; i < llibres.size(); ++i)
+                for(int i = 0; i < llibres.size(); ++i) {
+                    llibres.get(i).remove(3);
+                    llibres.get(i).remove(4);
                     rows.add(llibres.get(i));
+                }
                 break;
             }
         }
@@ -207,7 +209,7 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                     for(int i = 0; i < selected.length && !end; ++i) {
                         String s1 = (String)taulaResultats.getValueAt(selected[i], 1);
                         String s2 = (String)taulaResultats.getValueAt(selected[i], 2);
-                        String s3 = (String)taulaResultats.getValueAt(selected[i], 4);
+                        String s3 = (String)taulaResultats.getValueAt(selected[i], 3);
                         CtrlInterficie.eliminarLlibre(s1, s2, Integer.parseInt(s3));
                     }
                     break;

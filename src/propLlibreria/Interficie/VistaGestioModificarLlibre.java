@@ -56,15 +56,19 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
         spinAny.setValue(Integer.parseInt(llibres.get(selected).get(4)));
         spinEdicio.setValue(Integer.parseInt(llibres.get(selected).get(5)));
         comboTematicaPrincipal.setSelectedItem(llibres.get(selected).get(6));
-        //CtrlInterficie.consulta TODO, SERGI
-        setSelectedValues(listSecundaries, "TODO");
+        try {
+            ArrayList<ArrayList<String> > l = CtrlInterficie.consultaTematiquesSLlibre(llibres.get(selected).get(1), llibres.get(selected).get(2), Integer.parseInt(llibres.get(selected).get(4)));
+            setSelectedValues(listSecundaries, l);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error intern.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+        }
     }
     
-    public void setSelectedValues(JList list, Object... values) {
+    public void setSelectedValues(JList list, ArrayList<ArrayList<String> > l) {
         list.clearSelection();
-        for (Object value : values) {
-            int index = getIndex(list.getModel(), value);
-            if (index >=0) {
+        for (int i = 0; i <  l.size(); ++i) {
+            int index = getIndex(list.getModel(), l.get(i).get(0));
+            if (index >= 0) {
                 list.addSelectionInterval(index, index);
             }
         }
@@ -105,7 +109,7 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
         labelEditorial = new javax.swing.JLabel();
         inputEditorial = new javax.swing.JTextField();
         spinAny = new javax.swing.JSpinner();
-        botoAfegir = new javax.swing.JToggleButton();
+        botoModificar = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listSecundaries = new javax.swing.JList();
         labelSecundaries = new javax.swing.JLabel();
@@ -204,10 +208,10 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
                     .addComponent(comboTematicaPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        botoAfegir.setText("Crear");
-        botoAfegir.addActionListener(new java.awt.event.ActionListener() {
+        botoModificar.setText("Modificar");
+        botoModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botoAfegirActionPerformed(evt);
+                botoModificarActionPerformed(evt);
             }
         });
 
@@ -235,7 +239,7 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(comboLlibre, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botoAfegir, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botoModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,12 +261,12 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botoAfegir)
+                .addComponent(botoModificar)
                 .addGap(47, 47, 47))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botoAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoAfegirActionPerformed
+    private void botoModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoModificarActionPerformed
         String autor = inputAutor.getText();
         String isbn = inputISBN.getText();                                          
         String editorial = inputEditorial.getText();                                     
@@ -276,15 +280,28 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
             if(listSecundaries.isSelectedIndex(i))
                 sec.add((String)m.getElementAt(i));
         try {
-            CtrlInterficie.crearLlibre(isbn, titol, autor, editorial, any, edicio, tprincipal);
+            ArrayList<String> llibre = CtrlInterficie.seleccionaAllLlibres().get(comboLlibre.getSelectedIndex());
+            int anyOrg = Integer.parseInt(llibre.get(4));
+            String autorOrg = llibre.get(2);
+            String titolOrg = llibre.get(1);
+            CtrlInterficie.modificarEdicioLlibre(titolOrg, autorOrg, anyOrg, edicio);
+            CtrlInterficie.modificarTPrincipalLlibre(titolOrg, autorOrg, anyOrg, tprincipal);
+            CtrlInterficie.modificarIsbnLlibre(titolOrg, autorOrg, anyOrg, isbn);
+            CtrlInterficie.modificarEditorialLlibre(titolOrg, autorOrg, anyOrg, editorial);
+            CtrlInterficie.modificarTitolLlibre(titolOrg, autorOrg, anyOrg, titol);
+            CtrlInterficie.modificarAutorLlibre(titol, autorOrg, anyOrg, autor);
+            CtrlInterficie.modificarAnyLlibre(titol, autor, anyOrg, any);
+             ArrayList<ArrayList<String> > l = CtrlInterficie.consultaTematiquesSLlibre(titol, autor, any);
+            for(int i = 0; i < l.size(); ++i) CtrlInterficie.esborrarTSecundaria(titol, autor, any, l.get(i).get(0));
             for(int i = 0; i < sec.size(); ++i) CtrlInterficie.afegirTSecundaria(titol, autor, any, sec.get(i));
         }
         catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al inserir.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
+                JOptionPane.showMessageDialog(null, "Error al modificar.\nCodi d'error: " + e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);  
                 return;
         }
-        JOptionPane.showMessageDialog(null, "Afegit correctament","Info",JOptionPane.INFORMATION_MESSAGE);            
-    }//GEN-LAST:event_botoAfegirActionPerformed
+        JOptionPane.showMessageDialog(null, "Modificat correctament","Info",JOptionPane.INFORMATION_MESSAGE);            
+        resetFields();
+    }//GEN-LAST:event_botoModificarActionPerformed
 
     private void comboLlibreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLlibreActionPerformed
         refill();
@@ -292,7 +309,7 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton botoAfegir;
+    private javax.swing.JToggleButton botoModificar;
     private javax.swing.JComboBox comboLlibre;
     private javax.swing.JComboBox comboTematicaPrincipal;
     private javax.swing.JTextField inputAutor;
