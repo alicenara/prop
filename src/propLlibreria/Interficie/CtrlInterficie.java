@@ -21,6 +21,10 @@ public final class CtrlInterficie {
         CtrlDominiInterficie.reordenacioBiblioteca(heuristic);
   }
   
+  public static ArrayList<ArrayList<String> > consultarOrdenacioBiblio() {
+      return CtrlDominiInterficie.consultarOrdenacioBiblio();
+  }
+  
   //AREA
   
   private static int seleccionaArea(String nomA) throws Exception{
