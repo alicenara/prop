@@ -233,7 +233,7 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
             estanteria+="<br> Fila: "+est.get(0);
             estanteria+="<br> Posició en la fila: "+est.get(0);
         }else{
-            estanteria+="No està ordenat."
+            estanteria+="No està ordenat.";
         }       
         estanteria+="</html>";
         Estant.setText(estanteria);
