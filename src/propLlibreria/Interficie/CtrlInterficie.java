@@ -226,7 +226,7 @@ public final class CtrlInterficie {
   public static void modificarTPrincipalLlibre(String titol, String autor, int any, String nomT) throws Exception{
       int idl = seleccionaLlibre(titol,autor,any);
       int idt = seleccionaTematica(nomT);
-      CtrlDominiInterficie.modificarEdicioLlibre(idl,idt);
+      CtrlDominiInterficie.modificarTPrincipalLlibre(idl,idt);
   }
   
   public static void afegirTSecundaria(String titol, String autor, int any, String nomTs) throws Exception{
