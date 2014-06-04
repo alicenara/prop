@@ -55,13 +55,13 @@ public class CtrlDominiInterficie {
                     ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
                     for(int i = 0; i < all.size(); ++i)
                             all.get(i).buidarLlibres();
-                    for(int i = 0; i < llocsEstanteries.size(); ++i) {
+                    for(int i = 0; i < solucio.assignacions.length; ++i) {
                             Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
                             est.afegirLlibre(solucio.assignacions[i]);
                     }
                 }
                 catch(Exception exc) {
-                    throw new Exception("errorAlgoritme");
+                    throw exc;
                 }
 	}	
 	
