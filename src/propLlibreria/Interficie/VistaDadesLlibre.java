@@ -200,6 +200,12 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         ArrayList<ArrayList<String>> llibre = new ArrayList<ArrayList<String>>();
         llibre=CtrlInterficie.consultaLlibresPerISBN(isbn);
         ArrayList<String> llib=llibre.get(0);
+        try{
+            llibre=CtrlInterficie.consultaTematiquesSLlibre(llib.get(1), llib.get(2), Integer.parseInt(llib.get(4)));
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        ArrayList<String> temS=llibre.get(0);
         ISBN.setText(llib.get(0));
         Titol.setText(llib.get(1));
         Autor.setText(llib.get(2));
@@ -208,9 +214,9 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         Edicio.setText(llib.get(5));
         TemPrin.setText(llib.get(6));
         String temSec="";
-        for(int i=7;i<llib.size();i++){
-            temSec+=llib.get(i);
-            if(i<llib.size()-1) temSec+=", ";         
+        for(int i=0;i<temS.size();i++){
+            temSec+=temS.get(i);
+            if(i<temS.size()-1) temSec+=", ";         
         }
         TemSec.setText(temSec);
      }
