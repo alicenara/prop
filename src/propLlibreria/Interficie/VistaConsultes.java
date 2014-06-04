@@ -218,7 +218,35 @@ public class VistaConsultes extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_funcionsSeleccioActionPerformed
-
+    
+    private void restablirOpcions() {
+        funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..."}));
+    }
+    private void opcionsArea() {
+        funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area", "Tematiques d'area", "Llibres d'area"}));
+    }
+    private void opcionsSeccio() {
+    funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes seccions", "Tematiques seccio", "Llibres seccio" }));
+    }
+    private void opcionsTematica() {
+    funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes tematiques", "Llibres tematiques" }));
+    }
+    private void opcionsLlibre() {
+    funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..." , "Tots els llibres", "Consulta per títol",
+                                                                                        "Consulta per autor", "Consulta per isbn",
+                                                                                        "Consulta per any", "Consulta per editorial"}));
+        
+    }
+    private void opcionsEstanteria() {
+        funcionsSeleccio.removeAllItems();
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta...", "Totes estanteries", "Llibres estanteria", "Localitzacio estanteria", "Mida estanteria",}));
+    }
+    
     private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
         // TODO add your handling code here:
         String SeleccioItem = (String) Seleccio.getModel()
@@ -249,7 +277,8 @@ public class VistaConsultes extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_SeleccioActionPerformed
-    private PropTableModel valorsModelArea(boolean inException) {
+    
+    private PropTableModel valorsModelArea() {
         try {
             String funcio = (String)funcionsSeleccio.getModel()
                 .getSelectedItem();
@@ -260,54 +289,48 @@ public class VistaConsultes extends javax.swing.JPanel {
                 case "Totes arees":
                     columns.add("Nom area");
                     myData.setColumnsValues(columns);
-                    if (!inException)rows = CtrlInterficie.seleccionaAllArees();
+                    rows = CtrlInterficie.seleccionaAllArees();
                     break;
                 case "Seccions d'area":
                     columns.add("Nom seccio");
-                    if(!inException) //CtrlDominiInterficie.consultarSeccionsArea(IntroduccioDades.getText());
+                    columns.add("Nom area");
+                    rows = CtrlInterficie.consultarSeccionsArea(IntroduccioDades.getText());
+                    if (rows.size() > 0) System.out.println("yeyeyeye");
                     break;
                 case "Tematiques d'area":
                     columns.add("Nom tematica");
-                    if (!inException) {
-                        System.out.println(IntroduccioDades.getText());
-                        CtrlInterficie.consultarTematiquesArea(IntroduccioDades.getText());
-                        System.out.println("no Exception");
-                    }
+                    rows = CtrlInterficie.consultarTematiquesArea(IntroduccioDades.getText());
                     break;
                 case "Llibres d'area":
-                    columns.add("Titol");
-                    columns.add("Tematica");
-                    columns.add("Autor");
-                    columns.add("Editorial");
-                    columns.add("Titol");
-                    columns.add("Any");
-                    columns.add("Edicio");
-                    if (!inException)//CtrlInterficie.consultarLlibresArea(IntroduccioDades.getText());
-                    break;       
+                    columns = valorsHeaderLlibre();
+                    rows = CtrlInterficie.consultarLlibresArea(IntroduccioDades.getText());
+                    break;
             }
             myData.setColumnsValues(columns);
             myData.setRowsValues(rows);
             return myData;
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
-            return valorsModelArea(true);
+            JOptionPane.showMessageDialog(null, "No existeix cap area amb nom " + IntroduccioDades.getText(),"Info",JOptionPane.INFORMATION_MESSAGE);
+            return null;
         }
     }
+    
     private void consultaArea() {
         try {
-            
             System.out.println("Consulta area");
-            PropTableModel myData = valorsModelArea(false);
+            PropTableModel myData = valorsModelArea();
+            System.out.println("Consulta area done");
             JTable taulaArees = new JTable((TableModel) myData);
             MostraResult.setViewportView(taulaArees);
+            System.out.println("peto");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
     
-    private PropTableModel valorsModelSeccio(boolean inException) {
+    private PropTableModel valorsModelSeccio() {
         try {
             String funcio = (String)funcionsSeleccio.getModel()
                 .getSelectedItem();
@@ -317,22 +340,18 @@ public class VistaConsultes extends javax.swing.JPanel {
             switch(funcio) {
                 case "Totes seccions":
                     columns.add("Nom seccio");
-                    if (!inException) rows = CtrlInterficie.seleccionaAllSeccions();
+                    columns.add("Nom area");
+                    rows = CtrlInterficie.seleccionaAllSeccions();
                     break;
                 case "Tematiques seccio" :
+                    columns.add("Nom tematica");
                     columns.add("Nom seccio");
                     columns.add("Nom area");
-                    if (!inException) rows = CtrlInterficie.consultarTematiquesSeccio(IntroduccioDades.getText());
+                    rows = CtrlInterficie.consultarTematiquesSeccio(IntroduccioDades.getText());
                     break;
                 case "Llibres seccio" :
-                    columns.add("Titol");
-                    columns.add("Tematica");
-                    columns.add("Autor");
-                    columns.add("Editorial");
-                    columns.add("Titol");
-                    columns.add("Any");
-                    columns.add("Edicio");
-                    if (!inException) rows = CtrlInterficie.consultarLlibresSeccio(IntroduccioDades.getText());
+                    columns = valorsHeaderLlibre();
+                    rows = CtrlInterficie.consultarLlibresSeccio(IntroduccioDades.getText());
                     break; 
             }
             myData.setColumnsValues(columns);
@@ -340,8 +359,8 @@ public class VistaConsultes extends javax.swing.JPanel {
             return myData;
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
-            return valorsModelSeccio(true);
+            JOptionPane.showMessageDialog(null, "No existeix cap seccio amb nom" + IntroduccioDades.getText(),"Info",JOptionPane.INFORMATION_MESSAGE);
+            return null;
         }
     }
     
@@ -349,10 +368,11 @@ public class VistaConsultes extends javax.swing.JPanel {
       try {
             String funcio = (String) funcionsSeleccio.getModel()
                 .getSelectedItem();
-            System.out.println("Consulta seccio");
-            PropTableModel myData = valorsModelSeccio(false);
-            JTable tablaSeccions = new JTable((TableModel) myData);
-            MostraResult.setViewportView(tablaSeccions);
+            PropTableModel myData = valorsModelSeccio();
+            if (myData != null) {
+                JTable tablaSeccions = new JTable((TableModel) myData);
+                MostraResult.setViewportView(tablaSeccions);
+            }
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -370,17 +390,10 @@ public class VistaConsultes extends javax.swing.JPanel {
                 case "Totes tematiques":
                     columns.add("Nom tematica");
                     columns.add("Nom seccio");
-                    if (!inException) rows = CtrlInterficie.seleccionaAllTematiques();
+                    rows = CtrlInterficie.seleccionaAllTematiques();
                     break;
                 case "Llibres tematiques":
-                    columns.add("Titol");
-                    columns.add("Tematica");
-                    columns.add("Autor");
-                    columns.add("Editorial");
-                    columns.add("Titol");
-                    columns.add("Any");
-                    columns.add("Edicio");
-                    if (!inException) 
+                    columns = valorsHeaderLlibre();
                     break;
             }
             myData.setColumnsValues(columns);
@@ -388,16 +401,18 @@ public class VistaConsultes extends javax.swing.JPanel {
             return myData;
         }
         catch (Exception e) {
-            System.out.println(e.getMessage());
-            return valorsModelTematica(true);
+            JOptionPane.showMessageDialog(null, "No existeix cap tematica amb nom" + IntroduccioDades.getText(),"Info",JOptionPane.INFORMATION_MESSAGE);
+            return null;
         }
     }
         
     private void consultaTematica() {
         try {
             PropTableModel myData = valorsModelTematica(false);
-            JTable tablaTematiques = new JTable((TableModel) myData);
-            MostraResult.setViewportView(tablaTematiques);
+            if (myData != null) {
+                JTable tablaTematiques = new JTable((TableModel) myData);
+                MostraResult.setViewportView(tablaTematiques);
+            }
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -418,19 +433,24 @@ public class VistaConsultes extends javax.swing.JPanel {
             return cell;
         }
     }*/
+    
+    ArrayList<String> valorsHeaderLlibre() {
+        ArrayList<String> columns = new ArrayList<String>();
+        columns.add("ISBN");
+        columns.add("Titol");
+        columns.add("Autor");
+        columns.add("Editorial");
+        columns.add("Any");
+        columns.add("Edicio");
+        columns.add("Tematica");
+        return columns;
+    }
     private PropTableModel valorsModelLlibre(boolean inException) {
         try {
             String funcio = (String) funcionsSeleccio.getModel()
                 .getSelectedItem();
             PropTableModel myData = new PropTableModel();
-            ArrayList<String> columns = new ArrayList<String>();
-            columns.add("ISBN");
-            columns.add("Titol");
-            columns.add("Autor");
-            columns.add("Editorial");
-            columns.add("Any");
-            columns.add("Edicio");
-            columns.add("Tematica");
+            ArrayList<String> columns = valorsHeaderLlibre();
             myData.setColumnsValues(columns);
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
             if (!inException) {
@@ -440,22 +460,19 @@ public class VistaConsultes extends javax.swing.JPanel {
                         break;
                     case "Consulta per títol":
                         System.out.println(IntroduccioDades.getText());
-                        if (!inException) rows = CtrlInterficie.consultaLlibresAutor(IntroduccioDades.getText());
-                        break;
-                    case "Consulta per tematica principal":
-                        if (!inException) rows = CtrlInterficie.consultarLlibresTematica(IntroduccioDades.getText());
+                        rows = CtrlInterficie.consultaLlibresAutor(IntroduccioDades.getText());
                         break;
                     case "Consulta per autor":
-                        if (!inException)rows = CtrlInterficie.consultaLlibresAutor(IntroduccioDades.getText());
+                        rows = CtrlInterficie.consultaLlibresAutor(IntroduccioDades.getText());
                         break;
                     case "Consulta per isbn":
-                        if (!inException) rows = CtrlInterficie.consultaLlibrePerISBN(IntroduccioDades.getText());
+                        rows = CtrlInterficie.consultaLlibresPerISBN(IntroduccioDades.getText());
                         break;
                     case "Consulta per any":
-                        if (!inException) rows = CtrlInterficie.consultaLlibresAny(Integer.parseInt(IntroduccioDades.getText()));
+                        rows = CtrlInterficie.consultaLlibresAny(Integer.parseInt(IntroduccioDades.getText()));
                         break;
                     case "Consulta per editorial":
-                        if (!inException) rows = CtrlInterficie.consultaLlibresEditorial(IntroduccioDades.getText());
+                        rows = CtrlInterficie.consultaLlibresEditorial(IntroduccioDades.getText());
                         break;
                 }
             }
@@ -493,7 +510,6 @@ public class VistaConsultes extends javax.swing.JPanel {
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
     }
     
     private void consultaEstanteria() {
@@ -507,6 +523,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             System.out.println("Consulta Estanteria");
             switch(funcio) {
                 case "Totes estanteries":
+                    System.out.println("hola");
                     columns.add("X");
                     columns.add("Y");
                     columns.add("Num Files");
@@ -530,6 +547,9 @@ public class VistaConsultes extends javax.swing.JPanel {
                     columns.add("Mida estanteria");
                     break;
             }
+            myData.setRowsValues(rows);
+            JTable taulaEstanteries = new JTable((TableModel) myData);
+            MostraResult.setViewportView(taulaEstanteries);
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -544,7 +564,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     }
     
     private void Consulta() {
-                try {
+        try {
             System.out.println("Consulta...");
             String SeleccioItem = (String) Seleccio.getModel()
                 .getSelectedItem();
@@ -568,6 +588,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 }
             }
+            System.out.println("Termino consulta");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -589,7 +610,6 @@ public class VistaConsultes extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(IntroduccioDades.getText().trim().equals("")) {
             establirValorsIntroccioValors();
-            IntroduccioDades.setForeground(new java.awt.Color(153, 153, 153));
         }
     }//GEN-LAST:event_IntroduccioDadesFocusLost
 
@@ -650,39 +670,14 @@ public class VistaConsultes extends javax.swing.JPanel {
                         }
                         break;
                 }
+            IntroduccioDades.setForeground(new java.awt.Color(153, 153, 153));
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
     
-    private void restablirOpcions() {
-        funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..."}));
-    }
-    private void opcionsArea() {
-        funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes arees", "Seccions d'area", "Tematiques d'area", "Llibres d'area"}));
-    }
-    private void opcionsSeccio() {
-    funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes seccions", "Tematiques seccio", "Llibres seccio" }));
-    }
-    private void opcionsTematica() {
-    funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta...", "Totes tematiques", "Llibres tematiques" }));
-    }
-    private void opcionsLlibre() {
-    funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..." , "Tots els llibres", "Consulta per títol",
-                                                                                        "Consulta per autor", "Consulta per tematica principal", "Consulta per isbn",
-                                                                                        "Consulta per any", "Consulta per editorial"}));
         
-    }
-    private void opcionsEstanteria() {
-        funcionsSeleccio.removeAllItems();
-        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta...", "Totes estanteries", "Llibres estanteria", "Localitzacio estanteria", "Mida estanteria",}));
-    }    
 
     
 
