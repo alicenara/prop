@@ -92,14 +92,7 @@
         <Component class="javax.swing.JComboBox" name="Seleccio">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="Selecciona..."/>
-                <StringItem index="1" value="Area"/>
-                <StringItem index="2" value="Seccio"/>
-                <StringItem index="3" value="Tematica"/>
-                <StringItem index="4" value="Llibre"/>
-                <StringItem index="5" value="Estanteria"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
@@ -116,9 +109,7 @@
         <Component class="javax.swing.JComboBox" name="funcionsSeleccio">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value="Tipus consulta..."/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
