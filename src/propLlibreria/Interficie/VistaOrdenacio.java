@@ -14,11 +14,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     }
     
     private void ocultarTot(){
-        bBandB.setVisible(false);
-        bCancelar.setVisible(false);
-        bHeur.setVisible(false);
-        labAvis.setVisible(false);
-        labInfo.setVisible(false);
+        panPregunta.setVisible(false);
     }
     
     private void cridaVistaMentreOrdena() {
@@ -40,12 +36,21 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     
     public void reset(){
         vMentreOrdena.setVisible(false);
-        bBandB.setVisible(true);
-        bCancelar.setVisible(true);
-        bHeur.setVisible(true);
         if(CtrlInterficie.seleccionaAllLlibres().size() > 10)   labAvis.setVisible(true);
         else labAvis.setVisible(false);
-        labInfo.setVisible(true);        
+        panPregunta.setVisible(true);
+        javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
+        layered.setLayout(layeredLayout);
+        layeredLayout.setHorizontalGroup(
+            layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layeredLayout.setVerticalGroup(
+            layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layered.setLayer(panPregunta, javax.swing.JLayeredPane.DEFAULT_LAYER);
+               
     }
 
     /**
@@ -58,11 +63,17 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     private void initComponents() {
 
         layered = new javax.swing.JLayeredPane();
+        panPregunta = new javax.swing.JPanel();
+        labAvis = new javax.swing.JLabel();
         bCancelar = new javax.swing.JButton();
         bHeur = new javax.swing.JButton();
         bBandB = new javax.swing.JButton();
-        labAvis = new javax.swing.JLabel();
         labInfo = new javax.swing.JLabel();
+
+        labAvis.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        labAvis.setForeground(new java.awt.Color(255, 51, 51));
+        labAvis.setText("<html>Compte! La quantitat de llibres és <b>molt gran per utilitzar un mètode exacte</b>. El temps d'espera de reordenació pot superar els 5 minuts.</html>");
+        labAvis.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         bCancelar.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
         bCancelar.setText("Cancel·lar");
@@ -88,73 +99,80 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             }
         });
 
-        labAvis.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        labAvis.setForeground(new java.awt.Color(255, 51, 51));
-        labAvis.setText("<html>Compte! La quantitat de llibres és <b>molt gran per utilitzar un mètode exacte</b>. El temps d'espera de reordenació pot superar els 5 minuts.</html>");
-        labAvis.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
         labInfo.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         labInfo.setText("Escull de quina forma vols ordenar:");
+
+        javax.swing.GroupLayout panPreguntaLayout = new javax.swing.GroupLayout(panPregunta);
+        panPregunta.setLayout(panPreguntaLayout);
+        panPreguntaLayout.setHorizontalGroup(
+            panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panPreguntaLayout.createSequentialGroup()
+                .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panPreguntaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panPreguntaLayout.createSequentialGroup()
+                                .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(59, 59, 59)
+                                .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panPreguntaLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(labInfo))
+                    .addGroup(panPreguntaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panPreguntaLayout.setVerticalGroup(
+            panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panPreguntaLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(labInfo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
         layered.setLayout(layeredLayout);
         layeredLayout.setHorizontalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layeredLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layeredLayout.createSequentialGroup()
-                        .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))
-                    .addGroup(layeredLayout.createSequentialGroup()
-                        .addComponent(labInfo)
-                        .addGap(44, 44, 44))))
-            .addGroup(layeredLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layeredLayout.createSequentialGroup()
-                        .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
-                        .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(panPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layeredLayout.setVerticalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layeredLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labInfo)
-                .addGap(29, 29, 29)
-                .addGroup(layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+            .addGroup(layeredLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layered.setLayer(bCancelar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layered.setLayer(bHeur, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layered.setLayer(bBandB, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layered.setLayer(labAvis, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        layered.setLayer(labInfo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        layered.setLayer(panPregunta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(layered, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(layered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(layered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,5 +200,6 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     private javax.swing.JLabel labAvis;
     private javax.swing.JLabel labInfo;
     private javax.swing.JLayeredPane layered;
+    private javax.swing.JPanel panPregunta;
     // End of variables declaration//GEN-END:variables
 }

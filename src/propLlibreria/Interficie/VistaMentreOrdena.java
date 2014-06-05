@@ -16,6 +16,10 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     public void ordenar(boolean tip){
         //tipus=1 = heuristico
         //tipus=0 = exacto
+        bExport.setVisible(false);
+        bSortir.setText("Cancel·lar");
+        labProgressGif.setVisible(true);
+        labKeepCalm.setText("Ordenant. Esperi si us plau.");
         final boolean tipus=tip;
         SwingWorker<Boolean, Void> ordena;
         ordena = new SwingWorker<Boolean, Void>() {
