@@ -1,5 +1,6 @@
 package propLlibreria.Interficie;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         bExport.setVisible(false);
     }
      
-    public void ordenar(boolean tip){
+    public void ordenar(boolean tip, ArrayList<ArrayList<String>> e, ArrayList<ArrayList<String>> l){
         //tipus=1 = heuristico
         //tipus=0 = exacto
         bExport.setVisible(false);
@@ -21,12 +22,14 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         labProgressGif.setVisible(true);
         labKeepCalm.setText("Ordenant. Esperi si us plau.");
         final boolean tipus=tip;
+        final ArrayList<ArrayList<String>> est=e;
+        final ArrayList<ArrayList<String>> lib=l;
         SwingWorker<Boolean, Void> ordena;
         ordena = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
                 try{
-                    CtrlInterficie.reordenacioBiblioteca(tipus);
+                    CtrlInterficie.reordenacioBiblioteca(tipus, est, lib);
                 }catch (Exception e){
                     System.out.println(e);
                     JFrame frame = new JFrame();

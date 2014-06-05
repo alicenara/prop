@@ -128,6 +128,44 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         layered.setLayer(panPregunta, javax.swing.JLayeredPane.DEFAULT_LAYER);
                
     }
+    
+    private ArrayList<ArrayList<String>> getEstanteries(){
+        int[] selected = TaulaEst.getSelectedRows();
+        ArrayList<ArrayList<String>> e = new ArrayList<ArrayList<String>>();
+        boolean end = false;
+        try{
+            for(int i = 0; i < selected.length && !end; ++i) {
+                ArrayList<String> est = new ArrayList<String>();
+                String s = (String)TaulaEst.getValueAt(selected[i], 0);
+                String s2 = (String)TaulaEst.getValueAt(selected[i], 1);
+                est.add(s);
+                est.add(s2);
+                e.add(est);
+            }
+        }catch (Exception ex){
+            //Cosa
+        }
+        return e;
+    }
+    
+    private ArrayList<ArrayList<String>> getLlibres(){
+        int[] selected = TaulaLlib.getSelectedRows();
+        ArrayList<ArrayList<String>> l = new ArrayList<ArrayList<String>>();
+        boolean end = false;
+        try{
+            for(int i = 0; i < selected.length && !end; ++i) {
+                ArrayList<String> lib = new ArrayList<String>();
+                String s = (String)TaulaLlib.getValueAt(selected[i], 0);
+                String s2 = (String)TaulaLlib.getValueAt(selected[i], 1);
+                lib.add(s);
+                lib.add(s2);
+                l.add(lib);
+            }
+        }catch (Exception ex){
+            //Cosa
+        }
+        return l;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -302,13 +340,13 @@ public class VistaOrdenacio extends javax.swing.JPanel {
 
     private void bBandBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBandBActionPerformed
         cridaVistaMentreOrdena();
-        vMentreOrdena.ordenar(false);
+        vMentreOrdena.ordenar(false, getEstanteries(), getLlibres());
     }//GEN-LAST:event_bBandBActionPerformed
 
     private void bHeurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHeurActionPerformed
         // TODO add your handling code here:
         cridaVistaMentreOrdena();
-        vMentreOrdena.ordenar(true);
+        vMentreOrdena.ordenar(true, getEstanteries(), getLlibres());
     }//GEN-LAST:event_bHeurActionPerformed
 
     private void bCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarActionPerformed
