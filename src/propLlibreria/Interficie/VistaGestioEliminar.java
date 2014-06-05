@@ -81,8 +81,8 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                 columns.add("Temàtica Principal");
                 ArrayList<ArrayList<String> > llibres = CtrlInterficie.seleccionaAllLlibres();
                 for(int i = 0; i < llibres.size(); ++i) {
+                    llibres.get(i).remove(5);
                     llibres.get(i).remove(3);
-                    llibres.get(i).remove(4);
                     rows.add(llibres.get(i));
                 }
                 break;

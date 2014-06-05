@@ -25,6 +25,7 @@ public class VistaGestio extends javax.swing.JPanel {
     private final VistaGestioModificarSeccio vModSeccio;
     private final VistaGestioModificarTematica vModTematica;
     private final VistaGestioModificarLlibre vModLlibre;
+    private final VistaGestioModificarEstanteria vModEstanteria;
     private javax.swing.JPanel active;
     
     /**
@@ -42,6 +43,7 @@ public class VistaGestio extends javax.swing.JPanel {
         vModSeccio = new VistaGestioModificarSeccio();
         vModTematica = new VistaGestioModificarTematica();
         vModLlibre = new VistaGestioModificarLlibre();
+        vModEstanteria = new VistaGestioModificarEstanteria();
         active = null;
     }
     
@@ -56,6 +58,7 @@ public class VistaGestio extends javax.swing.JPanel {
         vModSeccio.resetFields();
         vModTematica.resetFields();
         vModLlibre.resetFields();
+        vModEstanteria.resetFields();
         if(active != null) {active.setVisible(false); active = null;}
         if(vista == null) return;
         active = vista;
@@ -121,7 +124,7 @@ public class VistaGestio extends javax.swing.JPanel {
                         setVistaParcial(vAfegirEstanteria);
                         break;
                     case "Modificar":
-                        setVistaParcial(null);
+                        setVistaParcial(vModEstanteria);
                         break;
                 }
                 break;
