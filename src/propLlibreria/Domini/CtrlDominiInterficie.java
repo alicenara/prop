@@ -57,7 +57,7 @@ public class CtrlDominiInterficie {
                             all.get(i).buidarLlibres();
                     for(int i = 0; i < solucio.assignacions.length; ++i) {
                             Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
-                            est.afegirLlibre(solucio.assignacions[i]);
+                            est.afegirLlibre(llibres[solucio.assignacions[i]].getID());
                     }
                 }
                 catch(Exception exc) {
