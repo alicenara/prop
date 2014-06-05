@@ -17,12 +17,37 @@ public final class CtrlInterficie {
       CtrlDominiInterficie.guardarSolucio();
   }
   
-  public static void reordenacioBiblioteca(boolean heuristic) throws Exception{
-        CtrlDominiInterficie.reordenacioBiblioteca(heuristic);
+  public static void reordenacioBiblioteca(boolean heuristic, ArrayList<ArrayList<String> > e, ArrayList<ArrayList<String> > l) throws Exception{
+        ArrayList<Integer> est = new ArrayList<Integer>();
+        ArrayList<Integer> lli = new ArrayList<Integer>();
+        for (int i = 0; i < e.size(); ++i) {
+            ArrayList<String> estanteria = e.get(i);
+            int id = seleccionaEstanteria(Integer.parseInt(estanteria.get(0)),
+                    Integer.parseInt(estanteria.get(1)));
+            est.add(id);
+        }
+        for (int i = 0; i < l.size(); ++i) {
+            ArrayList<String> llibre = l.get(i);
+            int id = seleccionaLlibre(llibre.get(0), llibre.get(1), 
+                    Integer.parseInt(llibre.get(2)));
+            lli.add(id);
+        }
+        CtrlDominiInterficie.reordenacioBiblioteca(heuristic,est,lli);
   }
   
-  public static ArrayList<ArrayList<String> > consultarOrdenacioBiblio() {
-      return CtrlDominiInterficie.consultarOrdenacioBiblio();
+  public static ArrayList<ArrayList<String> > consultarOrdenacioBiblioTotal() {
+      return CtrlDominiInterficie.consultarOrdenacioBiblioTotal();
+  }
+  
+  public static ArrayList<ArrayList<String> > consultarOrdenacioBiblioParcial(ArrayList<ArrayList<String> > e) throws Exception{
+      ArrayList<Integer> est = new ArrayList<Integer>();
+      for (int i = 0; i < e.size(); ++i) {
+            ArrayList<String> estanteria = e.get(i);
+            int id = seleccionaEstanteria(Integer.parseInt(estanteria.get(0)),
+                    Integer.parseInt(estanteria.get(1)));
+            est.add(id);
+      }
+      return CtrlDominiInterficie.consultarOrdenacioBiblioParcial(est);
   }
   
   //AREA

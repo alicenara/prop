@@ -21,9 +21,15 @@ public class CtrlDominiInterficie {
 	//Utilitzaci� de les classes compartides	
 	//pre:
 	//post: Llibres classificats segons l'afinitat entre ells i el nombre d'estanteries disponibles a la Biblioteca
-	public static void reordenacioBiblioteca(boolean heuristic) throws Exception {
-		ArrayList<Llibre> a = GestioLlibre.getAllLlibres();
-		ArrayList<Estanteria> e = GestioEstanteria.getAllEstanteries();
+	public static void reordenacioBiblioteca(boolean heuristic, ArrayList<Integer> estant, ArrayList<Integer> lli) throws Exception {
+		ArrayList<Llibre> a = new ArrayList<Llibre>();
+		ArrayList<Estanteria> e = new ArrayList<Estanteria>();
+                for (int i = 0; i < estant.size(); ++i) {
+                    e.add(GestioEstanteria.getEstanteria(estant.get(i)));
+                }
+                for (int i = 0; i < lli.size(); ++i) {
+                    a.add(GestioLlibre.getLlibre(lli.get(i)));
+                }
 		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
 		ArrayList<Integer> llocsEstanteries = new ArrayList<Integer>();
 		for(int i = 0; i < e.size(); ++i) 
@@ -706,8 +712,25 @@ public class CtrlDominiInterficie {
                 return allArees;
 	}
         
-        public static ArrayList<ArrayList<String> > consultarOrdenacioBiblio() {
+        public static ArrayList<ArrayList<String> > consultarOrdenacioBiblioTotal() {
                 ArrayList <Estanteria> e = GestioEstanteria.getAllEstanteries();
+                ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
+                for (int i = 0; i < e.size(); ++i) {
+                    ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
+                    aux = consultarLlibresEstanteria(e.get(i).getID());
+                    for (int j = 0; j < aux.size(); ++j) {
+                        aux.get(j).add(Integer.toString(e.get(i).getPosX())+","+Integer.toString(e.get(i).getPosY()));
+                        result.add(aux.get(j));
+                    }
+                }
+                return result;
+        }
+        
+        public static ArrayList<ArrayList<String> > consultarOrdenacioBiblioParcial(ArrayList<Integer> estant) {
+                ArrayList <Estanteria> e = new ArrayList <Estanteria>();
+                for (int i = 0; i < estant.size(); ++i) {
+                    e.add(GestioEstanteria.getEstanteria(estant.get(i)));
+                }
                 ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
                 for (int i = 0; i < e.size(); ++i) {
                     ArrayList<ArrayList<String> > aux = new ArrayList<ArrayList<String> >();
