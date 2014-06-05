@@ -65,23 +65,21 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         layered = new javax.swing.JLayeredPane();
         panPregunta = new javax.swing.JPanel();
         labAvis = new javax.swing.JLabel();
-        bCancelar = new javax.swing.JButton();
         bHeur = new javax.swing.JButton();
         bBandB = new javax.swing.JButton();
         labInfo = new javax.swing.JLabel();
+        TaulaEstanteria = new javax.swing.JScrollPane();
+        TaulaEst = new javax.swing.JTable();
+        TaulaLlibre = new javax.swing.JScrollPane();
+        TaulaLlib = new javax.swing.JTable();
+        labLlibre = new javax.swing.JLabel();
+        labEstanteria = new javax.swing.JLabel();
+        bCancelar = new javax.swing.JButton();
 
         labAvis.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         labAvis.setForeground(new java.awt.Color(255, 51, 51));
         labAvis.setText("<html>Compte! La quantitat de llibres és <b>molt gran per utilitzar un mètode exacte</b>. El temps d'espera de reordenació pot superar els 5 minuts.</html>");
         labAvis.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        bCancelar.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        bCancelar.setText("Cancel·lar");
-        bCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCancelarActionPerformed(evt);
-            }
-        });
 
         bHeur.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         bHeur.setText("Mètode heurístic");
@@ -102,42 +100,95 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         labInfo.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         labInfo.setText("Escull de quina forma vols ordenar:");
 
+        TaulaEst.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TaulaEstanteria.setViewportView(TaulaEst);
+
+        TaulaLlib.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TaulaLlibre.setViewportView(TaulaLlib);
+
+        labLlibre.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        labLlibre.setText("Llibre:");
+
+        labEstanteria.setFont(new java.awt.Font("Arial Unicode MS", 0, 12)); // NOI18N
+        labEstanteria.setText("Estanteria:");
+
+        bCancelar.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
+        bCancelar.setText("Cancel·lar");
+        bCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panPreguntaLayout = new javax.swing.GroupLayout(panPregunta);
         panPregunta.setLayout(panPreguntaLayout);
         panPreguntaLayout.setHorizontalGroup(
             panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panPreguntaLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panPreguntaLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panPreguntaLayout.createSequentialGroup()
-                                .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(59, 59, 59)
-                                .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labInfo)
+                            .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bCancelar)
+                        .addGap(366, 366, 366))
                     .addGroup(panPreguntaLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(labInfo))
+                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TaulaEstanteria, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                            .addComponent(TaulaLlibre))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panPreguntaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labLlibre)
+                            .addComponent(labEstanteria))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panPreguntaLayout.setVerticalGroup(
             panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panPreguntaLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap()
+                .addComponent(labEstanteria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TaulaEstanteria, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labLlibre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TaulaLlibre, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labInfo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
@@ -146,15 +197,15 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layeredLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addComponent(panPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layeredLayout.setVerticalGroup(
             layeredLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layeredLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layeredLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
         layered.setLayer(panPregunta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -162,17 +213,15 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(layered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(layered, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(layered, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -194,11 +243,17 @@ public class VistaOrdenacio extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TaulaEst;
+    private javax.swing.JScrollPane TaulaEstanteria;
+    private javax.swing.JTable TaulaLlib;
+    private javax.swing.JScrollPane TaulaLlibre;
     private javax.swing.JButton bBandB;
     private javax.swing.JButton bCancelar;
     private javax.swing.JButton bHeur;
     private javax.swing.JLabel labAvis;
+    private javax.swing.JLabel labEstanteria;
     private javax.swing.JLabel labInfo;
+    private javax.swing.JLabel labLlibre;
     private javax.swing.JLayeredPane layered;
     private javax.swing.JPanel panPregunta;
     // End of variables declaration//GEN-END:variables

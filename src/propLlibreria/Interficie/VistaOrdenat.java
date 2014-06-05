@@ -6,9 +6,14 @@
 
 package propLlibreria.Interficie;
 
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JViewport;
 import javax.swing.table.TableModel;
 
 /**
@@ -54,16 +59,35 @@ public class VistaOrdenat extends javax.swing.JPanel {
                     } 
                 }catch (Exception e){
                     System.out.println("Excepció!");
-                }
+                }            
             }            
                     
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
             JTable taula = new JTable((TableModel) myData);
+            taula.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    setVistaDadesLlibre(e);
+                }
+            });
             TaulaOrdenada.setViewportView(taula);
         }
         catch (Exception e) {
             System.out.println(e);
+        }
+    }
+    private void setVistaDadesLlibre(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            JViewport viewport = TaulaOrdenada.getViewport(); 
+            JTable taulaLlibres = (JTable)viewport.getView();
+            Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),1);
+            VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
+            JFrame frameDadesLlibre = new JFrame();
+            frameDadesLlibre.setSize(new Dimension(600,400));
+            frameDadesLlibre.setResizable(false);
+            frameDadesLlibre.add(dadesLlibre);
+            frameDadesLlibre.setVisible(true);
         }
     }
 
@@ -77,10 +101,11 @@ public class VistaOrdenat extends javax.swing.JPanel {
     private void initComponents() {
 
         TaulaOrdenada = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        taulaResult = new javax.swing.JTable();
         bSortir = new javax.swing.JButton();
+        bPDF = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        taulaResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -91,12 +116,19 @@ public class VistaOrdenat extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        TaulaOrdenada.setViewportView(jTable1);
+        TaulaOrdenada.setViewportView(taulaResult);
 
         bSortir.setText("Tancar");
         bSortir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bSortirActionPerformed(evt);
+            }
+        });
+
+        bPDF.setText("Exportar a pdf");
+        bPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPDFActionPerformed(evt);
             }
         });
 
@@ -106,10 +138,11 @@ public class VistaOrdenat extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TaulaOrdenada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(TaulaOrdenada, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -119,8 +152,14 @@ public class VistaOrdenat extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(TaulaOrdenada, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(bPDF, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -128,10 +167,15 @@ public class VistaOrdenat extends javax.swing.JPanel {
         System.exit(0);
     }//GEN-LAST:event_bSortirActionPerformed
 
+    private void bPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPDFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bPDFActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane TaulaOrdenada;
+    private javax.swing.JButton bPDF;
     private javax.swing.JButton bSortir;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable taulaResult;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,16 +23,16 @@
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Component id="Imatge" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labEditorial" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="labAutor" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Autor" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Editorial" alignment="1" min="-2" pref="297" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="Autor" min="-2" pref="297" max="-2" attributes="0"/>
+                          <Component id="Editorial" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
