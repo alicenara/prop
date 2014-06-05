@@ -49,6 +49,8 @@ public final class VistaPrincipal extends javax.swing.JFrame {
         vConsultes = new VistaConsultes();
         vOrd = new VistaOrdenacio();
         this.ferVisiblePrincipal();
+        java.awt.Dimension dim = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
     }
     
     /**
