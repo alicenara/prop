@@ -1,4 +1,5 @@
 package propLlibreria.Interficie;
+import java.awt.Dimension;
 import java.util.concurrent.ExecutionException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -24,6 +25,11 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
                     CtrlInterficie.reordenacioBiblioteca(tipus);
                 }catch (Exception e){
                     System.out.println(e);
+                    JFrame frame = new JFrame();
+                    JOptionPane.showMessageDialog(frame,
+                    "No hi ha prous llocs a les estanteries per la quantitat de llibres que hi ha.",
+                    "Pocs llocs a les estanteries",
+                    JOptionPane.WARNING_MESSAGE);
                 }
                 return true;
             }
@@ -83,6 +89,11 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         bExport.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         bExport.setText("Veure ordenació");
         bExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExportActionPerformed(evt);
+            }
+        });
 
         labProgressGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propLlibreria/Interficie/icons/spinner-blue.gif"))); // NOI18N
 
@@ -135,6 +146,15 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
             v.ferVisiblePrincipal();
         }       
     }//GEN-LAST:event_bSortirActionPerformed
+
+    private void bExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportActionPerformed
+        VistaOrdenat llibresOrdenats = new VistaOrdenat();
+        JFrame frameLlibresOrdenats = new JFrame();
+        frameLlibresOrdenats.setSize(new Dimension(600,400));
+        frameLlibresOrdenats.setResizable(false);
+        frameLlibresOrdenats.add(llibresOrdenats);
+        frameLlibresOrdenats.setVisible(true);
+    }//GEN-LAST:event_bExportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -37,6 +37,16 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         );
         layered.setLayer(vMentreOrdena, javax.swing.JLayeredPane.DEFAULT_LAYER);
     } 
+    
+    public void reset(){
+        vMentreOrdena.setVisible(false);
+        bBandB.setVisible(true);
+        bCancelar.setVisible(true);
+        bHeur.setVisible(true);
+        if(CtrlInterficie.seleccionaAllLlibres().size() > 10)   labAvis.setVisible(true);
+        else labAvis.setVisible(false);
+        labInfo.setVisible(true);        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
