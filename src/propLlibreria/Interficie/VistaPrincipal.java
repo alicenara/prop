@@ -57,11 +57,12 @@ public final class VistaPrincipal extends javax.swing.JFrame {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 if (JOptionPane.showConfirmDialog(null, 
-                    "Segur que vols tancar?", "Tancant", 
+                    "Estàs tancant. Vols desar els canvis?", "Tancant", 
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
-                    System.exit(0);
+                    CtrlInterficie.guardarSolucio();
                 }
+                System.exit(0);
             }
         });
     }

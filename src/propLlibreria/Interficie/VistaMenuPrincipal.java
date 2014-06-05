@@ -101,7 +101,7 @@ public class VistaMenuPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_botoConsultarActionPerformed
 
     private void botoDesarSortirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoDesarSortirActionPerformed
-        //CtrlDominiInterficie.guardarSolucio();
+        CtrlDominiInterficie.guardarSolucio();
         VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
         v.dispose();
     }//GEN-LAST:event_botoDesarSortirActionPerformed
