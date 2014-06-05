@@ -6,8 +6,14 @@
 
 package propLlibreria.Interficie;
 
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JViewport;
 
 /**
  *
@@ -23,6 +29,7 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
     public VistaGestioEliminar() {
         initComponents();
         tipusObjecte = "Àrea";
+        addMouseActionToTaula(taulaResultats);
     }
     
     public void resetFields() {
@@ -223,7 +230,28 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Esborrat correctament","Info",JOptionPane.INFORMATION_MESSAGE);                
         refillTable();
     }//GEN-LAST:event_botoEliminarActionPerformed
-
+    
+    private void setVistaDadesLlibre(MouseEvent e) {
+        if(!tipusObjecte.equals("Llibre")) return; 
+        if (e.getClickCount() == 2) {
+            Object isbn = taulaResultats.getValueAt(taulaResultats.getSelectedRow(),0);
+            VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
+            JFrame frameDadesLlibre = new JFrame();
+            frameDadesLlibre.setSize(new Dimension(600,400));
+            frameDadesLlibre.setResizable(false);
+            frameDadesLlibre.add(dadesLlibre);
+            frameDadesLlibre.setVisible(true);
+        }
+    }
+    
+    private void addMouseActionToTaula(JTable taula) {
+        taula.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setVistaDadesLlibre(e);
+            }
+        });
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botoEliminar;
     private javax.swing.JScrollPane contenidorTaula;
