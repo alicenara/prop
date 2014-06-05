@@ -114,6 +114,7 @@ public final class VistaPrincipal extends javax.swing.JFrame {
     }
     void ferVisibleOrdenar() {
         this.setContentPane(vOrd);
+        vOrd.reset();
         vPrincipal.setVisible(false);
         vGestio.setVisible(false);
         vConsultes.setVisible(false);
