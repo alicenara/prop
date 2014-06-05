@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -405,7 +406,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             return myData;
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No existeix cap tematica amb nom" + IntroduccioDades.getText(),"Info",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No existeix cap tematica amb nom " + IntroduccioDades.getText(),"Info",JOptionPane.INFORMATION_MESSAGE);
             return null;
         }
     }
@@ -491,8 +492,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                         break;
                 }
             }
-            //ArrayList<ArrayList<String> > reducedRows = new ArrayList<ArrayList<String> >();
-            //reducedRows = valorsReduitsLlibres(rows);
             valorsReduitsLlibres(rows);
             myData = setModelTable(columns,rows);
             return myData;
@@ -529,6 +528,8 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             PropTableModel myData = valorsModelLlibre(false);
             final JTable taulaLlibres = new JTable((TableModel) myData);
+            RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myData);
+            taulaLlibres.setRowSorter(sorter);
             if (myData.getRowCount() > 0) {
                 addMouseActionToTaula(taulaLlibres);
             }
