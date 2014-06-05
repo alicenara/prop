@@ -6,6 +6,8 @@
 
 package propLlibreria.Interficie;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author towerthousand
@@ -51,6 +53,17 @@ public final class VistaPrincipal extends javax.swing.JFrame {
         this.ferVisiblePrincipal();
         java.awt.Dimension dim = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(null, 
+                    "Segur que vols tancar?", "Tancant", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION){
+                    System.exit(0);
+                }
+            }
+        });
     }
     
     /**
