@@ -1,5 +1,13 @@
 package propLlibreria.Interficie;
+import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JTable;
+import javax.swing.JViewport;
 import javax.swing.SwingUtilities;
+import javax.swing.table.TableModel;
 
 
 public class VistaOrdenacio extends javax.swing.JPanel {
@@ -11,6 +19,72 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         if(CtrlInterficie.seleccionaAllLlibres().size() > 10)   labAvis.setVisible(true);
         else labAvis.setVisible(false);
         vMentreOrdena = new VistaMentreOrdena();        
+    }
+    
+    private void carregarTaulaEst(){
+         try {
+            PropTableModel myData = new PropTableModel();
+            ArrayList<String> columns = new ArrayList<String>();
+            ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();            
+            columns.add("Coordenada X");
+            columns.add("Coordenada Y");
+            columns.add("Num de files");
+            columns.add("Llargada");            
+            rows = CtrlInterficie.seleccionaAllEstanteries();
+            
+            myData.setRowsValues(rows);
+            myData.setColumnsValues(columns);
+            JTable taula = new JTable((TableModel) myData);            
+            TaulaEstanteria.setViewportView(taula);
+            
+        }catch (Exception e){
+            System.out.println("Excepció!");
+        }        
+    }
+    
+    private void carregarTaulaLlib(){
+         try {
+            PropTableModel myData = new PropTableModel();
+            ArrayList<String> columns = new ArrayList<String>();
+            ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();            
+            columns.add("ISBN");
+            columns.add("Titol");
+            columns.add("Autor");
+            columns.add("Any");
+            columns.add("Temàtica");
+            rows = CtrlInterficie.seleccionaAllLlibres();
+            for(int i = 0; i < rows.size(); ++i) {
+                rows.get(i).remove(5);
+                rows.get(i).remove(3);
+            }            
+              
+            myData.setRowsValues(rows);
+            myData.setColumnsValues(columns);
+            JTable taula = new JTable((TableModel) myData);
+            taula.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    setVistaDadesLlibre(e);
+                }
+            });
+            TaulaLlibre.setViewportView(taula);
+         }catch (Exception e){
+            System.out.println("Excepció!");
+        } 
+    }
+    
+     private void setVistaDadesLlibre(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            JViewport viewport = TaulaLlibre.getViewport(); 
+            JTable taulaLlibres = (JTable)viewport.getView();
+            Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),1);
+            VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
+            JFrame frameDadesLlibre = new JFrame();
+            frameDadesLlibre.setSize(new Dimension(600,400));
+            frameDadesLlibre.setResizable(false);
+            frameDadesLlibre.add(dadesLlibre);
+            frameDadesLlibre.setVisible(true);
+        }
     }
     
     private void ocultarTot(){
@@ -35,6 +109,8 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     } 
     
     public void reset(){
+        carregarTaulaLlib();
+        carregarTaulaEst();
         vMentreOrdena.setVisible(false);
         if(CtrlInterficie.seleccionaAllLlibres().size() > 10)   labAvis.setVisible(true);
         else labAvis.setVisible(false);
@@ -149,24 +225,23 @@ public class VistaOrdenacio extends javax.swing.JPanel {
                 .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panPreguntaLayout.createSequentialGroup()
                         .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labInfo)
-                            .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bCancelar)
-                        .addGap(366, 366, 366))
-                    .addGroup(panPreguntaLayout.createSequentialGroup()
-                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TaulaEstanteria, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-                            .addComponent(TaulaLlibre))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panPreguntaLayout.createSequentialGroup()
-                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labLlibre)
                             .addComponent(labEstanteria))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(panPreguntaLayout.createSequentialGroup()
+                        .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labInfo)
+                            .addGroup(panPreguntaLayout.createSequentialGroup()
+                                .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(labAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TaulaEstanteria, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                                .addComponent(TaulaLlibre)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panPreguntaLayout.setVerticalGroup(
             panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,8 +262,8 @@ public class VistaOrdenacio extends javax.swing.JPanel {
                 .addGroup(panPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bHeur, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bBandB, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
