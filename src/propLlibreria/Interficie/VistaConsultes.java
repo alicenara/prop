@@ -3,6 +3,7 @@ package propLlibreria.Interficie;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
@@ -44,11 +45,6 @@ public class VistaConsultes extends javax.swing.JPanel {
 
         Fons.setBackground(new java.awt.Color(204, 204, 255));
         Fons.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
-        Fons.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                FonsKeyPressed(evt);
-            }
-        });
 
         Seleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona...", "Area", "Seccio", "Tematica", "Llibre", "Estanteria" }));
         Seleccio.addActionListener(new java.awt.event.ActionListener() {
@@ -58,11 +54,6 @@ public class VistaConsultes extends javax.swing.JPanel {
         });
 
         MostraResult.setAutoscrolls(true);
-        MostraResult.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MostraResultKeyPressed(evt);
-            }
-        });
 
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta..." }));
         funcionsSeleccio.addActionListener(new java.awt.event.ActionListener() {
@@ -80,11 +71,6 @@ public class VistaConsultes extends javax.swing.JPanel {
 
         IntroduccioDades.setForeground(new java.awt.Color(153, 153, 153));
         IntroduccioDades.setEnabled(false);
-        IntroduccioDades.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IntroduccioDadesActionPerformed(evt);
-            }
-        });
         IntroduccioDades.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 IntroduccioDadesFocusGained(evt);
@@ -100,7 +86,6 @@ public class VistaConsultes extends javax.swing.JPanel {
         });
 
         jButton1.setText("Enrere");
-        jButton1.setActionCommand("Enrere");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -136,16 +121,15 @@ public class VistaConsultes extends javax.swing.JPanel {
                         .addGap(21, 21, 21)
                         .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(IntroduccioDades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(OKButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addComponent(OKButton)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FonsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
                             .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MostraResult, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -162,17 +146,12 @@ public class VistaConsultes extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FonsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FonsKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FonsKeyPressed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
         v.ferVisiblePrincipal();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void IntroduccioDadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IntroduccioDadesKeyPressed
-        // TODO add your handling code here:
         int keyCode = evt.getKeyCode();
         String enter = evt.getKeyText(10);
         if (java.awt.event.KeyEvent.getKeyText(keyCode).equals(enter)){
@@ -181,21 +160,15 @@ public class VistaConsultes extends javax.swing.JPanel {
     }//GEN-LAST:event_IntroduccioDadesKeyPressed
 
     private void IntroduccioDadesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_IntroduccioDadesFocusLost
-        // TODO add your handling code here:
         if(IntroduccioDades.getText().trim().equals("")) {
             establirValorsIntroduccioDades();
         }
     }//GEN-LAST:event_IntroduccioDadesFocusLost
 
     private void IntroduccioDadesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_IntroduccioDadesFocusGained
-        // TODO add your handling code here:
         IntroduccioDades.setText("");
         IntroduccioDades.setForeground(new java.awt.Color(0,0,0));
     }//GEN-LAST:event_IntroduccioDadesFocusGained
-
-    private void IntroduccioDadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IntroduccioDadesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IntroduccioDadesActionPerformed
 
     private void OKButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OKButtonActionPerformed
         // TODO add your handling code here:
@@ -228,10 +201,6 @@ public class VistaConsultes extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_funcionsSeleccioActionPerformed
-
-    private void MostraResultKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MostraResultKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MostraResultKeyPressed
 
     private void SeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccioActionPerformed
         // TODO add your handling code here:
@@ -324,8 +293,8 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres d'area":
                     columns = valorsHeaderLlibre();
-                    ArrayList<ArrayList<String> > extendedRows = CtrlInterficie.consultarLlibresArea(IntroduccioDades.getText());
-                    rows = valorsReduitsLlibres(extendedRows);
+                    rows = CtrlInterficie.consultarLlibresArea(IntroduccioDades.getText());
+                    valorsReduitsLlibres(rows);
                     break;
             }
             myData = setModelTable(columns,rows);
@@ -341,8 +310,14 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             System.out.println("Consulta area");
             PropTableModel myData = valorsModelArea();
-            JTable taulaArees = new JTable((TableModel) myData);
-            MostraResult.setViewportView(taulaArees);
+            if (myData != null) {
+                JTable taulaArees = new JTable((TableModel) myData);
+                String funcio = (String)funcionsSeleccio.getModel()
+                    .getSelectedItem();
+                if (funcio.equals("Llibres d'area")) addMouseActionToTaula(taulaArees);
+                MostraResult.setViewportView(taulaArees);
+            }
+            
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
@@ -370,8 +345,8 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres seccio" :
                     columns = valorsHeaderLlibre();
-                    ArrayList<ArrayList<String> > extendedRows = CtrlInterficie.consultarLlibresSeccio(IntroduccioDades.getText());
-                    rows = valorsReduitsLlibres(extendedRows);
+                    rows = CtrlInterficie.consultarLlibresSeccio(IntroduccioDades.getText());
+                    valorsReduitsLlibres(rows);
                     break; 
             }
             myData = setModelTable(columns,rows);
@@ -385,12 +360,13 @@ public class VistaConsultes extends javax.swing.JPanel {
     
     private void consultaSeccio() {
       try {
-            String funcio = (String) funcionsSeleccio.getModel()
-                .getSelectedItem();
             PropTableModel myData = valorsModelSeccio();
             if (myData != null) {
-                JTable tablaSeccions = new JTable((TableModel) myData);
-                MostraResult.setViewportView(tablaSeccions);
+                JTable taulaSeccions = new JTable((TableModel) myData);
+                String funcio = (String)funcionsSeleccio.getModel()
+                    .getSelectedItem();
+                if (funcio.equals("Llibres seccio")) addMouseActionToTaula(taulaSeccions);
+                MostraResult.setViewportView(taulaSeccions);
             }
         }
         catch (Exception e) {
@@ -413,8 +389,8 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 case "Llibres tematiques":
                     columns = valorsHeaderLlibre();
-                    ArrayList<ArrayList<String> > extendedRows = CtrlInterficie.consultarLlibresTematica(IntroduccioDades.getText());
-                    rows = valorsReduitsLlibres(extendedRows);
+                    rows = CtrlInterficie.consultarLlibresTematica(IntroduccioDades.getText());
+                    valorsReduitsLlibres(rows);
                     break;
             }
             myData = setModelTable(columns,rows);
@@ -430,8 +406,11 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             PropTableModel myData = valorsModelTematica();
             if (myData != null) {
-                JTable tablaTematiques = new JTable((TableModel) myData);
-                MostraResult.setViewportView(tablaTematiques);
+                JTable taulaTematiques = new JTable((TableModel) myData);
+                String funcio = (String)funcionsSeleccio.getModel()
+                .getSelectedItem();
+                if (funcio.equals("Llibres tematiques")) addMouseActionToTaula(taulaTematiques);
+                MostraResult.setViewportView(taulaTematiques);
             }
         }
         catch (Exception e) {
@@ -464,14 +443,11 @@ public class VistaConsultes extends javax.swing.JPanel {
         return columns;
     }
     
-    private ArrayList<ArrayList<String> > valorsReduitsLlibres(ArrayList<ArrayList<String> > rows) {
-        ArrayList<ArrayList<String> > llibres = new ArrayList<ArrayList<String> >();
+    private void valorsReduitsLlibres(ArrayList<ArrayList<String> > rows) {
         for(int i = 0; i < rows.size(); ++i) {
             rows.get(i).remove(5);
             rows.get(i).remove(3);
-            llibres.add(rows.get(i));
         }
-        return llibres;
     }
     private PropTableModel valorsModelLlibre(boolean inException) {
         try {
@@ -479,7 +455,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                 .getSelectedItem();
             PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = valorsHeaderLlibre();
-            
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
             if (!inException) {
                 switch(funcio) {
@@ -505,12 +480,12 @@ public class VistaConsultes extends javax.swing.JPanel {
                     case "Consulta ordenacio llibres":
                         columns.add("Estanteria");
                         rows = CtrlInterficie.consultarOrdenacioBiblio();
-                        
                         break;
                 }
             }
-            ArrayList<ArrayList<String> > reducedRows = new ArrayList<ArrayList<String> >();
-            reducedRows = valorsReduitsLlibres(rows);
+            //ArrayList<ArrayList<String> > reducedRows = new ArrayList<ArrayList<String> >();
+            //reducedRows = valorsReduitsLlibres(rows);
+            valorsReduitsLlibres(rows);
             myData = setModelTable(columns,rows);
             return myData;
         }
@@ -519,31 +494,35 @@ public class VistaConsultes extends javax.swing.JPanel {
             return valorsModelLlibre(true);
         }
     }
-            
+    
+    private void setVistaDadesLlibre(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            JViewport viewport = MostraResult.getViewport(); 
+            JTable taulaLlibres = (JTable)viewport.getView();
+            Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
+            VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
+            JFrame frameDadesLlibre = new JFrame();
+            frameDadesLlibre.setSize(new Dimension(600,400));
+            frameDadesLlibre.setResizable(false);
+            frameDadesLlibre.add(dadesLlibre);
+            frameDadesLlibre.setVisible(true);
+        }
+    }
+    
+    private void addMouseActionToTaula(JTable taula) {
+        taula.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setVistaDadesLlibre(e);
+            }
+        });
+    }
     private void consultaLlibre() {
-      try {
+        try {
             PropTableModel myData = valorsModelLlibre(false);
             final JTable taulaLlibres = new JTable((TableModel) myData);
             if (myData.getRowCount() > 0) {
-                //myData.setRowsValues(rows);
-                taulaLlibres.getSelectedColumn();
-                taulaLlibres.getSelectedRow();
-                //System.out.println(tablaLlibres.getValueAt(tablaLlibres.getSelectedRow(), tablaLlibres.getSelectedColumn()));
-                //MyRenderer r = new MyRenderer();
-                taulaLlibres.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                    if (e.getClickCount() == 2) {
-                        Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
-                        VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
-                        JFrame frameDadesLlibre = new JFrame();
-                        frameDadesLlibre.setSize(new Dimension(600,400));
-                        frameDadesLlibre.setResizable(false);
-                        frameDadesLlibre.add(dadesLlibre);
-                        frameDadesLlibre.setVisible(true);
-                    }
-                  }
-                });
+                addMouseActionToTaula(taulaLlibres);
             }
             MostraResult.setViewportView(taulaLlibres);
         }
@@ -556,9 +535,10 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             String funcio = (String) funcionsSeleccio.getModel()
                 .getSelectedItem();
-            PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = new ArrayList<String>();
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
+            PropTableModel myData = new PropTableModel();
+            JTable taulaEstanteries = new JTable();
             System.out.println("Consulta Estanteria");
             switch(funcio) {
                 case "Totes estanteries":
@@ -576,11 +556,11 @@ public class VistaConsultes extends javax.swing.JPanel {
                     int y = Integer.parseInt(coordenades[1]);
                     rows = CtrlInterficie.consultarLlibresEstanteria(x,y);
                     columns = valorsHeaderLlibre();
+                    addMouseActionToTaula(taulaEstanteries);
                     break;
             }
-            myData.setRowsValues(rows);
-            myData.setColumnsValues(columns);
-            JTable taulaEstanteries = new JTable((TableModel) myData);
+            myData = setModelTable(columns,rows);
+            taulaEstanteries.setModel(myData);
             MostraResult.setViewportView(taulaEstanteries);
         }
         catch (Exception e) {
@@ -630,7 +610,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         }
     }
     
-    private void establicValorsIntroduccioDadesLlibre(String funcionsSeleccioItem) {
+    private void establirValorsIntroduccioDadesLlibre(String funcionsSeleccioItem) {
         try {
             switch(funcionsSeleccioItem) {
                 case "Consulta per títol":
@@ -674,7 +654,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                         IntroduccioDades.setText("Introdueix nom tematica");
                         break;
                     case "Llibre":
-                        establicValorsIntroduccioDadesLlibre(funcionsSeleccioItem);
+                        establirValorsIntroduccioDadesLlibre(funcionsSeleccioItem);
                         break;
                 }
             IntroduccioDades.setForeground(new java.awt.Color(153, 153, 153));
