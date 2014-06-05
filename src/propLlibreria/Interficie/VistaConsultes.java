@@ -41,7 +41,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         funcionsSeleccio = new javax.swing.JComboBox();
         OKButton = new javax.swing.JButton();
         IntroduccioDades = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        BotoEnrere = new javax.swing.JButton();
 
         Fons.setBackground(new java.awt.Color(204, 204, 255));
         Fons.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
@@ -85,10 +85,10 @@ public class VistaConsultes extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Enrere");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotoEnrere.setText("Enrere");
+        BotoEnrere.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotoEnrereActionPerformed(evt);
             }
         });
 
@@ -98,7 +98,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
+                .addComponent(BotoEnrere)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(funcionsSeleccio, 0, 147, Short.MAX_VALUE)
@@ -125,7 +125,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FonsLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(FonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
+                            .addComponent(BotoEnrere)
                             .addComponent(Seleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(funcionsSeleccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -145,11 +145,19 @@ public class VistaConsultes extends javax.swing.JPanel {
             .addComponent(Fons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    
+    private void resetFields() {
+        Seleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecciona...", "Area", "Seccio", "Tematica", "Llibre", "Estanteria" }));
+        funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipus consulta..." }));
+        MostraResult.setViewportView(new JViewport());
+    }
+    
+    
+    private void BotoEnrereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotoEnrereActionPerformed
+        resetFields();
         VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
         v.ferVisiblePrincipal();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotoEnrereActionPerformed
 
     private void IntroduccioDadesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IntroduccioDadesKeyPressed
         int keyCode = evt.getKeyCode();
@@ -188,7 +196,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                 || (funcionsSeleccioItem == null) || ("Tipus consulta...".equals(funcionsSeleccioItem))
                 || ("Totes arees".equals(funcionsSeleccioItem)) || ("Totes seccions".equals(funcionsSeleccioItem))
                 || ("Totes tematiques".equals(funcionsSeleccioItem)) || ("Tots els llibres".equals(funcionsSeleccioItem))
-                || ("Totes estanteries".equals(funcionsSeleccioItem)) || ("Consulta ordenacio llibres".equals(funcionsSeleccioItem))) {
+                || ("Totes estanteries".equals(funcionsSeleccioItem)) || ("Consulta ordenacio".equals(funcionsSeleccioItem))) {
                 IntroduccioDades.setEnabled(false);
                 IntroduccioDades.setText("");
             }
@@ -255,7 +263,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     funcionsSeleccio.removeAllItems();
         funcionsSeleccio.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"Tipus consulta..." , "Tots els llibres", "Consulta per títol",
                                                                                         "Consulta per autor", "Consulta per isbn","Consulta per any",
-                                                                                        "Consulta per editorial","Consulta ordenacio llibres"}));
+                                                                                        "Consulta per editorial","Consulta ordenacio"}));
         
     }
     private void opcionsEstanteria() {
@@ -477,7 +485,7 @@ public class VistaConsultes extends javax.swing.JPanel {
                     case "Consulta per editorial":
                         rows = CtrlInterficie.consultaLlibresEditorial(IntroduccioDades.getText());
                         break;
-                    case "Consulta ordenacio llibres":
+                    case "Consulta ordenacio":
                         columns.add("Estanteria");
                         rows = CtrlInterficie.consultarOrdenacioBiblio();
                         break;
@@ -664,12 +672,12 @@ public class VistaConsultes extends javax.swing.JPanel {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotoEnrere;
     private javax.swing.JPanel Fons;
     private javax.swing.JTextField IntroduccioDades;
     private javax.swing.JScrollPane MostraResult;
     private javax.swing.JButton OKButton;
     private javax.swing.JComboBox Seleccio;
     private javax.swing.JComboBox funcionsSeleccio;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }
