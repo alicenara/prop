@@ -24,6 +24,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     @SuppressWarnings("FieldMayBeFinal")
     boolean tipusLlibre = false;
     boolean seleccioAutomatica = false;
+    boolean tipusOrdenacio = false;
     String funcionsSeleccioItem;
     String SeleccioItem;
     String contingutIntrValors;
@@ -259,7 +260,6 @@ public class VistaConsultes extends javax.swing.JPanel {
     }
     
     private void funcionsSeleccioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_funcionsSeleccioActionPerformed
-        // TODO add your handling code here:
         getComboBoxItems();
         try {
             String funcs[] = funcionsSeleccioItem.split(" ");
@@ -356,7 +356,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         JTable taula = new JTable((TableModel) myData);
         RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myData);
         taula.setRowSorter(sorter);
-        addMouseActionToTaula(taula);
+        addActionToTaula(taula);
         return taula;
     }
 
@@ -365,7 +365,13 @@ public class VistaConsultes extends javax.swing.JPanel {
         if (e.getClickCount() == 2) {
             JViewport viewport = MostraResult.getViewport(); 
             JTable taulaLlibres = (JTable)viewport.getView();
-            Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
+            Object isbn;
+            if (tipusOrdenacio) {
+                isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),1);
+                System.out.println(isbn);
+            }
+            else isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
+            System.out.println("hola");
             VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
             JFrame frameDadesLlibre = new JFrame();
             frameDadesLlibre.setSize(new Dimension(600,400));
@@ -394,7 +400,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     
     //Assignacio de mouse listener a la taula per parametre. Associem de manera
     //diferent si la taula es de llibres o de atributs
-    private void addMouseActionToTaula(JTable taula) {
+    private void addActionToTaula(JTable taula) {
         if (tipusLlibre) {
             taula.addMouseListener(new MouseAdapter() {
                 @Override
@@ -404,6 +410,12 @@ public class VistaConsultes extends javax.swing.JPanel {
             });
         }
         else {
+            taula.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    contingutIntrValors = IntroduccioDades.getText();
+                    IntroduccioDadesKeyPressed(evt);
+                }
+            });
             taula.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -572,7 +584,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     
     private PropTableModel valorsModelLlibre(boolean inException) {
         try {
-            boolean casOrdenacio = false;
+            if (tipusOrdenacio) tipusOrdenacio = false;
             ArrayList<String> columns = valorsHeaderLlibre();
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
             if (!inException) {
@@ -596,7 +608,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                         rows = CtrlInterficie.consultaLlibresEditorial(contingutIntrValors);
                         break;
                     case "Consulta ordenacio":
-                        casOrdenacio = true;
                         columns.remove(0);
                         columns.add(0,"Estanteria");
                         columns.add(1,"ISBN");
@@ -608,10 +619,11 @@ public class VistaConsultes extends javax.swing.JPanel {
                             rows.get(i).remove(3);
                             rows.get(i).add(0,estanteria);
                         }
+                        tipusOrdenacio = true;
                         break;
                 }
             }
-            if (!casOrdenacio) valorsReduitsLlibres(rows);
+            if (!tipusOrdenacio) valorsReduitsLlibres(rows);
             PropTableModel myData = setModelTable(columns,rows);
             return myData;
         }
