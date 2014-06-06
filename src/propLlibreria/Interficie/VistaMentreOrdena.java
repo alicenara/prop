@@ -8,6 +8,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 public class VistaMentreOrdena extends javax.swing.JPanel {
+    
+    ArrayList<ArrayList<String>> est= new ArrayList<ArrayList<String>>();
 
     public VistaMentreOrdena() {
         initComponents();
@@ -22,7 +24,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         labProgressGif.setVisible(true);
         labKeepCalm.setText("Ordenant. Esperi si us plau.");
         final boolean tipus=tip;
-        final ArrayList<ArrayList<String>> est=e;
+        est=e;
         final ArrayList<ArrayList<String>> lib=l;
         SwingWorker<Boolean, Void> ordena;
         ordena = new SwingWorker<Boolean, Void>() {
@@ -155,7 +157,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     }//GEN-LAST:event_bSortirActionPerformed
 
     private void bExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportActionPerformed
-        VistaOrdenat llibresOrdenats = new VistaOrdenat();
+        VistaOrdenat llibresOrdenats = new VistaOrdenat(est);
         JFrame frameLlibresOrdenats = new JFrame();
         frameLlibresOrdenats.setSize(new Dimension(600,400));
         frameLlibresOrdenats.setResizable(false);

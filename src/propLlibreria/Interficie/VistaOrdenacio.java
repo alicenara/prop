@@ -34,8 +34,14 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
-            JTable taula = new JTable((TableModel) myData);            
-            TaulaEstanteria.setViewportView(taula);
+            TaulaEst = new JTable((TableModel) myData);
+            TaulaEst.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    comprovarBotons(e);
+                }
+            });
+            TaulaEstanteria.setViewportView(TaulaEst);
             
         }catch (Exception e){
             System.out.println("Excepció!");
@@ -60,20 +66,31 @@ public class VistaOrdenacio extends javax.swing.JPanel {
               
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
-            JTable taula = new JTable((TableModel) myData);
-            taula.addMouseListener(new MouseAdapter() {
+            TaulaLlib = new JTable((TableModel) myData);
+            TaulaLlib.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     setVistaDadesLlibre(e);
+                    comprovarBotons(e);
                 }
             });
-            TaulaLlibre.setViewportView(taula);
+            TaulaLlibre.setViewportView(TaulaLlib);
          }catch (Exception e){
             System.out.println("Excepció!");
         } 
     }
     
-     private void setVistaDadesLlibre(MouseEvent e) {
+    private void comprovarBotons(MouseEvent e){
+        if(TaulaEst.getSelectedRows().length!=0 && TaulaLlib.getSelectedRows().length!=0 ){
+            bHeur.setEnabled(true);
+            bBandB.setEnabled(true);
+        }else{
+            bHeur.setEnabled(false);
+            bBandB.setEnabled(false);
+        }
+    }
+    
+    private void setVistaDadesLlibre(MouseEvent e) {
         if (e.getClickCount() == 2) {
             JViewport viewport = TaulaLlibre.getViewport(); 
             JTable taulaLlibres = (JTable)viewport.getView();
@@ -108,7 +125,9 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         layered.setLayer(vMentreOrdena, javax.swing.JLayeredPane.DEFAULT_LAYER);
     } 
     
-    public void reset(){
+    public void reset(){            
+        bHeur.setEnabled(false);
+        bBandB.setEnabled(false);
         carregarTaulaLlib();
         carregarTaulaEst();
         vMentreOrdena.setVisible(false);
@@ -137,9 +156,9 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             for(int i = 0; i < selected.length && !end; ++i) {
                 ArrayList<String> est = new ArrayList<String>();
                 String s = (String)TaulaEst.getValueAt(selected[i], 0);
-                String s2 = (String)TaulaEst.getValueAt(selected[i], 1);
                 est.add(s);
-                est.add(s2);
+                s = (String)TaulaEst.getValueAt(selected[i], 1);
+                est.add(s);
                 e.add(est);
             }
         }catch (Exception ex){
@@ -155,10 +174,12 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         try{
             for(int i = 0; i < selected.length && !end; ++i) {
                 ArrayList<String> lib = new ArrayList<String>();
-                String s = (String)TaulaLlib.getValueAt(selected[i], 0);
-                String s2 = (String)TaulaLlib.getValueAt(selected[i], 1);
+                String s = (String)TaulaLlib.getValueAt(selected[i], 1);
                 lib.add(s);
-                lib.add(s2);
+                s = (String)TaulaLlib.getValueAt(selected[i], 2);
+                lib.add(s);
+                s = (String)TaulaLlib.getValueAt(selected[i], 3);
+                lib.add(s);
                 l.add(lib);
             }
         }catch (Exception ex){
