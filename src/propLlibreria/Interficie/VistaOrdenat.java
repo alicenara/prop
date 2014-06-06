@@ -25,34 +25,24 @@ public class VistaOrdenat extends javax.swing.JPanel {
         try {
             PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = new ArrayList<String>();
-            //ArrayList<ArrayList<String> > est = new ArrayList<ArrayList<String> >();
+            ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();            
             columns.add("Estanteria");
             columns.add("ISBN");
             columns.add("Títol");
             columns.add("Autor");
             columns.add("Any");
-            rows = CtrlInterficie.consultarOrdenacioBiblioParcial(est);            
-            /*est = CtrlInterficie.seleccionaAllEstanteries();
-            for (int i=0; i<est.size();i++){
-                ArrayList<String> estanteria=est.get(i);
-                try{
-                    ArrayList<ArrayList<String> > llibres = new ArrayList<ArrayList<String> >();
-                    llibres = CtrlInterficie.consultarLlibresEstanteria(Integer.parseInt(estanteria.get(0)), Integer.parseInt(estanteria.get(1)));
-                    for (int j=0; j<llibres.size(); j++){
-                         ArrayList<String> row = new ArrayList<String>();
-                         row.add(estanteria.get(0)+","+estanteria.get(1));
-                         row.add(llibres.get(j).get(0));
-                         row.add(llibres.get(j).get(1));
-                         row.add(llibres.get(j).get(2));
-                         row.add(llibres.get(j).get(4));
-
-                         rows.add(row);                     
-                    } 
-                }catch (Exception e){
-                    System.out.println("Excepció!");
-                }            
-            }   */         
+            result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
+            for (int i=0; i<result.size();i++){
+                ArrayList<String> row= new ArrayList<String>();
+                row.add(result.get(i).get(result.get(i).size()-1));
+                row.add(result.get(i).get(0));
+                row.add(result.get(i).get(1));
+                row.add(result.get(i).get(2));
+                row.add(result.get(i).get(4));
+                
+                rows.add(row);
+            }            
                     
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
