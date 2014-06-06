@@ -196,7 +196,7 @@ public class CtrlDominiPersistencia {
             }
 
             String[] result= aux.toArray(new String[aux.size()]);			
-            l.add(result);
+            s.add(result);
         }
         CtrlPersistencia.desarTotesSeccions(s);
 
