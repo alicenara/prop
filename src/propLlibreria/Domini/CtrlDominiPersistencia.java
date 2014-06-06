@@ -203,7 +203,7 @@ public class CtrlDominiPersistencia {
         // TEMATICA
         ArrayList<Tematica> tem = GestioArea.getAllTematiques();
         ArrayList<String[]> t = new ArrayList<String[]>();
-        for (int i=0; i<sec.size(); i++){
+        for (int i=0; i<tem.size(); i++){
             Tematica auxT  = tem.get(i);
             ArrayList<String> aux = new ArrayList<String>();
             aux.add(Integer.toString(auxT.getID()));
