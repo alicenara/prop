@@ -34,8 +34,8 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
-            JTable taula = new JTable((TableModel) myData);            
-            TaulaEstanteria.setViewportView(taula);
+            TaulaEst = new JTable((TableModel) myData);            
+            TaulaEstanteria.setViewportView(TaulaEst);
             
         }catch (Exception e){
             System.out.println("Excepció!");
@@ -60,14 +60,14 @@ public class VistaOrdenacio extends javax.swing.JPanel {
               
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
-            JTable taula = new JTable((TableModel) myData);
-            taula.addMouseListener(new MouseAdapter() {
+            TaulaLlib = new JTable((TableModel) myData);
+            TaulaLlib.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     setVistaDadesLlibre(e);
                 }
             });
-            TaulaLlibre.setViewportView(taula);
+            TaulaLlibre.setViewportView(TaulaLlib);
          }catch (Exception e){
             System.out.println("Excepció!");
         } 
@@ -137,9 +137,9 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             for(int i = 0; i < selected.length && !end; ++i) {
                 ArrayList<String> est = new ArrayList<String>();
                 String s = (String)TaulaEst.getValueAt(selected[i], 0);
-                String s2 = (String)TaulaEst.getValueAt(selected[i], 1);
                 est.add(s);
-                est.add(s2);
+                s = (String)TaulaEst.getValueAt(selected[i], 1);
+                est.add(s);
                 e.add(est);
             }
         }catch (Exception ex){
@@ -155,10 +155,12 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         try{
             for(int i = 0; i < selected.length && !end; ++i) {
                 ArrayList<String> lib = new ArrayList<String>();
-                String s = (String)TaulaLlib.getValueAt(selected[i], 0);
-                String s2 = (String)TaulaLlib.getValueAt(selected[i], 1);
+                String s = (String)TaulaLlib.getValueAt(selected[i], 1);
                 lib.add(s);
-                lib.add(s2);
+                s = (String)TaulaLlib.getValueAt(selected[i], 2);
+                lib.add(s);
+                s = (String)TaulaLlib.getValueAt(selected[i], 3);
+                lib.add(s);
                 l.add(lib);
             }
         }catch (Exception ex){

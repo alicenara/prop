@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package propLlibreria.Interficie;
 
 import java.awt.Dimension;
@@ -14,34 +8,32 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
+import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 
-/**
- *
- * @author Alice
- */
 public class VistaOrdenat extends javax.swing.JPanel {
 
-    /**
-     * Creates new form VistaOrdenat
-     */
-    public VistaOrdenat() {
+    ArrayList<ArrayList<String> > est = new ArrayList<ArrayList<String> >();
+    
+    public VistaOrdenat(ArrayList<ArrayList<String> > e) {
         initComponents();
-        mostrarLlibresEstanteries();
+        est=e;
+        mostrarLlibresEstanteries();        
     }
     
     private void mostrarLlibresEstanteries(){
         try {
             PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = new ArrayList<String>();
-            ArrayList<ArrayList<String> > est = new ArrayList<ArrayList<String> >();
+            //ArrayList<ArrayList<String> > est = new ArrayList<ArrayList<String> >();
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();            
             columns.add("Estanteria");
             columns.add("ISBN");
             columns.add("Títol");
             columns.add("Autor");
             columns.add("Any");
-            est = CtrlInterficie.seleccionaAllEstanteries();
+            rows = CtrlInterficie.consultarOrdenacioBiblioParcial(est);            
+            /*est = CtrlInterficie.seleccionaAllEstanteries();
             for (int i=0; i<est.size();i++){
                 ArrayList<String> estanteria=est.get(i);
                 try{
@@ -60,7 +52,7 @@ public class VistaOrdenat extends javax.swing.JPanel {
                 }catch (Exception e){
                     System.out.println("Excepció!");
                 }            
-            }            
+            }   */         
                     
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
@@ -164,7 +156,8 @@ public class VistaOrdenat extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bSortirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSortirActionPerformed
-        System.exit(0);
+        JFrame v = (JFrame)SwingUtilities.getWindowAncestor(this);
+        v.dispose();
     }//GEN-LAST:event_bSortirActionPerformed
 
     private void bPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPDFActionPerformed
