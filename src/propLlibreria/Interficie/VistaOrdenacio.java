@@ -16,8 +16,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     
     public VistaOrdenacio() {
         initComponents();
-        if(CtrlInterficie.seleccionaAllLlibres().size() > 10)   labAvis.setVisible(true);
-        else labAvis.setVisible(false);
+        labAvis.setVisible(false);
         vMentreOrdena = new VistaMentreOrdena();        
     }
     
@@ -91,10 +90,12 @@ public class VistaOrdenacio extends javax.swing.JPanel {
     }
     
     private void setVistaDadesLlibre(MouseEvent e) {
+        if(TaulaLlib.getSelectedRows().length>=10) labAvis.setVisible(true);
+        else labAvis.setVisible(false);
         if (e.getClickCount() == 2) {
             JViewport viewport = TaulaLlibre.getViewport(); 
             JTable taulaLlibres = (JTable)viewport.getView();
-            Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),1);
+            Object isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRows()[0],0);
             VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
             JFrame frameDadesLlibre = new JFrame();
             frameDadesLlibre.setSize(new Dimension(600,400));
@@ -131,8 +132,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         carregarTaulaLlib();
         carregarTaulaEst();
         vMentreOrdena.setVisible(false);
-        if(CtrlInterficie.seleccionaAllLlibres().size() > 10)   labAvis.setVisible(true);
-        else labAvis.setVisible(false);
+        labAvis.setVisible(false);
         panPregunta.setVisible(true);
         javax.swing.GroupLayout layeredLayout = new javax.swing.GroupLayout(layered);
         layered.setLayout(layeredLayout);

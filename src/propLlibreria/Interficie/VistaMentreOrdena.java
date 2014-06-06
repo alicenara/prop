@@ -1,6 +1,7 @@
 package propLlibreria.Interficie;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -10,6 +11,7 @@ import javax.swing.SwingWorker;
 public class VistaMentreOrdena extends javax.swing.JPanel {
     
     ArrayList<ArrayList<String>> est= new ArrayList<ArrayList<String>>();
+    SwingWorker<Boolean, Void> ordena;
 
     public VistaMentreOrdena() {
         initComponents();
@@ -25,8 +27,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         labKeepCalm.setText("Ordenant. Esperi si us plau.");
         final boolean tipus=tip;
         est=e;
-        final ArrayList<ArrayList<String>> lib=l;
-        SwingWorker<Boolean, Void> ordena;
+        final ArrayList<ArrayList<String>> lib=l;        
         ordena = new SwingWorker<Boolean, Void>() {
             @Override
             protected Boolean doInBackground() throws Exception {
@@ -54,6 +55,8 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
                 } catch (InterruptedException e) {
                     // This is thrown if the thread's interrupted.
                 } catch (ExecutionException e) {
+                    // This is thrown if we throw an exception from doInBackground. 
+                } catch (CancellationException e) {
                     // This is thrown if we throw an exception from doInBackground. 
                 }
             }
@@ -144,11 +147,11 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     private void bSortirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSortirActionPerformed
         if(bSortir.getText().equals("Cancel·lar")){
             JFrame dialog = new JFrame();
-            int n = JOptionPane.showConfirmDialog( dialog, "Estas segur que ho vols cancel·lar?\n"+"Això tancarà el programa.", "Cancelar ordenació", JOptionPane.YES_NO_OPTION);
+            int n = JOptionPane.showConfirmDialog( dialog, "Estas segur que ho vols cancel·lar?\n", "Cancelar ordenació", JOptionPane.YES_NO_OPTION);
             if(n==0){
+                ordena.cancel(true);
                 VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
-                v.dispose();
-                System.exit(0);
+                v.ferVisiblePrincipal();                
             }
         }else{
             VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
