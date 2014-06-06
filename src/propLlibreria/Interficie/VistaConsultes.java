@@ -453,7 +453,6 @@ public class VistaConsultes extends javax.swing.JPanel {
     
     private void consultaArea() {
         try {
-            System.out.println("Consulta area");
             PropTableModel myData = valorsModelArea();
             if (myData != null) {
                 JTable taulaArees = setTaula(myData);
@@ -683,15 +682,10 @@ public class VistaConsultes extends javax.swing.JPanel {
     private boolean haIntroduitDades() {
         String s[] = contingutIntrValors.split(" ");
         return !s[0].equals("Introdueix");
-        /*return (!s.equals("Introdueix nom area")&& !s.equals("Introdueix nom seccio")
-                &&!s.equals("Introdueix nom tematica")&& !s.equals("Introduiex titol")
-                && !s.equals("Introdueix autor")&& !s.equals("Introdueix isbn")
-                && !s.equals("Introdueix nom editorial") && !s.equals("Introdueix any"));*/
     }
     
     private void Consulta() {
         try {
-            System.out.println("Consulta...");
             getComboBoxItems();
             if (haIntroduitDades()) {
                 switch (SeleccioItem) {
@@ -712,7 +706,6 @@ public class VistaConsultes extends javax.swing.JPanel {
                     break;
                 }
             }
-            System.out.println("Termino consulta");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
