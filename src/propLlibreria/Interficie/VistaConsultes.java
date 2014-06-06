@@ -359,25 +359,32 @@ public class VistaConsultes extends javax.swing.JPanel {
         addActionToTaula(taula);
         return taula;
     }
-
+    
+    
     //Ventana emergent amb dades ampliades del llibre
+    private void setVistaDadesLlibre(String isbn){
+        VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
+        JFrame frameDadesLlibre = new JFrame();
+        frameDadesLlibre.setSize(new Dimension(600,400));
+        frameDadesLlibre.setResizable(false);
+        frameDadesLlibre.add(dadesLlibre);
+        frameDadesLlibre.setVisible(true);
+    }
+    
     private void setMouseEventVistaDadesLlibre(MouseEvent e) {
         if (e.getClickCount() == 2) {
             JViewport viewport = MostraResult.getViewport(); 
             JTable taulaLlibres = (JTable)viewport.getView();
-            Object isbn;
-            if (tipusOrdenacio) {
-                isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),1);
-                System.out.println(isbn);
-            }
-            else isbn = taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
-            System.out.println("hola");
-            VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
-            JFrame frameDadesLlibre = new JFrame();
-            frameDadesLlibre.setSize(new Dimension(600,400));
-            frameDadesLlibre.setResizable(false);
-            frameDadesLlibre.add(dadesLlibre);
-            frameDadesLlibre.setVisible(true);
+            String isbn = (String)taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),0);
+            setVistaDadesLlibre(isbn);
+        }
+    }
+    private void setMouseEventVistaDadesLlibreOrdenacio(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            JViewport viewport = MostraResult.getViewport(); 
+            JTable taulaLlibres = (JTable)viewport.getView();
+            String isbn = (String)taulaLlibres.getValueAt(taulaLlibres.getSelectedRow(),1);
+            setVistaDadesLlibre(isbn);
         }
     }
     
@@ -402,12 +409,22 @@ public class VistaConsultes extends javax.swing.JPanel {
     //diferent si la taula es de llibres o de atributs
     private void addActionToTaula(JTable taula) {
         if (tipusLlibre) {
-            taula.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    setMouseEventVistaDadesLlibre(e);
-                }
-            });
+            if (tipusOrdenacio){
+                taula.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        setMouseEventVistaDadesLlibreOrdenacio(e);
+                    }
+                });
+            }
+            else {
+                taula.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        setMouseEventVistaDadesLlibre(e);
+                    }
+                });
+            }
         }
         else {
             taula.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -584,7 +601,6 @@ public class VistaConsultes extends javax.swing.JPanel {
     
     private PropTableModel valorsModelLlibre(boolean inException) {
         try {
-            if (tipusOrdenacio) tipusOrdenacio = false;
             ArrayList<String> columns = valorsHeaderLlibre();
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
             if (!inException) {
@@ -639,6 +655,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             tipusLlibre = true;
             final JTable taulaLlibres = setTaula(myData);
             tipusLlibre = false;
+            if (tipusOrdenacio)tipusOrdenacio = false;
             MostraResult.setViewportView(taulaLlibres);
         }
         catch (Exception e) {
