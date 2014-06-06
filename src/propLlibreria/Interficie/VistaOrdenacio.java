@@ -34,7 +34,13 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             
             myData.setRowsValues(rows);
             myData.setColumnsValues(columns);
-            TaulaEst = new JTable((TableModel) myData);            
+            TaulaEst = new JTable((TableModel) myData);
+            TaulaEst.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    comprovarBotons(e);
+                }
+            });
             TaulaEstanteria.setViewportView(TaulaEst);
             
         }catch (Exception e){
@@ -65,6 +71,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     setVistaDadesLlibre(e);
+                    comprovarBotons(e);
                 }
             });
             TaulaLlibre.setViewportView(TaulaLlib);
@@ -73,7 +80,17 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         } 
     }
     
-     private void setVistaDadesLlibre(MouseEvent e) {
+    private void comprovarBotons(MouseEvent e){
+        if(TaulaEst.getSelectedRows().length!=0 && TaulaLlib.getSelectedRows().length!=0 ){
+            bHeur.setEnabled(true);
+            bBandB.setEnabled(true);
+        }else{
+            bHeur.setEnabled(false);
+            bBandB.setEnabled(false);
+        }
+    }
+    
+    private void setVistaDadesLlibre(MouseEvent e) {
         if (e.getClickCount() == 2) {
             JViewport viewport = TaulaLlibre.getViewport(); 
             JTable taulaLlibres = (JTable)viewport.getView();
@@ -108,7 +125,9 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         layered.setLayer(vMentreOrdena, javax.swing.JLayeredPane.DEFAULT_LAYER);
     } 
     
-    public void reset(){
+    public void reset(){            
+        bHeur.setEnabled(false);
+        bBandB.setEnabled(false);
         carregarTaulaLlib();
         carregarTaulaEst();
         vMentreOrdena.setVisible(false);
