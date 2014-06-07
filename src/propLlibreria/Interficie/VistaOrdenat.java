@@ -27,13 +27,18 @@ import javax.swing.table.TableModel;
 public class VistaOrdenat extends javax.swing.JPanel {
 
     ArrayList<ArrayList<String> > est = new ArrayList<ArrayList<String> >();
+    boolean parcial=false;
     
     public VistaOrdenat(ArrayList<ArrayList<String> > e) {
         initComponents();
-        est=e;
-        mostrarLlibresEstanteriesParcial();    
+        if (e==null) parcial=false;
+        else {
+            est=e;
+            parcial=true; 
+        }
+        mostrarLlibresEstanteries();  
     }
-    private void mostrarLlibresEstanteriesParcial(){
+    private void mostrarLlibresEstanteries(){
         try {
             PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = new ArrayList<String>();
@@ -44,7 +49,8 @@ public class VistaOrdenat extends javax.swing.JPanel {
             columns.add("Títol");
             columns.add("Autor");
             columns.add("Any");
-            result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
+            if(parcial) result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
+            else result = CtrlInterficie.consultarOrdenacioBiblioTotal();
             for (int i=0; i<result.size();i++){
                 ArrayList<String> row= new ArrayList<String>();
                 row.add(result.get(i).get(result.get(i).size()-1));
@@ -71,50 +77,6 @@ public class VistaOrdenat extends javax.swing.JPanel {
             System.out.println(e);
         }
     }    
-    private void mostrarLlibresEstanteriesTotal(){
-        try {
-            PropTableModel myData = new PropTableModel();
-            ArrayList<String> columns = new ArrayList<String>();
-            ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
-            ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();            
-            columns.add("Estanteria");
-            columns.add("ISBN");
-            columns.add("Títol");
-            columns.add("Autor");
-            columns.add("Any");
-            result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
-            for (int i=0; i<result.size();i++){
-                ArrayList<String> row= new ArrayList<String>();
-                row.add(result.get(i).get(result.get(i).size()-1));
-                row.add(result.get(i).get(0));
-                row.add(result.get(i).get(1));
-                row.add(result.get(i).get(2));
-                row.add(result.get(i).get(4));
-                
-                rows.add(row);
-            }            
-                    for (int i = 0; i < rows.size(); ++i) {
-                            String estanteria = rows.get(i).get(7);
-                            rows.get(i).remove(7);
-                            rows.get(i).remove(5);
-                            rows.get(i).remove(3);
-                            rows.get(i).add(0,estanteria);
-                        }
-            myData.setRowsValues(rows);
-            myData.setColumnsValues(columns);
-            JTable taula = new JTable((TableModel) myData);
-            taula.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    setVistaDadesLlibre(e);
-                }
-            });
-            TaulaOrdenada.setViewportView(taula);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
-    }
     private void setVistaDadesLlibre(MouseEvent e) {
         if (e.getClickCount() == 2) {
             JViewport viewport = TaulaOrdenada.getViewport(); 
@@ -144,7 +106,7 @@ public class VistaOrdenat extends javax.swing.JPanel {
             document.open();
             
             //Title
-            Paragraph p = new Paragraph("Taula dels llibres ordenats", titolPrin);
+            Paragraph p = new Paragraph("Llista de llibres ordenats", titolPrin);
             p.setSpacingAfter(50);
             p.setAlignment(Element.ALIGN_CENTER);
             document.add(p);
@@ -185,7 +147,10 @@ public class VistaOrdenat extends javax.swing.JPanel {
             table.addCell(autor);
             table.addCell(any);            
            
-            ArrayList<ArrayList<String> >  result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
+            ArrayList<ArrayList<String> >  result = null;
+            if(parcial) result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
+            else result = CtrlInterficie.consultarOrdenacioBiblioTotal();
+            
             for (int i=0; i<result.size();i++){
                 ArrayList<String> row= new ArrayList<String>();
                 //Content

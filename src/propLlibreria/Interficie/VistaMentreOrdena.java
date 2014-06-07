@@ -1,5 +1,6 @@
 package propLlibreria.Interficie;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
@@ -16,12 +17,14 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     public VistaMentreOrdena() {
         initComponents();
         bExport.setVisible(false);
+        bExportTotal.setVisible(false);
     }
      
     public void ordenar(boolean tip, ArrayList<ArrayList<String>> e, ArrayList<ArrayList<String>> l){
         //tipus=1 = heuristico
         //tipus=0 = exacto
         bExport.setVisible(false);
+        bExportTotal.setVisible(false);
         bSortir.setText("Cancel·lar");
         labProgressGif.setVisible(true);
         labKeepCalm.setText("Ordenant. Espera si us plau.");
@@ -70,6 +73,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     
     private void ordenacioAcabada(){
         bExport.setVisible(true);
+        bExportTotal.setVisible(true);
         bSortir.setText("Tornar al menú");
         labProgressGif.setVisible(false);
         labKeepCalm.setText("Ordenació acabada.");
@@ -94,9 +98,14 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         bSortir = new javax.swing.JButton();
         bExport = new javax.swing.JButton();
         labProgressGif = new javax.swing.JLabel();
+        bExportTotal = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(500, 500));
 
         labKeepCalm.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        labKeepCalm.setText("Ordenant. Esperi si us plau.");
+        labKeepCalm.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labKeepCalm.setText("Ordenant. Espera si us plau.");
+        labKeepCalm.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         bSortir.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         bSortir.setText("Cancel·lar");
@@ -107,7 +116,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         });
 
         bExport.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
-        bExport.setText("Veure ordenació");
+        bExport.setText("Veure ordenació feta");
         bExport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +126,15 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
 
         labProgressGif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/propLlibreria/Interficie/icons/spinner-blue.gif"))); // NOI18N
 
+        bExportTotal.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
+        bExportTotal.setText("Veure ordenació total");
+        bExportTotal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bExportTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExportTotalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,31 +142,33 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(labKeepCalm))
+                        .addGap(156, 156, 156)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bExportTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(68, 68, 68)
+                                .addComponent(labProgressGif))
+                            .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(bExport, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(183, Short.MAX_VALUE)
-                .addComponent(labProgressGif)
-                .addGap(181, 181, 181))
+                        .addGap(147, 147, 147)
+                        .addComponent(labKeepCalm)))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
+                .addGap(94, 94, 94)
                 .addComponent(labKeepCalm)
-                .addGap(32, 32, 32)
+                .addGap(50, 50, 50)
                 .addComponent(labProgressGif)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bExport, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56))
+                .addGap(59, 59, 59)
+                .addComponent(bExport, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bExportTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(bSortir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,15 +190,29 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     private void bExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportActionPerformed
         VistaOrdenat llibresOrdenats = new VistaOrdenat(est);
         JFrame frameLlibresOrdenats = new JFrame();
+        frameLlibresOrdenats.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
         frameLlibresOrdenats.setSize(new Dimension(600,400));
         frameLlibresOrdenats.setResizable(false);
+        frameLlibresOrdenats.setLocation(20, 20);
         frameLlibresOrdenats.add(llibresOrdenats);
         frameLlibresOrdenats.setVisible(true);
     }//GEN-LAST:event_bExportActionPerformed
 
+    private void bExportTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportTotalActionPerformed
+        VistaOrdenat llibresOrdenats = new VistaOrdenat(null);
+        JFrame frameLlibresOrdenats = new JFrame();
+        frameLlibresOrdenats.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+        frameLlibresOrdenats.setSize(new Dimension(600,400));
+        frameLlibresOrdenats.setResizable(false);
+        frameLlibresOrdenats.setLocation(20, 20);
+        frameLlibresOrdenats.add(llibresOrdenats);
+        frameLlibresOrdenats.setVisible(true);
+    }//GEN-LAST:event_bExportTotalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bExport;
+    private javax.swing.JButton bExportTotal;
     private javax.swing.JButton bSortir;
     private javax.swing.JLabel labKeepCalm;
     private javax.swing.JLabel labProgressGif;
