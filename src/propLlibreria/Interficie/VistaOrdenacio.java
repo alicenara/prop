@@ -36,7 +36,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             TaulaEst = new JTable((TableModel) myData);
             TaulaEst.addMouseListener(new MouseAdapter() {
                 @Override
-                public void mouseClicked(MouseEvent e) {
+                public void mousePressed (MouseEvent e) {
                     comprovarBotons(e);
                 }
             });
@@ -68,7 +68,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             TaulaLlib = new JTable((TableModel) myData);
             TaulaLlib.addMouseListener(new MouseAdapter() {
                 @Override
-                public void mouseClicked(MouseEvent e) {
+                public void mousePressed (MouseEvent e) {
                     setVistaDadesLlibre(e);
                     comprovarBotons(e);
                 }

@@ -206,7 +206,9 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
         }catch(Exception e){
             System.out.println(e);
         }
-        ArrayList<String> temS=llibre1.get(0);
+        ArrayList<String> temS = new ArrayList<String>();
+        if(llibre1.size()>0) temS=llibre1.get(0);
+        
         ArrayList<ArrayList<String>> llibre2 = new ArrayList<ArrayList<String>>();
         ArrayList<String> est;
         try{
@@ -229,6 +231,7 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
             if(i<temS.size()-1) temSec+=", ";         
         }
         temSec+="</html>";
+        if(temSec.equals("<html></html>")) temSec="<html>No té temàtiques secundàries.</html>";
         TemSec.setText(temSec);
         String estanteria="<html>";
         if(est!=null){

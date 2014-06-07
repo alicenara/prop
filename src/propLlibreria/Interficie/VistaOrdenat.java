@@ -31,10 +31,9 @@ public class VistaOrdenat extends javax.swing.JPanel {
     public VistaOrdenat(ArrayList<ArrayList<String> > e) {
         initComponents();
         est=e;
-        mostrarLlibresEstanteries();    
+        mostrarLlibresEstanteriesParcial();    
     }
-    
-    private void mostrarLlibresEstanteries(){
+    private void mostrarLlibresEstanteriesParcial(){
         try {
             PropTableModel myData = new PropTableModel();
             ArrayList<String> columns = new ArrayList<String>();
@@ -71,6 +70,50 @@ public class VistaOrdenat extends javax.swing.JPanel {
         catch (Exception e) {
             System.out.println(e);
         }
+    }    
+    private void mostrarLlibresEstanteriesTotal(){
+        try {
+            PropTableModel myData = new PropTableModel();
+            ArrayList<String> columns = new ArrayList<String>();
+            ArrayList<ArrayList<String> > result = new ArrayList<ArrayList<String> >();
+            ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();            
+            columns.add("Estanteria");
+            columns.add("ISBN");
+            columns.add("Títol");
+            columns.add("Autor");
+            columns.add("Any");
+            result = CtrlInterficie.consultarOrdenacioBiblioParcial(est);
+            for (int i=0; i<result.size();i++){
+                ArrayList<String> row= new ArrayList<String>();
+                row.add(result.get(i).get(result.get(i).size()-1));
+                row.add(result.get(i).get(0));
+                row.add(result.get(i).get(1));
+                row.add(result.get(i).get(2));
+                row.add(result.get(i).get(4));
+                
+                rows.add(row);
+            }            
+                    for (int i = 0; i < rows.size(); ++i) {
+                            String estanteria = rows.get(i).get(7);
+                            rows.get(i).remove(7);
+                            rows.get(i).remove(5);
+                            rows.get(i).remove(3);
+                            rows.get(i).add(0,estanteria);
+                        }
+            myData.setRowsValues(rows);
+            myData.setColumnsValues(columns);
+            JTable taula = new JTable((TableModel) myData);
+            taula.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    setVistaDadesLlibre(e);
+                }
+            });
+            TaulaOrdenada.setViewportView(taula);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
     }
     private void setVistaDadesLlibre(MouseEvent e) {
         if (e.getClickCount() == 2) {
@@ -88,15 +131,15 @@ public class VistaOrdenat extends javax.swing.JPanel {
     
    
     private void print(String ruta) {
-        Document document = new Document(PageSize.A4.rotate());
+        Document document = new Document(PageSize.A4);
         
         try {
             PdfWriter.getInstance(document,
                 new FileOutputStream(ruta));
             
             Font titolPrin = new Font(Font.FontFamily.HELVETICA, 25, Font.BOLD | Font.UNDERLINE);
-            Font headerstable = new Font(Font.FontFamily.HELVETICA, 14, Font.BOLD);
-            Font cells = new Font(Font.FontFamily.HELVETICA, 12);
+            Font headerstable = new Font(Font.FontFamily.HELVETICA, 13, Font.BOLD);
+            Font cells = new Font(Font.FontFamily.HELVETICA, 11);            
             
             document.open();
             
@@ -107,6 +150,8 @@ public class VistaOrdenat extends javax.swing.JPanel {
             document.add(p);
 
             PdfPTable table = new PdfPTable(5); // 5 columns.
+            float[] columnWidths = {2f, 2f, 2f, 2f, 1f};
+            table.setWidths(columnWidths);
             
             //Table headers
             PdfPCell estant = new PdfPCell(new Paragraph("Estanteria",headerstable));

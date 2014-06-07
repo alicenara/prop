@@ -6,6 +6,7 @@
 
 package propLlibreria.Interficie;
 
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,7 +78,8 @@ public final class VistaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PROP");
+        setTitle("Projecte de programació");
+        setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(500, 500));
