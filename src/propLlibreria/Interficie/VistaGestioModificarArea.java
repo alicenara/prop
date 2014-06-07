@@ -25,6 +25,10 @@ public class VistaGestioModificarArea extends javax.swing.JPanel {
     public void resetFields() {
         inputNom.setText("");
         ArrayList<ArrayList<String> > arees = CtrlInterficie.seleccionaAllArees();
+        boolean b = !arees.isEmpty();
+        inputNom.setEnabled(b);
+        comboArea.setEnabled(b);
+        botoAfegir.setEnabled(b);
         String[] model = new String[arees.size()];
         for(int i = 0; i < arees.size(); ++i)
             model[i] = arees.get(i).get(0);

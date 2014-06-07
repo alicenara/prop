@@ -47,8 +47,28 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
     }
     
     private void refill() {
-        int selected = comboLlibre.getSelectedIndex();
         ArrayList<ArrayList<String> > llibres = CtrlInterficie.seleccionaAllLlibres();
+        boolean b = !llibres.isEmpty();
+        inputISBN.setEnabled(b);
+        inputAutor.setEnabled(b);
+        inputEditorial.setEnabled(b);
+        inputTitol.setEnabled(b);
+        spinAny.setEnabled(b);
+        spinEdicio.setEnabled(b);
+        comboTematicaPrincipal.setEnabled(b);
+        botoModificar.setEnabled(b);
+        comboLlibre.setEnabled(b);
+        if(!b) {
+             inputISBN.setText("");
+            inputAutor.setText("");
+            inputEditorial.setText("");
+            inputTitol.setText("");
+            spinAny.setValue(1);
+            spinEdicio.setValue(1);
+            return;
+        }
+        
+        int selected = comboLlibre.getSelectedIndex();
         inputISBN.setText(llibres.get(selected).get(0));
         inputAutor.setText(llibres.get(selected).get(2));
         inputEditorial.setText(llibres.get(selected).get(3));

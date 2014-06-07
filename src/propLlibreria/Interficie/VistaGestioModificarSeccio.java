@@ -24,10 +24,14 @@ public class VistaGestioModificarSeccio extends javax.swing.JPanel {
     
     public void resetFields() {
         inputNom.setText("");
-        ArrayList<ArrayList<String> > arees = CtrlInterficie.seleccionaAllSeccions();
-        String[] model = new String[arees.size()];
-        for(int i = 0; i < arees.size(); ++i)
-            model[i] = arees.get(i).get(0);
+        ArrayList<ArrayList<String> > seccions = CtrlInterficie.seleccionaAllSeccions();
+        boolean b = !seccions.isEmpty();
+        inputNom.setEnabled(b);
+        comboSeccio.setEnabled(b);
+        botoAfegir.setEnabled(b);
+        String[] model = new String[seccions.size()];
+        for(int i = 0; i < seccions.size(); ++i)
+            model[i] = seccions.get(i).get(0);
         comboSeccio.setModel(new javax.swing.DefaultComboBoxModel(model));
     }
 

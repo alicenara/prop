@@ -38,9 +38,9 @@
               </Group>
               <EmptySpace pref="13" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="comboArea" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
+                  <Component id="comboTematica" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Component id="botoAfegir" min="-2" pref="86" max="-2" attributes="0"/>
+                      <Component id="botoModificar" min="-2" pref="86" max="-2" attributes="0"/>
                       <Component id="inputNom" min="-2" pref="138" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -54,7 +54,7 @@
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelArea" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboArea" alignment="3" max="-2" attributes="0"/>
+                  <Component id="comboTematica" alignment="3" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -62,19 +62,19 @@
                   <Component id="inputNom" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="botoAfegir" min="-2" max="-2" attributes="0"/>
+              <Component id="botoModificar" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="288" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JToggleButton" name="botoAfegir">
+    <Component class="javax.swing.JToggleButton" name="botoModificar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Desar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoAfegirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoModificarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelNom">
@@ -89,7 +89,7 @@
         <Property name="text" type="java.lang.String" value="Tem&#xe0;tica"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="comboArea">
+    <Component class="javax.swing.JComboBox" name="comboTematica">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>

@@ -24,11 +24,18 @@ public class VistaGestioModificarEstanteria extends javax.swing.JPanel {
 
     public void resetFields() {
         ArrayList<ArrayList<String> > estanteries = CtrlInterficie.seleccionaAllEstanteries();
+        boolean b = !estanteries.isEmpty();
+        comboEstanteria.setEnabled(b);
+        spinEstants.setEnabled(b);
+        spinY.setEnabled(b);
+        spinX.setEnabled(b);
+        spinLlargada.setEnabled(b);
+        botoModificar.setEnabled(b);
         String[] model = new String[estanteries.size()];
         for(int i = 0; i < estanteries.size(); ++i)
             model[i] = "X:" + estanteries.get(i).get(0) + ", Y:" + estanteries.get(i).get(1);
         comboEstanteria.setModel(new javax.swing.DefaultComboBoxModel(model));
-        
+        if(!b) return;
         refill();
     }
     
