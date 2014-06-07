@@ -58,8 +58,19 @@ public class CtrlDominiInterficie {
                 else solver = new BB(calcAfin, calcDist);
                 try {
                     Solucio solucio = new Solucio(solver, llibres, llocs);
-                    for(int i = 0; i < e.size(); ++i)
+                    for (int i = 0; i < e.size(); ++i) {
                             e.get(i).buidarLlibres();
+                    }
+                    ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
+                    for(int i = 0; i < all.size(); ++i) {
+                        ArrayList<Llibre> lliE = all.get(i).getLlibres();
+                        for (int j = 0; j < lliE.size(); ++j) {
+                            for (int k = 0; k < a.size(); ++k) {
+                                Llibre llibre = a.get(k);
+                                if (llibre == lliE.get(j)) all.get(i).esborrarLlibre(llibre.getID());
+                            }
+                        }
+                    }      
                     for(int i = 0; i < solucio.assignacions.length; ++i) {
                             Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
                             est.afegirLlibre(llibres[solucio.assignacions[i]].getID());
