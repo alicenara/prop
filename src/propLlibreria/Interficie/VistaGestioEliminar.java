@@ -7,6 +7,7 @@
 package propLlibreria.Interficie;
 
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -238,6 +239,8 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
             VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
             JFrame frameDadesLlibre = new JFrame();
             frameDadesLlibre.setSize(new Dimension(600,400));
+            frameDadesLlibre.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+            frameDadesLlibre.setLocation(20, 20);
             frameDadesLlibre.setResizable(false);
             frameDadesLlibre.add(dadesLlibre);
             frameDadesLlibre.setVisible(true);
