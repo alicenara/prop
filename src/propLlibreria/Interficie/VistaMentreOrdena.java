@@ -24,7 +24,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         bExport.setVisible(false);
         bSortir.setText("Cancel·lar");
         labProgressGif.setVisible(true);
-        labKeepCalm.setText("Ordenant. Esperi si us plau.");
+        labKeepCalm.setText("Ordenant. Espera si us plau.");
         final boolean tipus=tip;
         est=e;
         final ArrayList<ArrayList<String>> lib=l;        
@@ -40,7 +40,10 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
                     "No hi ha prous llocs a les estanteries per la quantitat de llibres que hi ha.",
                     "Pocs llocs a les estanteries",
                     JOptionPane.WARNING_MESSAGE);
-                }
+                    
+                    tornarEnrerePerError();
+                    ordena.cancel(true);
+                    }
                 return true;
             }
             
@@ -70,6 +73,11 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         bSortir.setText("Tornar al menú");
         labProgressGif.setVisible(false);
         labKeepCalm.setText("Ordenació acabada.");
+    }
+    
+    private void tornarEnrerePerError(){
+        VistaPrincipal v = (VistaPrincipal)SwingUtilities.getWindowAncestor(this);
+        v.ferVisibleOrdenar();  
     }
     
 
