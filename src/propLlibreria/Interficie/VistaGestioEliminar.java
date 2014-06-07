@@ -15,6 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
+import javax.swing.RowSorter;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -99,7 +102,9 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
         
         myData.setColumnsValues(columns);
         myData.setRowsValues(rows);
-        taulaResultats.setModel(myData);
+        taulaResultats.setModel(myData);   
+        RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myData);
+        taulaResultats.setRowSorter(sorter);
     }
     
     /**

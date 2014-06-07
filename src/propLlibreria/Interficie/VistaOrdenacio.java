@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JViewport;
+import javax.swing.RowSorter;
 import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 
 public class VistaOrdenacio extends javax.swing.JPanel {
@@ -41,7 +43,9 @@ public class VistaOrdenacio extends javax.swing.JPanel {
                     comprovarBotons(e);
                 }
             });
-            TaulaEstanteria.setViewportView(TaulaEst);
+            RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myData);
+            TaulaEst.setRowSorter(sorter);
+            TaulaEstanteria.setViewportView(TaulaEst);           
             
         }catch (Exception e){
             System.out.println("Excepció!");
@@ -74,6 +78,8 @@ public class VistaOrdenacio extends javax.swing.JPanel {
                     comprovarBotons(e);
                 }
             });
+            RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myData);
+            TaulaLlib.setRowSorter(sorter);
             TaulaLlibre.setViewportView(TaulaLlib);
          }catch (Exception e){
             System.out.println("Excepció!");
