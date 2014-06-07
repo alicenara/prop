@@ -209,13 +209,9 @@ public final class CtrlInterficie {
   }
   
   public static void crearLlibre(String isbn, String titol, String autor, String editorial, int any, int edicio, String nomTp) throws Exception{
-      if (CtrlDominiInterficie.existeixLlibre(titol,autor,any)) {
-            throw new Exception("nouLlibreJaExisteix");
-        }
-        else {
             int idtp = seleccionaTematica(nomTp);
             CtrlDominiInterficie.afegirLlibre(isbn,titol,autor,editorial,any,edicio,idtp);
-        }
+       
   }
   
   public static void modificarIsbnLlibre(String titol, String autor, int any, String modIsbn) throws Exception{
