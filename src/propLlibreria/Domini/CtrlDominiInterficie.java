@@ -446,7 +446,18 @@ public class CtrlDominiInterficie {
 	//pre: Existeix un Llibre = esbLlibre
 	//post: El Llibre = esbLlibre ha estat eliminat
 	public static void esborrarLlibre(int IDL) {
-		Llibre l = GestioLlibre.getLlibre(IDL);
+                ArrayList<Estanteria> e = GestioEstanteria.getAllEstanteries();
+                for (int i = 0; i < e.size(); ++i) {
+                    ArrayList<Llibre> llibresE = e.get(i).getLlibres();
+                    boolean trobat = false;
+                    for (int j = 0; j < llibresE.size() && !trobat; ++j) {
+                        if (llibresE.get(j).getID() == IDL) {
+                            e.get(i).esborrarLlibre(IDL);
+                            trobat = true;
+                        }
+                    }
+                }
+                Llibre l = GestioLlibre.getLlibre(IDL);
                 esborrarLlibreTematica(l.getTemPrincipal(),IDL);
 	}
 	
