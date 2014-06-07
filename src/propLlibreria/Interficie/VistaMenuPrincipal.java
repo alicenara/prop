@@ -50,7 +50,7 @@ public class VistaMenuPrincipal extends javax.swing.JPanel {
         });
 
         labSelecciona.setBackground(new java.awt.Color(212, 220, 245));
-        labSelecciona.setText("Seleccioni la operació a realitzar:");
+        labSelecciona.setText("Selecciona la operació a realitzar:");
         labSelecciona.setOpaque(true);
 
         bOrdena.setText("Ordenar");
