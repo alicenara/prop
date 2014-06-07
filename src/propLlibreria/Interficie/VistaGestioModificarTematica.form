@@ -28,12 +28,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="labelNom" max="32767" attributes="0"/>
-                  <Component id="labelArea" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="labelNom" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelArea" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="13" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="comboArea" alignment="1" min="-2" pref="138" max="-2" attributes="0"/>
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -60,7 +60,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="botoAfegir" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="273" max="32767" attributes="0"/>
+              <EmptySpace pref="288" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,7 +83,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelArea">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc0;rea"/>
+        <Property name="text" type="java.lang.String" value="Tem&#xe0;tica"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboArea">
