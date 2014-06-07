@@ -32,10 +32,10 @@ public class CtrlDominiInterficie {
                 }
 		ArrayList<Lloc> b = new ArrayList<Lloc>(); 
 		ArrayList<Integer> llocsEstanteries = new ArrayList<Integer>();
-		for(int i = 0; i < e.size(); ++i) 
-			for(int k = 0; k < e.get(i).getNumFiles(); ++k) {
-			    for(int j = 0; j < e.get(i).getLlargada(); ++j) 
-					b.add(new Lloc(e.get(i).getPosX()+j*0.01,e.get(i).getPosY(),k*0.10));
+		for(int i = 0; i < e.size(); ++i)
+			for(int k = 0; k < e.get(i).getNumFiles(); ++k) 
+			    for(int j = 0; j < e.get(i).getLlargada(); ++j){
+					b.add(new Lloc(e.get(i).getPosX()*100+j,e.get(i).getPosY()*100,k*10));
 					llocsEstanteries.add(e.get(i).getID());
 				}
 		if(a.size() != b.size()) {
