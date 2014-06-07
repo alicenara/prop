@@ -46,6 +46,7 @@ public class VistaGestioModificarSeccio extends javax.swing.JPanel {
         labelArea = new javax.swing.JLabel();
         comboSeccio = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));

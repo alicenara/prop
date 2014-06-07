@@ -61,6 +61,7 @@ public class VistaGestioModificarEstanteria extends javax.swing.JPanel {
         labelEstants = new javax.swing.JLabel();
         comboEstanteria = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));

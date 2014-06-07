@@ -214,6 +214,10 @@ public class VistaOrdenacio extends javax.swing.JPanel {
         labEstanteria = new javax.swing.JLabel();
         bCancelar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(212, 220, 245));
+
+        panPregunta.setBackground(new java.awt.Color(212, 220, 245));
+
         labAvis.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N
         labAvis.setForeground(new java.awt.Color(255, 51, 51));
         labAvis.setText("<html>Compte! La quantitat de llibres és <b>molt gran per utilitzar un mètode exacte</b>. El temps d'espera de reordenació pot superar els 5 minuts.</html>");

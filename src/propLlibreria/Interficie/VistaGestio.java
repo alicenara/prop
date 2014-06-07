@@ -158,6 +158,7 @@ public class VistaGestio extends javax.swing.JPanel {
         layered = new javax.swing.JLayeredPane();
         botoEnrere = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(500, 500));

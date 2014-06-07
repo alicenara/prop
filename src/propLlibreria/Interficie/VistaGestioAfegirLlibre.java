@@ -70,9 +70,12 @@ public class VistaGestioAfegirLlibre extends javax.swing.JPanel {
         listSecundaries = new javax.swing.JList();
         labelSecundaries = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));
+
+        jPanel1.setBackground(new java.awt.Color(212, 220, 245));
 
         labelAutor.setText("Autor");
 

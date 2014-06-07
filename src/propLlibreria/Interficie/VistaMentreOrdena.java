@@ -100,6 +100,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
         labProgressGif = new javax.swing.JLabel();
         bExportTotal = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setPreferredSize(new java.awt.Dimension(500, 500));
 
         labKeepCalm.setFont(new java.awt.Font("Arial Unicode MS", 0, 13)); // NOI18N

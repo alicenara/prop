@@ -50,7 +50,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         IntroduccioDades = new javax.swing.JTextField();
         EnrereButton = new javax.swing.JButton();
 
-        Fons.setBackground(new java.awt.Color(204, 204, 255));
+        Fons.setBackground(new java.awt.Color(212, 220, 245));
         Fons.setFont(new java.awt.Font("Arial Unicode MS", 0, 11)); // NOI18N
 
         Seleccio.addActionListener(new java.awt.event.ActionListener() {

@@ -115,6 +115,7 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
         taulaResultats = new javax.swing.JTable();
         botoEliminar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));
@@ -157,7 +158,7 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
                 .addComponent(contenidorTaula, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botoEliminar)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

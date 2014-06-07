@@ -196,6 +196,8 @@ public class VistaOrdenat extends javax.swing.JPanel {
         bSortir = new javax.swing.JButton();
         bPDF = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(212, 220, 245));
+
         taulaResult.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

@@ -38,6 +38,7 @@ public class VistaGestioAfegirArea extends javax.swing.JPanel {
         labelNom = new javax.swing.JLabel();
         inputNom = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));

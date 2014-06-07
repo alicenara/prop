@@ -115,6 +115,7 @@ public class VistaGestioModificarLlibre extends javax.swing.JPanel {
         labelSecundaries = new javax.swing.JLabel();
         comboLlibre = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(212, 220, 245));
         setMaximumSize(new java.awt.Dimension(476, 405));
         setMinimumSize(new java.awt.Dimension(476, 405));
         setPreferredSize(new java.awt.Dimension(476, 405));
