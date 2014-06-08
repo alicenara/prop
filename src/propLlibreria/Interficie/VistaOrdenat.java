@@ -21,8 +21,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JViewport;
+import javax.swing.RowSorter;
 import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 public class VistaOrdenat extends javax.swing.JPanel {
 
@@ -71,6 +73,8 @@ public class VistaOrdenat extends javax.swing.JPanel {
                     setVistaDadesLlibre(e);
                 }
             });
+            RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(myData);
+            taula.setRowSorter(sorter);
             TaulaOrdenada.setViewportView(taula);
         }
         catch (Exception e) {
