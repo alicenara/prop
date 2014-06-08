@@ -51,6 +51,11 @@ public class CtrlDominiInterficie {
 		llibres = a.toArray(llibres);
 		llocs = b.toArray(llocs);
 		
+                //llibres tiene los libros a ordenar
+                //llocs tiene los sitios a asignar
+                //llocsEstanteries[i] es la ID de la estanteria del sitio llocs[i]
+                
+                //solucionar (esto es la parte comun)
 		CalcularAfinitatsBiblio calcAfin = new CalcularAfinitatsBiblio();
 		CalcularDistancies calcDist = new CalcularDistancies();
 		SolucionadorQAP solver;
@@ -58,19 +63,32 @@ public class CtrlDominiInterficie {
                 else solver = new BB(calcAfin, calcDist);
                 try {
                     Solucio solucio = new Solucio(solver, llibres, llocs);
-                    for (int i = 0; i < e.size(); ++i) {
-                            e.get(i).buidarLlibres();
-                    }
+                    //fin de la parte comun.
+                    //COSAS QUE PUEDES MIRAR DEL ALGORITMO (en el debugger, breakpoint aquí):
+                    //en solucio->solver, estan las matrices de afinidades y distancias por ahí.
+                    
+                    //Vaciar estanterias que hemos usado para ordenar
+                    for (int i = 0; i < e.size(); ++i) e.get(i).buidarLlibres();
+                    
+                    //Borrar los libros reordenados
                     ArrayList<Estanteria> all = GestioEstanteria.getAllEstanteries();
-                    for(int i = 0; i < all.size(); ++i) {
-                        ArrayList<Llibre> lliE = all.get(i).getLlibres();
-                        for (int j = 0; j < lliE.size(); ++j) {
-                            for (int k = 0; k < a.size(); ++k) {
+                    for(int i = 0; i < all.size(); ++i) { //para cada estanteria de todas las estanterias
+                        ArrayList<Llibre> lliE = all.get(i).getLlibres(); //lliE son todos sus libros
+                        for (int j = 0; j < lliE.size(); ++j) { //para cada uno de sus libros
+                            for (int k = 0; k < a.size(); ++k) { //para todos los libros que hemos reordenado
                                 Llibre llibre = a.get(k);
+                                //si el libro reordenado actual es el libro que estamos inspeccionando en la estanteria
+                                //borra el puto libro
                                 if (llibre.getID() == lliE.get(j).getID()) all.get(i).esborrarLlibre(llibre.getID());
                             }
                         }
                     }      
+                    
+                    //reinsertar los libros ordenados.
+                    //solucio.assignacions[i] representa el un índice dentro de llibres.
+                    //de esta manera, llibres[solucio.assingacions[i]] debe ser asignado al sitio llocs[i]
+                    //como llocs[i] pertenece a la estanteria llocsEstanteries[i], añadimos 
+                    //llibres[solucio.assingacions[i]] a la estanteria llocsEstanteries[i].
                     for(int i = 0; i < solucio.assignacions.length; ++i) {
                             Estanteria est = GestioEstanteria.getEstanteria(llocsEstanteries.get(i));
                             est.afegirLlibre(llibres[solucio.assignacions[i]].getID());
