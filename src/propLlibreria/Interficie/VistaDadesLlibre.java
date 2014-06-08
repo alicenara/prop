@@ -208,7 +208,9 @@ public class VistaDadesLlibre extends javax.swing.JPanel {
             System.out.println(e);
         }
         ArrayList<String> temS = new ArrayList<String>();
-        if(llibre1.size()>0) temS=llibre1.get(0);
+        for(int i=0;i<llibre1.size();i++){
+            temS.add(llibre1.get(i).get(0));     
+        }
         
         ArrayList<ArrayList<String>> llibre2 = new ArrayList<ArrayList<String>>();
         ArrayList<String> est;
