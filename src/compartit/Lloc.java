@@ -13,9 +13,9 @@ public class Lloc {
      * 
      */
 	public Lloc(int x, int y, int z) {
-		setPosicioX(x);
-		setPosicioY(y);
-		setPosicioZ(z);
+		posicioX = x;
+		posicioY = y;
+		posicioZ = z;
 	}
    /**
      * Retorna la posicio X

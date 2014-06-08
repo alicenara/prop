@@ -35,7 +35,7 @@ public class CtrlDominiInterficie {
 		for(int i = 0; i < e.size(); ++i)
 			for(int k = 0; k < e.get(i).getNumFiles(); ++k) 
 			    for(int j = 0; j < e.get(i).getLlargada(); ++j){
-					b.add(new Lloc(e.get(i).getPosX()*100+j,e.get(i).getPosY()*100,k*10));
+					b.add(new Lloc(e.get(i).getPosX()*100+j+k*10,e.get(i).getPosY()*100,0));
 					llocsEstanteries.add(e.get(i).getID());
 				}
 		if(a.size() != b.size()) {
@@ -67,7 +67,7 @@ public class CtrlDominiInterficie {
                         for (int j = 0; j < lliE.size(); ++j) {
                             for (int k = 0; k < a.size(); ++k) {
                                 Llibre llibre = a.get(k);
-                                if (llibre == lliE.get(j)) all.get(i).esborrarLlibre(llibre.getID());
+                                if (llibre.getID() == lliE.get(j).getID()) all.get(i).esborrarLlibre(llibre.getID());
                             }
                         }
                     }      
