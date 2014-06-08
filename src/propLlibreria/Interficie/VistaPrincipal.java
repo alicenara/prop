@@ -79,7 +79,7 @@ public final class VistaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Projecte de programació");
-        setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+        setIconImage(Toolkit.getDefaultToolkit().getImage("src/propLlibreria/Interficie/icons/bookIcon.png"));
         setMaximumSize(new java.awt.Dimension(500, 500));
         setMinimumSize(new java.awt.Dimension(500, 500));
         setPreferredSize(new java.awt.Dimension(500, 500));
