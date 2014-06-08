@@ -15,15 +15,15 @@ public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 		double afins = 0;
 		Tematica tPriA = GestioArea.getTematica(aa.getTemPrincipal());
 		Tematica tPriB = GestioArea.getTematica(bb.getTemPrincipal());
-		if (tPriA.getID() == tPriB.getID())	afins += 20;
+		if (tPriA.getID() == tPriB.getID())	afins += 2.0;
 		else {
 			Seccio sA = GestioArea.getSeccio(tPriA.getIDSeccioTematica());
 			Seccio sB = GestioArea.getSeccio(tPriB.getIDSeccioTematica());
-			if (sA.getID() == sB.getID()) afins += 5;
+			if (sA.getID() == sB.getID()) afins += 2.5;
 			else {
 				Area aA = GestioArea.getArea(sA.getIDAreaSeccio());
 				Area aB = GestioArea.getArea(sB.getIDAreaSeccio());
-				if (aA.getID() == aB.getID()) afins += 1.5;
+				if (aA.getID() == aB.getID()) afins += 3.0;
 			}
 		}
 		afins += comparaTSec(aa,bb);
@@ -37,17 +37,17 @@ public class CalcularAfinitatsBiblio extends CalcularAfinitats {
 		Tematica tpA = GestioArea.getTematica(a.getTemPrincipal());
 		Tematica tpB = GestioArea.getTematica(b.getTemPrincipal());
 		for(int i = 0; i < tA.size(); ++i) {
-			if(tA.get(i).getID() == tpB.getID()) afin += 0.2;
+			if(tA.get(i).getID() == tpB.getID()) afin += 0.75;
 			for(int j = 0; j < tB.size(); ++j) {
 				if(tB.get(j).getID() == tA.get(i).getID()) {
-					afin += 0.1;
+					afin += 0.5;
 					break;
 				}
 			}
 		}
 		for(int i = 0; i < tB.size(); ++i) {
 			if(tB.get(i).getID() == tpA.getID()) {
-				afin += 0.2;
+				afin += 0.75;
 				break;
 			}
 		}
