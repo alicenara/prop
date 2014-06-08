@@ -25,6 +25,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     boolean tipusLlibre = false;
     boolean seleccioAutomatica = false;
     boolean tipusOrdenacio = false;
+    boolean tipusEstanteria = false;
     String funcionsSeleccioItem;
     String SeleccioItem;
     String contingutIntrValors;
@@ -406,6 +407,19 @@ public class VistaConsultes extends javax.swing.JPanel {
             seleccioAutomatica  = true;
         }
     }
+    private void setMouseEventVistaEstanteria(MouseEvent e) {
+        if (e.getClickCount() == 2) {
+            JViewport viewport = MostraResult.getViewport(); 
+            JTable taulaLlibres = (JTable)viewport.getView();
+            Integer rowSelected = taulaLlibres.getSelectedRow();
+            String x = (String) taulaLlibres.getValueAt(rowSelected,0);
+            String y = (String) taulaLlibres.getValueAt(rowSelected,1);
+            funcionsSeleccio.setSelectedIndex(2);
+            IntroduccioDades.setText(x+","+y);
+            IntroduccioDades.setForeground(new java.awt.Color(0,0,0));
+            seleccioAutomatica  = true;
+        }
+    }
     
     //Assignacio de mouse listener a la taula per parametre. Associem de manera
     //diferent si la taula es de llibres o de atributs
@@ -435,12 +449,22 @@ public class VistaConsultes extends javax.swing.JPanel {
                     IntroduccioDadesKeyPressed(evt);
                 }
             });
-            taula.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    setMouseEventVistaDades(e);
-                }
-            });
+            if (tipusEstanteria) {
+                taula.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        setMouseEventVistaEstanteria(e);
+                    }
+                });
+            }
+            else {
+                taula.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        setMouseEventVistaDades(e);
+                    }
+                });
+            }
         }
     }
     
@@ -671,6 +695,7 @@ public class VistaConsultes extends javax.swing.JPanel {
             ArrayList<ArrayList<String> > rows = new ArrayList<ArrayList<String> >();
             switch(funcionsSeleccioItem) {
                 case "Totes estanteries":
+                    tipusEstanteria = true;
                     columns.add("Coordenada X");
                     columns.add("Coordenada Y");
                     columns.add("Num Files");
@@ -703,6 +728,7 @@ public class VistaConsultes extends javax.swing.JPanel {
         try {
             PropTableModel myData = valorsModelEstanteria();
             JTable taulaEstanteries = setTaula(myData);
+            if (tipusEstanteria) tipusEstanteria = false;
             MostraResult.setViewportView(taulaEstanteries);
         }
         catch (Exception e) {
