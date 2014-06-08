@@ -160,12 +160,14 @@ public class TS extends SolucionadorQAP {
 		DIST = distancies;
 		if(numSearches <= 0 || numIterations <= 0 || maxTabuListSize <= 0) throw new Exception("Tabu Config Error");
 		checkInputMatrices();
-		double bestCost = 1 << 15;
+		double bestCost = 0;
+                boolean first = true;
 		int[] best = new int[N];
 		for(int i = 0; i < numSearches; ++i) {
 			int[] current = search();
 			double currCost = cost(current);
-			if(currCost < bestCost) {
+			if(currCost < bestCost || first) {
+                                first = false;
 				bestCost = currCost;
 				best = current;
 			}
