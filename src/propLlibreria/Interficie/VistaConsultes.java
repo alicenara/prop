@@ -365,7 +365,7 @@ public class VistaConsultes extends javax.swing.JPanel {
     private void setVistaDadesLlibre(String isbn){
         VistaDadesLlibre dadesLlibre = new VistaDadesLlibre((String) isbn);
         JFrame frameDadesLlibre = new JFrame();
-        frameDadesLlibre.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+        frameDadesLlibre.setIconImage(Toolkit.getDefaultToolkit().getImage("src/propLlibreria/Interficie/icons/bookIcon.png"));
         frameDadesLlibre.setSize(new Dimension(600,400));
         frameDadesLlibre.setLocation(20, 20);
         frameDadesLlibre.setResizable(false);

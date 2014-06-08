@@ -191,7 +191,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     private void bExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportActionPerformed
         VistaOrdenat llibresOrdenats = new VistaOrdenat(est);
         JFrame frameLlibresOrdenats = new JFrame();
-        frameLlibresOrdenats.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+        frameLlibresOrdenats.setIconImage(Toolkit.getDefaultToolkit().getImage("src/propLlibreria/Interficie/icons/bookIcon.png"));
         frameLlibresOrdenats.setSize(new Dimension(600,400));
         frameLlibresOrdenats.setResizable(false);
         frameLlibresOrdenats.setLocation(20, 20);
@@ -202,7 +202,7 @@ public class VistaMentreOrdena extends javax.swing.JPanel {
     private void bExportTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExportTotalActionPerformed
         VistaOrdenat llibresOrdenats = new VistaOrdenat(null);
         JFrame frameLlibresOrdenats = new JFrame();
-        frameLlibresOrdenats.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+        frameLlibresOrdenats.setIconImage(Toolkit.getDefaultToolkit().getImage("src/propLlibreria/Interficie/icons/bookIcon.png"));
         frameLlibresOrdenats.setSize(new Dimension(600,400));
         frameLlibresOrdenats.setResizable(false);
         frameLlibresOrdenats.setLocation(20, 20);

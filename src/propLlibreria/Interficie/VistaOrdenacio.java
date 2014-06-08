@@ -107,7 +107,7 @@ public class VistaOrdenacio extends javax.swing.JPanel {
             JFrame frameDadesLlibre = new JFrame();
             frameDadesLlibre.setSize(new Dimension(600,400));
             frameDadesLlibre.setLocation(20, 20);
-            frameDadesLlibre.setIconImage(Toolkit.getDefaultToolkit().getImage("resources/bookIcon.png"));
+            frameDadesLlibre.setIconImage(Toolkit.getDefaultToolkit().getImage("src/propLlibreria/Interficie/icons/bookIcon.png"));
             frameDadesLlibre.setResizable(false);
             frameDadesLlibre.add(dadesLlibre);
             frameDadesLlibre.setVisible(true);
