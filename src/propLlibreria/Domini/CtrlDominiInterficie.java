@@ -583,8 +583,6 @@ public class CtrlDominiInterficie {
                     Seccio s = GestioArea.getSeccio(t.getIDSeccioTematica());
                     Area a = GestioArea.getArea(s.getIDAreaSeccio());
                     tem.add(t.getNomTematica());
-                    tem.add(s.getNomSeccio());
-                    tem.add(a.getNomArea());
                     result.add(tem);
                 }
                 return result;
