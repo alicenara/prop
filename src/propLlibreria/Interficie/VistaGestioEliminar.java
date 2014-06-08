@@ -51,24 +51,24 @@ public class VistaGestioEliminar extends javax.swing.JPanel {
         
         switch(tipusObjecte) {
             case "Àrea": {
-                columns.add("Nom Àrea");
+                columns.add("Àrea");
                 ArrayList<ArrayList<String> > arees = CtrlInterficie.seleccionaAllArees();
                 for(int i = 0; i < arees.size(); ++i)
                     rows.add(arees.get(i));
                 break;
             }
             case "Secció": {
-                columns.add("Nom Secció");
-                columns.add("Nom Àrea Pare");
+                columns.add("Secció");
+                columns.add("Àrea");
                 ArrayList<ArrayList<String> > seccions = CtrlInterficie.seleccionaAllSeccions();
                 for(int i = 0; i < seccions.size(); ++i)
                     rows.add(seccions.get(i));
                 break;
             }
             case "Temàtica": {
-                columns.add("Nom Temàtica");
-                columns.add("Nom Secció");
-                columns.add("Nom Àrea");
+                columns.add("Temàtica");
+                columns.add("Secció");
+                columns.add("Àrea");
                 ArrayList<ArrayList<String> > tematiques = CtrlInterficie.seleccionaAllTematiques();
                 for(int i = 0; i < tematiques.size(); ++i)
                     rows.add(tematiques.get(i));
